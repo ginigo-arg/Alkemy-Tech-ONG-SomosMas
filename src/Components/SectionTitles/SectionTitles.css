@@ -1,0 +1,14 @@
+.zoneContent {
+  display: block;
+  width: 100%;
+  padding: 30px;
+}  
+
+.zoneTitle {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;/*20px 20px 0px 0px;*/
+  min-height:80px;
+}  
+
