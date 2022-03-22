@@ -10,8 +10,8 @@ const Gracias = () => {
           <h2 className="text-center">Gracias</h2>
           <p className="text-center px-4">
             Lorem ipsum dolor sit amet consectetur adipiscing elit massa quis
-            molestie vestibulum, aliquam penatibus taciti tincidunt suspendisse
-            leo dui eu conubia. Id proin magnis facilisi tellus
+            molestie vestibulum, aliquam penatibus tdwawdaciti tincidunt
+            suspendisse leo dui eu conubia. Id proin magnis facilisi tellus
           </p>
         </Col>
         <Col xs={12} className="d-flex justify-content-center">
