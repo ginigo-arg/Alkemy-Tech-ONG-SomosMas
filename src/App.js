@@ -16,6 +16,7 @@ import ProjectsForm from './Components/Projects/ProjectsForm';
 import About from './Components/About/Nosotros';
 
 import Layout from './Components/Layout/Layout';
+import Error404 from './Components/Error404/Error404';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/Nosotros" component={About} />
+          <Route path="*" component={Error404} /> {/* Manejo de errores 404 page not found. */}
         </Switch>
       </BrowserRouter>
       <div className="App">
