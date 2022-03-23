@@ -15,7 +15,6 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 
 import Layout from './Components/Layout/Layout';
-import Slider from './Components/Slides/Slider';
 
 function App() {
   return (
@@ -38,7 +37,6 @@ function App() {
     <div className="App">
     <Layout>
         <h2>MODIFICAR POR EL COMPOENENT HOME</h2>
-        <Slider />
       </Layout>
     </div>
     </>
