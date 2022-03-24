@@ -1,8 +1,10 @@
+import PublicHeader from '../Header/PublicHeader';
+
 const Layout = ({ children }) => {
   return (
     <div className="container">
       {/* Acá va el componente Header */}
-      <header>HEADER COMPONENT</header>
+      <PublicHeader/><br></br>
 
       <div className="hero">{children}</div>
 
