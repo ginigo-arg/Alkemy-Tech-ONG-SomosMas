@@ -17,6 +17,7 @@ import About from './Components/About/Nosotros';
 
 import Layout from './Routes/Layouts/Public';
 import ActivitiesList from './Components/Activities/ActivitiesList';
+import Home from './Components/Home';
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
         <BrowserRouter>
           <Switch>
             {/* Rutas para web pública */}
-            <Route path="/" exact component={() => <div>Index</div>} />
+            <Route path="/" exact component={Home} />
             <Route path="/actividades" component={ActivitiesList} />
 
             {/* Rutas para el backoffice */}

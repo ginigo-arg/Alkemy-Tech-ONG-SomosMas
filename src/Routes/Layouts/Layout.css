@@ -6,8 +6,9 @@
 
 .hero {
   min-height: 100vh;
-  /* QUITAR EL DISPLAY FLEX Y SUS PROPIEDADES */
-  display: flex;
+  /* QUITAR EL DISPLAY FLEX Y SUS PROPIEDADES
+  Edit: COMENTADO MOMENTANEAMENTE, QUITAR UNA VEZ DESARROLLADAS TODAS LAS VISTAS */
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
 }
