@@ -14,7 +14,7 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import About from './Components/About/Nosotros';
-
+import IndexContact from './Components/Contact';
 import Layout from './Routes/Layouts/Public';
 import ActivitiesList from './Components/Activities/ActivitiesList';
 
@@ -27,6 +27,7 @@ function App() {
             {/* Rutas para web pública */}
             <Route path="/" exact component={() => <div>Index</div>} />
             <Route path="/actividades" component={ActivitiesList} />
+            <Route path="/contacto" component={IndexContact} />
 
             {/* Rutas para el backoffice */}
             <Route
