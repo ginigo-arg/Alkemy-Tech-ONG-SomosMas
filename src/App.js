@@ -1,6 +1,9 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, { Suspense } from 'react';
+
+// COMENTADO POR RECOMENDACION DEL ESLINTER
+// import logo from './logo.svg';
+// import { Counter } from './features/counter/Counter';
+
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
@@ -14,9 +17,14 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import About from './Components/About/Nosotros';
+import Spinner from './Components/Spinner/Spinner';
 
 import Layout from './Routes/Layouts/Public';
-import ActivitiesList from './Components/Activities/ActivitiesList';
+
+// IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO:
+const ActivitiesList = React.lazy(() =>
+  import('./Components/Activities/ActivitiesList')
+);
 
 function App() {
   return (
@@ -25,8 +33,10 @@ function App() {
         <BrowserRouter>
           <Switch>
             {/* Rutas para web pública */}
-            <Route path="/" exact component={() => <div>Index</div>} />
-            <Route path="/actividades" component={ActivitiesList} />
+            <Suspense fallback={<Spinner />}>
+              <Route path="/" exact component={() => <div>Index</div>} />
+              <Route path="/actividades" children={<ActivitiesList />} />
+            </Suspense>
 
             {/* Rutas para el backoffice */}
             <Route
