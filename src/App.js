@@ -18,6 +18,7 @@ import About from './Components/About/Nosotros';
 import Layout from './Routes/Layouts/Public';
 import ActivitiesList from './Components/Activities/ActivitiesList';
 import Actividades from './Components/Activities/Actividades';
+import Error404 from './Components/Error404/Error404';
 
 function App() {
   return (
@@ -60,6 +61,9 @@ function App() {
             />
             <Route path="/backoffice/toys-campaign" component={ToysCampaign} />
             <Route path="/backoffice/Nosotros" component={About} />
+
+            {/* Ruta error 404 */}
+            <Route path="*" component={Error404} />
           </Switch>
         </BrowserRouter>
       </Layout>
