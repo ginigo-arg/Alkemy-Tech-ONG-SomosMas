@@ -1,0 +1,41 @@
+.border-in-card {
+  border-radius: 20px 20px 0px 0px !important;
+}
+
+.img-card {
+  min-height: 140px;
+  background-color: #514242;
+}
+
+.border-in-card-complet {
+  border-radius: 20px !important;
+}
+
+.btn-share {
+  height: 40px;
+  width: 40px;
+  /* border-radius: 40px !important; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  /* border: none; */
+  font-size: 14px;
+}
+
+.btn-seccion {
+  height: 60px;
+  width: 60px;
+  /* border-radius: 60px !important; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 10px;
+  top: 100px;
+  /* border: none; */
+  font-size: 14px;
+  margin-bottom: 14px;
+}
