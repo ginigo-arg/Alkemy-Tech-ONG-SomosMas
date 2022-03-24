@@ -6,8 +6,9 @@
 
 .hero {
   min-height: 100vh;
+  margin-top: 50px;
   /* QUITAR EL DISPLAY FLEX Y SUS PROPIEDADES */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* display: flex; */
+  /* align-items: center;
+  justify-content: center; */
 }
