@@ -1,32 +1,40 @@
-import React from 'react';
+import { Container } from 'react-bootstrap';
 import '../CardListStyles.css';
+import SectionTitles from '../SectionTitles/SectionTitles';
 
-const NewsList = () => {
-    const newsMock = [
-        {id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba'}
-    ];
+const newMocks = [
+  { id: 1, name: 'title', description: 'description' },
+  { id: 2, name: 'title', description: 'description' },
+  { id: 3, name: 'title', description: 'description' },
+  { id: 4, name: 'title', description: 'description' },
+  { id: 5, name: 'title', description: 'description' },
+  { id: 6, name: 'title', description: 'description' },
+];
 
-    return (
-        <div>
-            <h1>Listado de Novedades</h1>
-            <ul className="list-container">
-                {newsMock.length > 0 ? 
-                    newsMock.map((element) => {
-                        return(
-                            <li className="card-info" key={element.id}>
-                                <h3>{element.name}</h3>
-                                <p>{element.description}</p>
-                            </li>
-                        )
-                    })
-                :
-                    <p>No hay novedades</p>
-                }
-            </ul>
-        </div>
-    );
-}
- 
+const NewsList = ({ news = newMocks }) => {
+  return (
+    <>
+      <SectionTitles title="Novedades" />
+      <Container>
+        <ul className="my-5 p-0 d-flex flex-wrap">
+          {news.length > 0 ? (
+            news.map((element) => {
+              return (
+                // Reemplazar por componente card
+                <li className="card-info m-1" key={element.id}>
+                  <h3>{element.name}</h3>
+                  <p>{element.description}</p>
+                </li>
+                // --------------------------
+              );
+            })
+          ) : (
+            <p>No hay novedades</p>
+          )}
+        </ul>
+      </Container>
+    </>
+  );
+};
+
 export default NewsList;
