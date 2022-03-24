@@ -1,15 +1,16 @@
 import './Layout.css';
+import Footer from '../../Components/Footer/Footer';
+import PublicHeader from '../../Components/Header/PublicHeader';
 
 const Layout = ({ children }) => {
   return (
-    <div className="global--container">
-      {/* Acá va el componente Header */}
-      <header className="header">HEADER COMPONENT</header>
+    <div className="container-fluid p-0">
+      <PublicHeader />
+      <br></br>
 
       <div className="hero">{children}</div>
 
-      {/* Acá va el componente footer */}
-      <footer className="footer">FOOTER COMPONENT</footer>
+      <Footer />
     </div>
   );
 };
