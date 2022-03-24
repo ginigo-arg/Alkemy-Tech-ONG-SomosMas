@@ -4,35 +4,10 @@
   box-sizing: border-box;
 }
 
-.global--container {
-  background-color: #fff;
-  width: 100%;
-}
-
-/* QUITAR LUEGO DE PONER EL HEADER COMPONENT */
-.header {
-  padding: 20px 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #09f;
-  color: var(--white);
-}
-
 .hero {
   min-height: 100vh;
   /* QUITAR EL DISPLAY FLEX Y SUS PROPIEDADES */
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* QUITAR CUANDO SE AGREGUE EL FOOTER COMPONENT */
-.footer {
-  padding: 20px 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #09f;
-  color: var(--white);
 }
