@@ -1,5 +1,5 @@
 import { Col, Container, Row } from 'react-bootstrap';
-import Logo from '../../assets/img/LOGO-SOMOS MAS.png';
+import Logo from '../../assets/img/LOGO-SOMOSMAS.png';
 import './Footer.css';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 
