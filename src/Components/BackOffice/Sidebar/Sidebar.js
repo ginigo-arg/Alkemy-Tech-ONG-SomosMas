@@ -26,20 +26,20 @@ const Sidebar = () => {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3 ">
-                <Nav.Link href="#action1">
+                <Nav.Link href="/create-news">
                   <BiNews font-size="25px" color="grey" />
                   Novedades
                 </Nav.Link>
 
-                <Nav.Link href="#action2">
+                <Nav.Link href="/create-activity">
                   <BsPencilFill font-size="25px" color="red" />
                   Actividades
                 </Nav.Link>
-                <Nav.Link href="#action3">
+                <Nav.Link href="/create-category">
                   <BsMenuButtonWideFill font-size="25px" color="green" />
                   Categorias
                 </Nav.Link>
-                <Nav.Link href="#action4">
+                <Nav.Link href="/create-testimonials">
                   <MdOutlineSpeakerNotes font-size="25px" color="blue" />
                   Testimonios
                 </Nav.Link>
@@ -47,15 +47,15 @@ const Sidebar = () => {
                   <GiOrganigram font-size="25px" color="black" />
                   Organizacion
                 </Nav.Link>
-                <Nav.Link href="#action5">
+                <Nav.Link href="/backoffice/create-slide">
                   <RiSlideshow3Line font-size="25px" color="black" />
                   Slides
                 </Nav.Link>
-                <Nav.Link href="#action5">
+                <Nav.Link href="/create-user">
                   <FaUserCircle font-size="25px" color="orange" />
                   Usuarios
                 </Nav.Link>
-                <Nav.Link href="#action5">
+                <Nav.Link href="/create-member">
                   <HiUsers font-size="25px" color="violet" />
                   Miembros
                 </Nav.Link>
