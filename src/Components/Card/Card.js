@@ -7,27 +7,28 @@ import './Card.css';
 
 const CardComponent = ({
   title = '',
+  subtitle = '',
   description = '',
   image = '',
-  showShare = true,
-  showCircleSection = true,
-  footer = true,
+  circleSectionInformation = '',
   footerInformation = '',
+  bgColor = 'gradiant-bg-animation',
+  showShare = true,
 }) => {
   return (
     <>
-      <div className="bg-primary p-2 border-5 border-in-card-complet">
+      <div className={`p-2 mt-2 mb-2 border-in-card-full ${bgColor}`}>
         <CardGroup>
-          <Card className="mb-2 border-0 bg-transparent">
+          <Card className="border-0 bg-transparent">
             {image !== '' ? (
               <Card.Img
                 variant="top"
                 src={image}
-                className="img-fluid img-card border-in-card"
+                className="img-fluid img-card border-in-card-top"
               />
             ) : (
               <svg
-                className="card-img-top border-in-card"
+                className="card-img-top border-in-card-top"
                 width="100%"
                 height="140"
                 xmlns="http://www.w3.org/2000/svg"
@@ -38,9 +39,9 @@ const CardComponent = ({
               >
                 <title>{title}</title>
                 <rect width="100%" height="100%" fill="#514242"></rect>
-                <text x="5%" y="50%" fill="#eceeef" dy=".5em">
-                  {title}
-                </text>
+                {/* <text x="5%" y="50%" fill="#eceeef" dy=".5em">
+                  No media
+                </text> */}
               </svg>
             )}
             {showShare && (
@@ -51,15 +52,18 @@ const CardComponent = ({
                 <FaShareAlt />
               </button>
             )}
-            <div className="btn-outline-primary btn-seccion text-secondary rounded-circle">
-              ...
-            </div>
+            {circleSectionInformation !== '' && (
+              <div
+                className="btn-outlinee-primary btn-primary btn-seccion text-secondary rounded-circle"
+                dangerouslySetInnerHTML={{ __html: circleSectionInformation }}
+              />
+            )}
             <Card.Body className="border-0 bg-white">
               <Card.Title>{title}</Card.Title>
-              <Card.Subtitle>{title}</Card.Subtitle>
+              <Card.Subtitle>{subtitle}</Card.Subtitle>
               <Card.Text>{description}</Card.Text>
             </Card.Body>
-            <Card.Footer className="border-5 border-secondary border-top bg-white">
+            <Card.Footer className="border-in-card-bottom bg-white">
               {footerInformation}
             </Card.Footer>
           </Card>

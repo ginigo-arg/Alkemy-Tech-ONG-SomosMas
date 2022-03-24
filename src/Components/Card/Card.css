@@ -1,13 +1,18 @@
-.border-in-card {
-  border-radius: 20px 20px 0px 0px !important;
-}
-
 .img-card {
   min-height: 140px;
+  max-height: 140px;
   background-color: #514242;
 }
 
-.border-in-card-complet {
+.border-in-card-top {
+  border-radius: 20px 20px 0px 0px !important;
+}
+
+.border-in-card-bottom {
+  border-radius: 0px 0px 20px 20px !important;
+}
+
+.border-in-card-full {
   border-radius: 20px !important;
 }
 
@@ -38,4 +43,24 @@
   /* border: none; */
   font-size: 14px;
   margin-bottom: 14px;
+}
+
+.gradiant-bg-animation {
+  background: linear-gradient(-45deg, #fafa88, #db5752, #9ac9fb, #ffffff);
+  opacity: 0.8;
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  /* height: 100vh; */
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
