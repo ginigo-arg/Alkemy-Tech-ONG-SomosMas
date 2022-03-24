@@ -15,6 +15,7 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import About from './Components/About/Nosotros';
 import Layout from './Components/Layout/Layout';
+import IndexContact from './Components/Contact';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/Nosotros" component={About} />
+          <Route path="/contacto" component={IndexContact} />
         </Switch>
       </BrowserRouter>
       <div className="App">
