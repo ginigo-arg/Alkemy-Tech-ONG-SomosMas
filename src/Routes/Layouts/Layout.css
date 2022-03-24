@@ -4,17 +4,18 @@
   box-sizing: border-box;
 }
 
-.container {
-  background-color: var(--white);
+.global--container {
+  background-color: #fff;
+  width: 100%;
 }
 
 /* QUITAR LUEGO DE PONER EL HEADER COMPONENT */
-header {
+.header {
   padding: 20px 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--primary);
+  background-color: #09f;
   color: var(--white);
 }
 
@@ -27,11 +28,11 @@ header {
 }
 
 /* QUITAR CUANDO SE AGREGUE EL FOOTER COMPONENT */
-footer {
+.footer {
   padding: 20px 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--primary);
+  background-color: #09f;
   color: var(--white);
 }
