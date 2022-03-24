@@ -15,14 +15,13 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import About from './Components/About/Nosotros';
 import Layout from './Components/Layout/Layout';
-import IndexContact from './Components/Contact';
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Switch>
-          {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+          {/* <Route path="/" exact component={Home} />           Esta ruta debe ser para el Home */}
           <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
@@ -34,12 +33,11 @@ function App() {
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/Nosotros" component={About} />
-          <Route path="/contacto" component={IndexContact} />
         </Switch>
       </BrowserRouter>
       <div className="App">
         <Layout>
-          <h2>MODIFICAR POR EL COMPOENENT HOME</h2>
+          <h2>MODIFICAR POR EL COMPONENTE HOME</h2>
         </Layout>
       </div>
     </>
