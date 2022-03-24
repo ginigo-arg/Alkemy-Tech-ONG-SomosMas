@@ -1,4 +1,3 @@
-
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import Logo from '../../assets/img/LOGO-SOMOSMAS.png';
 
@@ -7,19 +6,20 @@ export default function PublicHeader() {
     { to: '/', title: 'Inicio' },
     { to: '/nosotros', title: 'Nosotros' },
     { to: '/contacto', title: 'Contacto' },
+    { to: '/actividades', title: 'Actividades' },
   ];
   return (
     <>
       <Navbar
         collapseOnSelect
-        fixed="top"
+        sticky="top"
         expand="sm"
         bg="light"
         variant="light"
       >
         <Container>
           <Navbar.Brand href="#home">
-            <img src={Logo} width="50%" ></img>
+            <img src={Logo} width="50%"></img>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
