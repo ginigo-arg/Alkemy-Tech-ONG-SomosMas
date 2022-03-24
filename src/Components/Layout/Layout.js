@@ -4,7 +4,7 @@ const Layout = ({ children }) => {
   return (
     <div className="container">
       {/* Acá va el componente Header */}
-      <PublicHeader/>
+      <PublicHeader/><br></br>
 
       <div className="hero">{children}</div>
 
