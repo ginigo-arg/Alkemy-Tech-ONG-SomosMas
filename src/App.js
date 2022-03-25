@@ -16,7 +16,8 @@ import ProjectsForm from './Components/Projects/ProjectsForm';
 import About from './Components/About/Nosotros';
 import IndexContact from './Components/Contact';
 import Layout from './Routes/Layouts/Public';
-import ActivitiesList from './Components/Activities/ActivitiesList';
+import Home from './Components/Home';
+import Actividades from './Components/Activities/Actividades';
 
 function App() {
   return (
@@ -25,9 +26,10 @@ function App() {
         <BrowserRouter>
           <Switch>
             {/* Rutas para web pública */}
-            <Route path="/" exact component={() => <div>Index</div>} />
-            <Route path="/actividades" component={ActivitiesList} />
+            <Route path="/" exact component={Home} />
+            <Route path="/actividades" component={Actividades} />
             <Route path="/contacto" component={IndexContact} />
+            <Route path="/nosotros" component={() => <div>Nosotros</div>} />
 
             {/* Rutas para el backoffice */}
             <Route
