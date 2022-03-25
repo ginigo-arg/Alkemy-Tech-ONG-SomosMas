@@ -31,7 +31,7 @@ const IndexContact = () => {
           >
             <ContactMap />
           </Col>
-          <h5 className="text-secondary mt-2">Escríbenos</h5>
+          <h5 className="text-black mt-2">Escríbenos</h5>
           <Col md={8}>
             <Row>
               <Col md={12}>

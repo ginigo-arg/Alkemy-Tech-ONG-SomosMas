@@ -54,7 +54,7 @@ const CardComponent = ({
             )}
             {circleSectionInformation !== '' && (
               <div
-                className="btn-outlinee-primary btn-primary btn-seccion text-secondary rounded-circle"
+                className="btn-outlinee-primary btn-primary text-white fs-4 btn-seccion text-white rounded-circle"
                 dangerouslySetInnerHTML={{ __html: circleSectionInformation }}
               />
             )}
@@ -63,7 +63,7 @@ const CardComponent = ({
               <Card.Subtitle>{subtitle}</Card.Subtitle>
               <Card.Text>{description}</Card.Text>
             </Card.Body>
-            <Card.Footer className="border-in-card-bottom bg-white">
+            <Card.Footer className="border-top border-5 border-dark  border-in-card-bottom bg-white">
               {footerInformation}
             </Card.Footer>
           </Card>
