@@ -54,7 +54,7 @@ const CardComponent = ({
             )}
             {circleSectionInformation !== '' && (
               <div
-                className="btn-outlinee-primary btn-primary btn-seccion text-secondary rounded-circle"
+                className="btn-outlinee-primary btn-primary text-white fs-4 btn-seccion text-white rounded-circle"
                 dangerouslySetInnerHTML={{ __html: circleSectionInformation }}
               />
             )}

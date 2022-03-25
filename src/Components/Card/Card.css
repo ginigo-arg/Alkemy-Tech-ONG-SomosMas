@@ -47,7 +47,7 @@
 
 .gradiant-bg-animation {
   background: linear-gradient(-45deg, #fafa88, #db5752, #9ac9fb, #ffffff);
-  opacity: 0.8;
+  opacity: 0.9;
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
   /* height: 100vh; */
