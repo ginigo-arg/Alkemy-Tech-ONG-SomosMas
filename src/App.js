@@ -18,6 +18,7 @@ import About from './Components/About/Nosotros';
 import Layout from './Routes/Layouts/Public';
 import ActivitiesList from './Components/Activities/ActivitiesList';
 import Actividades from './Components/Activities/Actividades';
+import Backooffice from './Components/backooffice';
 
 function App() {
   return (
@@ -32,11 +33,7 @@ function App() {
             <Route path="/nosotros" component={() => <div>Nosotros</div>} />
 
             {/* Rutas para el backoffice */}
-            <Route
-              path="/backoffice"
-              exact
-              component={() => <div>Backoffice</div>}
-            />
+            <Route path="/backoffice" exact component={Backooffice} />
             <Route
               path="/backoffice/create-activity"
               component={ActivitiesForm}
