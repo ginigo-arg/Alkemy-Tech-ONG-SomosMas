@@ -22,9 +22,11 @@ import Spinner from './Components/Spinner/Spinner';
 import Layout from './Routes/Layouts/Public';
 
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO:
-const ActivitiesList = React.lazy(() =>
-  import('./Components/Activities/ActivitiesList')
+const Home = React.lazy(() => import('./Components/Home'));
+const Actividades = React.lazy(() =>
+  import('./Components/Activities/Actividades')
 );
+const IndexContact = React.lazy(() => import('./Components/Contact'));
 
 function App() {
   return (
@@ -34,8 +36,10 @@ function App() {
           <Switch>
             {/* Rutas para web pública */}
             <Suspense fallback={<Spinner />}>
-              <Route path="/" exact component={() => <div>Index</div>} />
-              <Route path="/actividades" children={<ActivitiesList />} />
+              <Route path="/" exact component={Home} />
+              <Route path="/actividades" component={Actividades} />
+              <Route path="/contacto" component={IndexContact} />
+              <Route path="/nosotros" component={() => <div>Nosotros</div>} />
             </Suspense>
 
             {/* Rutas para el backoffice */}
