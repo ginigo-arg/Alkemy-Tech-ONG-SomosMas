@@ -27,7 +27,6 @@ const ContactInformation = ({
   borderClass = 'border-0 rounded-circle',
   textClass = 'text-white',
 }) => {
-
   let conColumns = 0;
   if (showVisitUs) {
     conColumns += 1;
@@ -76,7 +75,7 @@ const ContactInformation = ({
                 />
               </div>
               <div aria-describedby="groupAddress" className="ms-1">
-                <h5 className="text-secondary">
+                <h5 className="text-black">
                   {minimalistVersion ? '' : 'Visítanos'}
                 </h5>
                 <h6>{organization.address}</h6>
@@ -113,7 +112,7 @@ const ContactInformation = ({
                 />
               </div>
               <div aria-describedby="groupCallme" className="ms-1">
-                <h5 className="text-secondary">
+                <h5 className="text-black">
                   {minimalistVersion ? '' : 'Llámanos'}
                 </h5>
                 <h6>
@@ -159,7 +158,7 @@ const ContactInformation = ({
                 />
               </div>
               <div aria-describedby="groupEmail" className="ms-1">
-                <h5 className="text-secondary">
+                <h5 className="text-black">
                   {minimalistVersion ? '' : 'Envíanos un correo'}
                 </h5>
                 <h6>{organization.email}</h6>
