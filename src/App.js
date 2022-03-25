@@ -1,6 +1,9 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, { Suspense } from 'react';
+
+// COMENTADO POR RECOMENDACION DEL ESLINTER
+// import logo from './logo.svg';
+// import { Counter } from './features/counter/Counter';
+
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
@@ -14,10 +17,16 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import About from './Components/About/Nosotros';
-import IndexContact from './Components/Contact';
+import Spinner from './Components/Spinner/Spinner';
+
 import Layout from './Routes/Layouts/Public';
-import Home from './Components/Home';
-import Actividades from './Components/Activities/Actividades';
+
+// IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO:
+const Home = React.lazy(() => import('./Components/Home'));
+const Actividades = React.lazy(() =>
+  import('./Components/Activities/Actividades')
+);
+const IndexContact = React.lazy(() => import('./Components/Contact'));
 
 function App() {
   return (
@@ -26,10 +35,12 @@ function App() {
         <BrowserRouter>
           <Switch>
             {/* Rutas para web pública */}
-            <Route path="/" exact component={Home} />
-            <Route path="/actividades" component={Actividades} />
-            <Route path="/contacto" component={IndexContact} />
-            <Route path="/nosotros" component={() => <div>Nosotros</div>} />
+            <Suspense fallback={<Spinner />}>
+              <Route path="/" exact component={Home} />
+              <Route path="/actividades" component={Actividades} />
+              <Route path="/contacto" component={IndexContact} />
+              <Route path="/nosotros" component={() => <div>Nosotros</div>} />
+            </Suspense>
 
             {/* Rutas para el backoffice */}
             <Route
