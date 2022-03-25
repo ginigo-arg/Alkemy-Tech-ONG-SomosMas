@@ -40,8 +40,7 @@ const Footer = () => {
         <Col
           xs={12}
           md={5}
-          lg={6}
-          xl={4}
+          lg={4}
           className="footer-socialmedia-container d-flex flex-row flex-md-column align-items-center justify-content-center justify-content-md-evenly px-lg-4"
         >
           <Col md={12}>
@@ -106,7 +105,9 @@ const Footer = () => {
         </Col>
       </Container>
       <Container className="p-3">
-        <h5 className="footer-text">2022 by Alkemy. All Rights Reserved.</h5>
+        <h5 className="footer-text text-center">
+          2022 by Alkemy. All Rights Reserved.
+        </h5>
       </Container>
     </Container>
   );
