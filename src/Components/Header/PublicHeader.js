@@ -5,9 +5,11 @@ export default function PublicHeader() {
   const navi = [
     { to: '/', title: 'Inicio' },
     { to: '/nosotros', title: 'Nosotros' },
-    { to: '/contacto', title: 'Contacto' },
+    { to: '/novedades', title: 'Novedades' },
     { to: '/actividades', title: 'Actividades' },
+    { to: '/contacto', title: 'Contacto' },
   ];
+
   return (
     <>
       <Navbar
