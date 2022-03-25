@@ -33,9 +33,10 @@ function App() {
           <h2>MODIFICAR POR EL COMPONENT HOME</h2>
         </Layout>
       </Container>
+
       <Container fluid>
-        <LayoutBackoffice>
-          <BrowserRouter>
+        <BrowserRouter>
+          <LayoutBackoffice>
             <Switch>
               <Route
                 path="/backoffice/create-activity"
@@ -70,8 +71,8 @@ function App() {
               />
               <Route path="/backoffice/Nosotros" component={About} />
             </Switch>
-          </BrowserRouter>
-        </LayoutBackoffice>
+          </LayoutBackoffice>
+        </BrowserRouter>
       </Container>
     </>
   );
