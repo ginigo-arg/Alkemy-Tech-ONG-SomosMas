@@ -18,6 +18,8 @@ import IndexContact from './Components/Contact';
 import Layout from './Routes/Layouts/Public';
 import Home from './Components/Home';
 import Actividades from './Components/Activities/Actividades';
+import NewsList from './Components/News/NewsList';
+import NewDetail from './Components/News/Detail/NewDetail';
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
             {/* Rutas para web pública */}
             <Route path="/" exact component={Home} />
             <Route path="/actividades" component={Actividades} />
+            <Route path="/novedades" component={NewsList} />
+            <Route path="/novedades/:id" component={NewDetail} />
             <Route path="/contacto" component={IndexContact} />
             <Route path="/nosotros" component={() => <div>Nosotros</div>} />
 
