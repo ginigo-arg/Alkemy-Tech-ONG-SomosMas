@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Container, Offcanvas, Nav } from 'react-bootstrap';
+import { Navbar, Offcanvas, Nav } from 'react-bootstrap';
 import { BiNews } from 'react-icons/bi';
 import { BsPencilFill, BsMenuButtonWideFill } from 'react-icons/bs';
 import { MdOutlineSpeakerNotes } from 'react-icons/md';
@@ -10,60 +10,52 @@ import { FaUserCircle } from 'react-icons/fa';
 const Sidebar = () => {
   return (
     <div>
-      <Navbar bg="light" expand={false}>
-        <Container fluid>
-          <Navbar.Toggle
-            aria-controls="offcanvasNavbar"
-            className="float-start"
-          />
-          <Navbar.Offcanvas
-            id="offcanvasNavbar"
-            aria-labelledby="offcanvasNavbarLabel"
-            placement="start"
-          >
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body>
-              <Nav className="justify-content-end flex-grow-1 pe-3 ">
-                <Nav.Link href="/create-news">
-                  <BiNews font-size="25px" color="grey" />
-                  Novedades
-                </Nav.Link>
+      <Navbar.Offcanvas
+        id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel"
+        placement="start"
+      >
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <Nav className="justify-content-end flex-grow-1 pe-3 ">
+            <Nav.Link href="/create-news">
+              <BiNews font-size="25px" color="grey" />
+              Novedades
+            </Nav.Link>
 
-                <Nav.Link href="/create-activity">
-                  <BsPencilFill font-size="25px" color="red" />
-                  Actividades
-                </Nav.Link>
-                <Nav.Link href="/create-category">
-                  <BsMenuButtonWideFill font-size="25px" color="green" />
-                  Categorias
-                </Nav.Link>
-                <Nav.Link href="/create-testimonials">
-                  <MdOutlineSpeakerNotes font-size="25px" color="blue" />
-                  Testimonios
-                </Nav.Link>
-                <Nav.Link href="#action5">
-                  <GiOrganigram font-size="25px" color="black" />
-                  Organizacion
-                </Nav.Link>
-                <Nav.Link href="/backoffice/create-slide">
-                  <RiSlideshow3Line font-size="25px" color="black" />
-                  Slides
-                </Nav.Link>
-                <Nav.Link href="/create-user">
-                  <FaUserCircle font-size="25px" color="orange" />
-                  Usuarios
-                </Nav.Link>
-                <Nav.Link href="/create-member">
-                  <HiUsers font-size="25px" color="violet" />
-                  Miembros
-                </Nav.Link>
-              </Nav>
-            </Offcanvas.Body>
-          </Navbar.Offcanvas>
-        </Container>
-      </Navbar>
+            <Nav.Link href="/create-activity">
+              <BsPencilFill font-size="25px" color="red" />
+              Actividades
+            </Nav.Link>
+            <Nav.Link href="/create-category">
+              <BsMenuButtonWideFill font-size="25px" color="green" />
+              Categorias
+            </Nav.Link>
+            <Nav.Link href="/create-testimonials">
+              <MdOutlineSpeakerNotes font-size="25px" color="blue" />
+              Testimonios
+            </Nav.Link>
+            <Nav.Link href="#action5">
+              <GiOrganigram font-size="25px" color="black" />
+              Organizacion
+            </Nav.Link>
+            <Nav.Link href="/backoffice/create-slide">
+              <RiSlideshow3Line font-size="25px" color="black" />
+              Slides
+            </Nav.Link>
+            <Nav.Link href="/create-user">
+              <FaUserCircle font-size="25px" color="orange" />
+              Usuarios
+            </Nav.Link>
+            <Nav.Link href="/create-member">
+              <HiUsers font-size="25px" color="violet" />
+              Miembros
+            </Nav.Link>
+          </Nav>
+        </Offcanvas.Body>
+      </Navbar.Offcanvas>
     </div>
   );
 };
