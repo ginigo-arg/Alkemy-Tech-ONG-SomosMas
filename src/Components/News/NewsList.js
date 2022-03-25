@@ -1,14 +1,13 @@
-import { Container } from 'react-bootstrap';
 import '../CardListStyles.css';
+import { Container } from 'react-bootstrap';
 import SectionTitles from '../SectionTitles/SectionTitles';
+import Card from '../Card/Card';
 
+// Array para simular respuesta de Api
 const newMocks = [
   { id: 1, name: 'title', description: 'description' },
   { id: 2, name: 'title', description: 'description' },
   { id: 3, name: 'title', description: 'description' },
-  { id: 4, name: 'title', description: 'description' },
-  { id: 5, name: 'title', description: 'description' },
-  { id: 6, name: 'title', description: 'description' },
 ];
 
 const NewsList = ({ news = newMocks }) => {
@@ -20,16 +19,15 @@ const NewsList = ({ news = newMocks }) => {
           {news.length > 0 ? (
             news.map((element) => {
               return (
-                // Reemplazar por componente card
-                <li className="card-info m-1" key={element.id}>
-                  <h3>{element.name}</h3>
-                  <p>{element.description}</p>
-                </li>
-                // --------------------------
+                <Card
+                  key={element.title}
+                  title={element.title}
+                  description={element.description}
+                />
               );
             })
           ) : (
-            <p>No hay novedades</p>
+            <p className="w-100 my-5 text-center display-6">No hay novedades</p>
           )}
         </ul>
       </Container>
