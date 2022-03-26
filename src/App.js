@@ -12,7 +12,7 @@ import Error404 from './Components/Error404/Error404';
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
 const Home = React.lazy(() => import('./Routes/Layouts/Public.js'));
 
-function App() {
+function App () {
   return (
     <div className="App">
       <BrowserRouter>

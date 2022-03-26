@@ -10,7 +10,7 @@ const SectionTitles = ({ title, backgroundImg = '' }) => {
           backgroundImg === '' ? 'bg-no-media zoneContent' : 'zoneContent'
         }
         style={{
-          backgroundImage: backgroundImg ? `url( ${backgroundImg})` : ``,
+          backgroundImage: backgroundImg ? `url( ${backgroundImg})` : '',
           backgroundRepeat: 'no-repeat center',
         }}
         key={title}

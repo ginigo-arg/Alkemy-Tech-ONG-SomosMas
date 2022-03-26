@@ -12,9 +12,8 @@ const PublicHeader = () => {
     { to: '/contacto', title: 'Contacto' },
   ];
 
-
   let id2 = window.location.pathname;
-  let Login = 'no';
+  const Login = 'no';
 
   if (id2 == '/') {
     id2 = '/inicio';
@@ -42,14 +41,14 @@ const PublicHeader = () => {
             <Nav className="ms-auto" activeKey={id2}>
               {navi.length
                 ? navi.map((linke) => (
-                    <Nav.Link
-                      eventKey={linke.title.toLowerCase()}
-                      href={linke.to}
-                      key={linke.title.toLowerCase()}
-                    >
-                      {linke.title}
-                    </Nav.Link>
-                  ))
+                  <Nav.Link
+                    eventKey={linke.title.toLowerCase()}
+                    href={linke.to}
+                    key={linke.title.toLowerCase()}
+                  >
+                    {linke.title}
+                  </Nav.Link>
+                ))
                 : 'No hay menu'}
 
               <NavDropdown title="Campañas" id="navbarScrollingDropdown">
@@ -57,13 +56,15 @@ const PublicHeader = () => {
                 <NavDropdown.Item href="#">Juguetes</NavDropdown.Item>
               </NavDropdown>
 
-              {Login == 'no' ? (
-                <Nav.Link href="#" className="login">
-                  Login
-                </Nav.Link>
-              ) : (
-                'Perfil'
-              )}
+              {Login == 'no'
+                ? (
+                  <Nav.Link href="#" className="login">
+                    Login
+                  </Nav.Link>
+                )
+                : (
+                  'Perfil'
+                )}
             </Nav>
           </Navbar.Collapse>
         </Container>
