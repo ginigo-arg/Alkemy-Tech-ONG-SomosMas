@@ -1,0 +1,13 @@
+.active {
+  color: #db5752 !important;
+  font-weight: bold;
+}
+
+.login {
+  background-color: #69cbff;
+  border-radius: 6px;
+}
+
+.shadow {
+  box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.137) !important;
+}
