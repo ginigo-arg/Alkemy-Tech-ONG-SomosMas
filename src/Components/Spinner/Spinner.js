@@ -1,5 +1,8 @@
 import React from 'react';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
+// COMENTADO POR GENERAR CONFLICTO CUANDO SE IMPORTA EN App.js
+// import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
 import './Spinner.css';
 import { Watch } from 'react-loader-spinner';
 const Spinner = () => {
