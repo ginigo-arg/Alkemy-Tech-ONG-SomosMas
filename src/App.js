@@ -22,8 +22,6 @@ import Spinner from './Components/Spinner/Spinner';
 import Layout from './Routes/Layouts/Public';
 import Home from './Components/Home';
 import Actividades from './Components/Activities/Actividades';
-import NewsList from './Components/News/NewsList';
-import NewDetail from './Components/News/Detail/NewDetail';
 
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO:
 const Home = React.lazy(() => import('./Components/Home'));

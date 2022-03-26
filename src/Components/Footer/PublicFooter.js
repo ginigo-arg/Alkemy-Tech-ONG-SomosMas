@@ -7,9 +7,8 @@ const PublicFooter = () => {
     { to: '/', title: 'Inicio' },
     { to: '/nosotros', title: 'Nosotros' },
     { to: '/novedades', title: 'Novedades' },
-    { to: '/testimonios', title: 'Testimonios' },
+    { to: '/actividades', title: 'Actividades' },
     { to: '/contacto', title: 'Contacto' },
-    { to: '/contribuye', title: 'Contribuye' },
   ];
 
   return (
@@ -27,7 +26,7 @@ const PublicFooter = () => {
             ))}
           </Nav>
         </Navbar>
-        <nav>
+        <Nav className="justify-content-center">
           <a href="/#" className="text-muted mx-3">
             <FaFacebook />
           </a>
@@ -37,9 +36,9 @@ const PublicFooter = () => {
           <a href="/#" className="text-muted mx-3">
             <FaTwitterSquare />
           </a>
-        </nav>
+        </Nav>
         <hr className="my-0 w-50 d-inline-block" />
-        <p className="my-3 footer-firm">2022 by Alkemy. All Rights Reserved.</p>
+        <p className="my-3 text-muted">2022 by Alkemy. All Rights Reserved.</p>
       </Container>
     </footer>
   );

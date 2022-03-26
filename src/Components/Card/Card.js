@@ -17,7 +17,7 @@ const CardComponent = ({
 }) => {
   return (
     <>
-      <div className={`p-2 mt-2 mb-2 border-in-card-full ${bgColor}`}>
+      <div className={`p-2 m-2 border-in-card-full ${bgColor}`}>
         <CardGroup>
           <Card className="border-0 bg-transparent">
             {image !== '' ? (
