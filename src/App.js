@@ -29,7 +29,10 @@ const Actividades = React.lazy(() =>
   import('./Components/Activities/Actividades')
 );
 const IndexContact = React.lazy(() => import('./Components/Contact'));
-const NewList = React.lazy(() => import('./Components/News/NewsList'));
+const NewsList = React.lazy(() => import('./Components/News/NewsList'));
+const NewDetail = React.lazy(() =>
+  import('./Components/News/Detail/NewDetail')
+);
 
 function App() {
   return (
@@ -43,7 +46,8 @@ function App() {
               <Route path="/actividades" component={Actividades} />
               <Route path="/contacto" component={IndexContact} />
               <Route path="/nosotros" component={() => <div>Nosotros</div>} />
-              <Route path="/novedades" component={NewList} />
+              <Route path="/novedades/id" component={NewDetail} />
+              <Route path="/novedades" component={NewsList} />
             </Suspense>
 
             {/* Rutas para el backoffice */}
