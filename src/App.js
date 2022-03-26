@@ -16,7 +16,6 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
-import About from './Components/About/Nosotros';
 import Spinner from './Components/Spinner/Spinner';
 
 import Layout from './Routes/Layouts/Public';
@@ -24,8 +23,10 @@ import Layout from './Routes/Layouts/Public';
 // import Actividades from './Components/Activities/Actividades';
 
 import Error404 from './Components/Error404/Error404';
+
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO:
 const Home = React.lazy(() => import('./Components/Home'));
+const Nosotros = React.lazy(() => import('./Components/About/Nosotros'));
 const Actividades = React.lazy(() =>
   import('./Components/Activities/Actividades')
 );
@@ -46,7 +47,7 @@ function App() {
               <Route path="/" exact component={Home} />
               <Route path="/actividades" component={Actividades} />
               <Route path="/contacto" component={IndexContact} />
-              <Route path="/nosotros" component={() => <div>Nosotros</div>} />
+              <Route path="/nosotros" component={Nosotros} />
               <Route path="/novedades/id" component={NewDetail} />
               <Route path="/novedades" component={NewsList} />
             </Suspense>
@@ -79,7 +80,7 @@ function App() {
               component={SchoolCampaign}
             />
             <Route path="/backoffice/toys-campaign" component={ToysCampaign} />
-            <Route path="/backoffice/Nosotros" component={About} />
+           
 
             {/* Ruta error 404 */}
             <Route path="*" component={Error404} />
