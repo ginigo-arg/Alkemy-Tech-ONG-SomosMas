@@ -24,6 +24,7 @@ import Spinner from './Components/Spinner/Spinner';
 
 import Layout from './Routes/Layouts/Public';
 
+import Error404 from './Components/Error404/Error404';
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO:
 const Home = React.lazy(() => import('./Components/Home'));
 const Actividades = React.lazy(() =>
