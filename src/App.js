@@ -20,6 +20,8 @@ import About from './Components/About/Nosotros';
 import Spinner from './Components/Spinner/Spinner';
 
 import Layout from './Routes/Layouts/Public';
+import Home from './Components/Home';
+import Actividades from './Components/Activities/Actividades';
 
 import Error404 from './Components/Error404/Error404';
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO:
@@ -28,6 +30,10 @@ const Actividades = React.lazy(() =>
   import('./Components/Activities/Actividades')
 );
 const IndexContact = React.lazy(() => import('./Components/Contact'));
+const NewsList = React.lazy(() => import('./Components/News/NewsList'));
+const NewDetail = React.lazy(() =>
+  import('./Components/News/Detail/NewDetail')
+);
 
 function App() {
   return (
@@ -41,6 +47,8 @@ function App() {
               <Route path="/actividades" component={Actividades} />
               <Route path="/contacto" component={IndexContact} />
               <Route path="/nosotros" component={() => <div>Nosotros</div>} />
+              <Route path="/novedades/id" component={NewDetail} />
+              <Route path="/novedades" component={NewsList} />
             </Suspense>
 
             {/* Rutas para el backoffice */}

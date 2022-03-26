@@ -7,9 +7,11 @@ const PublicHeader = () => {
   const navi = [
     { to: '/', title: 'Inicio' },
     { to: '/nosotros', title: 'Nosotros' },
-    { to: '/contacto', title: 'Contacto' },
+    { to: '/novedades', title: 'Novedades' },
     { to: '/actividades', title: 'Actividades' },
+    { to: '/contacto', title: 'Contacto' },
   ];
+
 
   let id2 = window.location.pathname;
   let Login = 'no';
@@ -19,6 +21,7 @@ const PublicHeader = () => {
   }
   id2 = id2.replace('/', '');
   console.log(id2);
+
   return (
     <>
       <Navbar
