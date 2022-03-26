@@ -19,8 +19,8 @@ import ProjectsForm from './Components/Projects/ProjectsForm';
 import About from './Components/About/Nosotros';
 import Spinner from './Components/Spinner/Spinner';
 import Error404 from './Components/Error404/Error404';
-
 import Layout from './Routes/Layouts/Public';
+import Detail from './Components/Activities/Detail/Detail';
 
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO:
 const Home = React.lazy(() => import('./Components/Home'));
@@ -38,7 +38,8 @@ function App() {
             {/* Rutas para web pública */}
             <Suspense fallback={<Spinner />}>
               <Route path="/" exact component={Home} />
-              <Route path="/actividades" component={Actividades} />
+              <Route path="/actividades" exact component={Actividades} />
+              <Route path="/actividades/:id" component={Detail} />
               <Route path="/contacto" component={IndexContact} />
               <Route path="/nosotros" component={() => <div>Nosotros</div>} />
             </Suspense>
