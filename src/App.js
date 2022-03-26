@@ -42,7 +42,7 @@ function App() {
               <Route path="/nosotros" component={() => <div>Nosotros</div>} />
             </Suspense>
 
-            {/* Rutas para el backoffice */}
+            {/* Rutas para el backoffice
             <Route path="/backoffice" exact component={LayoutBackoffice} />
             <Route
               path="/backoffice/create-activity"
@@ -66,10 +66,40 @@ function App() {
               component={SchoolCampaign}
             />
             <Route path="/backoffice/toys-campaign" component={ToysCampaign} />
-            <Route path="/backoffice/Nosotros" component={About} />
+            <Route path="/backoffice/Nosotros" component={About} /> */}
           </Switch>
         </BrowserRouter>
       </Layout>
+
+      <BrowserRouter>
+        <LayoutBackoffice>
+          {/* Rutas para el backoffice */}
+          <Route path="/backoffice" exact component={LayoutBackoffice} />
+          <Route
+            path="/backoffice/create-activity"
+            component={ActivitiesForm}
+          />
+          <Route
+            path="/backoffice/create-category"
+            component={CategoriesForm}
+          />
+          <Route path="/backoffice/create-news" component={NewsForm} />
+          <Route path="/backoffice/create-slide" component={SlidesForm} />
+          <Route
+            path="/backoffice/create-testimonials"
+            component={TestimonialForm}
+          />
+          <Route path="/backoffice/create-user" component={UserForm} />
+          <Route path="/backoffice/create-member" component={MembersForm} />
+          <Route path="/backoffice/create-project" component={ProjectsForm} />
+          <Route
+            path="/backoffice/school-campaign"
+            component={SchoolCampaign}
+          />
+          <Route path="/backoffice/toys-campaign" component={ToysCampaign} />
+          <Route path="/backoffice/Nosotros" component={About} />
+        </LayoutBackoffice>
+      </BrowserRouter>
     </div>
   );
 }
