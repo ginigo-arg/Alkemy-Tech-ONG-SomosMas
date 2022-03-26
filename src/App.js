@@ -22,7 +22,7 @@ import Error404 from './Components/Error404/Error404';
 import Layout from './Routes/Layouts/Public';
 import Detail from './Components/Activities/Detail/Detail';
 
-// IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO:
+// IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
 const Home = React.lazy(() => import('./Components/Home'));
 const Actividades = React.lazy(() =>
   import('./Components/Activities/Actividades')
