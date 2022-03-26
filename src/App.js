@@ -71,6 +71,9 @@ function App() {
             />
             <Route path="/backoffice/toys-campaign" component={ToysCampaign} />
             <Route path="/backoffice/Nosotros" component={About} />
+
+            {/* Ruta error 404 */}
+            <Route path="*" component={Error404} />
           </Switch>
         </BrowserRouter>
       </Layout>
