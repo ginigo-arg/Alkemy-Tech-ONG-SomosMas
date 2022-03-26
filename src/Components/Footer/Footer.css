@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,300;1,300&family=Montserrat:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&display=swap');
+
+.footer-text {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 200;
+}
+
+.footer-title {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  text-align: center;
+}
+
+.footer-container {
+  min-height: 20vh;
+}
+
+.footer-logo {
+  background-color: aliceblue;
+  width: 100%;
+  object-fit: cover;
+}
+
+.footer-logo-container {
+  /* max-height: 10rem; */
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.footer-socialmedia-container {
+  height: 3rem;
+}
+
+/* .footer-socialmedia-icon {
+  height: 1.5rem;
+} */
+
+.footer-socialmedia-text {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-style: italic;
+  font-weight: 200;
+}
+
+/* BREAKPOINT TABLET */
+@media (min-width: 768px) {
+  .footer-text {
+    font-size: 1rem;
+  }
+  .footer-title {
+    font-weight: 400;
+    font-size: 1.5rem;
+  }
+  .footer-socialmedia-container {
+    height: auto;
+  }
+}
+
+/* BREAKPOINT DESKTOP */
+@media (min-width: 992px) {
+  .footer-logo-container {
+    max-height: 12rem;
+  }
+  .footer-text {
+    font-weight: 300;
+  }
+  .footer-title {
+    font-size: 1.25rem;
+  }
+  .footer-socialmedia-text {
+    font-size: 1.15rem;
+  }
+}
+
+/* BREAKPOINT SMART TV */
+@media (min-width: 1200px) {
+}
