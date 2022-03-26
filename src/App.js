@@ -22,7 +22,6 @@ import Spinner from './Components/Spinner/Spinner';
 
 
 
-import Error404 from './Components/Error404/Error404';
 import Layout from './Routes/Layouts/Public';
 
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO:
