@@ -43,13 +43,6 @@ function App() {
         <BrowserRouter>
           <Switch>
             {/* Rutas para web pública */}
-            <Route path="/" exact component={Home} />
-            <Route path="/actividades" component={Actividades} />
-            <Route path="/novedades" component={NewsList} />
-            <Route path="/novedades/:id" component={NewDetail} />
-            <Route path="/contacto" component={IndexContact} />
-            <Route path="/nosotros" component={() => <div>Nosotros</div>} />
-
             <Suspense fallback={<Spinner />}>
               <Route path="/" exact component={Home} />
               <Route path="/actividades" component={Actividades} />
