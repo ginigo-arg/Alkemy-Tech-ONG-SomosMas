@@ -1,13 +1,27 @@
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import React, { useState } from 'react';
 import Logo from '../../assets/img/LOGO-SOMOSMAS.png';
+import './PublicHeader.css';
 
-export default function PublicHeader() {
+const PublicHeader = () => {
   const navi = [
     { to: '/', title: 'Inicio' },
     { to: '/nosotros', title: 'Nosotros' },
-    { to: '/contacto', title: 'Contacto' },
+    { to: '/novedades', title: 'Novedades' },
     { to: '/actividades', title: 'Actividades' },
+    { to: '/contacto', title: 'Contacto' },
   ];
+
+
+  let id2 = window.location.pathname;
+  let Login = 'no';
+
+  if (id2 == '/') {
+    id2 = '/inicio';
+  }
+  id2 = id2.replace('/', '');
+  console.log(id2);
+
   return (
     <>
       <Navbar
@@ -15,28 +29,47 @@ export default function PublicHeader() {
         sticky="top"
         expand="sm"
         bg="light"
-        variant="light"
+        activeKey={id2}
+        className="shadow"
       >
         <Container>
           <Navbar.Brand href="#home">
-            <img src={Logo} width="50%" alt="Logo"></img>
+            <img src={Logo} width="55%" alt="Logo"></img>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             {' '}
-            <Nav className="ms-auto">
+            <Nav className="ms-auto" activeKey={id2}>
               {navi.length
                 ? navi.map((linke) => (
-                    <Nav.Link href={linke.to} key={linke.title}>
-                      {' '}
+                    <Nav.Link
+                      eventKey={linke.title.toLowerCase()}
+                      href={linke.to}
+                      key={linke.title.toLowerCase()}
+                    >
                       {linke.title}
                     </Nav.Link>
                   ))
                 : 'No hay menu'}
-            </Nav>{' '}
+
+              <NavDropdown title="Campañas" id="navbarScrollingDropdown">
+                <NavDropdown.Item href="#">Escuela</NavDropdown.Item>
+                <NavDropdown.Item href="#">Juguetes</NavDropdown.Item>
+              </NavDropdown>
+
+              {Login == 'no' ? (
+                <Nav.Link href="#" className="login">
+                  Login
+                </Nav.Link>
+              ) : (
+                'Perfil'
+              )}
+            </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
     </>
   );
-}
+};
+
+export default PublicHeader;
