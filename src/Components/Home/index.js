@@ -1,4 +1,5 @@
 import { Col, Container } from 'react-bootstrap';
+import Slider from '../Slides/Slider';
 import './Home.css';
 
 const Home = ({ greeting }) => {
@@ -14,7 +15,7 @@ const Home = ({ greeting }) => {
       <Col xs={12}>
         <div className="placeholder-slider d-flex flex-column justify-content-center">
           {/* COMPONENTE SLIDER */}
-          <h3>Slider placeholder</h3>
+          <Slider />
         </div>
       </Col>
       <Container className="mt-5">
