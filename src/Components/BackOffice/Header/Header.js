@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Container } from 'react-bootstrap';
-// import Sidebar from '../Sidebar/Sidebar';
+import Sidebar from '../Sidebar/Sidebar';
 import Logo from '../../../assets/img/LOGO-SOMOSMAS.png';
 
 const Header = () => {
@@ -14,7 +14,7 @@ const Header = () => {
             <img src={Logo} width="50%" alt="Logo Somos Mas"></img>
           </Navbar.Brand>
         </Container>
-        {/* <Sidebar /> AGREGAR SIDEBAR BACKOFFICE */ }
+        <Sidebar />
       </Container>
     </Navbar>
   );
