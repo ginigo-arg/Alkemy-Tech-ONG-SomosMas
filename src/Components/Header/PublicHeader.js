@@ -1,5 +1,5 @@
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
-import React, { useState } from 'react';
+import React from 'react';
 import Logo from '../../assets/img/LOGO-SOMOSMAS.png';
 import './PublicHeader.css';
 
@@ -15,7 +15,7 @@ const PublicHeader = () => {
   let id2 = window.location.pathname;
   const Login = 'no';
 
-  if (id2 == '/') {
+  if (id2 === '/') {
     id2 = '/inicio';
   }
   id2 = id2.replace('/', '');
@@ -56,7 +56,7 @@ const PublicHeader = () => {
                 <NavDropdown.Item href="#">Juguetes</NavDropdown.Item>
               </NavDropdown>
 
-              {Login == 'no'
+              {Login === 'no'
                 ? (
                   <Nav.Link href="#" className="login">
                     Login
