@@ -9,8 +9,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Spinner from './Components/Spinner/Spinner';
 import Error404 from './Components/Error404/Error404';
 import Layout from './Routes/Layouts/Public';
-
 import Detail from './Components/Activities/Detail/Detail';
+//import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice'; Agregar backoffice
 
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
 
