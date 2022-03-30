@@ -1,6 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import { Link, Route, Switch } from 'react-router-dom';
-import './layoutbackoffice.css';
+import { Route, Switch } from 'react-router-dom';
 import ActivitiesForm from '../../Components/Activities/ActivitiesForm';
 import CategoriesForm from '../../Components/Categories/CategoriesForm';
 import NewsForm from '../../Components/News/NewsForm';
@@ -12,41 +11,21 @@ import ToysCampaign from '../../Campaigns/Toys/ToysCampaign';
 import MembersForm from '../../Components/Members/MembersForm';
 import ProjectsForm from '../../Components/Projects/ProjectsForm';
 import About from '../../Components/About/Nosotros';
+import Sidebar from '../../Components/BackOffice/Sidebar/Sidebar';
+import Header from '../../Components/BackOffice/Header/Header';
 
 const LayoutBackoffice = () => {
   return (
     <>
-      <Container
-        fluid
-        className="bg-dark h-50 text-white container-header-backoffice mt-5"
-      >
-        <header>COMPONENT HEADER</header>
+      <Container fluid>
+        <header>
+          <Header />
+        </header>
       </Container>
       <Container fluid className="container-fluid vh-100 border border-2">
         <Row>
-          <Col md={2} className="bg-primary vh-100 text-white">
-            Componente sidebar
-            {/* <Aqui iria Componente sidebar>
-            Rutas para probar funcionamiento */}
-            <ul>
-              <li>
-                <Link to="/backoffice/create-category" className="text-white">
-                  Crear categoria
-                </Link>
-              </li>
-              <li>
-                <Link to="/backoffice/create-activity" className="text-white">
-                  Crear activity
-                </Link>
-              </li>
-              <li>
-                <Link to="/backoffice/create-news" className="text-white">
-                  Crear new
-                </Link>
-              </li>
-            </ul>
-          </Col>
-          <Col md={10}>
+          <Sidebar />
+          <Col>
             {/*rutas backoffice*/}
             <Switch>
               <Route exact path="/backoffice" component={LayoutBackoffice} />
