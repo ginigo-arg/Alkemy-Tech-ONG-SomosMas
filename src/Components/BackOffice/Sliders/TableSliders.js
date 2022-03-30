@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Table } from 'react-bootstrap';
+import './Sliders.css'
 //import { Link } from 'react-router-dom';
 
 const slides = [
@@ -29,28 +30,27 @@ const slides = [
 const TableSliders = () => {
   return (
     <div>
-      <div>componente Link a ruta /backoffice/slides/create</div>
       <Table striped bordered hover>
         <thead>
           <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Image</th>
+            <th>Nombre</th>
+            <th>Imagen</th>
             <th>Acción</th>
           </tr>
         </thead>
         <tbody>
           {slides &&
             slides.map((slide) => (
-              <tr>
+              <tr key={slide.id}>
                 <td>{slide.id}</td>
                 <td>{slide.name}</td>
                 <td>
-                  <img src={slide.image} alt={slide.name} className='w-25' />
+                  <img src={slide.image} alt={slide.name} className="w-25" />
                 </td>
                 <td className="d-flex justify-content-center align-items-center gap-1">
                   <Button className="btn-danger">Eliminar</Button>
-                  <Button className="btn-primary">Editar</Button>
+                  <Button className="btn-info">Editar</Button>
                 </td>
               </tr>
             ))}
