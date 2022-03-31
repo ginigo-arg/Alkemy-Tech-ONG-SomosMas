@@ -13,6 +13,6 @@ const SchoolCampaign = () => {
       <Footer />
     </>
   );
-}
- 
+};
+
 export default SchoolCampaign;
