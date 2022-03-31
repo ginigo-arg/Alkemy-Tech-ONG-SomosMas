@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Image from 'react-bootstrap/Image';
-//iconos redes sociales quemados
+// iconos redes sociales quemados
 import facebook from '../../assets/img/iconos/socialMedia/facebook.png';
 import whatsapp from '../../assets/img/iconos/socialMedia/whatsapp.png';
 import twitter from '../../assets/img/iconos/socialMedia/twitter.png';
