@@ -13,6 +13,6 @@ const ToysCampaign = () => {
       <Footer />
     </>
   );
-}
- 
+};
+
 export default ToysCampaign;
