@@ -10,10 +10,15 @@ const Skeleton = () => {
         style={{ height: '15rem', backgroundColor: 'lightgray' }}
       ></Card.Img>
       <Card.Body className="">
-        <Placeholder as="h1" size="sm" bg="primary" animation="wave" xs={8} />
-        <Placeholder as={Card.Text} animation="wave">
-          <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
-          <Placeholder xs={6} /> <Placeholder xs={8} />
+        <Placeholder as="h1" size="xs" bg="secondary" animation="wave" xs={8} />
+        <Placeholder
+          as={Card.Text}
+          animation="wave"
+          className="justify-content-start"
+        >
+          <Placeholder xs={2} /> <Placeholder xs={6} /> <Placeholder xs={3} />
+          <Placeholder xs={3} /> <Placeholder xs={4} /> <Placeholder xs={4} />
+          <Placeholder xs={5} /> <Placeholder xs={3} />
         </Placeholder>
       </Card.Body>
     </Card>
