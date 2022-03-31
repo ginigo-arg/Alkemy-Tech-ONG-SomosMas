@@ -8,9 +8,22 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Spinner from './Components/Spinner/Spinner';
 import Error404 from './Components/Error404/Error404';
+import Layout from './Routes/Layouts/Public';
+import Detail from './Components/Activities/Detail/Detail';
+//import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice'; Agregar backoffice
 
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
+
 const Home = React.lazy(() => import('./Routes/Layouts/Public.js'));
+const Nosotros = React.lazy(() => import('./Components/About/Nosotros'));
+const Actividades = React.lazy(() =>
+  import('./Components/Activities/Actividades')
+);
+const IndexContact = React.lazy(() => import('./Components/Contact'));
+const NewsList = React.lazy(() => import('./Components/News/NewsList'));
+const NewDetail = React.lazy(() =>
+  import('./Components/News/Detail/NewDetail')
+);
 
 function App() {
   return (
