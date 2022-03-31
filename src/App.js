@@ -13,6 +13,7 @@ import Error404 from './Components/Error404/Error404';
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
 
 const Home = React.lazy(() => import('./Routes/Layouts/Public.js'));
+const Backoffice = React.lazy(() => import('./Routes/Layouts/LayoutBackoffice'));
 
 function App () {
   return (
@@ -24,7 +25,7 @@ function App () {
             <Route path="/" component={Home} />
 
             {/* Backoffice */}
-            <Route path="/backoffice" component={()=> <div> Backoffice </div>} />
+            <Route path="/backoffice" component={Backoffice} />
 
             {/* Ruta error 404 */}
             <Route path="*" component={Error404} />
