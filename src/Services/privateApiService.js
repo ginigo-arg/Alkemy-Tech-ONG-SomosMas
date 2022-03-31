@@ -53,3 +53,12 @@ export const Put = async (url, id, body, config) => {
   }
 }
 
+export const POST_PRIVATE_API = async (URL, DATA) => {
+  try {
+    const response = await axios.post(URL,DATA,config);
+    return response;
+  } catch (error) {
+    console.log('Error:', error);
+    return error;
+  }
+};
