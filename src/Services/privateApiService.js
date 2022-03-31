@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const verifyTokenExist = () => {
   const token = localStorage.getItem('TOKEN');
-
+  
   if (token) {
     return {
       headers: {
@@ -17,6 +17,7 @@ const verifyTokenExist = () => {
 };
 
 const config = verifyTokenExist();
+
 
 export const GET_PRIVATE_API = async (url, id = null) => {
   if (id) {
@@ -40,22 +41,15 @@ export const GET_PRIVATE_API = async (url, id = null) => {
   return new Error('Error en la petición');
 };
 
-export const POST_PRIVATE_API = async (URL, DATA) => {
-  // const options = {
-  //   method: 'POST',
-  //   url: URL,
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Bearer ${TOKEN}`,
-  //     Group: 163,
-  //   },
-  //   data: DATA,
-  // };
+export const Put = async (url, id, body, config) => {
   try {
-    const response = await axios.post(URL,DATA,config);
-    return response;
+    const resp = await axios.put(`${url}/${id}`, body, config);
+    const { data } = resp;
+
+    return data
+    
   } catch (error) {
-    console.log('Error:', error);
-    return error;
+    console.log(error);
   }
-};
+}
+
