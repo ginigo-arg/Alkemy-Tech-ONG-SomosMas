@@ -1,17 +1,26 @@
 import axios from 'axios';
 
-// TODO: importar el método autorización de Nico
+const verifyTokenExist = () => {
+  const token = localStorage.getItem('TOKEN');
 
-const config = {
-  headers: {
-    Authorization: '',
-    // TODO: AGREGA LA AUTORIZACIÓN DE NICO
-  },
+  if (token) {
+    return {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+        Group: 163,
+      },
+    };
+  } else {
+    throw new Error('No token exist in LocalStorage');
+  }
 };
+
+const config = verifyTokenExist();
 
 export const GET_PRIVATE_API = async (url, id = null) => {
   if (id) {
-    const data = await axios.get(url + id, config);
+    const data = await axios.get(`${url}/${id}`, config);
     const response = JSON.parse(data);
 
     const res = response.data ?? new Error(response.message);
