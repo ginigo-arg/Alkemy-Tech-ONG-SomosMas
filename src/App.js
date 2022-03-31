@@ -12,6 +12,7 @@ import CategoriesForm from './Components/Categories/CategoriesForm';
 import NewsForm from './Components/News/NewsForm';
 import SlidesForm from './Components/Slides/SlidesForm';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
+import UsersList from './Components/Users/UsersList';
 import UserForm from './Components/Users/UsersForm';
 import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
@@ -95,6 +96,16 @@ function App() {
               component={TestimonialForm}
             />
             <Route path="/backoffice/create-user" component={UserForm} />
+
+            <Route path="/backoffice/users" component={UsersList} />
+            {/* SEGUN EL TICKET 65 SE DEBE REDIRIGIR A ESTA RUTA */}
+            <Route
+              path="/backoffice/users/create"
+              component={() => {
+                <div>Creacion de users</div>;
+              }}
+            />
+
             <Route path="/backoffice/create-member" component={MembersForm} />
             <Route path="/backoffice/create-project" component={ProjectsForm} />
             <Route

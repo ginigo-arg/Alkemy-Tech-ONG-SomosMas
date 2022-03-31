@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,300;1,300&family=Montserrat:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&display=swap');
+
+.userslist-buttons {
+  width: 5rem;
+}
+
+.userslist-title-container {
+  background-color: rgb(230, 223, 223);
+  height: 3rem;
+}
+
+.userslist-title {
+  font-size: 1.25rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.userslist-text {
+  font-size: 1.1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
