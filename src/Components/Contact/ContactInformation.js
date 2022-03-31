@@ -117,13 +117,15 @@ const ContactInformation = ({
                 </h5>
                 <h6>
                   {' '}
-                  {organization.phone ? (
-                    <>
-                      {organization.cellphone} - {organization.phone}
-                    </>
-                  ) : (
-                    organization.cellphone
-                  )}
+                  {organization.phone
+                    ? (
+                      <>
+                        {organization.cellphone} - {organization.phone}
+                      </>
+                    )
+                    : (
+                      organization.cellphone
+                    )}
                 </h6>
               </div>
             </div>
