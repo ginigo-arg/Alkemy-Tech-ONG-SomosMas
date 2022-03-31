@@ -6,25 +6,13 @@ import React, { Suspense } from 'react';
 
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import ActivitiesForm from './Components/Activities/ActivitiesForm';
-import CategoriesForm from './Components/Categories/CategoriesForm';
-import NewsForm from './Components/News/NewsForm';
-import SlidesForm from './Components/Slides/SlidesForm';
-import TestimonialForm from './Components/Testimonials/TestimonialsForm';
-import UserForm from './Components/Users/UsersForm';
-import SchoolCampaign from './Campaigns/School/SchoolCampaign';
-import ToysCampaign from './Campaigns/Toys/ToysCampaign';
-import MembersForm from './Components/Members/MembersForm';
-import ProjectsForm from './Components/Projects/ProjectsForm';
 import Spinner from './Components/Spinner/Spinner';
 import Error404 from './Components/Error404/Error404';
 import Layout from './Routes/Layouts/Public';
-
-
 import Detail from './Components/Activities/Detail/Detail';
+//import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice'; Agregar backoffice
 
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
-
 
 const Home = React.lazy(() => import('./Components/Home'));
 const Nosotros = React.lazy(() => import('./Components/About/Nosotros'));
@@ -54,37 +42,6 @@ function App() {
               <Route path="/novedades" component={NewsList} />
             </Suspense>
 
-            {/* Rutas para el backoffice */}
-            <Route
-              path="/backoffice"
-              exact
-              component={() => <div>Backoffice</div>}
-            />
-            <Route
-              path="/backoffice/create-activity"
-              component={ActivitiesForm}
-            />
-            <Route
-              path="/backoffice/create-category"
-              component={CategoriesForm}
-            />
-            <Route path="/backoffice/create-news" component={NewsForm} />
-            <Route path="/backoffice/create-slide" component={SlidesForm} />
-            <Route
-              path="/backoffice/create-testimonials"
-              component={TestimonialForm}
-            />
-            <Route path="/backoffice/create-user" component={UserForm} />
-            <Route path="/backoffice/create-member" component={MembersForm} />
-            <Route path="/backoffice/create-project" component={ProjectsForm} />
-            <Route
-              path="/backoffice/school-campaign"
-              component={SchoolCampaign}
-            />
-            <Route path="/backoffice/toys-campaign" component={ToysCampaign} />
-           
-
-            {/* Ruta error 404 */}
             <Route path="*" component={Error404} />
           </Switch>
         </BrowserRouter>
