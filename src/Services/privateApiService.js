@@ -13,23 +13,14 @@ export const Get = () => {
     .catch((err) => console.log(err));
 };
 
-export const Put = async (id, Authorization, data) => {
-  const options = {
-    url: `${proccess.env.REACT_APP_API_CATEGORY}/${id}`,
-    method: 'PUT',
-    headers: {
-      Group: null,
-      Authorization,
-    },
-    body: { id, data },
-  };
-
+export const Put = async (url, body, config) => {
   try {
-    const resp = await axios(options);
+    const resp = await axios.put(url, body, config);
+    const { data } = resp;
     return {
-      resp,
+      data,
     };
   } catch (error) {
-    console.log('error catch:', error);
+    console.log(error);
   }
 };
