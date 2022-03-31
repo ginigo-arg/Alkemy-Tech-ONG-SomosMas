@@ -7,6 +7,7 @@ import { GiOrganigram } from 'react-icons/gi';
 import { RiSlideshow3Line } from 'react-icons/ri';
 import { HiUsers } from 'react-icons/hi';
 import { FaUserCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 const Sidebar = () => {
   return (
     <div>
@@ -20,39 +21,39 @@ const Sidebar = () => {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Nav className="justify-content-end flex-grow-1 pe-3 ">
-            <Nav.Link href="/create-news">
-              <BiNews font-size="25px" color="grey" />
+            <Link to="/backoffice/create-news">
+              <BiNews fontSize="25px" color="grey" />
               Novedades
-            </Nav.Link>
+            </Link>
 
-            <Nav.Link href="/create-activity">
-              <BsPencilFill font-size="25px" color="red" />
+            <Link to="/backoffice/create-activity">
+              <BsPencilFill fontSize="25px" color="red" />
               Actividades
-            </Nav.Link>
-            <Nav.Link href="/create-category">
-              <BsMenuButtonWideFill font-size="25px" color="green" />
+            </Link>
+            <Link to="/backoffice/create-category">
+              <BsMenuButtonWideFill fontSize="25px" color="green" />
               Categorias
-            </Nav.Link>
-            <Nav.Link href="/create-testimonials">
-              <MdOutlineSpeakerNotes font-size="25px" color="blue" />
+            </Link>
+            <Link to="/backoffice/create-testimonials">
+              <MdOutlineSpeakerNotes fontSize="25px" color="blue" />
               Testimonios
-            </Nav.Link>
-            <Nav.Link href="#action5">
-              <GiOrganigram font-size="25px" color="black" />
+            </Link>
+            <Link to="#action5">
+              <GiOrganigram fontSize="25px" color="black" />
               Organizacion
-            </Nav.Link>
-            <Nav.Link href="/backoffice/create-slide">
-              <RiSlideshow3Line font-size="25px" color="black" />
+            </Link>
+            <Link to="/backoffice/create-slide">
+              <RiSlideshow3Line fontSize="25px" color="black" />
               Slides
-            </Nav.Link>
-            <Nav.Link href="/create-user">
-              <FaUserCircle font-size="25px" color="orange" />
+            </Link>
+            <Link to="/backoffice/create-user">
+              <FaUserCircle fontSize="25px" color="orange" />
               Usuarios
-            </Nav.Link>
-            <Nav.Link href="/create-member">
-              <HiUsers font-size="25px" color="violet" />
+            </Link>
+            <Link to="/backoffice/create-member">
+              <HiUsers fontSize="25px" color="violet" />
               Miembros
-            </Nav.Link>
+            </Link>
           </Nav>
         </Offcanvas.Body>
       </Navbar.Offcanvas>
