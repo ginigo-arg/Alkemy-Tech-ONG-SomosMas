@@ -1,7 +1,7 @@
 import React from 'react';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Card from 'react-bootstrap/esm/Card';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import { FaShareAlt } from 'react-icons/fa';
 import './Card.css';
 
@@ -20,30 +20,32 @@ const CardComponent = ({
       <div className={`p-2 m-2 border-in-card-full ${bgColor}`}>
         <CardGroup>
           <Card className="border-0 bg-transparent">
-            {image !== '' ? (
-              <Card.Img
-                variant="top"
-                src={image}
-                className="img-fluid img-card border-in-card-top"
-              />
-            ) : (
-              <svg
-                className="card-img-top border-in-card-top"
-                width="100%"
-                height="140"
-                xmlns="http://www.w3.org/2000/svg"
-                role="img"
-                aria-label="Placeholder: Thumbnail"
-                preserveAspectRatio="xMidYMid slice"
-                focusable="false"
-              >
-                <title>{title}</title>
-                <rect width="100%" height="100%" fill="#514242"></rect>
-                {/* <text x="5%" y="50%" fill="#eceeef" dy=".5em">
+            {image !== ''
+              ? (
+                <Card.Img
+                  variant="top"
+                  src={image}
+                  className="img-fluid img-card border-in-card-top"
+                />
+              )
+              : (
+                <svg
+                  className="card-img-top border-in-card-top"
+                  width="100%"
+                  height="140"
+                  xmlns="http://www.w3.org/2000/svg"
+                  role="img"
+                  aria-label="Placeholder: Thumbnail"
+                  preserveAspectRatio="xMidYMid slice"
+                  focusable="false"
+                >
+                  <title>{title}</title>
+                  <rect width="100%" height="100%" fill="#514242"></rect>
+                  {/* <text x="5%" y="50%" fill="#eceeef" dy=".5em">
                   No media
                 </text> */}
-              </svg>
-            )}
+                </svg>
+              )}
             {showShare && (
               <button
                 className="btn btn-outline-primary btn-share text-white rounded-circle"
