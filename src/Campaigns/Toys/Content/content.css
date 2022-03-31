@@ -1,0 +1,20 @@
+.background-content {
+  background: #f9f9f9 !important;
+}
+
+@media (min-width: 1400px) {
+  .background-content {
+    background: rgba(154, 201, 251, 0.3) !important;
+  }
+}
+
+@media (max-width: 540px) {
+  .img-portada {
+    overflow: hidden;
+    width: 320px;
+  }
+
+  .img-portada img {
+    width: 100%;
+  }
+}

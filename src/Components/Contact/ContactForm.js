@@ -183,13 +183,15 @@ const ContactForm = () => {
             id="submit"
             className="text-white"
           >
-            {isLoading ? (
-              'Sending...'
-            ) : (
-              <>
-                <GiEnvelope className="text-white" /> Enviar
-              </>
-            )}
+            {isLoading
+              ? (
+                'Sending...'
+              )
+              : (
+                <>
+                  <GiEnvelope className="text-white" /> Enviar
+                </>
+              )}
           </Button>
         </Col>
       </Row>
