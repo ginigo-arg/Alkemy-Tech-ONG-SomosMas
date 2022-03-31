@@ -8,8 +8,10 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Spinner from './Components/Spinner/Spinner';
 import Error404 from './Components/Error404/Error404';
+// import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice'; Agregar backoffice
 
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
+
 const Home = React.lazy(() => import('./Routes/Layouts/Public.js'));
 
 function App () {
