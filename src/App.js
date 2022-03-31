@@ -5,7 +5,8 @@ import React, { Suspense } from 'react';
 // import { Counter } from './features/counter/Counter';
 
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { AnimatedSwitch, spring } from 'react-router-transition';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import NewsForm from './Components/News/NewsForm';
@@ -20,11 +21,9 @@ import Spinner from './Components/Spinner/Spinner';
 import Error404 from './Components/Error404/Error404';
 import Layout from './Routes/Layouts/Public';
 
-
 import Detail from './Components/Activities/Detail/Detail';
 
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
-
 
 const Home = React.lazy(() => import('./Components/Home'));
 const Nosotros = React.lazy(() => import('./Components/About/Nosotros'));
@@ -38,11 +37,32 @@ const NewDetail = React.lazy(() =>
 );
 
 function App() {
+  const mapStyles = (styles) => {
+    return {
+      opacity: styles.opacity,
+      transform: `scale(${styles.scale})`,
+    };
+  };
+
+  const bounce = (value) => {
+    return spring(value, {
+      stiffness: 500,
+      damping: 30,
+    });
+  };
+
   return (
     <div className="App">
       <Layout>
         <BrowserRouter>
-          <Switch>
+          {/* Reemplazando el Switch tradicional de react-router-dom */}
+          <AnimatedSwitch
+            atEnter={{ opacity: 0, scale: 1.2 }}
+            atLeave={{ opacity: bounce(0), scale: bounce(0.5) }}
+            atActive={{ opacity: bounce(1), scale: bounce(1) }}
+            mapStyles={mapStyles}
+            runOnMount={true}
+          >
             {/* Rutas para web pública */}
             <Suspense fallback={<Spinner />}>
               <Route path="/" exact component={Home} />
@@ -82,11 +102,10 @@ function App() {
               component={SchoolCampaign}
             />
             <Route path="/backoffice/toys-campaign" component={ToysCampaign} />
-           
 
             {/* Ruta error 404 */}
             <Route path="*" component={Error404} />
-          </Switch>
+          </AnimatedSwitch>
         </BrowserRouter>
       </Layout>
     </div>
