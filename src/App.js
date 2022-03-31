@@ -5,8 +5,40 @@ import React, { Suspense } from 'react';
 // import { Counter } from './features/counter/Counter';
 
 import './App.css';
-import Layout from './Routes/Layouts/Public';
-import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Spinner from './Components/Spinner/Spinner';
+import Error404 from './Components/Error404/Error404';
+// import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice'; Agregar backoffice
+
+// IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
+
+const Home = React.lazy(() => import('./Routes/Layouts/Public.js'));
+
+function App () {
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Suspense fallback={<Spinner />}>
+          <Switch>
+            {/* Web pública */}
+            <Route path="/" component={Home} />
+
+            {/* Backoffice */}
+            <Route path="/backoffice" component={() => <div>Backoffice</div>} />
+
+            {/* Ruta error 404 */}
+            <Route path="*" component={Error404} />
+          </Switch>
+        </Suspense>
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
+
+/* Rutas del backoffice e imports de los componentes
+
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import NewsForm from './Components/News/NewsForm';
@@ -17,100 +49,18 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
-import Spinner from './Components/Spinner/Spinner';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Error404 from './Components/Error404/Error404';
-import Detail from './Components/Activities/Detail/Detail';
+import About from './Components/About/Nosotros';
 
-//IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
+<Route path="/backoffice/create-activity" component={ActivitiesForm} />
+<Route path="/backoffice/create-category" component={CategoriesForm} />
+<Route path="/backoffice/create-news" component={NewsForm} />
+<Route path="/backoffice/create-slide" component={SlidesForm} />
+<Route path="/backoffice/create-testimonials" component={TestimonialForm} />
+<Route path="/backoffice/create-user" component={UserForm} />
+<Route path="/backoffice/create-member" component={MembersForm} />
+<Route path="/backoffice/create-project" component={ProjectsForm} />
+<Route path="/backoffice/school-campaign" component={SchoolCampaign} />
+<Route path="/backoffice/toys-campaign" component={ToysCampaign} />
+<Route path="/backoffice/Nosotros" component={About} />
 
-const Home = React.lazy(() => import('./Components/Home'));
-const Nosotros = React.lazy(() => import('./Components/About/Nosotros'));
-const Actividades = React.lazy(() =>
-  import('./Components/Activities/Actividades')
-);
-const IndexContact = React.lazy(() => import('./Components/Contact'));
-const NewsList = React.lazy(() => import('./Components/News/NewsList'));
-const NewDetail = React.lazy(() =>
-  import('./Components/News/Detail/NewDetail')
-);
-
-function App() {
-  return (
-    <div className="App">
-      <Layout>
-        <BrowserRouter>
-          <Switch>
-            Rutas para web pública
-            <Suspense fallback={<Spinner />}>
-              <Route path="/" exact component={Home} />
-              <Route path="/actividades" exact component={Actividades} />
-              <Route path="/actividades/:id" component={Detail} />
-              <Route path="/contacto" component={IndexContact} />
-              <Route path="/nosotros" component={Nosotros} />
-              <Route path="/novedades/id" component={NewDetail} />
-              <Route path="/novedades" component={NewsList} />
-            </Suspense>
-            Rutas para el backoffice
-            <Route path="/backoffice" exact component={LayoutBackoffice} />
-            <Route
-              path="/backoffice/create-activity"
-              component={ActivitiesForm}
-            />
-            <Route
-              path="/backoffice/create-category"
-              component={CategoriesForm}
-            />
-            <Route path="/backoffice/create-news" component={NewsForm} />
-            <Route path="/backoffice/create-slide" component={SlidesForm} />
-            <Route
-              path="/backoffice/create-testimonials"
-              component={TestimonialForm}
-            />
-            <Route path="/backoffice/create-user" component={UserForm} />
-            <Route path="/backoffice/create-member" component={MembersForm} />
-            <Route path="/backoffice/create-project" component={ProjectsForm} />
-            <Route
-              path="/backoffice/school-campaign"
-              component={SchoolCampaign}
-            />
-            <Route path="/backoffice/toys-campaign" component={ToysCampaign} />
-            Ruta error 404
-            <Route path="*" component={Error404} />
-          </Switch>
-        </BrowserRouter>
-      </Layout>
-
-      <BrowserRouter>
-        <LayoutBackoffice>
-          {/* Rutas para el backoffice */}
-          <Route path="/backoffice" exact component={LayoutBackoffice} />
-          <Route
-            path="/backoffice/create-activity"
-            component={ActivitiesForm}
-          />
-          <Route
-            path="/backoffice/create-category"
-            component={CategoriesForm}
-          />
-          <Route path="/backoffice/create-news" component={NewsForm} />
-          <Route path="/backoffice/create-slide" component={SlidesForm} />
-          <Route
-            path="/backoffice/create-testimonials"
-            component={TestimonialForm}
-          />
-          <Route path="/backoffice/create-user" component={UserForm} />
-          <Route path="/backoffice/create-member" component={MembersForm} />
-          <Route path="/backoffice/create-project" component={ProjectsForm} />
-          <Route
-            path="/backoffice/school-campaign"
-            component={SchoolCampaign}
-          />
-          <Route path="/backoffice/toys-campaign" component={ToysCampaign} />
-        </LayoutBackoffice>
-      </BrowserRouter>
-    </div>
-  );
-}
-
-export default App;
+*/

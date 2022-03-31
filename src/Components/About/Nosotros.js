@@ -2,7 +2,7 @@ import Title from '../SectionTitles/SectionTitles';
 import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
-export default function Nosotros() {
+export default function Nosotros () {
   const nosotrostx = 'Sobre Nosotros';
   const history = useHistory();
 
