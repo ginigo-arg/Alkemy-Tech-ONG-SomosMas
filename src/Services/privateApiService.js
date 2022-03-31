@@ -1,8 +1,21 @@
 import axios from 'axios';
 
+const config = {
+  headers: {
+    Group: 01, //Aqui va el ID del equipo!!
+  },
+};
+
+export const Get = () => {
+  axios
+    .get('https://jsonplaceholder.typicode.com/users', config)
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+};
+
 const verifyTokenExist = () => {
   const token = localStorage.getItem('TOKEN');
-
+  
   if (token) {
     return {
       headers: {
@@ -17,6 +30,7 @@ const verifyTokenExist = () => {
 };
 
 const config = verifyTokenExist();
+
 
 export const GET_PRIVATE_API = async (url, id = null) => {
   if (id) {
@@ -39,3 +53,15 @@ export const GET_PRIVATE_API = async (url, id = null) => {
 
   return new Error('Error en la petición');
 };
+
+export const Put = async (url, id, body, config) => {
+  try {
+    const resp = await axios.put(`${url}/${id}`, body, config);
+    const { data } = resp;
+
+    return data
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
