@@ -54,7 +54,7 @@ export const GET_PRIVATE_API = async (url, id = null) => {
   return new Error('Error en la petición');
 };
 
-export const Put = async (url, body, config) => {
+export const Put = async (url, id, body, config) => {
   try {
     const resp = await axios.put(`${url}/${id}`, body, config);
     const { data } = resp;
