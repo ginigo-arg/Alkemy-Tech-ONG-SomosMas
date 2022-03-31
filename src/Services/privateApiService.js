@@ -1,10 +1,10 @@
 import axios from 'axios';
-
+/*Hay dos variables config
 const config = {
   headers: {
     Group: 01, //Aqui va el ID del equipo!!
   },
-};
+};*/
 
 export const Get = () => {
   axios
@@ -57,6 +57,18 @@ export const GET_PRIVATE_API = async (url, id = null) => {
 export const Put = async (url, id, body, config) => {
   try {
     const resp = await axios.put(`${url}/${id}`, body, config);
+    const { data } = resp;
+
+    return data
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
+//PETICION PATCH
+export const Patch = async (url, id, body, config) => {
+  try {
+    const resp = await axios.patch(`${url}/${id}`, body, config);
     const { data } = resp;
 
     return data
