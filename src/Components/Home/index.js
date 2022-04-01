@@ -1,4 +1,5 @@
 import { Col, Container } from 'react-bootstrap';
+import Skeleton from '../Skeleton/Skeleton';
 import './Home.css';
 
 const Home = ({ greeting }) => {
@@ -20,11 +21,12 @@ const Home = ({ greeting }) => {
       <Container className="mt-5">
         <Col
           xs={12}
-          className="placeholder-novedades d-flex flex-column justify-content-center"
+          className="placeholder-novedades d-flex flex-column justify-content-center align-items-center"
         >
           <h3>Novedades</h3>
           {/* COMPONENTE NOVEDADES */}
-          <p>Novedades placeholder</p>
+          {/* EJEMPLO DE PLACEHOLDER */}
+          <Skeleton />
         </Col>
       </Container>
     </Container>
