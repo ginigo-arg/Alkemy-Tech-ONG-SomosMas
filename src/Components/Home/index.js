@@ -18,7 +18,7 @@ const Home = ({ greeting }) => {
         <div className="placeholder-slider d-flex flex-column justify-content-center">
           {/* COMPONENTE SLIDER */}
           {/* <h3>Slider placeholder</h3> */}
-
+          <Slider />
         </div>
       </Col>
       <Container className="mt-5">
