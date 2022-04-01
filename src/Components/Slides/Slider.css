@@ -20,3 +20,9 @@
 .carousel-indicators [data-bs-target]{
   background-color: var(--bs-info);
 }
+
+@media screen and (max-width: 769px) {
+  .caption {
+    display: none;
+  }
+}

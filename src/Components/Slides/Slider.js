@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Carousel, CarouselItem } from 'react-bootstrap';
 import './Slider.css';
 
@@ -27,28 +27,16 @@ const slides = [
 ];
 
 const Slider = () => {
-  const [matches, setMatches] = useState(
-    window.matchMedia('(min-width: 768px)').matches,
-  );
-
-  useEffect(() => {
-    window
-      .matchMedia('(min-width: 768px)')
-      .addEventListener('change', (e) => setMatches(e.matches));
-  }, []);
-
   return (
     <Carousel>
       {slides &&
         slides.map((slide) => (
           <CarouselItem interval={5000} key={slide.name}>
             <img src={slide.image} alt={slide.name} className="w-100" />
-            {matches && (
-              <Carousel.Caption className="caption">
-                <h2 className="fw-bold text-uppercase fs-1">{slide.name}</h2>
-                <p>{slide.description}</p>
-              </Carousel.Caption>
-            )}
+            <Carousel.Caption className="caption">
+              <h2 className="fw-bold text-uppercase fs-1">{slide.name}</h2>
+              <p>{slide.description}</p>
+            </Carousel.Caption>
           </CarouselItem>
         ))}
     </Carousel>
