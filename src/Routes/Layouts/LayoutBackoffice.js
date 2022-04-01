@@ -13,6 +13,7 @@ import ProjectsForm from '../../Components/Projects/ProjectsForm';
 import About from '../../Components/About/Nosotros';
 import Sidebar from '../../Components/BackOffice/Sidebar/Sidebar';
 import Header from '../../Components/BackOffice/Header/Header';
+import Categories from '../../Components/Categories/Categories';
 
 const LayoutBackoffice = () => {
   return (
@@ -26,7 +27,7 @@ const LayoutBackoffice = () => {
         <Row>
           <Sidebar />
           <Col>
-            {/*rutas backoffice*/}
+            {/* rutas backoffice */}
             <Switch>
               <Route exact path="/backoffice" component={LayoutBackoffice} />
               <Route
@@ -63,6 +64,11 @@ const LayoutBackoffice = () => {
                 exact
                 path="/backoffice/create-member"
                 component={MembersForm}
+              />
+              <Route
+                exact
+                path="/backoffice/categories"
+                component={Categories}
               />
               <Route
                 exact
