@@ -41,3 +41,28 @@ The component uses state props to hide or show itself. It has a default state to
 // To hide it:
 <ProgressSpinner state={false} />
 ```
+Skeleton component added when Card component is retrieving data from APIs.
+
+## ALERTS SERVICE
+
+File in: ./src/Services/alertService.js.<br />
+
+Version: SweetAlert2 [https://sweetalert2.github.io/].<br />
+
+Types-alerts: success, error, info and confirm.<br />
+
+Use alert: Receive two parameters: type and message. (MANDATORY!)<br />
+
+EXAMPLE:
+
+```
+    const delete = async () => {
+      const confirmAction = await alertService('confirm', 'Are you sure to delete?');
+      if (confirmAction) {
+        alertService('success', 'Removed successfully');
+      } else {
+        alertService('error', 'Cancelled');
+      }
+    };
+```
+
