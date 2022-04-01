@@ -1,5 +1,4 @@
 import React, { Suspense } from 'react';
-
 // COMENTADO POR RECOMENDACION DEL ESLINTER
 // import logo from './logo.svg';
 // import { Counter } from './features/counter/Counter';
@@ -22,10 +21,8 @@ function App () {
           <Switch>
             {/* Web pública */}
             <Route path="/" component={Home} />
-
             {/* Backoffice */}
-            <Route path="/backoffice" component={()=> <div> Backoffice </div>} />
-
+            <Route exact path="/backoffice" component={ () => { <div>backoffice</div>; }} />
             {/* Ruta error 404 */}
             <Route path="*" component={Error404} />
           </Switch>

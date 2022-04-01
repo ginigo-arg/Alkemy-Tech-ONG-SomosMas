@@ -1,9 +1,9 @@
 import parse from 'html-react-parser';
 
-const ParserHtml = ({ children }) => {
+const ParserHtml = ({ text }) => {
   return (
     <>
-      {parse(`${children}`)}
+      {parse(`${text}`)}
     </>
   );
 };
