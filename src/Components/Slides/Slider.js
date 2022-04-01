@@ -1,27 +1,27 @@
-import React from "react";
-import { Carousel, CarouselItem } from "react-bootstrap";
+import React from 'react';
+import { Carousel, CarouselItem } from 'react-bootstrap';
 
 const slides = [
   {
     id: 1,
-    name: "Prueba",
-    description: "Imagen de prueba slider",
+    name: 'Prueba',
+    description: 'Imagen de prueba slider',
     image:
-      "https://img.freepik.com/vector-gratis/ninos-felices-saltando-prado-verano_74855-5852.jpg?size=626&ext=jpg&ga=GA1.2.1586766005.1636675200",
+      'https://img.freepik.com/vector-gratis/ninos-felices-saltando-prado-verano_74855-5852.jpg?size=626&ext=jpg&ga=GA1.2.1586766005.1636675200',
   },
   {
     id: 2,
-    name: "Prueba2",
-    description: "Imagen de prueba slider",
+    name: 'Prueba2',
+    description: 'Imagen de prueba slider',
     image:
-      "https://img.freepik.com/vector-gratis/ninos-felices-saltando-prado-verano_74855-5852.jpg?size=626&ext=jpg&ga=GA1.2.1586766005.1636675200",
+      'https://img.freepik.com/vector-gratis/ninos-felices-saltando-prado-verano_74855-5852.jpg?size=626&ext=jpg&ga=GA1.2.1586766005.1636675200',
   },
   {
     id: 3,
-    name: "Prueba3",
-    description: "Imagen de prueba slider",
+    name: 'Prueba3',
+    description: 'Imagen de prueba slider',
     image:
-      "https://img.freepik.com/vector-gratis/ninos-felices-saltando-prado-verano_74855-5852.jpg?size=626&ext=jpg&ga=GA1.2.1586766005.1636675200",
+      'https://img.freepik.com/vector-gratis/ninos-felices-saltando-prado-verano_74855-5852.jpg?size=626&ext=jpg&ga=GA1.2.1586766005.1636675200',
   },
 ];
 

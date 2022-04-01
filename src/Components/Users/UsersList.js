@@ -1,6 +1,5 @@
 import './UsersList.css';
-import { Button } from 'react-bootstrap';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const UsersList = () => {

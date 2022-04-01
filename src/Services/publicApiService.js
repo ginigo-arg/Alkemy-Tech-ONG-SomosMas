@@ -7,13 +7,13 @@ const config = {
   Group: 163,
 };
 
-// EJEMPLO DE PETICION GET PARA TESTEAR
-export const Get = () => {
-  axios({
-    method: 'get',
-    url: 'https://ongapi.alkemy.org/api/activities',
-  }).then((res) => console.log(res.data.data));
+const Get = () => {
+  axios.get('https://jsonplaceholder.typicode.com/users', config)
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
 };
+
+export default Get;
 
 // PETICION POST QUE RECIBE EL PARAMETRO DE LA URL Y EL BODY
 export const Post = async (url, body) => {
