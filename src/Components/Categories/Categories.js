@@ -34,7 +34,7 @@ export default function Categories () {
                   <td>{mock.name}</td>
                   <td>{mock.createdAt}</td>
                   <td>
-                    <Button variant="danger">Eliminar</Button>
+                    <Button variant="danger">Eliminar </Button>
                     <Button variant="success" className="space">
                       Editar
                     </Button>
