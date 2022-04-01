@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Table } from 'react-bootstrap';
-import './Sliders.css'
-//import { Link } from 'react-router-dom';
+import './Sliders.css';
 
 const slides = [
   {
