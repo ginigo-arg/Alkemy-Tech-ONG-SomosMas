@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Carousel, CarouselItem } from 'react-bootstrap';
-import './Slider.css'
+import './Slider.css';
 
 const slides = [
   {
@@ -28,7 +28,7 @@ const slides = [
 
 const Slider = () => {
   const [matches, setMatches] = useState(
-    window.matchMedia('(min-width: 768px)').matches
+    window.matchMedia('(min-width: 768px)').matches,
   );
 
   useEffect(() => {
