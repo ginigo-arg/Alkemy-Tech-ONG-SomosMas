@@ -15,15 +15,15 @@ export const alertService = async (type, message) => {
   }
 
   switch (type) {
-    case type:
-      return Swal.fire({
-        text: message,
-        icon: type,
-        confirmButtonText: 'Cerrar',
-        timer: 2000,
-      });
-    default:
-      console.error('The necessary parameters do not exist');
-      break;
+  case type:
+    return Swal.fire({
+      text: message,
+      icon: type,
+      confirmButtonText: 'Cerrar',
+      timer: 2000,
+    });
+  default:
+    console.error('The necessary parameters do not exist');
+    break;
   }
 };
