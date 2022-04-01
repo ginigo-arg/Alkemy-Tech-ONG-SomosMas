@@ -13,6 +13,7 @@ import ProjectsForm from '../../Components/Projects/ProjectsForm';
 import About from '../../Components/About/Nosotros';
 import Sidebar from '../../Components/BackOffice/Sidebar/Sidebar';
 import Header from '../../Components/BackOffice/Header/Header';
+import MembersList from '../../Components/BackOffice/Members/MembersList';
 import Categories from '../../Components/Categories/Categories';
 
 const LayoutBackoffice = () => {
@@ -86,6 +87,11 @@ const LayoutBackoffice = () => {
                 component={ToysCampaign}
               />
               <Route exact path="/backoffice/Nosotros" component={About} />
+              <Route
+                exact
+                path="/backoffice/Miembros"
+                component={MembersList}
+              />
             </Switch>
           </Col>
         </Row>
