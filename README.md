@@ -28,3 +28,26 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+## ALERTS SERVICE
+
+File in: ./src/Services/alertService.js.<br />
+
+Version: SweetAlert2 [https://sweetalert2.github.io/].<br />
+
+Types-alerts: success, error, info and confirm.<br />
+
+Use alert: Receive two parameters: type and message. (MANDATORY!)<br />
+
+EXAMPLE:
+
+```
+    const delete = async () => {
+      const confirmAction = await alertService('confirm', 'Are you sure to delete?');
+      if (confirmAction) {
+        alertService('success', 'Removed successfully');
+      } else {
+        alertService('error', 'Cancelled');
+      }
+    };
+```
