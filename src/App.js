@@ -8,10 +8,13 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Spinner from './Components/Spinner/Spinner';
 import Error404 from './Components/Error404/Error404';
 import { spring, AnimatedSwitch } from 'react-router-transition';
-import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice';
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
 
 const Home = React.lazy(() => import('./Routes/Layouts/Public.js'));
+const Backoffice = React.lazy(() =>
+  import('./Routes/Layouts/LayoutBackoffice'),
+);
+const Toy = React.lazy(() => import('./Campaigns/Toys/Content/Content'));
 
 function App () {
   const mapStyles = (styles) => {
@@ -39,9 +42,18 @@ function App () {
             runOnMount={true}
           >
             {/* Backoffice */}
-            <Route path="/backoffice" component={LayoutBackoffice} />
+            <Route path="/backoffice" component={Backoffice} />
+
+            {/* Campañas */}
+            <Route path="/campaigns/toys" component={Toy} />
+            <Route
+              path="/campaigns/school"
+              component={() => <div>School</div>}
+            />
+
             {/* Web pública */}
             <Route path="/" component={Home} />
+
             {/* Ruta error 404 */}
             <Route path="*" component={Error404} />
           </AnimatedSwitch>
@@ -52,31 +64,3 @@ function App () {
 }
 
 export default App;
-
-/* Rutas del backoffice e imports de los componentes
-
-import ActivitiesForm from './Components/Activities/ActivitiesForm';
-import CategoriesForm from './Components/Categories/CategoriesForm';
-import NewsForm from './Components/News/NewsForm';
-import SlidesForm from './Components/Slides/SlidesForm';
-import TestimonialForm from './Components/Testimonials/TestimonialsForm';
-import UserForm from './Components/Users/UsersForm';
-import SchoolCampaign from './Campaigns/School/SchoolCampaign';
-import ToysCampaign from './Campaigns/Toys/ToysCampaign';
-import MembersForm from './Components/Members/MembersForm';
-import ProjectsForm from './Components/Projects/ProjectsForm';
-import About from './Components/About/Nosotros';
-
-<Route path="/backoffice/create-activity" component={ActivitiesForm} />
-<Route path="/backoffice/create-category" component={CategoriesForm} />
-<Route path="/backoffice/create-news" component={NewsForm} />
-<Route path="/backoffice/create-slide" component={SlidesForm} />
-<Route path="/backoffice/create-testimonials" component={TestimonialForm} />
-<Route path="/backoffice/create-user" component={UserForm} />
-<Route path="/backoffice/create-member" component={MembersForm} />
-<Route path="/backoffice/create-project" component={ProjectsForm} />
-<Route path="/backoffice/school-campaign" component={SchoolCampaign} />
-<Route path="/backoffice/toys-campaign" component={ToysCampaign} />
-<Route path="/backoffice/Nosotros" component={About} />
-
-*/

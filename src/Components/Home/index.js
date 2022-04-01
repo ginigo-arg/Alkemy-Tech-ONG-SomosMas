@@ -2,6 +2,7 @@ import { Col, Container } from 'react-bootstrap';
 import Skeleton from '../Skeleton/Skeleton';
 import './Home.css';
 import Slider from '../Slides/Slider';
+import ProgressSpinner from '../Progress/ProgressSpinner';
 
 const Home = ({ greeting }) => {
   return (
@@ -30,6 +31,17 @@ const Home = ({ greeting }) => {
           {/* COMPONENTE NOVEDADES */}
           {/* EJEMPLO DE PLACEHOLDER */}
           <Skeleton />
+        </Col>
+      </Container>
+      <Container className="mt-5">
+        <Col
+          xs={12}
+          className="placeholder-novedades d-flex flex-column justify-content-center align-items-center"
+        >
+          <h3>Setup Progress</h3>
+          {/* COMPONENTE NOVEDADES */}
+          {/* EJEMPLO DE PLACEHOLDER */}
+          <ProgressSpinner />
         </Col>
       </Container>
     </Container>
