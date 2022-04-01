@@ -23,8 +23,8 @@ const MembersList = ({ members = MockMembers }) => {
         </Link>
       </div>
       {/*  AGREGAR BUSCADOR AQUÍ */}
-      {members.length > 0 ? (
-        <Container>
+      {members.length > 0
+        ? <Container>
           <Table striped hover responsive>
             <thead className="bg-primary text-white rounded">
               <tr>
@@ -37,47 +37,45 @@ const MembersList = ({ members = MockMembers }) => {
             </thead>
             <tbody>
               {members.map((item) => (
-                <RowMember member={item} />
+                <RowMember key={item.id} member={item} />
               ))}
             </tbody>
           </Table>
         </Container>
-      ) : (
-        <div
-          className="alert-warning rounded d-flex justify-content-center align-items-center"
-          style={{ height: '300px' }}
-        >
+        : <div className="alert-warning rounded d-flex justify-content-center align-items-center" style={{ height: '300px' }}>
           <h3>No hay miembros para mostrar</h3>
         </div>
-      )}
+      }
     </Container>
   );
 };
 
 export default MembersList;
 
-//------------------------------------------- COMPONENT ROW MEMBER LIST---------------------------------------
+// ------------------------------------------- COMPONENT ROW MEMBER LIST---------------------------------------
 const RowMember = ({ member }) => {
   return (
-    <tr key={member.id} className="align-middle">
+    <tr className="align-middle">
       <td className="px-3">{member.name}</td>
       <td className="text-center" style={{ width: '230px' }}>
-        {member.photo !== '' ? (
-          <img
-            src={member.photo}
-            alt={member.name}
-            className="img-thumbnail rounded"
-            style={{ width: '200px', height: '100px' }}
-          />
-        ) : (
-          <svg className="img-thumbnail rounded" width="200px" height="100px">
-            <title>{member.name}</title>
-            <rect width="100%" height="100%" fill="#514242"></rect>
-            <text x="30%" y="50%" fill="#eceeef" dy=".5em">
-              No media
-            </text>
-          </svg>
-        )}
+        {member.photo !== ''
+          ? (
+            <img
+              src={member.photo}
+              alt={member.name}
+              className="img-thumbnail rounded"
+              style={{ width: '200px', height: '100px' }}
+            />
+          )
+          : (
+            <svg className="img-thumbnail rounded" width="200px" height="100px">
+              <title>{member.name}</title>
+              <rect width="100%" height="100%" fill="#514242"></rect>
+              <text x="30%" y="50%" fill="#eceeef" dy=".5em">
+                No media
+              </text>
+            </svg>
+          )}
       </td>
       <td className="text-center" style={{ width: '70px' }}>
         <Link className="btn btn-danger text-white" title="Eliminar">
