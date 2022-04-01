@@ -1,21 +1,8 @@
 import axios from 'axios';
-/*Hay dos variables config
-const config = {
-  headers: {
-    Group: 01, //Aqui va el ID del equipo!!
-  },
-};*/
 
-export const Get = () => {
-  axios
-    .get('https://jsonplaceholder.typicode.com/users', config)
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
-};
 
 const verifyTokenExist = () => {
   const token = localStorage.getItem('TOKEN');
-  
   if (token) {
     return {
       headers: {
@@ -30,8 +17,6 @@ const verifyTokenExist = () => {
 };
 
 const config = verifyTokenExist();
-
-
 export const GET_PRIVATE_API = async (url, id = null) => {
   if (id) {
     const data = await axios.get(`${url}/${id}`, config);
@@ -59,8 +44,7 @@ export const Put = async (url, id, body, config) => {
     const resp = await axios.put(`${url}/${id}`, body, config);
     const { data } = resp;
 
-    return data
-    
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -77,3 +61,23 @@ export const Patch = async (url, id, body, config) => {
     console.log(error);
   }
 }
+};
+export const POST_PRIVATE_API = async (URL, DATA) => {
+  try {
+    const response = await axios.post(URL, DATA, config);
+    return response;
+  } catch (error) {
+    console.log('Error:', error);
+    return error;
+  }
+};
+
+export const DELETE_PRIVATE_API = async (url, id) => {
+  try {
+    const borrado = await axios.delete(`${url}/${id}`, config);
+    return borrado.data;
+  } catch (error) {
+    console.log('Error', 'Ocurrio un  error al borrar', error);
+    return error;
+  }
+};
