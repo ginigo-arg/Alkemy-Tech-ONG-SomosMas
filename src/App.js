@@ -8,13 +8,12 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Spinner from './Components/Spinner/Spinner';
 import Error404 from './Components/Error404/Error404';
 import { spring, AnimatedSwitch } from 'react-router-transition';
-// import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice'; Agregar backoffice
-
+import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice';
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
 
 const Home = React.lazy(() => import('./Routes/Layouts/Public.js'));
 
-function App() {
+function App () {
   const mapStyles = (styles) => {
     return {
       opacity: styles.opacity,
@@ -39,14 +38,10 @@ function App() {
             mapStyles={mapStyles}
             runOnMount={true}
           >
+            {/* Backoffice */}
+            <Route path="/backoffice" component={LayoutBackoffice} />
             {/* Web pública */}
             <Route path="/" component={Home} />
-            {/* Backoffice */}
-            <Route
-              path="/backoffice"
-              component={() => <div> Backoffice </div>}
-            />
-
             {/* Ruta error 404 */}
             <Route path="*" component={Error404} />
           </AnimatedSwitch>

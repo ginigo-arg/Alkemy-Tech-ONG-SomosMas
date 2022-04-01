@@ -28,9 +28,7 @@ const LayoutBackoffice = () => {
         <Row>
           <Sidebar />
           <Col>
-            {/* rutas backoffice */}
             <Switch>
-              <Route exact path="/backoffice" component={LayoutBackoffice} />
               <Route
                 exact
                 path="/backoffice/create-activity"

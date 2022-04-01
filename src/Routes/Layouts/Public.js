@@ -21,12 +21,12 @@ const Layout = ({ match }) => {
         <Router>
           <Switch>
             <Route exact path={PATH} component={Home} />
-            <Route path="/actividades" exact component={Actividades} />
-            <Route path="/actividades/:id" component={Detail} />
-            <Route path="/contacto" component={IndexContact} />
-            <Route path="/nosotros" component={Nosotros} />
-            <Route path="/novedades/id" component={NewDetail} />
-            <Route path="/novedades" component={NewsList} />
+            <Route exact path="/actividades" component={Actividades} />
+            <Route exact path="/actividades/:id" component={Detail} />
+            <Route exact path="/contacto" component={IndexContact} />
+            <Route exact path="/nosotros" component={Nosotros} />
+            <Route exact path="/novedades/id" component={NewDetail} />
+            <Route exact path="/novedades" component={NewsList} />
           </Switch>
         </Router>
       </div>
