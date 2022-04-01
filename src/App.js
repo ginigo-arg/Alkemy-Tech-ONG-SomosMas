@@ -24,7 +24,7 @@ function App () {
             <Route path="/" component={Home} />
 
             {/* Backoffice */}
-            <Route path="/backoffice" component={()=> <div> Backoffice </div>} />
+            <Route path="/backoffice" component={() => <div> Backoffice </div>} />
 
             {/* Ruta error 404 */}
             <Route path="*" component={Error404} />
