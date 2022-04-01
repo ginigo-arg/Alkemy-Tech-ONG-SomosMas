@@ -29,6 +29,8 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+Skeleton component added when Card component is retrieving data from APIs.
+
 ## ALERTS SERVICE
 
 File in: ./src/Services/alertService.js.<br />
@@ -51,3 +53,4 @@ EXAMPLE:
       }
     };
 ```
+
