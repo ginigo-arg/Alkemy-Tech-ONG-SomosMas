@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Table } from 'react-bootstrap';
-import './Sliders.css';
+import { RiFileEditFill } from 'react-icons/ri';
+import { AiFillDelete } from 'react-icons/ai';
 
 const slides = [
   {
@@ -48,8 +49,12 @@ const TableSliders = () => {
                   <img src={slide.image} alt={slide.name} className="w-25" />
                 </td>
                 <td className="d-flex justify-content-center align-items-center gap-1">
-                  <Button className="btn-danger">Eliminar</Button>
-                  <Button className="btn-info">Editar</Button>
+                  <Button className="btn-danger">
+                    <AiFillDelete />
+                  </Button>
+                  <Button className="btn-info">
+                    <RiFileEditFill />
+                  </Button>
                 </td>
               </tr>
             ))}

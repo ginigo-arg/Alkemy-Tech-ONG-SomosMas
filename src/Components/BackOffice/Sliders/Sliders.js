@@ -3,6 +3,8 @@ import { Button, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import TableSliders from './TableSliders';
 
+import './Sliders.css';
+
 const Sliders = () => {
   return (
     <Container>
