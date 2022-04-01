@@ -29,6 +29,18 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+## Documentation to use the Setup Progress Bar
+The component uses state props to hide or show itself. It has a default state to display though. e.g.:
+
+```
+// To show it:
+<ProgressSpinner state={true} />
+# or
+<ProgressSpinner />
+
+// To hide it:
+<ProgressSpinner state={false} />
+```
 Skeleton component added when Card component is retrieving data from APIs.
 
 ## ALERTS SERVICE
