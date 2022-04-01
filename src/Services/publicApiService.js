@@ -2,19 +2,14 @@ import axios from 'axios';
 
 const config = {
   headers: {
-    //group: 163, //Aqui va el ID del equipo!!
+    Group: 1, // Aqui va el ID del equipo!!
   },
 };
 
-const Get = async (URL, id = null) => {
-  const url = id ? `${URL}/${id}` : URL;
-  try {
-    const response = await axios(url, config);
-    return response
-  } catch (error) {
-    console.log(error);
-  }
+const Get = () => {
+  axios.get('https://jsonplaceholder.typicode.com/users', config)
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
 };
-
 
 export default Get;
