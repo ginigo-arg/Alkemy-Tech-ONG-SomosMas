@@ -11,18 +11,20 @@ const ActivitiesList = () => {
   return (
     <div>
       <ul className="list-container">
-        {activitiesMock.length > 0 ? (
-          activitiesMock.map((activity) => {
-            return (
-              <li className="card-info" key={activity.id}>
-                <h3>{activity.name}</h3>
-                <p>{activity.description}</p>
-              </li>
-            );
-          })
-        ) : (
-          <p>No hay actividades</p>
-        )}
+        {activitiesMock.length > 0
+          ? (
+            activitiesMock.map((activity) => {
+              return (
+                <li className="card-info" key={activity.id}>
+                  <h3>{activity.name}</h3>
+                  <p>{activity.description}</p>
+                </li>
+              );
+            })
+          )
+          : (
+            <p>No hay actividades</p>
+          )}
       </ul>
     </div>
   );
