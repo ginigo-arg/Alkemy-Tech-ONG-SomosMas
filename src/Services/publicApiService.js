@@ -11,7 +11,7 @@ export const Get = async (URL, id = null) => {
   const url = id ? `${URL}/${id}` : URL;
   try {
     const response = await axios(url);
-    return response;
+    return response.data;
   } catch (error) {
     console.log(error);
   }
