@@ -1,6 +1,7 @@
 import { Col, Container } from 'react-bootstrap';
 import Skeleton from '../Skeleton/Skeleton';
 import './Home.css';
+import Slider from '../Slides/Slider';
 
 const Home = ({ greeting }) => {
   return (
@@ -12,10 +13,12 @@ const Home = ({ greeting }) => {
         </Col>
       </Container>
       {/* PLACEHOLDER SLIDER */}
+      <Slider></Slider>
       <Col xs={12}>
         <div className="placeholder-slider d-flex flex-column justify-content-center">
           {/* COMPONENTE SLIDER */}
-          <h3>Slider placeholder</h3>
+          {/* <h3>Slider placeholder</h3> */}
+
         </div>
       </Col>
       <Container className="mt-5">
