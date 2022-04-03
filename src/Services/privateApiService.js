@@ -48,6 +48,18 @@ export const Put = async (url, id, body, config) => {
     console.log(error);
   }
 };
+//PETICION PATCH
+export const Patch = async (url, id, body, config) => {
+  try {
+    const resp = await axios.patch(`${url}/${id}`, body, config);
+    const { data } = resp;
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const POST_PRIVATE_API = async (URL, DATA) => {
   try {
     const response = await axios.post(URL, DATA, config);
