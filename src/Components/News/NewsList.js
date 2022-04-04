@@ -16,19 +16,21 @@ const NewsList = ({ news = newMocks }) => {
       <SectionTitles title="Novedades" />
       <Container>
         <ul className="my-5 p-0 d-flex flex-wrap">
-          {news.length > 0 ? (
-            news.map((element) => {
-              return (
-                <Card
-                  key={element.title}
-                  title={element.title}
-                  description={element.description}
-                />
-              );
-            })
-          ) : (
-            <p className="w-100 my-5 text-center display-6">No hay novedades</p>
-          )}
+          {news.length > 0
+            ? (
+              news.map((element) => {
+                return (
+                  <Card
+                    key={element.title}
+                    title={element.title}
+                    description={element.description}
+                  />
+                );
+              })
+            )
+            : (
+              <p className="w-100 my-5 text-center display-6">No hay novedades</p>
+            )}
         </ul>
       </Container>
     </>
