@@ -23,7 +23,7 @@ const Sidebar = () => {
       >
         <Offcanvas.Header closeButton className='offCanvasHeader'>
           <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
-          <Button href="#"size="sm"className='btn btn-success'>Volver a Web publica</Button>
+          <Button href="/"size="sm"className='btn btn-success'>Volver a Web publica</Button>
         </Offcanvas.Header>
         <Offcanvas.Body>
 
