@@ -10,7 +10,7 @@ const SlidesFormHook = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log('location:', location.state.detail);
+    console.log('location:', location.state);
   }, [location]);
 
   return (
@@ -34,8 +34,16 @@ const SlidesFormHook = () => {
       }}
 
       onSubmit={(e, { resetForm }) => {
-        // const data = { name: valores.name, description: valores.description, order: valores.order };
-        console.log('onSubmit:');
+        console.log('stado', location.state);
+        if (location.state) {
+          // peticion PATH
+          console.log('peticion PATH');
+        } else {
+          (
+          // peticion POST
+            console.log('Peticion POST'));
+        }
+
         resetForm();
       }}
     >
