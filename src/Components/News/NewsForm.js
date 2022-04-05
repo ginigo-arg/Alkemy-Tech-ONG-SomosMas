@@ -25,15 +25,15 @@ const NewsForm = () => {
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
-      <input className="input-field" type="text" name="title" value={initialValues.title || ''} onChange={handleChange}></input>
-      <input className="input-field" type="text" name="content" value={initialValues.content || ''} onChange={handleChange}></input>
+      <input className="input-field" type="text" name="title" placeholder="Titulo"value={initialValues.title || ''} onChange={handleChange}></input>
+      <input className="input-field" type="text" name="content" placeholder="Contenido"value={initialValues.content || ''} onChange={handleChange}></input>
       <select className="select-field" name="category" value={initialValues.category || ''} onChange={handleChange}>
-        <option value="" disabled>Select category</option>
+        <option value="" disabled>Seleccionar categoria</option>
         <option value="1">Demo option 1</option>
         <option value="2">Demo option 2</option>
         <option value="3">Demo option 3</option>
       </select>
-      <button className="submit-btn" type="submit">Send</button>
+      <button className="submit-btn" type="submit">Enviar</button>
     </form>
   );
 };
