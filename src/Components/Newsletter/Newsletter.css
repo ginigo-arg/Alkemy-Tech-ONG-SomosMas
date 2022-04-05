@@ -13,9 +13,6 @@
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.newsletter-input::-moz-focus-outer {
-  color: white;
-}
 .newsletter-button {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -28,7 +25,6 @@
     width: 75%;
   }
 }
-
 @media (min-width: 992px) {
   .newsletter-form {
     width: 55%;

@@ -36,21 +36,6 @@ const Newsletter = () => {
           </Form>
         </Formik > </>
       : <p className='newsletter-message'>Ya estás suscripto al Newsletter.</p>
-
-  // <Form className="d-flex flex-column justify-content-center align-items-center" onSubmit={handleSubmit}>
-  //   <Form.Text className="footer-socialmedia-text mb-2">
-  //     Suscríbete a nuestro Newsletter!
-  //   </Form.Text>
-  //   <InputGroup className="mb-3">
-  //     <FormControl
-  //       placeholder="Ingresa tu Email"
-  //       aria-label="Newsletter Email"
-  //     />
-  //     <Button variant="success" type="submit">
-  //       Enviar
-  //     </Button>
-  //   </InputGroup>
-  // </Form>
   );
 };
 
