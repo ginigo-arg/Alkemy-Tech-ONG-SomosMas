@@ -34,12 +34,18 @@ const validate = (values, description) => {
   return errors;
 };
 
-const TestimonialForm = ({ toEdit = null }) => {
+const TestimonialForm = ({
+  toEdit = {
+    name: 'dsdas',
+    description: 'sdsadas',
+    image: [],
+  },
+}) => {
   const [description, setDescription] = useState(toEdit ? toEdit.description : '');
   const { errors, isSubmitting, handleSubmit, values, setFieldValue, handleChange, handleBlur } = useFormik({
     validateOnBlur: true,
     validateOnChange: false,
-    initialValues,
+    initialValues: toEdit || initialValues,
     validate: () => validate(values, description),
     onSubmit: (values) => {
       if (!description) console.log('no hay descripcion');
@@ -61,10 +67,10 @@ const TestimonialForm = ({ toEdit = null }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <Container className='container-sm border border-3 border-warning rounded-2 p-4 d-flex flex-column gap-2 shadow ' style={{ maxWidth: '700px', backgroundColor: '#f9fafb' }}>
-          <Stack className='align-items-center'>
-            <h4 style={{ color: 'var(--bs-danger)' }}>{`Formulario para ${toEdit ? 'editar' : 'crear'} `}</h4>
+      <form onSubmit={handleSubmit} className='my-4'>
+        <Container className='container-sm rounded-2 p-4 d-flex flex-column gap-2 shadow ' style={{ maxWidth: '700px', backgroundColor: '#f9fafb' }}>
+          <Stack className='align-items-center text-center'>
+            <h4 style={{ color: 'var(--bs-danger)' }}>{`Formulario para ${toEdit ? 'editar' : 'crear'} testimonios`}</h4>
           </Stack>
           <Form.Control
             id="name"
