@@ -1,6 +1,6 @@
-import axios from 'axios';
 import {
   DELETE_PRIVATE_API,
+  GET_PRIVATE_API,
   Patch,
   POST_PRIVATE_API,
   Put,
@@ -10,7 +10,7 @@ const url = 'https://ongapi.alkemy.org/api/activities';
 
 export const getActivities = async (id = null) => {
   try {
-    const response = await axios(url, id);
+    const response = await GET_PRIVATE_API(url, id);
     return response.data;
   } catch (error) {
     console.log(error);
