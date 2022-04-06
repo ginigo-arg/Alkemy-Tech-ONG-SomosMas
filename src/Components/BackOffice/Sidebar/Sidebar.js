@@ -11,6 +11,8 @@ import { GiOrganigram } from 'react-icons/gi';
 import { RiSlideshow3Line } from 'react-icons/ri';
 import { HiUsers } from 'react-icons/hi';
 import { FaUserCircle } from 'react-icons/fa';
+import { AiOutlineOrderedList } from 'react-icons/ai';
+
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
 const Sidebar = () => {
@@ -42,7 +44,7 @@ const Sidebar = () => {
             <div className='item'>
             <Link to="/backoffice/create-category">
               <BsMenuButtonWideFill className='icon' fontSize="25px" color="green" />
-              Categorias
+             Crear Categoria
             </Link></div><hr></hr>
             <div className='item'>
             <Link to="/backoffice/create-testimonials">
@@ -68,6 +70,11 @@ const Sidebar = () => {
             <Link to="/backoffice/create-member">
               <HiUsers className='icon' fontSize="25px" color="violet" />
               Miembros
+            </Link></div><hr></hr>
+            <div className='item'>
+            <Link to="/backoffice/categories">
+              <AiOutlineOrderedList className='icon' fontSize="25px" color="violet" />
+             Categorias
             </Link></div>
           </Nav>
         </Offcanvas.Body>
