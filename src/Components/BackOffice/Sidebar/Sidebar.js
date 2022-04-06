@@ -1,5 +1,9 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
+/* eslint-disable react/jsx-indent */
+/* eslint-disable indent */
+
 import React from 'react';
-import { Navbar, Offcanvas, Nav } from 'react-bootstrap';
+import { Navbar, Offcanvas, Nav, Button } from 'react-bootstrap';
 import { BiNews } from 'react-icons/bi';
 import { BsPencilFill, BsMenuButtonWideFill } from 'react-icons/bs';
 import { MdOutlineSpeakerNotes } from 'react-icons/md';
@@ -8,6 +12,7 @@ import { RiSlideshow3Line } from 'react-icons/ri';
 import { HiUsers } from 'react-icons/hi';
 import { FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import './Sidebar.css';
 const Sidebar = () => {
   return (
     <div>
@@ -16,44 +21,54 @@ const Sidebar = () => {
         aria-labelledby="offcanvasNavbarLabel"
         placement="start"
       >
-        <Offcanvas.Header closeButton>
+        <Offcanvas.Header closeButton className='offCanvasHeader'>
           <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
+          <Button href="/"size="sm"className='btn btn-success'>Volver a Web publica</Button>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Nav className="justify-content-end flex-grow-1 pe-3 ">
-            <Link to="/backoffice/create-news">
-              <BiNews fontSize="25px" color="grey" />
-              Novedades
-            </Link>
 
+          <Nav className="justify-content-end flex-grow-1 pe-3 ">
+            <div className='item'>
+            <Link to="/backoffice/create-news">
+              <BiNews className='icon' fontSize="25px" color="grey" />
+              Novedades
+            </Link></div>
+            <hr className=" d-inline-block"></hr>
+            <div className='item'>
             <Link to="/backoffice/create-activity">
-              <BsPencilFill fontSize="25px" color="red" />
+              <BsPencilFill className='icon' fontSize="25px" color="red" />
               Actividades
-            </Link>
+            </Link></div><hr></hr>
+            <div className='item'>
             <Link to="/backoffice/create-category">
-              <BsMenuButtonWideFill fontSize="25px" color="green" />
+              <BsMenuButtonWideFill className='icon' fontSize="25px" color="green" />
               Categorias
-            </Link>
+            </Link></div><hr></hr>
+            <div className='item'>
             <Link to="/backoffice/create-testimonials">
-              <MdOutlineSpeakerNotes fontSize="25px" color="blue" />
+              <MdOutlineSpeakerNotes className='icon' fontSize="25px" color="blue" />
               Testimonios
-            </Link>
+            </Link></div><hr></hr>
+            <div className='item'>
             <Link to="#action5">
-              <GiOrganigram fontSize="25px" color="black" />
+              <GiOrganigram className='icon' fontSize="25px" color="black" />
               Organizacion
-            </Link>
+            </Link></div><hr></hr>
+            <div className='item'>
             <Link to="/backoffice/create-slide">
-              <RiSlideshow3Line fontSize="25px" color="black" />
+              <RiSlideshow3Line className='icon'fontSize="25px" color="black" />
               Slides
-            </Link>
+            </Link></div><hr></hr>
+            <div className='item'>
             <Link to="/backoffice/create-user">
-              <FaUserCircle fontSize="25px" color="orange" />
+              <FaUserCircle className='icon' fontSize="25px" color="orange" />
               Usuarios
-            </Link>
+            </Link></div><hr></hr>
+            <div className='item'>
             <Link to="/backoffice/create-member">
-              <HiUsers fontSize="25px" color="violet" />
+              <HiUsers className='icon' fontSize="25px" color="violet" />
               Miembros
-            </Link>
+            </Link></div>
           </Nav>
         </Offcanvas.Body>
       </Navbar.Offcanvas>
