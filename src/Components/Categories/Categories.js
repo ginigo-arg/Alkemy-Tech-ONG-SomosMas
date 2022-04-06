@@ -10,7 +10,7 @@ export default function Categories () {
   return (
     <>
       <div>
-        <Link to="/backoffice/categories/create">
+        <Link to="/backoffice/categories/create-category">
           <Button variant="info" color="secondary">
             Crear Categoria
           </Button>
