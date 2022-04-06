@@ -38,7 +38,7 @@ export const GET_PRIVATE_API = async (url, id = null) => {
   return new Error('Error en la petición');
 };
 
-export const Put = async (url, id, body, config) => {
+export const PUT_PRIVATE_API = async (url, id, body, config) => {
   try {
     const resp = await axios.put(`${url}/${id}`, body, config);
     const { data } = resp;
@@ -48,8 +48,8 @@ export const Put = async (url, id, body, config) => {
     console.log(error);
   }
 };
-//PETICION PATCH
-export const Patch = async (url, id, body, config) => {
+
+export const PATCH_PRIVATE_API = async (url, id, body, config) => {
   try {
     const resp = await axios.patch(`${url}/${id}`, body, config);
     const { data } = resp;
