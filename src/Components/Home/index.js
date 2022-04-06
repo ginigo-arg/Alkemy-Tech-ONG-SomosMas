@@ -3,18 +3,18 @@ import Skeleton from '../Skeleton/Skeleton';
 import './Home.css';
 import Slider from '../Slides/Slider';
 import ProgressSpinner from '../Progress/ProgressSpinner';
+import UsersForm from '../Users/UsersForm';
 
 const Home = ({ greeting }) => {
   return (
     <Container fluid className="mt-5">
+      <UsersForm/>
       <Container className="p-5">
         {/* PLACEHOLDER WELCOME MESSAGE */}
         <Col className="home-greeting-container d-flex flex-column justify-content-center">
           <h1 className="home-greeting">{greeting}Bienvenido a Somos Mas</h1>
         </Col>
       </Container>
-      {/* PLACEHOLDER SLIDER */}
-      <Slider></Slider>
       <Col xs={12}>
         <div className="placeholder-slider d-flex flex-column justify-content-center">
           {/* COMPONENTE SLIDER */}
