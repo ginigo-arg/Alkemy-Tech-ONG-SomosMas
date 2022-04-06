@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../FormStyles.css';
 
-const UserForm = () => {
+const UsersForm = () => {
   const [initialValues, setInitialValues] = useState({
     name: '',
     email: '',
@@ -35,4 +35,4 @@ const UserForm = () => {
   );
 };
 
-export default UserForm;
+export default UsersForm;
