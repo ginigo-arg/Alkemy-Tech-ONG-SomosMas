@@ -21,6 +21,11 @@
   background-color: var(--bs-info);
 }
 
+.slides-img {
+    height: 500px;
+    object-fit: contain;
+}
+
 @media screen and (max-width: 769px) {
   .caption {
     display: none;
