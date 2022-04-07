@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const verifyTokenExist = () => {
+  localStorage.setItem('TOKEN', '12345alkemy');
   const token = localStorage.getItem('TOKEN');
   if (token) {
     return {
