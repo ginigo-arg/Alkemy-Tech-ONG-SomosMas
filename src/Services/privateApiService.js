@@ -42,7 +42,6 @@ export const GET_PRIVATE_API = async (url, id = null) => {
 export const PUT_PRIVATE_API = async (url, id, body, config) => {
   try {
     const response = await axios.put(`${url}/${id}`, body, config);
-
     return response.data;
   } catch (error) {
     console.log(error);
@@ -53,7 +52,6 @@ export const PATCH_PRIVATE_API = async (url, id, body, config) => {
   try {
     const resp = await axios.patch(`${url}/${id}`, body, config);
     const { data } = resp;
-
     return data;
   } catch (error) {
     console.log(error);
