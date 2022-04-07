@@ -7,10 +7,11 @@ export default function Categories () {
     { id: 1, name: 'Titulo de prueba', createdAt: '2022-03-24' },
     { id: 3, name: 'Titulo de prueba', createdAt: '2022-03-24' },
   ];
+
   return (
     <>
       <div>
-        <Link to="/backoffice/categories/create-category">
+        <Link to="/backoffice/categories/create">
           <Button variant="info" color="secondary">
             Crear Categoria
           </Button>
@@ -35,9 +36,11 @@ export default function Categories () {
                   <td>{mock.createdAt}</td>
                   <td>
                     <Button variant="danger">Eliminar </Button>
-                    <Button variant="success" className="space">
-                      Editar
-                    </Button>
+                    <Link to="/backoffice/categories/edit">
+                      <Button variant="success" className="space">
+                        Editar
+                      </Button>
+                    </Link>
                   </td>
                 </tr>
               );
