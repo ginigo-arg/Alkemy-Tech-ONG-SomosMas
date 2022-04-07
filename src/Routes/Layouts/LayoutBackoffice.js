@@ -15,6 +15,7 @@ import Sidebar from '../../Components/BackOffice/Sidebar/Sidebar';
 import Header from '../../Components/BackOffice/Header/Header';
 import MembersList from '../../Components/BackOffice/Members/MembersList';
 import Categories from '../../Components/Categories/Categories';
+import TableSliders from '../../Components/BackOffice/Sliders/TableSliders';
 
 const LayoutBackoffice = () => {
   return (
@@ -47,9 +48,16 @@ const LayoutBackoffice = () => {
               />
               <Route
                 exact
-                path="/backoffice/create-slide"
+                path="/backoffice/slides"
+                component={TableSliders}
+              />
+
+              <Route
+                exact
+                path="/backoffice/slide/create-slide"
                 component={SlidesForm}
               />
+
               <Route
                 exact
                 path="/backoffice/create-testimonials"
