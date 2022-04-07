@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { RiFileEditFill } from 'react-icons/ri';
 import { AiFillDelete } from 'react-icons/ai';
+import { Link, useHistory } from 'react-router-dom';
 
 const slides = [
   {
@@ -28,6 +29,13 @@ const slides = [
 ];
 
 const TableSliders = () => {
+  const history = useHistory();
+  const sendState = (id) => {
+    history.push({
+      pathname: '/backoffice/slides/edit',
+      state: { detail: id },
+    });
+  };
   return (
     <div>
       <Table striped bordered hover>
@@ -52,9 +60,11 @@ const TableSliders = () => {
                   <Button className="btn-danger">
                     <AiFillDelete />
                   </Button>
-                  <Button className="btn-info">
-                    <RiFileEditFill />
-                  </Button>
+                  <Link to="/backoffice/slides/edit">
+                    <Button className="btn-info" onClick={ () => sendState(slide.id) }>
+                      <RiFileEditFill />
+                    </Button>
+                  </Link>
                 </td>
               </tr>
             ))}
