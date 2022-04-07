@@ -9,6 +9,7 @@ import NewDetail from '../../Components/News/Detail/NewDetail';
 import NewsList from '../../Components/News/NewsList';
 import Home from '../../Components/Home';
 import Nosotros from '../../Components/About/Nosotros';
+import Error404 from '../../Components/Error404/Error404';
 
 const Layout = ({ match }) => {
   const PATH = match.path;
@@ -27,6 +28,7 @@ const Layout = ({ match }) => {
             <Route exact path="/nosotros" component={Nosotros} />
             <Route exact path="/novedades/id" component={NewDetail} />
             <Route exact path="/novedades" component={NewsList} />
+            <Route path="*" component={Error404} />
           </Switch>
         </Router>
       </div>
