@@ -1,0 +1,23 @@
+thead {
+  background-color: var(--bs-danger);
+  color: white;
+}
+
+tbody,
+thead {
+  text-align: center;
+}
+
+.sliders-title {
+  color: var(--bs-danger);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 5px solid var(--bs-danger);
+  margin-bottom: 20px;
+}
+
+td {
+  height: 120px;
+}
