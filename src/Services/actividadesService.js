@@ -6,49 +6,29 @@ import {
   Put,
 } from './privateApiService';
 
-const url = 'https://ongapi.alkemy.org/api/activities';
+const url = process.env.REACT_APP_API_ACTIVITIES;
 
-export const getActivities = async (id = null) => {
-  try {
-    const response = await GET_PRIVATE_API(url, id);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
+export const getActivities = (id = null) => {
+  const response = GET_PRIVATE_API(url, id);
+  return response;
 };
 
-export const putActivities = async (id, data) => {
-  try {
-    const response = await Put(url, id, data);
-    return response.success ? response.data : response.message;
-  } catch (error) {
-    console.log(error);
-  }
+export const putActivities = (id, data) => {
+  const response = Put(url, id, data);
+  return response;
 };
 
-export const patchActivities = async (id, data) => {
-  try {
-    const response = await Patch(url, id, data);
-    return response.success ? response.data : response.message;
-  } catch (error) {
-    console.log(error);
-  }
+export const patchActivities = (id, data) => {
+  const response = Patch(url, id, data);
+  return response;
 };
 
-export const postActivities = async (data) => {
-  try {
-    const response = await POST_PRIVATE_API(url, data);
-    return response.success ? response.data : response.message;
-  } catch (error) {
-    console.log(error);
-  }
+export const postActivities = (data) => {
+  const response = POST_PRIVATE_API(url, data);
+  return response;
 };
 
-export const deleteActivities = async (id) => {
-  try {
-    const response = await DELETE_PRIVATE_API(url, id);
-    return response.success ? response.data : response.message;
-  } catch (error) {
-    console.log(error);
-  }
+export const deleteActivities = (id) => {
+  const response = DELETE_PRIVATE_API(url, id);
+  return response;
 };
