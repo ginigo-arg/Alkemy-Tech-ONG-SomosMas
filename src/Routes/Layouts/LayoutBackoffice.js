@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { Route, Switch } from 'react-router-dom';
 import ActivitiesForm from '../../Components/Activities/ActivitiesForm';
-import CategoriesForm from '../../Components/Categories/CategoriesForm';
+import CategoriesFormHook from '../../Components/Categories/CategoriesFormHook';
 import NewsForm from '../../Components/News/NewsForm';
 import SlidesForm from '../../Components/Slides/SlidesForm';
 import TestimonialForm from '../../Components/Testimonials/TestimonialsForm';
@@ -37,11 +37,6 @@ const LayoutBackoffice = () => {
               />
               <Route
                 exact
-                path="/backoffice/create-category"
-                component={CategoriesForm}
-              />
-              <Route
-                exact
                 path="/backoffice/create-news"
                 component={NewsForm}
               />
@@ -69,6 +64,16 @@ const LayoutBackoffice = () => {
                 exact
                 path="/backoffice/categories"
                 component={Categories}
+              />
+              <Route
+                exact
+                path="/backoffice/categories/create"
+                component={CategoriesFormHook}
+              />
+              <Route
+                exact
+                path="/backoffice/categories/edit"
+                component={CategoriesFormHook}
               />
               <Route
                 exact
