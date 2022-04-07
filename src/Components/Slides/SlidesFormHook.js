@@ -1,16 +1,42 @@
-import { Field, Formik, Form } from 'formik';
-import { Container, Button } from 'react-bootstrap';
+import { Field, Formik } from 'formik';
+import { Container, Button, Form } from 'react-bootstrap';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import * as yup from 'yup';
+import { getSlides, pathSlides, postSlide } from '../../Services/SlideServices';
 
-const SlidesFormHook = () => {
+const checkFileFormat = img => {
+  if (img) {
+    if (!['image/jpg', 'image/jpeg', 'image/png'].includes(img.type)) {
+      return false;
+    }
+  }
+  return true;
+};
+
+const validateSchema = yup.object().shape({
+  name: yup.string().required('el nombre el obligatorio').min(4, 'El nombre debe tener un minimo de 4 caracteres'),
+  description: yup.string().required('La descripcion es obligatoria').min(20, 'la decripcion debe tener un min de 20 caracteres'),
+  order: yup.number().required('El ID es obligatorio').positive().integer(),
+  img: yup.mixed().required('La imagen es obligatoria').test(
+    'fileFormat',
+    'Formato de imagen no válido',
+    checkFileFormat,
+  ),
+});
+
+const SlidesFormHook = (id) => {
   const [description, setDescription] = useState('');
   const location = useLocation();
 
   useEffect(() => {
-    console.log('location:', location.state);
+    console.log(location);
+    if (location) {
+      const resp = getSlides(id);
+      console.log('resp:', resp);
+    }
   }, [location]);
 
   return (
@@ -19,37 +45,28 @@ const SlidesFormHook = () => {
         name: '',
         description: '',
         order: '',
+        img: null,
       }}
 
-      validate={(valores) => {
-        const errores = {};
+      validationSchema={validateSchema}
 
-        if (valores.name.length < 4) {
-          errores.name = 'El nombre debe contener al menos 4 caracteres';
-        } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.name)) {
-          errores.name = 'El nombre solo puede contener letras y espacios';
-        }
-
-        return errores;
-      }}
-
-      onSubmit={(e, { resetForm }) => {
-        console.log('stado', location.state);
-        if (location.state) {
+      onSubmit={(values, id, { setSubmitting }) => {
+        if (location) {
           // peticion PATH
-          console.log('peticion PATH');
+          pathSlides(id);
         } else {
-          (
+          postSlide(values);
           // peticion POST
-            console.log('Peticion POST'));
         }
-
-        resetForm();
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 400);
       }}
     >
-      {({ values, errors, touched }) => (
+      {({ values, errors, touched, setFieldValue, handleSubmit, handleChange }) => (
         <Container className='mt-3'>
-          <Form>
+          <Form noValidate onSubmit={handleSubmit}>
             <div className="mb-3">
               <Field
                 type="text"
@@ -65,6 +82,7 @@ const SlidesFormHook = () => {
               </div>)}
             <div className="mb-3">
               <CKEditor
+                name="description"
                 editor={ ClassicEditor }
                 data={description}
                 config
@@ -85,6 +103,10 @@ const SlidesFormHook = () => {
                 } }
               />
             </div>
+            {touched.description && errors.description && (
+              <div className="alert alert-danger" role="alert">
+                {errors.description}
+              </div>)}
             <div className="mb-3">
               <Field
                 type="text"
@@ -94,14 +116,27 @@ const SlidesFormHook = () => {
                 value={values.order}
               />
             </div>
+            {touched.order && errors.order && (
+              <div className="alert alert-danger" role="alert">
+                {errors.order}
+              </div>)}
             <div className="mb-3">
-              <Field
-                type="file"
-                accept="image/*"
-                name="image"
-                className="form-control"
-              />
+              <Form.Group>
+                <Form.Control
+                  type="file"
+                  name="img"
+                  accept="image/jpg, image/png, image/jpge"
+                  className="form-control"
+                  onChange={e => {
+                    setFieldValue('img', e.currentTarget.files[0]);
+                  }}
+                />
+              </Form.Group>
             </div>
+            {touched.img && errors.img && (
+              <div className="alert alert-danger" role="alert">
+                {errors.img}
+              </div>)}
 
             <div className='mt-3'>
               <Button
@@ -114,7 +149,6 @@ const SlidesFormHook = () => {
 
           </Form>
         </Container>
-
       )}
 
     </Formik>
