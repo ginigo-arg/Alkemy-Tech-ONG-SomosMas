@@ -2,10 +2,10 @@ import { Field, Formik } from 'formik';
 import { Container, Button, Form } from 'react-bootstrap';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import * as yup from 'yup';
-import { getSlides, pathSlides, postSlide } from '../../Services/SlideServices';
+import { getCategory } from '../../Services/CategoryServices';
 
 const checkFileFormat = img => {
   if (img) {
@@ -19,7 +19,6 @@ const checkFileFormat = img => {
 const validateSchema = yup.object().shape({
   name: yup.string().required('el nombre el obligatorio').min(4, 'El nombre debe tener un minimo de 4 caracteres'),
   description: yup.string().required('La descripcion es obligatoria').min(20, 'la decripcion debe tener un min de 20 caracteres'),
-  order: yup.number().required('El ID es obligatorio').positive().integer(),
   img: yup.mixed().required('La imagen es obligatoria').test(
     'fileFormat',
     'Formato de imagen no válido',
@@ -29,14 +28,11 @@ const validateSchema = yup.object().shape({
 
 const SlidesFormHook = (id) => {
   const [description, setDescription] = useState('');
-  const location = useLocation();
+  // const location = useLocation();
 
   useEffect(() => {
-    console.log(location);
-    if (location) {
-      const resp = getSlides(id);
-      console.log('resp:', resp);
-    }
+    const categories = getCategory();
+    console.log('categories:', categories);
   }, [location]);
 
   return (
@@ -53,9 +49,9 @@ const SlidesFormHook = (id) => {
       onSubmit={(values, id, { setSubmitting }) => {
         if (location) {
           // peticion PATH
-          pathSlides(id);
+
         } else {
-          postSlide(values);
+
           // peticion POST
         }
         setTimeout(() => {
@@ -106,19 +102,6 @@ const SlidesFormHook = (id) => {
             {touched.description && errors.description && (
               <div className="alert alert-danger" role="alert">
                 {errors.description}
-              </div>)}
-            <div className="mb-3">
-              <Field
-                type="text"
-                name="order"
-                placeholder="Num. Orden"
-                className="form-control"
-                value={values.order}
-              />
-            </div>
-            {touched.order && errors.order && (
-              <div className="alert alert-danger" role="alert">
-                {errors.order}
               </div>)}
             <div className="mb-3">
               <Form.Group>
