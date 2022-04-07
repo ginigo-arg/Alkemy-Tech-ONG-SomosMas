@@ -1,6 +1,6 @@
 import { DELETE_PRIVATE_API, GET_PRIVATE_API, PATH_PRIVATE_API, POST_PRIVATE_API } from './privateApiService';
 
-export const getCategory = (id = null) => {
+export const getCategory = (id = '') => {
   const response = GET_PRIVATE_API(`${process.env.REACT_APP_API_CATEGORY}/${id}`);
   return response;
 };
