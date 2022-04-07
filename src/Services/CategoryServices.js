@@ -6,7 +6,9 @@ export const getCategory = (id = '') => {
 };
 
 export const pathCategory = (id, data) => {
+  console.log(`${process.env.REACT_APP_API_CATEGORY}`);
   const response = PATH_PRIVATE_API(`${process.env.REACT_APP_API_CATEGORY}/${id}`, data);
+
   return response;
 };
 

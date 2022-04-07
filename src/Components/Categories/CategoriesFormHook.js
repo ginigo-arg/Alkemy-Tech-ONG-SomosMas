@@ -28,13 +28,13 @@ const validateSchema = yup.object().shape({
 
 const SlidesFormHook = (id) => {
   const [description, setDescription] = useState('');
+  // const [categories, setCategories] = useState([]);
   // const location = useLocation();
 
   useEffect(() => {
     const categories = getCategory();
     console.log('categories:', categories);
   }, [location]);
-
   return (
     <Formik
       initialValues={{
