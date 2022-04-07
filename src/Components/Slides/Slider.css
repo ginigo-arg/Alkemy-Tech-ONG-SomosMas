@@ -1,0 +1,28 @@
+.caption {
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.01) 0%,
+    rgba(0, 0, 0, 0.178) 50%,
+    rgba(0, 0, 0, 0.178) 51%,
+    rgba(68, 68, 68, 0.27) 64%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.caption h2 {
+  color: var(--bs-primary);
+}
+
+.caption p {
+  color: var(--bs-warning);
+}
+
+.carousel-indicators [data-bs-target]{
+  background-color: var(--bs-info);
+}
+
+@media screen and (max-width: 769px) {
+  .caption {
+    display: none;
+  }
+}
