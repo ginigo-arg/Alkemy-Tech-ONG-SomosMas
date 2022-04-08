@@ -15,6 +15,7 @@ import Header from '../../Components/BackOffice/Header/Header';
 import MembersList from '../../Components/BackOffice/Members/MembersList';
 import MembersForm from '../../Components/BackOffice/Members/MembersForm';
 import Categories from '../../Components/Categories/Categories';
+import OrganizationForm from '../../Components/BackOffice/Organization/OrganizationForm';
 
 const LayoutBackoffice = () => {
   return (
@@ -95,6 +96,11 @@ const LayoutBackoffice = () => {
                 exact
                 path="/backoffice/members/create"
                 component={MembersForm}
+              />
+              <Route
+                exact
+                path="/backoffice/organization/edit"
+                component={OrganizationForm}
               />
             </Switch>
           </Col>
