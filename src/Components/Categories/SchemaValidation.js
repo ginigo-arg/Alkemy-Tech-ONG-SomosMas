@@ -12,7 +12,7 @@ const checkFileFormat = img => {
 export const SchemaValidation = yup.object().shape({
   name: yup.string().required('el nombre el obligatorio').min(4, 'El nombre debe tener un minimo de 4 caracteres'),
   description: yup.string().required('La descripcion es obligatoria'),
-  id: yup.string().required('el id es obligatorio'),
+  id: yup.number().typeError('Solo se permiten numeros').required('el id es obligatorio'),
   img: yup.mixed().required('La imagen es obligatoria').test(
     'fileFormat',
     'Formato de imagen no válido',
