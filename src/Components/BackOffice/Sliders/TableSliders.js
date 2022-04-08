@@ -2,25 +2,25 @@ import React from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { RiFileEditFill } from 'react-icons/ri';
 import { AiFillDelete } from 'react-icons/ai';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const slides = [
   {
-    id: 1,
+    id: 991,
     name: 'Prueba',
     description: 'Imagen de prueba slider',
     image:
       'https://img.freepik.com/vector-gratis/ninos-felices-saltando-prado-verano_74855-5852.jpg?size=626&ext=jpg&ga=GA1.2.1586766005.1636675200',
   },
   {
-    id: 2,
+    id: 1024,
     name: 'Prueba2',
     description: 'Imagen de prueba slider',
     image:
       'https://img.freepik.com/vector-gratis/ninos-felices-saltando-prado-verano_74855-5852.jpg?size=626&ext=jpg&ga=GA1.2.1586766005.1636675200',
   },
   {
-    id: 3,
+    id: 1122,
     name: 'Prueba3',
     description: 'Imagen de prueba slider',
     image:
@@ -30,14 +30,25 @@ const slides = [
 
 const TableSliders = () => {
   const history = useHistory();
-  const sendState = (id) => {
+
+  const handleEdit = (id) => {
     history.push({
       pathname: '/backoffice/slides/edit',
-      state: { detail: id },
+      state: id,
+    });
+  };
+
+  const handleCreate = () => {
+    history.push({
+      pathname: '/backoffice/slides/create',
+      state: null,
     });
   };
   return (
     <div>
+      <Button className="btn-info" onClick={handleCreate}>
+        Crear slide
+      </Button>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -60,11 +71,9 @@ const TableSliders = () => {
                   <Button className="btn-danger">
                     <AiFillDelete />
                   </Button>
-                  <Link to="/backoffice/slides/edit">
-                    <Button className="btn-info" onClick={ () => sendState(slide.id) }>
-                      <RiFileEditFill />
-                    </Button>
-                  </Link>
+                  <Button className="btn-info" onClick={ () => handleEdit(slide.id) }>
+                    <RiFileEditFill />
+                  </Button>
                 </td>
               </tr>
             ))}
