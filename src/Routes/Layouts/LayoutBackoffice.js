@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import ActivitiesForm from '../../Components/Activities/ActivitiesForm';
 import CategoriesFormHook from '../../Components/Categories/CategoriesFormHook';
 import NewsForm from '../../Components/News/NewsForm';
-import SlidesForm from '../../Components/Slides/SlidesForm';
+import SlidesFormHook from '../../Components/Slides/SlidesFormHook';
 import TestimonialForm from '../../Components/Testimonials/TestimonialsForm';
 import UserForm from '../../Components/Users/UsersForm';
 import SchoolCampaign from '../../Campaigns/School/SchoolCampaign';
@@ -15,6 +15,7 @@ import Sidebar from '../../Components/BackOffice/Sidebar/Sidebar';
 import Header from '../../Components/BackOffice/Header/Header';
 import MembersList from '../../Components/BackOffice/Members/MembersList';
 import Categories from '../../Components/Categories/Categories';
+import TableSliders from '../../Components/BackOffice/Sliders/TableSliders';
 
 const LayoutBackoffice = () => {
   return (
@@ -42,9 +43,21 @@ const LayoutBackoffice = () => {
               />
               <Route
                 exact
-                path="/backoffice/create-slide"
-                component={SlidesForm}
+                path="/backoffice/slides"
+                component={TableSliders}
               />
+
+              <Route
+                exact
+                path="/backoffice/slides/edit"
+                component={SlidesFormHook}
+              />
+              <Route
+                exact
+                path="/backoffice/slides/create"
+                component={SlidesFormHook}
+              />
+
               <Route
                 exact
                 path="/backoffice/create-testimonials"

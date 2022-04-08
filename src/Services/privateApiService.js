@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const verifyTokenExist = () => {
+  localStorage.setItem('TOKEN', '12345alkemy');
   const token = localStorage.getItem('TOKEN');
   if (token) {
     return {
@@ -38,18 +39,17 @@ export const GET_PRIVATE_API = async (url, id = null) => {
 
 export const PUT_PRIVATE_API = async (url, id, body, config) => {
   try {
-    const resp = await axios.put(`${url}/${id}`, body, config);
-    return resp.data;
+    const response = await axios.put(`${url}/${id}`, body, config);
+    return response.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const PATH_PRIVATE_API = async (url, id, body, config) => {
+export const PATCH_PRIVATE_API = async (url, id, body, config) => {
   try {
     const resp = await axios.patch(`${url}/${id}`, body, config);
     const { data } = resp;
-
     return data;
   } catch (error) {
     console.log(error);
@@ -59,7 +59,7 @@ export const PATH_PRIVATE_API = async (url, id, body, config) => {
 export const POST_PRIVATE_API = async (URL, DATA) => {
   try {
     const response = await axios.post(URL, DATA, config);
-    return response;
+    return response.data;
   } catch (error) {
     console.log('Error:', error);
     return error;
