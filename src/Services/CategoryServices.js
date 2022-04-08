@@ -1,7 +1,7 @@
 import { DELETE_PRIVATE_API, GET_PRIVATE_API, PATH_PRIVATE_API, POST_PRIVATE_API } from './privateApiService';
 
-export const getCategory = (id = '') => {
-  const response = GET_PRIVATE_API(`${process.env.REACT_APP_API_CATEGORY}/${id}`);
+export const getCategory = async (id = '') => {
+  const response = await GET_PRIVATE_API(`${process.env.REACT_APP_API_CATEGORY}`, id);
   return response;
 };
 
