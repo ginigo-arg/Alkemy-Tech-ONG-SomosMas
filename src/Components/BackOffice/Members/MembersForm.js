@@ -1,32 +1,47 @@
+import { useEffect } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
-import { memberSchemaValidation } from './memberSchema';
+import { memberSchemaValidation } from './validation/memberSchema';
+import { SocialFormControl } from './validation/SocialFormControl';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
-const MembersForm = () => {
-  const { state: { id } } = useLocation();
+const initialValues = {
+  name: '',
+  description: '',
+  photo: null,
+  social: {
+    facebook: '',
+    twitter: '',
+    instagram: '',
+  },
+};
 
-  if (id) {
-    console.log('Llego id', id);
-  }
+const MembersForm = () => {
+  const location = useLocation();
+  let edit = false;
+
+  useEffect(() => {
+    if (location.state) {
+      console.log('Llego id', location.state.id);
+      edit = true;
+    }
+  }, []);
 
   return (
     <Container>
       <h2>Form Members</h2>
       <Formik
-        initialValues={{
-          name: '',
-          description: '',
-          photo: null,
-          social: {
-            facebook: '',
-            twitter: '',
-            instagram: '',
-          },
-        }}
+        initialValues={initialValues}
         onSubmit={(values, { setSubmitting }) => {
+          if (!edit) {
+            // Función POST
+            console.log('Creando nuevo miembro');
+          } else {
+            // Función PUT
+            console.log('Editando miembro');
+          }
           setTimeout(() => {
             console.log(values);
             setSubmitting(false);
@@ -77,16 +92,19 @@ const MembersForm = () => {
             <Form.Group className='mb-4'>
               <Form.Label>Redes Sociales:</Form.Label>
               <SocialFormControl
+                values={values}
                 handleChange={handleChange}
                 socialNet='facebook'
                 errors={errors}
               />
               <SocialFormControl
+                values={values}
                 handleChange={handleChange}
                 socialNet='twitter'
                 errors={errors}
               />
               <SocialFormControl
+                values={values}
                 handleChange={handleChange}
                 socialNet='instagram'
                 errors={errors}
@@ -116,29 +134,3 @@ const MembersForm = () => {
 };
 
 export default MembersForm;
-
-export const SocialFormControl = ({ socialNet, errors, handleChange }) => {
-  const CapFirstLetter = str => (
-    str.charAt(0).toUpperCase() + str.slice(1)
-  );
-
-  return (
-    <>
-      <Form.Control
-        className="my-2"
-        type="text"
-        placeholder={'Link a ' + CapFirstLetter(socialNet)}
-        name={`social.${socialNet}`}
-        onChange={handleChange}
-        isInvalid={!!errors.social && errors.social[socialNet]}
-      />
-      <Form.Control.Feedback type="invalid">
-        {errors.social &&
-          errors.social[socialNet] !== undefined
-          ? `${errors.social[socialNet]}`
-          : null
-        }
-      </Form.Control.Feedback>
-    </>
-  );
-};
