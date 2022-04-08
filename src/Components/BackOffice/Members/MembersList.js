@@ -1,7 +1,7 @@
-import { Container, Table } from 'react-bootstrap';
+import { Container, Table, Button } from 'react-bootstrap';
 import { AiFillDelete } from 'react-icons/ai';
 import { RiFileEditFill } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 // Array para similar respuesta de Api
 const MockMembers = [
@@ -54,6 +54,14 @@ export default MembersList;
 
 // ------------------------------------------- COMPONENT ROW MEMBER LIST---------------------------------------
 const RowMember = ({ member }) => {
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push('/backoffice/members/edit', {
+      id: member.id,
+    });
+  };
+
   return (
     <tr className="align-middle">
       <td className="px-3">{member.name}</td>
@@ -83,9 +91,9 @@ const RowMember = ({ member }) => {
         </Link>
       </td>
       <td className="text-center" style={{ width: '70px' }}>
-        <Link className="btn btn-info text-dark" title="Editar">
+        <Button onClick={handleEdit} className="btn btn-info text-dark" title="Editar">
           <RiFileEditFill />
-        </Link>
+        </Button>
       </td>
     </tr>
   );
