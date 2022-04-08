@@ -1,13 +1,19 @@
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 export default function Categories () {
   const Data = [
-    { id: 2, name: 'Titulo de prueba', createdAt: '2022-03-24' },
-    { id: 1, name: 'Titulo de prueba', createdAt: '2022-03-24' },
-    { id: 3, name: 'Titulo de prueba', createdAt: '2022-03-24' },
+    { id: 1968, name: 'Titulo de prueba', createdAt: '2022-03-24' },
+    { id: 1953, name: 'Titulo de prueba', createdAt: '2022-03-24' },
+    { id: 1967, name: 'Titulo de prueba', createdAt: '2022-03-24' },
   ];
-
+  const history = useHistory();
+  const handleEdit = (id) => {
+    history.push({
+      pathname: '/backoffice/categories/edit',
+      state: id,
+    });
+  };
   return (
     <>
       <div>
@@ -36,11 +42,11 @@ export default function Categories () {
                   <td>{mock.createdAt}</td>
                   <td>
                     <Button variant="danger">Eliminar </Button>
-                    <Link to="/backoffice/categories/edit">
-                      <Button variant="success" className="space">
-                        Editar
-                      </Button>
-                    </Link>
+
+                    <Button variant="success" className="space" onClick={() => handleEdit(mock.id)}>
+                      Editar
+                    </Button>
+
                   </td>
                 </tr>
               );
