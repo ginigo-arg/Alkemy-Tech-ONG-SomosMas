@@ -57,6 +57,11 @@ const LayoutBackoffice = () => {
                 path="/backoffice/slides/edit"
                 component={SlidesFormHook}
               />
+              <Route
+                exact
+                path="/backoffice/slides/create"
+                component={SlidesFormHook}
+              />
 
               <Route
                 exact
