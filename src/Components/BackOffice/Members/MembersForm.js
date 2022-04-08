@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { memberSchemaValidation } from './validation/memberSchema';
@@ -6,26 +6,27 @@ import { SocialFormControl } from './validation/SocialFormControl';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
-
-const initialValues = {
-  name: '',
-  description: '',
-  photo: null,
-  social: {
-    facebook: '',
-    twitter: '',
-    instagram: '',
-  },
-};
+import { getMember } from '../../../Services/MemberService';
 
 const MembersForm = () => {
   const location = useLocation();
-  let edit = false;
+  const [edit, setEdit] = useState(false);
+
+  const [initialValues, setInitialValues] = useState({
+    name: '',
+    description: '',
+    photo: null,
+    social: {
+      facebook: '',
+      twitter: '',
+      instagram: '',
+    },
+  });
 
   useEffect(() => {
     if (location.state) {
-      console.log('Llego id', location.state.id);
-      edit = true;
+      setEdit(true);
+      setInitialValues(getMember(location.state.id));
     }
   }, []);
 
@@ -38,14 +39,14 @@ const MembersForm = () => {
           if (!edit) {
             // Función POST
             console.log('Creando nuevo miembro');
+            console.log(values);
+            setSubmitting(false);
           } else {
             // Función PUT
             console.log('Editando miembro');
-          }
-          setTimeout(() => {
             console.log(values);
             setSubmitting(false);
-          }, 400);
+          }
         }}
         validationSchema={memberSchemaValidation}
         validateOnChange={false}
@@ -123,7 +124,7 @@ const MembersForm = () => {
             </Form.Group>
 
             <Button type="submit" variant="primary" disabled={isSubmitting}>
-              Agregar miembro
+              {!edit ? 'Agregar miembro' : 'Guardar cambios'}
             </Button>
 
           </Form>
