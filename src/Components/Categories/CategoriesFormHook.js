@@ -4,33 +4,12 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import * as yup from 'yup';
 import { getCategory } from '../../Services/CategoryServices';
 import Spinner from '../Spinner/Spinner';
-// import { GET_PRIVATE_API } from '../../Services/privateApiService';
-
-const checkFileFormat = img => {
-  if (img) {
-    if (!['image/jpg', 'image/jpeg', 'image/png'].includes(img.type)) {
-      return false;
-    }
-  }
-  return true;
-};
-
-const validateSchema = yup.object().shape({
-  name: yup.string().required('el nombre el obligatorio').min(4, 'El nombre debe tener un minimo de 4 caracteres'),
-  description: yup.string().required('La descripcion es obligatoria').min(20, 'la decripcion debe tener un min de 20 caracteres'),
-  id: yup.string().required('el id es obligatorio'),
-  img: yup.mixed().required('La imagen es obligatoria').test(
-    'fileFormat',
-    'Formato de imagen no válido',
-    checkFileFormat,
-  ),
-});
+import { SchemaValidation } from './SchemaValidation';
 
 const SlidesFormHook = () => {
-  const [description, setDescription] = useState('');
+  // const [description, setDescription] = useState('');
   const [category, setCategory] = useState(false);
   const { state: id } = useLocation();
 
@@ -45,7 +24,7 @@ const SlidesFormHook = () => {
 
   return (
     <>
-      { !category
+      { !category && id
         ? <Spinner/>
         : (
           <Formik
@@ -56,23 +35,23 @@ const SlidesFormHook = () => {
               img: category.image || null,
             }}
 
-            validationSchema={validateSchema}
+            validationSchema={SchemaValidation}
 
-            onSubmit={(values, id, { setSubmitting }) => {
-              if (location) {
-              // peticion PATH
-
+            onSubmit={(values, id) => {
+              if (id) {
+                console.log('peticion path');
+                // pathCategory(id, values);
               } else {
-
-              // peticion POST
+                console.log('peticion post');
+                // postCategory(values);
               }
               setTimeout(() => {
+                console.log('values', values);
                 alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
               }, 400);
             }}
           >
-            {({ values, errors, touched, setFieldValue, handleSubmit, handleChange }) => (
+            {({ values, errors, touched, setFieldValue, handleSubmit }) => (
               <Container className='mt-3'>
                 <Form noValidate onSubmit={handleSubmit}>
                   <div className="mb-3">
@@ -105,18 +84,9 @@ const SlidesFormHook = () => {
                     <CKEditor
                       name="description"
                       editor={ ClassicEditor }
-                      data={description}
-                      value={values.description}
+                      data={values.description}
                       config
-                      onReady={ editor => {
-                      // You can store the "editor" and use when it is needed.
-                        console.log('Editor is ready to use!', editor);
-                      } }
-                      onChange={ (event, editor) => {
-                        const data = editor.getData();
-                        console.log('data:', data);
-                        setDescription(data);
-                      } }
+                      onChange={(e, editor) => setFieldValue('description', editor.getData())}
                       onBlur={ (event, editor) => {
                         console.log('Blur.', editor);
                       } }
