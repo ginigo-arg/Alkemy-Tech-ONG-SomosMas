@@ -41,7 +41,6 @@ const TableSliders = () => {
   const handleCreate = () => {
     history.push({
       pathname: '/backoffice/slides/create',
-      state: null,
     });
   };
   return (
