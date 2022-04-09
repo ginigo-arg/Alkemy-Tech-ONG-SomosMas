@@ -9,7 +9,8 @@ import UserForm from '../../Components/Users/UsersForm';
 import SchoolCampaign from '../../Campaigns/School/SchoolCampaign';
 import ToysCampaign from '../../Campaigns/Toys/ToysCampaign';
 import MembersForm from '../../Components/Members/MembersForm';
-import ProjectsForm from '../../Components/Projects/ProjectsForm';
+import ProjectsForm from '../../Components/BackOffice/Projects/ProjectsForm';
+import ProjectsList from '../../Components/BackOffice/Projects/ProjectList';
 import About from '../../Components/About/Nosotros';
 import Sidebar from '../../Components/BackOffice/Sidebar/Sidebar';
 import Header from '../../Components/BackOffice/Header/Header';
@@ -74,6 +75,16 @@ const LayoutBackoffice = () => {
                 exact
                 path="/backoffice/create-project"
                 component={ProjectsForm}
+              />
+              <Route
+                exact
+                path="/backoffice/edit-project"
+                component={ProjectsForm}
+              />
+              <Route
+                exact
+                path="/backoffice/projects"
+                component={ProjectsList}
               />
               <Route
                 exact
