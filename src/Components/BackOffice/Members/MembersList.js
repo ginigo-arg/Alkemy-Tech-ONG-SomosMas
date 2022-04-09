@@ -4,7 +4,7 @@ import RowMember from './RowMember';
 
 // Array para similar respuesta de Api
 const MockMembers = [
-  { id: 1, name: 'Luciano', photo: '' },
+  { id: 581, name: 'Luciano', photo: '' },
   { id: 2, name: 'Mariano', photo: '' },
   { id: 3, name: 'Nicolás', photo: '' },
 ];
