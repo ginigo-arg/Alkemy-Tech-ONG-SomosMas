@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { ProyectsSchemaValidation } from './Validation/ProyectSchema';
@@ -18,12 +18,13 @@ const initialValues = {
 const ProjectsForm = () => {
   const location = useLocation();
   let edit = false;
-  let Guardar = 'Crear Proyecto Nuevo , Escriba el Nombre';
 
+  const [Guardar, setGuardar] = useState('Crear Proyecto');
   useEffect(() => {
     if (location.state) {
+      console.log('Llego id', location.state.id);
       edit = true;
-      Guardar = ' Editar ' + location.state.title;
+      setGuardar(' Editar Proyecto ' + location.state.title);
     }
   }, []);
 
@@ -34,11 +35,15 @@ const ProjectsForm = () => {
         initialValues={initialValues}
         onSubmit={(values, { setSubmitting }) => {
           if (!edit) {
+            // Función POST
             POST_PRIVATE_API('http://ongapi.alkemy.org/api/projects', JSON.stringify(values));
+            console.log('Creando nuevo miembro');
           } else {
             Put('http://ongapi.alkemy.org/api/projects', JSON.stringify(values));
+            console.log('Editando miembro');
           }
           setTimeout(() => {
+            console.log(values);
             setSubmitting(false);
           }, 400);
         }}
