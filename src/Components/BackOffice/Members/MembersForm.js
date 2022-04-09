@@ -6,7 +6,7 @@ import { SocialFormControl } from './validation/SocialFormControl';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
-import { getMember } from '../../../Services/MemberService';
+import { createMember, editMember, getMember } from '../../../Services/MemberService';
 import Spinner from '../../Spinner/Spinner';
 
 const MembersForm = () => {
@@ -43,15 +43,11 @@ const MembersForm = () => {
                 }}
                 onSubmit={(values, { setSubmitting }) => {
                   if (!edit) {
-                    // Función POST
-                    console.log('Creando nuevo miembro');
-                    console.log(values);
                     setSubmitting(false);
+                    createMember(values);
                   } else {
-                    // Función PUT
-                    console.log('Editando miembro');
-                    console.log(values);
                     setSubmitting(false);
+                    editMember(values);
                   }
                 }}
                 validationSchema={memberSchemaValidation}
