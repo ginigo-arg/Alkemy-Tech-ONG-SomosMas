@@ -16,10 +16,10 @@ const verifyTokenExist = () => {
 };
 
 const config = verifyTokenExist();
+
 export const GET_PRIVATE_API = async (url, id = null) => {
   if (id) {
-    const data = await axios.get(`${url}/${id}`, config);
-    const response = JSON.parse(data);
+    const response = await axios.get(`${url}/${id}`);
 
     const res = response.data ?? new Error(response.message);
 
@@ -27,8 +27,7 @@ export const GET_PRIVATE_API = async (url, id = null) => {
   }
 
   if (!id) {
-    const data = await axios.get(url, config);
-    const response = JSON.parse(data);
+    const response = await axios.get(url, config);
 
     const res = response.data ?? new Error(response.message);
 

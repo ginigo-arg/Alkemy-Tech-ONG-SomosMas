@@ -21,7 +21,8 @@
     "react-router-dom": "^5.2.0",
     "react-router-transition": "^2.1.0",
     "react-scripts": "^5.0.0",
-    "sweetalert": "^2.1.2"
+    "sweetalert": "^2.1.2",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -51,6 +52,7 @@
     "singleQuote": true
   },
   "devDependencies": {
+    "@types/react-router-dom": "^5.3.3",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.4",

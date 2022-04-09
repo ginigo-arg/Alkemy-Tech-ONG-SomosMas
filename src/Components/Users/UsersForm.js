@@ -1,93 +1,100 @@
-import { Formik, Form, Field } from 'formik';
-import React, { useState } from 'react';
-import { Container, Button, InputGroup } from 'react-bootstrap';
-import '../FormStyles.css';
+import { Formik, Field, Form } from 'formik';
+import { SchemaValidation } from './UserSchema';
+import { Container, InputGroup, Button, Col, Spinner } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { GetUsersById, PatchUsers, PostUsers, PutUsers } from '../../Services/usersService';
+import ProgressSpinner from '../Progress/ProgressSpinner';
+import './UsersForm.css';
 
 const UsersForm = () => {
-  const [initialValues, setInitialValues] = useState({
-    name: '',
-    email: '',
-    role: '',
-  });
+  const [user, setUser] = useState(false);
+  const { id } = useParams();
+  const [submitting, setSubmitting] = useState(false);
 
-  // const handleChange = (e) => {
-  //   if (e.target.name === 'name') {
-  //     setInitialValues({ ...initialValues, name: e.target.value });
-  //   } if (e.target.name === 'email') {
-  //     setInitialValues({ ...initialValues, email: e.target.value });
-  //   }
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(initialValues);gitg
-  // };
-
-  const validateEmail = (value) => {
-    let error;
-    if (!value) {
-      error = 'Requerido';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-      error = 'Correo electrónico inválido';
+  useEffect(() => {
+    if (id) {
+      // const { data } = GetUsersById(id);
+      // console.log('Resp:', data);
+      // setUser(data);
+      console.log('LOCATION:', id)
     }
-    return error;
-  };
-
-  const validateName = (value) => {
-    let error;
-    if (!value) {
-      error = 'Requerido';
-    }
-    return error;
-  };
-
-  const validateRole = (value) => {
-    let error;
-    if (value === 'Select') {
-      error = 'Requerido';
-    }
-    return error;
-  };
+  }, [user, submitting]);
 
   return (
     <Container>
-      <Formik
-        initialValues={
-          initialValues
-        }
-        onSubmit={values => {
-          // same shape as initial values
-          console.log(values);
-        }}
-      >
-        {({ errors, touched, isValidating }) => (
-          <Form>
-            <InputGroup>
-              <Field name="name" validate={validateName} />
-              {errors.name && touched.name && <div>{errors.name}</div>}
+      {!user && id
+        ? <Spinner />
+        : (
+          <Formik
+            initialValues={{
+              fullname: '' || user.fullname,
+              email: '' || user.email,
+              password: '' || user.password,
+              role_id: '' || user.role_id,
+              profile_image: null || user.profile_image,
+            }}
+            validationSchema={SchemaValidation}
+            onSubmit={async (values) => {
+              setSubmitting(true);
+              try {
+                if (id) {
+                  // console.log('PATCH:', values);
+                  // PatchUsers(id, values);
+                  console.log('PUT:', values);
+                  // PutUsers(id, values);
+                } else {
+                  console.log('POST:', values);
+                  // PostUsers(values);
+                }
+              } finally { setSubmitting(false); }
+            }}
+          >
+            {({ errors, touched }) => (
+              <Form className=''>
+                <InputGroup size='lg' className='d-flex flex-column align-items-center'>
+                  <Col xs={6} className='m-2 d-flex flex-column align-items-center'>
+                    <Field name="fullname" className='w-100 form-control usersform-input usersform-text' placeholder='Nombre completo'/>
+                    {touched.fullname && errors.fullname && <div className='usersform-text'>{errors.fullname}</div>}
+                  </Col>
 
-              <Field name="email" validate={validateEmail} />
-              {errors.email && touched.email && <div>{errors.email}</div>}
+                  <Col xs={6} className='m-2 d-flex flex-column align-items-center'>
+                    <Field name="email" className='w-100 form-control usersform-input usersform-text' placeholder='Email'/>
+                    {touched.email && errors.email && <div className='usersform-text'>{errors.email}</div>}
+                  </Col>
 
-              <
-              {/* {errors.role} */}
+                  <Col xs={6} className='m-2 d-flex flex-column align-items-center'>
+                    <Field name="password" type='password' className='w-100 form-control usersform-input usersform-text' placeholder='Contraseña' />
+                    {touched.password && errors.password && <div className='usersform-text'>{errors.password}</div>}
+                  </Col>
 
-              <Button variant='success'>Submit</Button>
-            </InputGroup>
-          </Form>
-        )}
-      </Formik>
+                  <Col xs={6} className='m-2 d-flex flex-row justify-content-between'>
+                    <Col xs={5} className='d-flex flex-column align-items-center'>
+                      <Field name="role_id" as='select' className='form-control usersform-input usersform-text'>
+                        <option value=''>Seleccione un rol..</option>
+                        <option value={0}>Administrador</option>
+                        <option value={1}>Regular</option>
+                      </Field>
+                      {touched.role_id && errors.role_id && <div className='usersform-text'>{errors.role_id}</div>}
+                    </Col>
+                    <Col xs={7} className='d-flex flex-column align-items-center'>
+                      <Field name="profile_image" type='file' className='form-control usersform-input usersform-text' />
+                      {touched.profile_image && errors.profile_image && <div className='usersform-text'>{errors.profile_image}</div>}
+                    </Col>
+                  </Col>
+
+                  <Col xs={12} className='m-2 d-flex justify-content-center'>
+                    {submitting
+                      ? <Button type='submit' variant='success' disabled className='usersform-submit usersform-text d-flex flex-row justify-content-center'><ProgressSpinner /></Button>
+                      : <>{id
+                        ? <Button type='submit' variant='primary' className='usersform-submit usersform-text'>Editar</Button>
+                        : <Button type='submit' variant='success' className='usersform-submit usersform-text'>Enviar</Button>} </>}
+                  </Col>
+                </InputGroup>
+              </Form>
+            )}
+          </Formik>)}
     </Container>
-    // <form className="form-container" onSubmit={handleSubmit}>
-    //   <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Name"></input>
-    //   <input className="input-field" type="text" name="email" value={initialValues.description || ''} onChange={handleChange} placeholder="Email"></input>
-    //   <select className="input-field" value={initialValues.roleId || ''} onChange={e => setInitialValues({ ...initialValues, roleId: e.target.value })}>
-    //     <option value="" disabled >Select the role</option>
-    //     <option value="1">Admin</option>
-    //     <option value="2">User</option>
-    //   </select>
-    //   <button className="submit-btn" type="submit">Send</button>
-    // </form>
   );
 };
 

@@ -9,12 +9,6 @@ const Home = ({ greeting }) => {
   return (
     <Container fluid className="mt-5">
       <UsersForm/>
-      <Container className="p-5">
-        {/* PLACEHOLDER WELCOME MESSAGE */}
-        <Col className="home-greeting-container d-flex flex-column justify-content-center">
-          <h1 className="home-greeting">{greeting}Bienvenido a Somos Mas</h1>
-        </Col>
-      </Container>
       <Col xs={12}>
         <div className="placeholder-slider d-flex flex-column justify-content-center">
           {/* COMPONENTE SLIDER */}
@@ -22,6 +16,12 @@ const Home = ({ greeting }) => {
           <Slider />
         </div>
       </Col>
+      <Container className="p-5">
+        {/* PLACEHOLDER WELCOME MESSAGE */}
+        <Col className="home-greeting-container d-flex flex-column justify-content-center">
+          <h1 className="home-greeting">{greeting}Bienvenido a Somos Mas</h1>
+        </Col>
+      </Container>
       <Container className="mt-5">
         <Col
           xs={12}
