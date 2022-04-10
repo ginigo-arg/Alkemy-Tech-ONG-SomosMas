@@ -9,26 +9,21 @@ import {
 const url = process.env.REACT_APP_API_ACTIVITIES;
 
 export const getActivities = (id = null) => {
-  const response = GET_PRIVATE_API(url, id);
-  return response;
+  return GET_PRIVATE_API(url, id);
 };
 
 export const putActivities = (id, data) => {
-  const response = Put(url, id, data);
-  return response;
+  return Put(url, id, data);
 };
 
 export const patchActivities = (id, data) => {
-  const response = Patch(url, id, data);
-  return response;
+  return Patch(url, id, data);
 };
 
 export const postActivities = (data) => {
-  const response = POST_PRIVATE_API(url, data);
-  return response;
+  return POST_PRIVATE_API(url, data);
 };
 
 export const deleteActivities = (id) => {
-  const response = DELETE_PRIVATE_API(url, id);
-  return response;
+  return DELETE_PRIVATE_API(url, id);
 };
