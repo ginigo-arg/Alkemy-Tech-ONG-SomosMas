@@ -37,7 +37,7 @@ const SlidesFormHook = () => {
 
             validationSchema={SchemaValidation}
 
-            onSubmit={(values, id) => {
+            onSubmit={(values, { resetForm }) => {
               if (id) {
                 console.log('peticion path');
                 // pathCategory(id, values);
@@ -49,6 +49,7 @@ const SlidesFormHook = () => {
                 console.log('values', values);
                 alert(JSON.stringify(values, null, 2));
               }, 400);
+              resetForm();
             }}
           >
             {({ values, errors, touched, setFieldValue, handleSubmit }) => (

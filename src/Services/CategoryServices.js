@@ -1,4 +1,4 @@
-import { DELETE_PRIVATE_API, GET_PRIVATE_API, PATH_PRIVATE_API, POST_PRIVATE_API } from './privateApiService';
+import { GET_PRIVATE_API, PATCH_PRIVATE_API, POST_PRIVATE_API, DELETE_PRIVATE_API } from './privateApiService';
 
 export const getCategory = (id = '') => {
   const response = GET_PRIVATE_API(`${process.env.REACT_APP_API_CATEGORY}`, id);
@@ -7,7 +7,7 @@ export const getCategory = (id = '') => {
 
 export const pathCategory = (id, data) => {
   console.log(`${process.env.REACT_APP_API_CATEGORY}`);
-  const response = PATH_PRIVATE_API(`${process.env.REACT_APP_API_CATEGORY}/${id}`, data);
+  const response = PATCH_PRIVATE_API(`${process.env.REACT_APP_API_CATEGORY}/${id}`, data);
 
   return response;
 };
