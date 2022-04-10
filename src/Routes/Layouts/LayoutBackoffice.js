@@ -5,17 +5,21 @@ import CategoriesFormHook from '../../Components/Categories/CategoriesFormHook';
 import NewsForm from '../../Components/News/NewsForm';
 import SlidesFormHook from '../../Components/Slides/SlidesFormHook';
 import TestimonialForm from '../../Components/Testimonials/TestimonialsForm';
-import UserForm from '../../Components/Users/UsersForm';
+import UsersForm from '../../Components/Users/UsersForm';
 import SchoolCampaign from '../../Campaigns/School/SchoolCampaign';
 import ToysCampaign from '../../Campaigns/Toys/ToysCampaign';
+
 import MembersForm from '../../Components/Members/MembersForm';
-import ProjectsForm from '../../Components/Projects/ProjectsForm';
+import ProjectsForm from '../../Components/BackOffice/Projects/ProjectsForm';
+import ProjectsList from '../../Components/BackOffice/Projects/ProjectList';
+
 import About from '../../Components/About/Nosotros';
 import Sidebar from '../../Components/BackOffice/Sidebar/Sidebar';
 import Header from '../../Components/BackOffice/Header/Header';
 import MembersList from '../../Components/BackOffice/Members/MembersList';
 import Categories from '../../Components/Categories/Categories';
 import TableSliders from '../../Components/BackOffice/Sliders/TableSliders';
+import OrganizationForm from '../../Components/BackOffice/Organization/OrganizationForm';
 
 const LayoutBackoffice = () => {
   return (
@@ -66,12 +70,7 @@ const LayoutBackoffice = () => {
               <Route
                 exact
                 path="/backoffice/create-user"
-                component={UserForm}
-              />
-              <Route
-                exact
-                path="/backoffice/create-member"
-                component={MembersForm}
+                component={UsersForm}
               />
               <Route
                 exact
@@ -95,6 +94,16 @@ const LayoutBackoffice = () => {
               />
               <Route
                 exact
+                path="/backoffice/edit-project"
+                component={ProjectsForm}
+              />
+              <Route
+                exact
+                path="/backoffice/projects"
+                component={ProjectsList}
+              />
+              <Route
+                exact
                 path="/backoffice/school-campaign"
                 component={SchoolCampaign}
               />
@@ -106,8 +115,23 @@ const LayoutBackoffice = () => {
               <Route exact path="/backoffice/Nosotros" component={About} />
               <Route
                 exact
-                path="/backoffice/Miembros"
+                path="/backoffice/members"
                 component={MembersList}
+              />
+              <Route
+                exact
+                path="/backoffice/members/edit"
+                component={MembersForm}
+              />
+              <Route
+                exact
+                path="/backoffice/members/create"
+                component={MembersForm}
+              />
+              <Route
+                exact
+                path="/backoffice/organization/edit"
+                component={OrganizationForm}
               />
             </Switch>
           </Col>

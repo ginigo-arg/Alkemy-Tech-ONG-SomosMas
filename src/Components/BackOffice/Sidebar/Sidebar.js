@@ -42,9 +42,9 @@ const Sidebar = () => {
               Actividades
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/create-category">
+            <Link to="/backoffice/categories">
               <BsMenuButtonWideFill className='icon' fontSize="25px" color="green" />
-             Crear Categoria
+            Categorias
             </Link></div><hr></hr>
             <div className='item'>
             <Link to="/backoffice/create-testimonials">
@@ -72,9 +72,9 @@ const Sidebar = () => {
               Miembros
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/categories">
+            <Link to="/backoffice/projects">
               <AiOutlineOrderedList className='icon' fontSize="25px" color="violet" />
-             Categorias
+             Proyectos
             </Link></div>
           </Nav>
         </Offcanvas.Body>
