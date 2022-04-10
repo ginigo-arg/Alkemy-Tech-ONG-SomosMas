@@ -30,7 +30,8 @@ const Layout = ({ match }) => {
             <Route exact path="/novedades/id" component={NewDetail} />
             <Route exact path="/novedades" component={NewsList} />
             <Route exact path="/usuarios" component={UsersList} />
-            <Route exact path="/usuarios/:id" component={UsersForm} />
+            <Route exact path="/usuarios/crear" component={UsersForm} />
+            <Route exact path="/usuarios/editar/:id" component={UsersForm} />
           </Switch>
         </Router>
       </div>

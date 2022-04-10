@@ -1,7 +1,13 @@
 import * as Yup from 'yup';
 
+const checkFileFormat = photo => {
+  if (['image/jpg', 'image/jpeg', 'image/png'].includes(photo.type)) {
+    return true;
+  } else return false;
+};
+
 export const SchemaValidation = Yup.object().shape({
-  fullname: Yup
+  name: Yup
     .string()
     .min(4, 'Debe contener un mínimo de 4 caracteres')
     .required('Debe completar este campo'),
@@ -15,9 +21,13 @@ export const SchemaValidation = Yup.object().shape({
     .required('Debe completar este campo'),
   role_id: Yup
     .number()
-    .required('Debe seleccionar una opción'),
+    .required('Seleccione una opción'),
   profile_image: Yup
-    .string()
+    .mixed()
     .required('Debe adjuntar una imagen')
-    .matches(/(.jpg|.png)/, 'Solo formato .jpg, o .png'),
+    .test(
+      'fileFormat',
+      'Formato de imagen no válido',
+      checkFileFormat,
+    ),
 });

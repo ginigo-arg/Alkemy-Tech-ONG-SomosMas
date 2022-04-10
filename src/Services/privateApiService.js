@@ -1,37 +1,39 @@
 import axios from 'axios';
 
-const verifyTokenExist = () => {
-  const token = localStorage.getItem('TOKEN');
-  if (token) {
-    return {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-        Group: 163,
-      },
-    };
-  } else {
-    throw new Error('No token exist in LocalStorage');
-  }
+// const verifyTokenExist = () => {
+//   const token = localStorage.getItem('TOKEN');
+//   if (token) {
+//     return {
+//       headers: {
+//         'Content-Type': 'application/json',
+//         Authorization: `Bearer ${token}`,
+//         Group: 163,
+//       },
+//     };
+//   } else {
+//     throw new Error('No token exist in LocalStorage');
+//   }
+// };
+
+const config = {
+  headers: {
+    'Content-Type': 'application/json',
+  },
 };
 
-const config = verifyTokenExist();
+// verifyTokenExist();
 
 export const GET_PRIVATE_API = async (url, id = null) => {
   if (id) {
-    const response = await axios.get(`${url}/${id}`);
+    const data = await axios.get(`${url}/${id}`, config);
 
-    const res = response.data ?? new Error(response.message);
-
-    return res;
+    return data;
   }
 
   if (!id) {
-    const response = await axios.get(url, config);
+    const data = await axios.get(url, config);
 
-    const res = response.data ?? new Error(response.message);
-
-    return res;
+    return data;
   }
 
   return new Error('Error en la petición');
@@ -47,6 +49,7 @@ export const Put = async (url, id, body, config) => {
     console.log(error);
   }
 };
+
 // PETICION PATCH
 export const Patch = async (url, id, body, config) => {
   try {
