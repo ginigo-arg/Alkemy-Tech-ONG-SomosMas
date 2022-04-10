@@ -68,12 +68,12 @@ const TestimonialsForm = () => {
     onSubmit: (values, { setSubmitting }) => {
       if (!edit) {
         // Función POST
-        console.log(values);
+        // console.log(values);
         // POST_PRIVATE_API(url, values);
         setSubmitting(false);
       } else {
         // Función PUT
-        console.log(values);
+        // console.log(values);
         // Patch(url, location.state.id, values);
         setSubmitting(false);
       }
