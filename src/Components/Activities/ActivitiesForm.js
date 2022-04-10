@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, Form, Button, Container, Stack } from 'react-bootstrap';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -6,52 +6,76 @@ import '../FormStyles.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import './ActivitiesForm.css';
-// import { postActivities } from '../../Services/actividadesService';
-// import { Oval } from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 import FormImage from '../../assets/img/logo-somos-mas.png';
+import { useLocation } from 'react-router-dom';
+import {
+  getActivities,
+  // postActivities,
+  // putActivities,
+} from '../../Services/actividadesService';
 
-const initialValues = {
-  id: null,
-  name: '',
-  description: '',
-  image: [],
+const checkFileFormat = (photo) => {
+  if (photo) {
+    if (!['image/jpg', 'image/jpeg', 'image/png'].includes(photo.type)) {
+      return false;
+    }
+  }
+  return true;
 };
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required('El nombre es necesario.'),
+  name: Yup.string()
+    .min(4, 'El nombre debe tener un mínimo de 4 caracteres')
+    .required('El nombre es obligatorio'),
+  description: Yup.string().required('La descripción es obligatoria'),
   image: Yup.mixed()
-    .required('La imagen es necesaria.')
-    .test(
-      'Formato Imagen',
-      'La imagen debe ser en formato JPG o PNG',
-      (value) =>
-        value && ['image/jpg', 'image/png', 'image/jpeg'].includes(value.type),
-    ),
+    .required('La foto es obligatoria')
+    .test('fileFormat', 'Formato de imagen no válido', checkFileFormat),
 });
 
-const ActivitiesForm = ({ toEdit = null }) => {
-  const [description, setDescription] = useState(
-    toEdit ? toEdit.description : '',
-  );
+const ActivitiesForm = () => {
+  const location = useLocation();
+  const [edit, setEdit] = useState(false);
+  const [activities, setActivities] = useState(false);
+
+  useEffect(async () => {
+    if (location.state) {
+      setEdit(true);
+      const { data } = await getActivities(location.state.id);
+      setActivities(data);
+    }
+  }, []);
+
   const {
     errors,
     isSubmitting,
-    handleSubmit,
-    values,
     setFieldValue,
     handleChange,
     handleBlur,
+    handleSubmit,
+    values,
   } = useFormik({
     validateOnBlur: true,
     validateOnChange: false,
-    initialValues: toEdit || initialValues,
+    initialValues: {
+      name: activities.name || '',
+      description: activities.description || '',
+      image: activities.image || '',
+    },
     validationSchema,
-    onSubmit: (values) => {
-      const dataForm = {
-        ...values,
-        description,
-      };
-      console.log(dataForm);
+    onSubmit: (values, { setSubmitting }) => {
+      if (!edit) {
+        // Función POST
+        console.log(values);
+        // postActivities(values);
+        setSubmitting(false);
+      } else {
+        // Función PUT
+        console.log(values);
+        // putActivities(values, location.state.id);
+        setSubmitting(false);
+      }
     },
   });
 
@@ -65,9 +89,9 @@ const ActivitiesForm = ({ toEdit = null }) => {
           <Container className="container-fluid rounded-2 d-flex flex-column gap-2 container-form ">
             <form onSubmit={handleSubmit} className="my-4 formulario">
               <Stack className="align-items-center text-center">
-                <h4 style={{ color: 'var(--bs-danger)' }}>{`Formulario para ${
-                  toEdit ? 'editar' : 'crear'
-                } actividades`}</h4>
+                <h4 style={{ color: 'var(--bs-danger)' }}>
+                  {`Formulario para ${edit ? 'editar' : 'crear'} actividades`}
+                </h4>
               </Stack>
               <Form.Control
                 id="name"
@@ -85,12 +109,11 @@ const ActivitiesForm = ({ toEdit = null }) => {
               )}
               <CKEditor
                 editor={ClassicEditor}
-                data={description}
+                data={values.description}
                 config={{ placeholder: 'Descripción' }}
-                onChange={(e, editor) => {
-                  const description = editor.getData();
-                  setDescription(description);
-                }}
+                onChange={(e, editor) =>
+                  setFieldValue('description', editor.getData())
+                }
               />
               {errors.description && (
                 <Alert variant="danger" className="p-1 m-0">
@@ -102,9 +125,9 @@ const ActivitiesForm = ({ toEdit = null }) => {
                 accept="image/*"
                 id="image"
                 name="image"
-                onChange={(e) => {
-                  setFieldValue('image', e.currentTarget.files[0]);
-                }}
+                onChange={(e) =>
+                  setFieldValue('photo', e.currentTarget.files[0])
+                }
                 onBlur={handleBlur}
               />
               {errors.image && (
@@ -120,7 +143,7 @@ const ActivitiesForm = ({ toEdit = null }) => {
                   className="w-25 d-flex justify-content-center fw-bolder"
                   style={{ color: 'white' }}
                 >
-                  Enviar
+                  {isSubmitting ? <Oval /> : 'Enviar'}
                 </Button>
               </Stack>
             </form>
