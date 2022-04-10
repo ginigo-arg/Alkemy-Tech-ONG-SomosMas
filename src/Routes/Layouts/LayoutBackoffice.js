@@ -1,15 +1,15 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { Route, Switch } from 'react-router-dom';
 import ActivitiesForm from '../../Components/Activities/ActivitiesForm';
-import CategoriesForm from '../../Components/Categories/CategoriesForm';
+import CategoriesFormHook from '../../Components/Categories/CategoriesFormHook';
 import NewsForm from '../../Components/News/NewsForm';
-import SlidesForm from '../../Components/Slides/SlidesForm';
+import SlidesFormHook from '../../Components/Slides/SlidesFormHook';
 import TestimonialForm from '../../Components/Testimonials/TestimonialsForm';
 import UsersForm from '../../Components/Users/UsersForm';
 import SchoolCampaign from '../../Campaigns/School/SchoolCampaign';
 import ToysCampaign from '../../Campaigns/Toys/ToysCampaign';
 
-// import MembersForm from '../../Components/Members/MembersForm';
+import MembersForm from '../../Components/Members/MembersForm';
 import ProjectsForm from '../../Components/BackOffice/Projects/ProjectsForm';
 import ProjectsList from '../../Components/BackOffice/Projects/ProjectList';
 
@@ -17,8 +17,8 @@ import About from '../../Components/About/Nosotros';
 import Sidebar from '../../Components/BackOffice/Sidebar/Sidebar';
 import Header from '../../Components/BackOffice/Header/Header';
 import MembersList from '../../Components/BackOffice/Members/MembersList';
-import MembersForm from '../../Components/BackOffice/Members/MembersForm';
 import Categories from '../../Components/Categories/Categories';
+import TableSliders from '../../Components/BackOffice/Sliders/TableSliders';
 import OrganizationForm from '../../Components/BackOffice/Organization/OrganizationForm';
 import ActivitiesList from '../../Components/BackOffice/ActivitiesList/ActivitiesList';
 
@@ -48,19 +48,26 @@ const LayoutBackoffice = () => {
               />
               <Route
                 exact
-                path="/backoffice/create-category"
-                component={CategoriesForm}
-              />
-              <Route
-                exact
                 path="/backoffice/create-news"
                 component={NewsForm}
               />
               <Route
                 exact
-                path="/backoffice/create-slide"
-                component={SlidesForm}
+                path="/backoffice/slides"
+                component={TableSliders}
               />
+
+              <Route
+                exact
+                path="/backoffice/slides/edit"
+                component={SlidesFormHook}
+              />
+              <Route
+                exact
+                path="/backoffice/slides/create"
+                component={SlidesFormHook}
+              />
+
               <Route
                 exact
                 path="/backoffice/create-testimonials"
@@ -75,6 +82,16 @@ const LayoutBackoffice = () => {
                 exact
                 path="/backoffice/categories"
                 component={Categories}
+              />
+              <Route
+                exact
+                path="/backoffice/categories/create"
+                component={CategoriesFormHook}
+              />
+              <Route
+                exact
+                path="/backoffice/categories/edit"
+                component={CategoriesFormHook}
               />
               <Route
                 exact
