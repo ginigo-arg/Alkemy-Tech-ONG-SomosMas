@@ -15,6 +15,7 @@ import Sidebar from '../../Components/BackOffice/Sidebar/Sidebar';
 import Header from '../../Components/BackOffice/Header/Header';
 import MembersList from '../../Components/BackOffice/Members/MembersList';
 import Categories from '../../Components/Categories/Categories';
+import ActivitiesList from '../../Components/BackOffice/ActivitiesList/ActivitiesList';
 
 const LayoutBackoffice = () => {
   return (
@@ -90,6 +91,11 @@ const LayoutBackoffice = () => {
                 exact
                 path="/backoffice/Miembros"
                 component={MembersList}
+              />
+              <Route
+                exact
+                path="/backoffice/activity"
+                component={ActivitiesList}
               />
             </Switch>
           </Col>

@@ -37,7 +37,7 @@ const Sidebar = () => {
             </Link></div>
             <hr className=" d-inline-block"></hr>
             <div className='item'>
-            <Link to="/backoffice/create-activity">
+            <Link to="/backoffice/activity">
               <BsPencilFill className='icon' fontSize="25px" color="red" />
               Actividades
             </Link></div><hr></hr>
