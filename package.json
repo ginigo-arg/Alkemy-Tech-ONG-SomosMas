@@ -26,7 +26,6 @@
     "sweetalert2": "^11.4.7",
     "yup": "^0.32.11"
   },
-
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -55,6 +54,7 @@
     "singleQuote": true
   },
   "devDependencies": {
+    "@types/react-router-dom": "^5.3.3",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.4",

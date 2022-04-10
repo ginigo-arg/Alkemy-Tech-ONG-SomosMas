@@ -5,7 +5,7 @@ import { ProyectsSchemaValidation } from './Validation/ProyectSchema';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
-import { POST_PRIVATE_API, Put } from '../../../Services/privateApiService';
+import { POST_PRIVATE_API, PUT_PRIVATE_API } from '../../../Services/privateApiService';
 
 const initialValues = {
   title: '',
@@ -38,7 +38,7 @@ const ProjectsForm = () => {
             POST_PRIVATE_API('http://ongapi.alkemy.org/api/projects', JSON.stringify(values));
             console.log('Creando nuevo miembro');
           } else {
-            Put('http://ongapi.alkemy.org/api/projects', JSON.stringify(values));
+            PUT_PRIVATE_API('http://ongapi.alkemy.org/api/projects', JSON.stringify(values));
             console.log('Editando miembro');
           }
           setTimeout(() => {
