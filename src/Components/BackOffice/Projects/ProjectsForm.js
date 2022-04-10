@@ -22,7 +22,6 @@ const ProjectsForm = () => {
   const [Guardar, setGuardar] = useState('Crear Proyecto');
   useEffect(() => {
     if (location.state) {
-      console.log('Llego id', location.state.id);
       edit = true;
       setGuardar(' Editar Proyecto ' + location.state.title);
     }
