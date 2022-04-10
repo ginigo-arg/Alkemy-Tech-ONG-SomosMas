@@ -19,18 +19,16 @@ const config = verifyTokenExist();
 export const GET_PRIVATE_API = async (url, id = null) => {
   if (id) {
     const data = await axios.get(`${url}/${id}`, config);
-    const response = JSON.parse(data);
 
-    const res = response.data ?? new Error(response.message);
+    const res = data.data ?? new Error(data.message);
 
     return res;
   }
 
   if (!id) {
     const data = await axios.get(url, config);
-    const response = JSON.parse(data);
 
-    const res = response.data ?? new Error(response.message);
+    const res = data.data.data ?? new Error(data.message);
 
     return res;
   }
@@ -48,7 +46,7 @@ export const Put = async (url, id, body, config) => {
     console.log(error);
   }
 };
-//PETICION PATCH
+// PETICION PATCH
 export const Patch = async (url, id, body, config) => {
   try {
     const resp = await axios.patch(`${url}/${id}`, body, config);
