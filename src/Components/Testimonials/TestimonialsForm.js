@@ -127,7 +127,7 @@ const TestimonialsForm = () => {
                 id="image"
                 name="image"
                 onChange={(e) =>
-                  setFieldValue('photo', e.currentTarget.files[0])
+                  setFieldValue('image', e.currentTarget.files[0])
                 }
                 onBlur={handleBlur}
               />
