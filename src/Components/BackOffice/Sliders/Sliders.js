@@ -1,18 +1,27 @@
 import React from 'react';
 import { Button, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import TableSliders from './TableSliders';
 
 import './Sliders.css';
+;
 
 const Sliders = () => {
+  const history = useHistory();
+  const CreateSlider = (e) => {
+    history.push({
+      pathname: '/backoffice/slides/create',
+      state: { detail: 'crear' },
+    });
+  };
+
   return (
     <Container>
       <div className="sliders-title">
         <h3>LISTADO SLIDERS</h3>
-        <Link to="/backoffice/Slides/create">
-          <Button className="btn-danger">Crear Slider</Button>
-        </Link>
+
+        <Button className="btn-danger" onClick = { CreateSlider }>Crear Slider</Button>
+
       </div>
       <TableSliders />
     </Container>
