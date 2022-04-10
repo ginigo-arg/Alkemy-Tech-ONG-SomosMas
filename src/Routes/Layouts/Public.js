@@ -1,5 +1,5 @@
 import './Layout.css';
-import Footer from '../../Components/Footer/Footer';
+import LandingFooter from '../../Components/Footer/LandingFooter';
 import PublicHeader from '../../Components/Header/PublicHeader';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Actividades from '../../Components/Activities/Actividades';
@@ -33,7 +33,7 @@ const Layout = ({ match }) => {
         </Router>
       </div>
 
-      <Footer />
+      <LandingFooter />
     </div>
   );
 };

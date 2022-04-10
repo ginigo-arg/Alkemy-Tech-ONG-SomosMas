@@ -2,6 +2,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import logo from '../../assets/img/logo-somos-mas.png';
 import './LandingFooter.css';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import Newsletter from '../Newsletter/Newsletter';
 
 const LandingFooter = () => {
   return (
@@ -9,6 +10,9 @@ const LandingFooter = () => {
       fluid
       className="bg-dark footer-container justify-content-evenly p-3 pt-5"
     >
+      <Container fluid="lg" className='d-flex flex-row justify-content-center mb-3'>
+        <Newsletter />
+      </Container>
       <Container
         fluid="lg"
         className="d-flex flex-column flex-md-row justify-content-evenly justify-content-md-center border-bottom p-3"
@@ -41,7 +45,7 @@ const LandingFooter = () => {
           xs={12}
           md={5}
           lg={4}
-          className="footer-socialmedia-container d-flex flex-row flex-md-column align-items-center justify-content-center justify-content-md-evenly px-lg-4"
+          className="footer-socialmedia-container d-flex flex-row flex-md-column align-items-center justify-content-center px-lg-4"
         >
           <Col md={12}>
             <a
