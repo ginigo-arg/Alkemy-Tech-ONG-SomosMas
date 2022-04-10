@@ -23,11 +23,8 @@
     "react-router-dom": "^5.2.0",
     "react-router-transition": "^2.1.0",
     "react-scripts": "^5.0.0",
-
-    
-    
-    "sweetalert": "^2.1.2",
-   "yup": "^0.32.11"
+    "sweetalert2": "^11.4.7",
+    "yup": "^0.32.11"
   },
 
   "scripts": {
