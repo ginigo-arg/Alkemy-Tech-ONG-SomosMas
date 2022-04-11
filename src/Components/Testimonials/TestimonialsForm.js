@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Alert, Form, Button, Container, Stack } from 'react-bootstrap';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import '../TestimonialsForm.css';
+import './TestimonialsForm.css';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import { Oval } from 'react-loader-spinner';
 import FormImage from '../../assets/img/logo-somos-mas.png';
 import { useLocation } from 'react-router-dom';
@@ -13,27 +12,9 @@ import {
   // Patch,
   // POST_PRIVATE_API,
 } from '../../Services/privateApiService';
+import { validationSchema, convertToBase64 } from './TestimonialsUtils';
 
 const url = process.env.REACT_APP_API_TESTIMONIALS;
-
-const checkFileFormat = (photo) => {
-  if (photo) {
-    if (!['image/jpg', 'image/jpeg', 'image/png'].includes(photo.type)) {
-      return false;
-    }
-  }
-  return true;
-};
-
-const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(4, 'El nombre debe tener un mínimo de 4 caracteres')
-    .required('El nombre es obligatorio'),
-  description: Yup.string().required('La descripción es obligatoria'),
-  image: Yup.mixed()
-    .required('La foto es obligatoria')
-    .test('fileFormat', 'Formato de imagen no válido', checkFileFormat),
-});
 
 const TestimonialsForm = () => {
   const location = useLocation();
@@ -64,14 +45,18 @@ const TestimonialsForm = () => {
       description: testimonials.description || '',
       image: testimonials.image || '',
     },
-    validationSchema,
-    onSubmit: (values, { setSubmitting }) => {
+    validationSchema: validationSchema,
+    onSubmit: async (values, { setSubmitting }) => {
       if (!edit) {
+        const base64 = await convertToBase64(values.image);
+        values.image = base64;
         // Función POST
         // console.log(values);
         // POST_PRIVATE_API(url, values);
         setSubmitting(false);
       } else {
+        const base64 = await convertToBase64(values.image);
+        values.image = base64;
         // Función PUT
         // console.log(values);
         // Patch(url, location.state.id, values);

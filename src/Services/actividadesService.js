@@ -1,23 +1,24 @@
 import {
   DELETE_PRIVATE_API,
   GET_PRIVATE_API,
-  Patch,
+  PATCH_PRIVATE_API,
   POST_PRIVATE_API,
-  Put,
+  PUT_PRIVATE_API,
 } from './privateApiService';
 
 const url = process.env.REACT_APP_API_ACTIVITIES;
 
 export const getActivities = (id = null) => {
-  return GET_PRIVATE_API(url, id);
+  const res = GET_PRIVATE_API(url, id);
+  return res.data;
 };
 
 export const putActivities = (id, data) => {
-  return Put(url, id, data);
+  return PUT_PRIVATE_API(url, id, data);
 };
 
 export const patchActivities = (id, data) => {
-  return Patch(url, id, data);
+  return PATCH_PRIVATE_API(url, id, data);
 };
 
 export const postActivities = (data) => {

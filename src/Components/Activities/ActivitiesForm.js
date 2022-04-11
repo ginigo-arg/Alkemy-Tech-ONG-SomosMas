@@ -4,7 +4,6 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '../FormStyles.css';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import './ActivitiesForm.css';
 import { Oval } from 'react-loader-spinner';
 import FormImage from '../../assets/img/logo-somos-mas.png';
@@ -14,25 +13,7 @@ import {
   // postActivities,
   // putActivities,
 } from '../../Services/actividadesService';
-
-const checkFileFormat = (photo) => {
-  if (photo) {
-    if (!['image/jpg', 'image/jpeg', 'image/png'].includes(photo.type)) {
-      return false;
-    }
-  }
-  return true;
-};
-
-const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(4, 'El nombre debe tener un mínimo de 4 caracteres')
-    .required('El nombre es obligatorio'),
-  description: Yup.string().required('La descripción es obligatoria'),
-  image: Yup.mixed()
-    .required('La foto es obligatoria')
-    .test('fileFormat', 'Formato de imagen no válido', checkFileFormat),
-});
+import { validationSchema, convertToBase64 } from './ActivitiesUtils';
 
 const ActivitiesForm = () => {
   const location = useLocation();
@@ -63,14 +44,18 @@ const ActivitiesForm = () => {
       description: activities.description || '',
       image: activities.image || '',
     },
-    validationSchema,
-    onSubmit: (values, { setSubmitting }) => {
+    validationSchema: validationSchema,
+    onSubmit: async (values, { setSubmitting }) => {
       if (!edit) {
+        const base64 = await convertToBase64(values.image);
+        values.image = base64;
         // Función POST
         console.log(values);
         // postActivities(values);
         setSubmitting(false);
       } else {
+        const base64 = await convertToBase64(values.image);
+        values.image = base64;
         // Función PUT
         console.log(values);
         // putActivities(values, location.state.id);
@@ -126,7 +111,7 @@ const ActivitiesForm = () => {
                 id="image"
                 name="image"
                 onChange={(e) =>
-                  setFieldValue('photo', e.currentTarget.files[0])
+                  setFieldValue('image', e.currentTarget.files[0])
                 }
                 onBlur={handleBlur}
               />
