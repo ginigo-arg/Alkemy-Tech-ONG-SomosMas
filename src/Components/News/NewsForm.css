@@ -1,0 +1,25 @@
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container-all {
+    width: 60%;
+    margin: 20px auto;
+}
+
+.container-form {
+    padding: 0 15px 15px 15px;
+}
+
+.ck-editor__editable_inline {
+    min-height: 150px;
+}
+
+@media screen and (max-width: 768px) {
+    .container-all {
+        width: 90%;
+        margin: 20px auto;
+    }
+}

@@ -48,7 +48,7 @@ export const Put = async (url, id, body, config) => {
     console.log(error);
   }
 };
-//PETICION PATCH
+
 export const Patch = async (url, id, body, config) => {
   try {
     const resp = await axios.patch(`${url}/${id}`, body, config);
