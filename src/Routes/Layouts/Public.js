@@ -1,5 +1,5 @@
 import './Layout.css';
-import Footer from '../../Components/Footer/Footer';
+import LandingFooter from '../../Components/Footer/LandingFooter';
 import PublicHeader from '../../Components/Header/PublicHeader';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Actividades from '../../Components/Activities/Actividades';
@@ -9,6 +9,7 @@ import NewDetail from '../../Components/News/Detail/NewDetail';
 import NewsList from '../../Components/News/NewsList';
 import Home from '../../Components/Home';
 import Nosotros from '../../Components/About/Nosotros';
+import LoginForm from '../../Components/Auth/LoginForm';
 
 const Layout = ({ match }) => {
   const PATH = match.path;
@@ -27,11 +28,12 @@ const Layout = ({ match }) => {
             <Route exact path="/nosotros" component={Nosotros} />
             <Route exact path="/novedades/id" component={NewDetail} />
             <Route exact path="/novedades" component={NewsList} />
+            <Route exact path="/login" component={LoginForm} />
           </Switch>
         </Router>
       </div>
 
-      <Footer />
+      <LandingFooter />
     </div>
   );
 };

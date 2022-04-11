@@ -1,0 +1,42 @@
+.item{
+    margin: 0px;   
+}
+.icon{
+    margin-right: 15px;
+}
+/*
+.item:hover{
+    background-color:AGREGAR HOVER ;
+}*/
+.hr{
+    margin: 0%;
+}
+#offcanvasNavbar{
+    width: 20%;
+}
+.offCanvasHeader{
+    display: flex;
+flex-direction: row;
+}
+.btn-close{
+    background-color: yellow;
+}
+
+@media(max-width: 768px){
+   .offCanvasHeader{
+       display: flex;
+       flex-direction: column;
+   }
+   /*.Button{
+      width: fit-content;
+      
+   }*/
+   .btn-close{
+       display: flex;
+       flex-direction: column;
+       
+   }
+   #offcanvasNavbar{
+    width: 25%;
+}
+}
