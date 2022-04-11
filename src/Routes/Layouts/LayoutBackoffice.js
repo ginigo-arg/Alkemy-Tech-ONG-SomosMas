@@ -20,6 +20,7 @@ import MembersList from '../../Components/BackOffice/Members/MembersList';
 import Categories from '../../Components/Categories/Categories';
 import TableSliders from '../../Components/BackOffice/Sliders/TableSliders';
 import OrganizationForm from '../../Components/BackOffice/Organization/OrganizationForm';
+import ActivitiesList from '../../Components/BackOffice/ActivitiesList/ActivitiesList';
 
 const LayoutBackoffice = () => {
   return (
@@ -39,6 +40,11 @@ const LayoutBackoffice = () => {
                 exact
                 path="/backoffice/create-activity"
                 component={ActivitiesForm}
+              />
+              <Route
+                exact
+                path="/backoffice/activities"
+                component={ActivitiesList}
               />
               <Route
                 exact
