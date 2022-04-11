@@ -27,3 +27,7 @@
     cursor: pointer;
     background-color: #3498DB;
 }
+/* Modifica el height del CKEDITOR */
+.ck-editor__editable {
+    min-height: 200px;
+}

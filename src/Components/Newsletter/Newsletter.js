@@ -1,8 +1,8 @@
 import './Newsletter.css';
 import { Formik, Form, Field } from 'formik';
 import { useState } from 'react';
-import swal from '@sweetalert/with-react';
 import { Container } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 const Newsletter = () => {
   const [newsletter, setNewsletter] = useState(localStorage.getItem('newsletter') || false);
@@ -10,7 +10,7 @@ const Newsletter = () => {
   const handleSubmit = async (e) => {
     localStorage.setItem('newsletter', e.email);
     setNewsletter(true);
-    swal('Gracias!', 'Te suscribiste al Newsletter', 'success');
+    Swal('Gracias!', 'Te suscribiste al Newsletter', 'success');
   };
 
   return (

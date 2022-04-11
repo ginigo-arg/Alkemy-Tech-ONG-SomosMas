@@ -13,12 +13,9 @@ const Home = ({ greeting }) => {
           <h1 className="home-greeting">{greeting}Bienvenido a Somos Mas</h1>
         </Col>
       </Container>
-      {/* PLACEHOLDER SLIDER */}
-      <Slider></Slider>
       <Col xs={12}>
         <div className="placeholder-slider d-flex flex-column justify-content-center">
           {/* COMPONENTE SLIDER */}
-          {/* <h3>Slider placeholder</h3> */}
           <Slider />
         </div>
       </Col>
