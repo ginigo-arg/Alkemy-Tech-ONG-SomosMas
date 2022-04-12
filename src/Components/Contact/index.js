@@ -15,7 +15,7 @@ const IndexContact = () => {
       <SectionTitles title={'Contacto'} backgroundImg={banner} />
       <Container className="mt-3">
         <Row>
-          <Col md={12} className="mb-3">
+          <Col md={12} className="mb-2">
             <h5>
               Estamos aquí para ti, utiliza cualquiera de nuestros medios de
               contacto.
@@ -23,15 +23,15 @@ const IndexContact = () => {
             <hr />
           </Col>
           <div id="contactOng" className="mb-2">
-            <ContactInformation minimalistVersion={true} />
+            <ContactInformation />
           </div>
           <Col
             md={12}
-            className="d-none d-sm-none d-md-block d-flex justify-content-center align-items-center"
+            className="d-none d-sm-none d-md-block d-flex justify-content-center align-items-center mb-2"
           >
             <ContactMap />
           </Col>
-          <h5 className="text-black mt-2">Escríbenos</h5>
+          <h5 className="text-black">Escríbenos</h5>
           <Col md={8}>
             <Row>
               <Col md={12}>

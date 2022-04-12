@@ -1,6 +1,8 @@
+/* eslint-disable comma-dangle */
+/* eslint-disable multiline-ternary */
 import React, { useEffect, useState } from 'react';
-import { nanoid } from 'nanoid'
-import { ORGANIZATION_CONTACT_DATA } from '../../Services/contactService'
+import { nanoid } from 'nanoid';
+import { ORGANIZATION_CONTACT_DATA } from '../../Services/contactService';
 import { Link } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Image from 'react-bootstrap/Image';
@@ -11,15 +13,14 @@ import twitter from '../../assets/img/iconos/socialMedia/twitter.png';
 import instagram from '../../assets/img/iconos/socialMedia/instagram.png';
 
 const SocialMedia = ({ layoutVertical = true, showTitle = false }) => {
- 
-  const id = nanoid()
+  const id = nanoid();
 
   const [organization, setOrganization] = useState({});
 
   const loadData = async () => {
     const data = await ORGANIZATION_CONTACT_DATA();
     setOrganization(data);
-  }
+  };
 
   useEffect(() => {
     loadData();
@@ -36,66 +37,54 @@ const SocialMedia = ({ layoutVertical = true, showTitle = false }) => {
         }
         variant={layoutVertical ? 'flush' : 'horizontal'}
       >
-              <Link
-                to={{ pathname: `${organization.facebook_url}` }}
-                target="_blank"
-                className="text-decoration-none"
-              >
-                <ListGroup.Item as="li" action>
-                  <h6 className="pt-2">
-                    <Image
-                      src={facebook}
-                      alt="facebook"
-                      className="social-media"
-                    /> { layoutVertical &&  " Facebook" }
-                  </h6>
-                </ListGroup.Item>
-              </Link>
-              <Link
-                to={{ pathname: `${organization.linkedin_url}` }}
-                target="_blank"
-                className="text-decoration-none"
-              >
-                <ListGroup.Item as="li" action>
-                  <h6 className="pt-2">
-                    <Image
-                      src={linkedin}
-                      alt="linkedin"
-                      className="social-media"
-                    /> {layoutVertical && " Linkedin"} 
-                  </h6>
-                </ListGroup.Item>
-              </Link>
-              <Link
-                to={{ pathname: `${organization.twitter_url}` }}
-                target="_blank"
-                className="text-decoration-none"
-              >
-                <ListGroup.Item as="li" action>
-                  <h6 className="pt-2">
-                    <Image
-                      src={twitter}
-                      alt="twitter"
-                      className="social-media"
-                    /> { layoutVertical && " Twitter" } 
-                  </h6>
-                </ListGroup.Item>
-              </Link>
-              <Link
-                to={{ pathname: `${organization.instagram_url}` }}
-                target="_blank"
-                className="text-decoration-none"
-              >
-                <ListGroup.Item as="li" action>
-                  <h6 className="pt-2">
-                    <Image
-                      src={instagram}
-                      alt="instagram"
-                      className="social-media"
-                    /> { layoutVertical && " Instagram" }
-                  </h6>
-                </ListGroup.Item>
-              </Link>
+        <Link
+          to={{ pathname: `${organization.facebook_url}` }}
+          target="_blank"
+          className="text-decoration-none"
+        >
+          <ListGroup.Item as="li" action key={id + '_facebook'}>
+            <h6 className="pt-2">
+              <Image src={facebook} alt="facebook" className="social-media" />{' '}
+              {layoutVertical && ' Facebook'}
+            </h6>
+          </ListGroup.Item>
+        </Link>
+        <Link
+          to={{ pathname: `${organization.linkedin_url}` }}
+          target="_blank"
+          className="text-decoration-none"
+        >
+          <ListGroup.Item as="li" action>
+            <h6 className="pt-2">
+              <Image src={linkedin} alt="linkedin" className="social-media" />{' '}
+              {layoutVertical && ' Linkedin'}
+            </h6>
+          </ListGroup.Item>
+        </Link>
+        <Link
+          to={{ pathname: `${organization.twitter_url}` }}
+          target="_blank"
+          className="text-decoration-none"
+        >
+          <ListGroup.Item as="li" action>
+            <h6 className="pt-2">
+              <Image src={twitter} alt="twitter" className="social-media" />{' '}
+              {layoutVertical && ' Twitter'}
+            </h6>
+          </ListGroup.Item>
+        </Link>
+        <Link
+          to={{ pathname: `${organization.instagram_url}` }}
+          target="_blank"
+          className="text-decoration-none"
+        >
+          <ListGroup.Item as="li" action>
+            <h6 className="pt-2">
+              <Image src={instagram} alt="instagram" className="social-media" />{' '}
+              {layoutVertical && ' Instagram'}
+            </h6>
+          </ListGroup.Item>
+        </Link>
       </ListGroup>
     </>
   );
