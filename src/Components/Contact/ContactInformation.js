@@ -1,21 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { nanoid } from 'nanoid'
 import { RiHomeHeartLine } from 'react-icons/ri';
 import { BsTelephoneInboundFill } from 'react-icons/bs';
 import { MdMarkEmailUnread } from 'react-icons/md';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
-const organization = {
-  id: 1,
-  name: 'Somos más',
-  short_description: 'lorem lorem lorem',
-  long_description:
-    'lorem lorem lorem de lorem lorem lorem de lorem lorem lorem de lorem lorem lorem de',
-  address: 'Calle la buena ONG',
-  phone: '1160112988',
-  cellphone: '60112988',
-  email: 'somosfundacionmas@gmail.com',
-};
+import { ORGANIZATION_CONTACT_DATA } from '../../Services/contactService'
 
 const ContactInformation = ({
   layoutVertical = false,
@@ -43,7 +33,19 @@ const ContactInformation = ({
 
   const numColumn = 12 / conColumns;
 
-  console.log(conColumns, numColumn);
+  const id = nanoid()
+
+  const [organization, setOrganization] = useState({});
+
+  const loadData = async () => {
+    const data = await ORGANIZATION_CONTACT_DATA();
+    setOrganization(data);
+  }
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
   return (
     <>
       <Row className="g-0 p-0">
@@ -51,7 +53,7 @@ const ContactInformation = ({
           <Col
             md={layoutVertical ? 12 : numColumn}
             className={!minimalistVersion ? 'p-0 border' : ''}
-            key={organization.id + '_address'}
+            key={id + '_address'}
           >
             <div
               className={
@@ -88,7 +90,7 @@ const ContactInformation = ({
           <Col
             md={layoutVertical ? 12 : numColumn}
             className={!minimalistVersion ? 'p-0 border' : ''}
-            key={organization.id + '_phone'}
+            key={id + '_phone'}
           >
             <div
               className={
@@ -117,14 +119,14 @@ const ContactInformation = ({
                 </h5>
                 <h6>
                   {' '}
-                  {organization.phone
+                  {organization.phone && organization.cellphone
                     ? (
                       <>
-                        {organization.cellphone} - {organization.phone}
+                        {organization.phone} - {organization.cellphone}
                       </>
                     )
                     : (
-                      organization.cellphone
+                      organization.cellphone || organization.phone
                     )}
                 </h6>
               </div>
@@ -136,7 +138,7 @@ const ContactInformation = ({
           <Col
             md={layoutVertical ? 12 : numColumn}
             className={!minimalistVersion ? 'p-0 border' : ''}
-            key={organization.id + '_email'}
+            key={id + '_email'}
           >
             <div
               className={

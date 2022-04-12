@@ -24,7 +24,7 @@ export const Post = async (url, body) => {
       config,
       data: body,
     });
-    return response;
+    return response.data;
   } catch (err) {
     console.log(err);
   }
