@@ -59,13 +59,13 @@ const ContactInformation = ({
               className={
                 minimalistVersion
                   ? 'input-group p-1'
-                  : 'input-group border-bottom p-1'
+                  : 'input-group border-bottom p-1 d-flex'
               }
             >
               <div
                 className={
                   minimalistVersion
-                    ? `input-group-text ${bgClass} ${borderClass}`
+                    ? `input-group-text ${bgClass} ${borderClass} h-40 w-40`
                     : `input-group-text ${bgClass}`
                 }
                 id="groupAddress"
@@ -102,7 +102,7 @@ const ContactInformation = ({
               <div
                 className={
                   minimalistVersion
-                    ? `input-group-text ${bgClass} ${borderClass}`
+                    ? `input-group-text ${bgClass} ${borderClass} h-40 w-40`
                     : `input-group-text ${bgClass}`
                 }
                 id="groupCallme"
@@ -150,7 +150,7 @@ const ContactInformation = ({
               <div
                 className={
                   minimalistVersion
-                    ? `input-group-text ${bgClass} ${borderClass}`
+                    ? `input-group-text ${bgClass} ${borderClass} h-40 w-40`
                     : `input-group-text ${bgClass}`
                 }
                 id="groupEmail"
@@ -171,6 +171,65 @@ const ContactInformation = ({
           </Col>
         )}
       </Row>
+
+    <div className="row d-flex" style={{display: "flex"}}>
+        <div className="col-md-4 col-sm-6 col-xs-12">
+        <div className="mini-card clearfixx bg-info rounded d-flex">
+                <span className="mini-card-icon bg-secondary">
+                  <RiHomeHeartLine
+                    className={
+                      minimalistVersion ? 'text-white fs-3' : 'text-white fs-1'
+                    }
+                  />
+                </span>
+                <div className="mini-card-info">
+                {minimalistVersion ?
+                   '' : <h5 className="text-black">Visítanos</h5>}
+                    <span>{organization.address}</span>
+                </div>
+            </div>
+        </div>
+        <div className="col-md-4 col-sm-6 col-xs-12">
+            <div className="mini-card clearfixx bg-primary rounded d-flex">
+                <span className="mini-card-icon bg-secondary">
+                  <BsTelephoneInboundFill
+                    className={
+                      minimalistVersion ? 'text-white fs-3' : 'text-white fs-1'
+                    }
+                  />
+                </span>
+                <div className="mini-card-info">
+                {minimalistVersion ?
+                   '' : <h5 className="text-black">Llámanos</h5>}
+                    <span>{organization.phone && organization.cellphone
+                    ? (
+                      <>
+                        {organization.phone} - {organization.cellphone}
+                      </>
+                    )
+                    : (
+                      organization.cellphone || organization.phone
+                    )}</span>
+                </div>
+            </div>
+        </div>
+        <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div className="mini-card clearfix bg-warning rounded d-flex">
+                <span className="mini-card-icon bg-secondary">
+                  <MdMarkEmailUnread
+                    className={
+                      minimalistVersion ? 'text-white fs-3' : 'text-white fs-1'
+                    }
+                  />
+                </span>
+                <div className="mini-card-info">
+                {minimalistVersion ?
+                   '' : <h5 className="text-black">Envíanos un correo</h5>}
+                    <span>{organization.email}</span>
+                </div>
+            </div>
+        </div>        
+	</div>
     </>
   );
 };

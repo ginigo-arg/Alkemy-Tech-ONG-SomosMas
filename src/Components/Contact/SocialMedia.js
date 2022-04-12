@@ -46,12 +46,7 @@ const SocialMedia = ({ layoutVertical = true, showTitle = false }) => {
                     <Image
                       src={facebook}
                       alt="facebook"
-                      style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '50%',
-                        verticalAlign: 'middle',
-                      }}
+                      className="social-media"
                     /> { layoutVertical &&  " Facebook" }
                   </h6>
                 </ListGroup.Item>
@@ -66,12 +61,7 @@ const SocialMedia = ({ layoutVertical = true, showTitle = false }) => {
                     <Image
                       src={linkedin}
                       alt="linkedin"
-                      style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '50%',
-                        verticalAlign: 'middle',
-                      }}
+                      className="social-media"
                     /> {layoutVertical && " Linkedin"} 
                   </h6>
                 </ListGroup.Item>
@@ -86,12 +76,7 @@ const SocialMedia = ({ layoutVertical = true, showTitle = false }) => {
                     <Image
                       src={twitter}
                       alt="twitter"
-                      style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '50%',
-                        verticalAlign: 'middle',
-                      }}
+                      className="social-media"
                     /> { layoutVertical && " Twitter" } 
                   </h6>
                 </ListGroup.Item>
@@ -106,12 +91,7 @@ const SocialMedia = ({ layoutVertical = true, showTitle = false }) => {
                     <Image
                       src={instagram}
                       alt="instagram"
-                      style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '50%',
-                        verticalAlign: 'middle',
-                      }}
+                      className="social-media"
                     /> { layoutVertical && " Instagram" }
                   </h6>
                 </ListGroup.Item>

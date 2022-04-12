@@ -20,10 +20,10 @@ const IndexContact = () => {
               Estamos aquí para ti, utiliza cualquiera de nuestros medios de
               contacto.
             </h5>
+            <hr />
           </Col>
-
           <div id="contactOng" className="mb-2">
-            <ContactInformation />
+            <ContactInformation minimalistVersion={true} />
           </div>
           <Col
             md={12}
@@ -48,7 +48,7 @@ const IndexContact = () => {
             md={4}
             className="d-block d-sm-block d-md-none d-flex justify-content-center"
           >
-            <div id="socialMedia" className="mb-2">
+            <div id="socialMediaMovile" className="mb-2">
               <SocialMedia layoutVertical={false} showTitle={false} />
             </div>
           </Col>

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { SEND_EMAIL } from '../../Services/contactService'
+import { alertService } from '../../Services/alertService'
 import {
   BsFillTelephoneFill,
   BsPersonCircle,
@@ -39,24 +40,26 @@ const ContactForm = () => {
     },
     validationSchema: ContactSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
       sendData();
       formik.resetForm();
     },
   });
 
   const simulateNetworkRequest = () => {
-    return new Promise((resolve) => setTimeout(resolve, 2000));
+    return new Promise((resolve) => setTimeout(resolve, 5000));
   };
 
   const sendData = async () => {
     setLoading(true);
+    simulateNetworkRequest();
     const data = await SEND_EMAIL();
-    console.log(data);
+    // console.log('soy la respuesta del envio',data);
     if(data);
     {
-      setLoading(false);
+      alertService('success',"Se ha enviado el mensaje")
     }
+   setLoading(false); 
   }
 
   useEffect(() => {

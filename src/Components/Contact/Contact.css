@@ -1,0 +1,49 @@
+.map {
+  min-height: 350px;
+}
+
+.h-40 {
+  height: 40px;
+}
+
+.w-40 {
+  width: 40px;
+}
+
+.mini-card {
+  padding: 15px;
+  margin-bottom: 20px;
+  height: 105px;
+}
+
+.mini-card-icon {
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  line-height: 60px;
+  text-align: center;
+  font-size: 30px;
+  /* background: none repeat scroll 0% 0% #EEE; */
+  border-radius: 100%;
+  float: left;
+  margin-right: 10px;
+  color: #FFF;
+}
+
+.mini-card-info {
+  font-size: 14px;
+  padding-top: 2px;
+}
+
+.rounded {
+  -webkit-border-radius: 3px !important;
+  -moz-border-radius: 3px !important;
+  border-radius: 3px !important;
+}
+
+.social-media {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    vertical-align: middle
+}
