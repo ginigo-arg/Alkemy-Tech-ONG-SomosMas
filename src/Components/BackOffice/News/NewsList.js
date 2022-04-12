@@ -13,7 +13,7 @@ import { BsSearch } from 'react-icons/bs';
 import { BiPlusMedical } from 'react-icons/bi';
 import { FaThList } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-//------------------------------------------- LISTADO NOTICIAS ---------------------------------------
+// ------------------------------------------- LISTADO NOTICIAS ---------------------------------------
 const newsBack = [
   {
     id: 1,
@@ -25,7 +25,7 @@ const newsBack = [
     id: 2,
     name: 'Noticia 2',
     image: '',
-    //image: 'https://ongapi.alkemy.org/storage/HsOrvE20tS.jpeg',
+    // image: 'https://ongapi.alkemy.org/storage/HsOrvE20tS.jpeg',
     createdAt: '20-03-2022',
   },
   {
@@ -41,7 +41,7 @@ const newsBack = [
     createdAt: '25-03-2022',
   },
 ];
-//------------------------------------------- COMPONENTE NEW LIST ---------------------------------------
+// ------------------------------------------- COMPONENTE NEW LIST ---------------------------------------
 const NewsList = ({ news = newsBack }) => {
   const [busqueda, setBusqueda] = useState('');
   const [newsFilter, setNewsFilter] = useState(news);
@@ -52,7 +52,7 @@ const NewsList = ({ news = newsBack }) => {
         return JSON.stringify(elemento)
           .toLowerCase()
           .includes(busqueda.toLowerCase());
-      })
+      }),
     );
   }, [busqueda, news]);
 
@@ -124,42 +124,44 @@ const NewsList = ({ news = newsBack }) => {
                 </InputGroup>
               </Col>
             </Row>
-            {newsFilter.length > 0 ? (
-              <>
-                <Table striped hover responsive>
-                  <thead className="bg-primary text-white rounded">
-                    <tr key={'news_0'}>
-                      <th hidden>#</th>
-                      <th>Nombre</th>
-                      <th className="text-center">Imagen</th>
-                      <th className="text-center">Creación</th>
-                      <th className="text-center" colSpan={2}>
-                        Acciones
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {newsFilter.map((element) => {
-                      return <RowsNew newData={[element]} />;
-                    })}
-                  </tbody>
-                </Table>
-              </>
-            ) : (
-              <div
-                className="alert-warning rounded d-flex justify-content-center align-items-center "
-                style={{ height: '300px' }}
-              >
-                <h1>No hay noticias para mostrar</h1>
-              </div>
-            )}
+            {newsFilter.length > 0
+              ? (
+                <>
+                  <Table striped hover responsive>
+                    <thead className="bg-primary text-white rounded">
+                      <tr key={'news_0'}>
+                        <th hidden>#</th>
+                        <th>Nombre</th>
+                        <th className="text-center">Imagen</th>
+                        <th className="text-center">Creación</th>
+                        <th className="text-center" colSpan={2}>
+                          Acciones
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {newsFilter.map((element) => {
+                        return <RowsNew newData={[element]} />;
+                      })}
+                    </tbody>
+                  </Table>
+                </>
+              )
+              : (
+                <div
+                  className="alert-warning rounded d-flex justify-content-center align-items-center "
+                  style={{ height: '300px' }}
+                >
+                  <h1>No hay noticias para mostrar</h1>
+                </div>
+              )}
           </div>
         </div>
       </Container>
     </>
   );
 };
-//------------------------------------------- COMPONENTE ROW NEW LIST---------------------------------------
+// ------------------------------------------- COMPONENTE ROW NEW LIST---------------------------------------
 const RowsNew = ({ newData }) => {
   return (
     <tr key={'new_' + newData[0].id} className="align-middle">
@@ -169,31 +171,33 @@ const RowsNew = ({ newData }) => {
             <td hidden>{element.id}</td>
             <td>{element.name}</td>
             <td className="text-center" style={{ width: '230px' }}>
-              {element.image !== '' ? (
-                <img
-                  src={element.image}
-                  alt={element.name}
-                  className="img-thumbnail rounded"
-                  style={{ width: '200px', height: '100px' }}
-                />
-              ) : (
-                <svg
-                  className="img-thumbnail rounded"
-                  width="200px"
-                  height="100px"
-                  xmlns="http://www.w3.org/2000/svg"
-                  role="img"
-                  aria-label="Placeholder: Thumbnail"
-                  preserveAspectRatio="xMidYMid slice"
-                  focusable="false"
-                >
-                  <title>{element.name}</title>
-                  <rect width="100%" height="100%" fill="#514242"></rect>
-                  <text x="5%" y="50%" fill="#eceeef" dy=".5em">
-                    No media
-                  </text>
-                </svg>
-              )}
+              {element.image !== ''
+                ? (
+                  <img
+                    src={element.image}
+                    alt={element.name}
+                    className="img-thumbnail rounded"
+                    style={{ width: '200px', height: '100px' }}
+                  />
+                )
+                : (
+                  <svg
+                    className="img-thumbnail rounded"
+                    width="200px"
+                    height="100px"
+                    xmlns="http://www.w3.org/2000/svg"
+                    role="img"
+                    aria-label="Placeholder: Thumbnail"
+                    preserveAspectRatio="xMidYMid slice"
+                    focusable="false"
+                  >
+                    <title>{element.name}</title>
+                    <rect width="100%" height="100%" fill="#514242"></rect>
+                    <text x="5%" y="50%" fill="#eceeef" dy=".5em">
+                      No media
+                    </text>
+                  </svg>
+                )}
             </td>
             <td className="text-center" style={{ width: '120px' }}>
               {element.createdAt}
