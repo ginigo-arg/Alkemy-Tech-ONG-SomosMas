@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 import { RiHomeHeartLine } from 'react-icons/ri';
 import { BsTelephoneInboundFill } from 'react-icons/bs';
 import { MdMarkEmailUnread } from 'react-icons/md';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { ORGANIZATION_CONTACT_DATA } from '../../Services/contactService'
+import { ORGANIZATION_CONTACT_DATA } from '../../Services/contactService';
 
 const ContactInformation = ({
   layoutVertical = false,
@@ -33,14 +33,14 @@ const ContactInformation = ({
 
   const numColumn = 12 / conColumns;
 
-  const id = nanoid()
+  const id = nanoid();
 
   const [organization, setOrganization] = useState({});
 
   const loadData = async () => {
     const data = await ORGANIZATION_CONTACT_DATA();
     setOrganization(data);
-  }
+  };
 
   useEffect(() => {
     loadData();

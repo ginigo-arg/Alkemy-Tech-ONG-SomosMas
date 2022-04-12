@@ -41,7 +41,7 @@ export const SEND_EMAIL = async (DATA) => {
   return response;
 };
 
-//mirar de donde saco el email
+// mirar de donde saco el email
 export const ORGANIZATION_CONTACT_DATA = async () => {
   const response = await Get(process.env.REACT_APP_API_ORGANIZATION);
   // console.log(JSON.stringify(response.data));
@@ -60,4 +60,5 @@ export const ORGANIZATION_CONTACT_DATA = async () => {
   }
   // console.log(JSON.stringify(contactData));
   return contactData;
+// eslint-disable-next-line eol-last
 };
