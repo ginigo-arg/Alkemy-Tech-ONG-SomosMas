@@ -41,7 +41,7 @@ const NewsForm = () => {
     }
   }, []);
 
-  const [Category, setCategory] = useState([]);
+  const [category, setCategory] = useState([]);
 
   useEffect(async () => {
     try {
@@ -130,9 +130,9 @@ const NewsForm = () => {
               <Form.Label>Categorias</Form.Label>
               <select className="select-field" id="slug" name="slug" onChange={handleChange} onBlur={handleBlur}>
                 <option value="" disabled >Selecciona una categoría</option>
-                {Category === []
+                {category === []
                   ? <p>Falta Categoría</p>
-                  : Category.map((e, index) =>
+                  : category.map((e, index) =>
                     <option key={index} value={e.name}>{e.name}</option>)}
               </select>
               <Form.Control
