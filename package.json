@@ -6,7 +6,6 @@
     "@ckeditor/ckeditor5-build-classic": "^33.0.0",
     "@ckeditor/ckeditor5-react": "^4.0.1",
     "@reduxjs/toolkit": "^1.6.1",
-    "@sweetalert/with-react": "^0.1.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -48,12 +47,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "prettier": {
-    "trailingComma": "es5",
-    "tabWidth": 2,
-    "semi": true,
-    "singleQuote": true
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.3.3",
