@@ -60,5 +60,4 @@ export const ORGANIZATION_CONTACT_DATA = async () => {
   }
   // console.log(JSON.stringify(contactData));
   return contactData;
-// eslint-disable-next-line eol-last
 };

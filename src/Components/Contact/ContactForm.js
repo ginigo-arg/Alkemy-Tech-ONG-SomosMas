@@ -53,11 +53,7 @@ const ContactForm = () => {
     setLoading(true);
     const data = await SEND_EMAIL();
     console.log(data);
-    if (data);
-    // eslint-disable-next-line no-lone-blocks
-    {
-      setLoading(false);
-    }
+    if (data) setLoading(false);
   };
 
   useEffect(() => {
