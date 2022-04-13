@@ -6,8 +6,8 @@ import {
 } from './privateApiService';
 
 export const getNews = (id = null) => {
-  const response = GET_PRIVATE_API(`${process.env.REACT_APP_API_NEWS}/${id}`);
-  return response.data;
+  const response = GET_PRIVATE_API(process.env.REACT_APP_API_NEWS, id);
+  return response;
 };
 
 export const patchNews = (id, data) => {
