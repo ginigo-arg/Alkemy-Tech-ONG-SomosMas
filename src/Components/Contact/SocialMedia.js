@@ -54,7 +54,7 @@ const SocialMedia = ({ layoutVertical = true, showTitle = false }) => {
           target="_blank"
           className="text-decoration-none"
         >
-          <ListGroup.Item as="li" action>
+          <ListGroup.Item as="li" action key={id + '_linkedin'}>
             <h6 className="pt-2">
               <Image src={linkedin} alt="linkedin" className="social-media" />{' '}
               {layoutVertical && ' Linkedin'}
@@ -66,7 +66,7 @@ const SocialMedia = ({ layoutVertical = true, showTitle = false }) => {
           target="_blank"
           className="text-decoration-none"
         >
-          <ListGroup.Item as="li" action>
+          <ListGroup.Item as="li" action key={id + '_twitter'}>
             <h6 className="pt-2">
               <Image src={twitter} alt="twitter" className="social-media" />{' '}
               {layoutVertical && ' Twitter'}
@@ -78,7 +78,7 @@ const SocialMedia = ({ layoutVertical = true, showTitle = false }) => {
           target="_blank"
           className="text-decoration-none"
         >
-          <ListGroup.Item as="li" action>
+          <ListGroup.Item as="li" action key={id + '_instagram'}>
             <h6 className="pt-2">
               <Image src={instagram} alt="instagram" className="social-media" />{' '}
               {layoutVertical && ' Instagram'}

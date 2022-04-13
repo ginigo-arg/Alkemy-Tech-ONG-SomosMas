@@ -13,7 +13,7 @@ export const getNews = (id = null) => {
 export const patchNews = (id, data) => {
   const response = PATCH_PRIVATE_API(
     `${process.env.REACT_APP_API_NEWS}/${id}`,
-    data
+    data,
   );
   return response.data;
 };
@@ -25,7 +25,7 @@ export const postNews = (data) => {
 
 export const deleteNews = (id) => {
   const response = DELETE_PRIVATE_API(
-    `${process.env.REACT_APP_API_NEWS}/${id}`
+    `${process.env.REACT_APP_API_NEWS}/${id}`,
   );
   return response.data;
 };
