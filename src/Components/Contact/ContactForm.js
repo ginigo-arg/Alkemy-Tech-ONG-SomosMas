@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { SEND_EMAIL } from '../../Services/contactService'
+import { SEND_EMAIL } from '../../Services/contactService';
 import {
   BsFillTelephoneFill,
   BsPersonCircle,
@@ -53,11 +53,8 @@ const ContactForm = () => {
     setLoading(true);
     const data = await SEND_EMAIL();
     console.log(data);
-    if(data);
-    {
-      setLoading(false);
-    }
-  }
+    if (data) setLoading(false);
+  };
 
   useEffect(() => {
     if (isLoading) {
@@ -94,17 +91,17 @@ const ContactForm = () => {
               onBlur={formik.handleBlur}
               value={formik.values.name}
               className={
-                    formik.errors.name
-                      ? 'form-control border-danger'
-                      : 'form-control border-success'
-                  }
+                formik.errors.name
+                  ? 'form-control border-danger'
+                  : 'form-control border-success'
+              }
               placeholder="Tu Nombre"
               aria-describedby="basic-addon1"
             />
           </InputGroup>
           {formik.errors.name ? (
-                  <span className="text-danger">{formik.errors.name} </span>
-                ) : null}
+            <span className="text-danger">{formik.errors.name} </span>
+          ) : null}
         </Form.Group>
 
         <Form.Group as={Col} md={8} controlId="formGridEmail" className="mt-2 mb-2">
@@ -120,17 +117,17 @@ const ContactForm = () => {
               onBlur={formik.handleBlur}
               value={formik.values.email}
               className={
-                    formik.errors.email
-                      ? 'form-control border-danger'
-                      : 'form-control border-success'
-                  }
+                formik.errors.email
+                  ? 'form-control border-danger'
+                  : 'form-control border-success'
+              }
               placeholder="Tu E-mail*"
               aria-describedby="basic-addon2"
             />
           </InputGroup>
           {formik.errors.email ? (
-                  <span className="text-danger">{formik.errors.email} </span>
-                ) : null}
+            <span className="text-danger">{formik.errors.email} </span>
+          ) : null}
         </Form.Group>
 
         <Form.Group as={Col} md={4} controlId="formGridPhone" className="mt-2 mb-2">
@@ -146,17 +143,17 @@ const ContactForm = () => {
               onBlur={formik.handleBlur}
               value={formik.values.phone}
               className={
-                    formik.errors.phone
-                      ? 'form-control border-danger'
-                      : 'form-control border-success'
-                  }
+                formik.errors.phone
+                  ? 'form-control border-danger'
+                  : 'form-control border-success'
+              }
               placeholder="Tu # de teléfono*"
               aria-describedby="basic-addon3"
             />
           </InputGroup>
           {formik.errors.phone ? (
-                  <span className="text-danger">{formik.errors.phone} </span>
-                ) : null}
+            <span className="text-danger">{formik.errors.phone} </span>
+          ) : null}
         </Form.Group>
 
         <Form.Group
@@ -178,17 +175,17 @@ const ContactForm = () => {
               onBlur={formik.handleBlur}
               value={formik.values.message}
               className={
-                    formik.errors.message
-                      ? 'form-control border-danger'
-                      : 'form-control border-success'
-                  }
+                formik.errors.message
+                  ? 'form-control border-danger'
+                  : 'form-control border-success'
+              }
               placeholder="Escribe tu comentario aquí*"
               aria-describedby="basic-addon5"
             />
           </InputGroup>
           {formik.errors.message ? (
-                  <span className="text-danger">{formik.errors.message} </span>
-                ) : null}
+            <span className="text-danger">{formik.errors.message} </span>
+          ) : null}
         </Form.Group>
 
         <Col sm={12} className="form-group last mt-2 mb-4">
