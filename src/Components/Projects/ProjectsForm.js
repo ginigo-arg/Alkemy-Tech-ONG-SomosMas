@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../FormStyles.css';
 
-const ProjectsForm = () => {
+const ProjectsForm2 = () => {
   const [initialValues, setInitialValues] = useState({
     title: '',
     description: '',
@@ -29,4 +29,4 @@ const ProjectsForm = () => {
   );
 };
 
-export default ProjectsForm;
+export default ProjectsForm2;

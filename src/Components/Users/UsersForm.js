@@ -81,8 +81,8 @@ const UsersForm = () => {
                     <Col xs={4} className='d-flex flex-column align-items-center'>
                       <Field name="role_id" as='select' className='form-control usersform-input usersform-text'>
                         <option value=''>Seleccione un rol..</option>
-                        <option value={0}>Administrador</option>
-                        <option value={1}>Regular</option>
+                        <option value={1}>Administrador</option>
+                        <option value={2}>Regular</option>
                       </Field>
                       {touched.role_id && errors.role_id && <div className='usersform-text'>{errors.role_id}</div>}
                     </Col>
@@ -98,7 +98,7 @@ const UsersForm = () => {
                       ? <Button type='submit' variant='success' disabled className='usersform-submit usersform-text d-flex flex-row justify-content-center'><ProgressSpinner /></Button>
                       : <>{id
                         ? <Button type='submit' variant='info' className='usersform-submit usersform-text'>Editar</Button>
-                        : <Button type='submit' variant='success' className='usersform-submit usersform-text'>Enviar</Button>} </>}
+                        : <Button type='submit' variant='success' className='usersform-submit usersform-text'>Crear</Button>} </>}
                   </Col>
                 </InputGroup>
               </Form>

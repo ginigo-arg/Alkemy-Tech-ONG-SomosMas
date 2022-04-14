@@ -9,7 +9,10 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Spinner from './Components/Spinner/Spinner';
 import Error404 from './Components/Error404/Error404';
 import { spring, AnimatedSwitch } from 'react-router-transition';
-// import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice'; Agregar backoffice
+import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice';
+import LoginForm from './Components/Auth/LoginForm';
+import PrivateRoutes from './Components/Private/PrivateRoutes';
+// import PrivateRoutes from './Components/Private/PrivateRoutes';
 
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
 
@@ -39,14 +42,24 @@ function App () {
             atActive={{ opacity: bounce(1), scale: bounce(1) }}
             mapStyles={mapStyles}
             runOnMount={true} >
+
+            <Route
+              path='/login'
+              component={LoginForm}
+            />
+            {/* Backoffice */}
+            {/* <Route path="/backoffice" component={
+              LayoutBackoffice
+            } /> */}
+
+            <PrivateRoutes path='/backoffice'>
+              <LayoutBackoffice/>
+            </PrivateRoutes>
             {/* Web pública */}
             <Route path="/" component={Home} />
 
-            {/* Backoffice */}
-            <Route path="/backoffice" component={() => <div> Backoffice </div>} />
-
             {/* Ruta error 404 */}
-            <Route path="*" component={Error404} />
+            <Route exact path="*" component={Error404} />
           </AnimatedSwitch>
         </Suspense>
       </BrowserRouter>
