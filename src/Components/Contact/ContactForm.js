@@ -43,7 +43,7 @@ const ContactForm = () => {
     validationSchema: ContactSchema,
     onSubmit: (values) => {
       // alert(JSON.stringify(values, null, 2));
-      sendData();
+      sendData(values);
       formik.resetForm();
     },
   });
@@ -52,10 +52,10 @@ const ContactForm = () => {
     return new Promise((resolve) => setTimeout(resolve, 5000));
   };
 
-  const sendData = async () => {
+  const sendData = async (dataForm) => {
     setLoading(true);
     simulateNetworkRequest();
-    const data = await SEND_EMAIL();
+    const data = await SEND_EMAIL(dataForm);
     // console.log('soy la respuesta del envio',data);
     if (data) {
       alertService('success', 'Se ha enviado el mensaje');
