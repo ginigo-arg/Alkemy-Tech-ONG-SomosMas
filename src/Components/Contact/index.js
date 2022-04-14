@@ -25,12 +25,14 @@ const IndexContact = () => {
           <div id="contactOng" className="mb-2">
             <ContactInformation />
           </div>
-          <Col
-            md={12}
-            className="d-none d-sm-none d-md-block d-flex justify-content-center align-items-center mb-2"
-          >
-            <ContactMap />
-          </Col>
+          <div className="d-none">
+            <Col
+              md={12}
+              className="d-none d-sm-none d-md-block d-flex justify-content-center align-items-center mb-2"
+            >
+              <ContactMap />
+            </Col>
+          </div>
           <h5 className="text-black">Escríbenos</h5>
           <Col md={8}>
             <Row>
