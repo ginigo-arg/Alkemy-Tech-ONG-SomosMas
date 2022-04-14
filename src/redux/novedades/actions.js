@@ -19,10 +19,10 @@ export const CREATE_NOVEDAD_FN = (content) => (dispatch) => {
 
 export const DELETE_NOVEDAD_FN = (id) => async (dispatch) => {
   try {
-    const response = await deleteNews(id);
+    await deleteNews(id);
     dispatch({
       type: DELETE_NOVEDAD,
-      payload: response,
+      payload: { id },
     });
   } catch (error) {
     dispatch({
