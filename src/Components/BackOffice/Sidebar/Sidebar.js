@@ -37,12 +37,12 @@ const Sidebar = () => {
             </Link></div>
             <hr className=" d-inline-block"></hr>
             <div className='item'>
-            <Link to="/backoffice/activity">
+            <Link to="/backoffice/create-activity">
               <BsPencilFill className='icon' fontSize="25px" color="red" />
               Actividades
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/categories">
+            <Link to="/backoffice/create-category">
               <BsMenuButtonWideFill className='icon' fontSize="25px" color="green" />
             Categorias
             </Link></div><hr></hr>
@@ -57,7 +57,7 @@ const Sidebar = () => {
               Organizacion
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/slides">
+            <Link to="/backoffice/create-slide">
               <RiSlideshow3Line className='icon'fontSize="25px" color="black" />
               Slides
             </Link></div><hr></hr>

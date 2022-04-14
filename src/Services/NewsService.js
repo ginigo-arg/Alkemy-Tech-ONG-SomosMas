@@ -7,25 +7,25 @@ import {
 
 export const getNews = (id = null) => {
   const response = GET_PRIVATE_API(`${process.env.REACT_APP_API_NEWS}/${id}`);
-  return response.data;
+  return response;
 };
 
 export const patchNews = (id, data) => {
   const response = PATCH_PRIVATE_API(
     `${process.env.REACT_APP_API_NEWS}/${id}`,
-    data
+    data,
   );
-  return response.data;
+  return response;
 };
 
 export const postNews = (data) => {
   const response = POST_PRIVATE_API(`${process.env.REACT_APP_API_NEWS}`, data);
-  return response.data;
+  return response;
 };
 
 export const deleteNews = (id) => {
   const response = DELETE_PRIVATE_API(
-    `${process.env.REACT_APP_API_NEWS}/${id}`
+    `${process.env.REACT_APP_API_NEWS}/${id}`,
   );
-  return response.data;
+  return response;
 };
