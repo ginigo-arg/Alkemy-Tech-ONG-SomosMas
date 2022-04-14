@@ -5,13 +5,14 @@ import React, { Suspense } from 'react';
 // import { Counter } from './features/counter/Counter';
 
 import './App.css';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import Spinner from './Components/Spinner/Spinner';
 import Error404 from './Components/Error404/Error404';
 import { spring, AnimatedSwitch } from 'react-router-transition';
 import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice';
-import LoginForm from './Components/Auth/LoginForm';
+import LoginForm, { LogIn } from './Components/Auth/LoginForm';
 import PrivateRoutes from './Components/Private/PrivateRoutes';
+
 // import PrivateRoutes from './Components/Private/PrivateRoutes';
 
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
@@ -44,14 +45,9 @@ function App () {
             runOnMount={true} >
 
             <Route
-              path='/login'
-              component={LoginForm}
+              path="/login"
+              render={() => (!LogIn() ? <LoginForm /> : <Redirect to="/" />)}
             />
-            {/* Backoffice */}
-            {/* <Route path="/backoffice" component={
-              LayoutBackoffice
-            } /> */}
-
             <PrivateRoutes path='/backoffice'>
               <LayoutBackoffice/>
             </PrivateRoutes>

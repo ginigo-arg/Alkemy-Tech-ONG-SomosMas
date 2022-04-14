@@ -1,17 +1,17 @@
 import { Formik } from 'formik';
 import { Form, Container, Button } from 'react-bootstrap';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 
 const LoginForm = () => {
   const history = useHistory();
-  const location = useLocation();
-  const from = location.state.from.pathname || { from: { pathname: '/' } };
+  // const location = useLocation();
+  // const from = location.state.from.pathname || { from: { pathname: '/' } };
 
   const LogIn = () => {
     // cambiar luego por la respuesta de la api
     localStorage.setItem('TOKEN', 123456);
-    history.replace(from);
+    history.push('/');
   };
 
   return (
