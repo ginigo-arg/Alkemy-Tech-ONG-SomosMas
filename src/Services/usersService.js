@@ -1,5 +1,5 @@
 import { Get, Post } from './publicApiService';
-import { DELETE_PRIVATE_API, GET_PRIVATE_API, PUT_PRIVATE_API, PATCH_PRIVATE_API } from './privateApiService';
+import { DELETE_PRIVATE_API, PUT_PRIVATE_API, PATCH_PRIVATE_API } from './privateApiService';
 
 const urlUsers = process.env.REACT_APP_API_USERS;
 
@@ -8,7 +8,7 @@ export const GetUsers = () => {
 };
 
 export const GetUsersById = (id) => {
-  return GET_PRIVATE_API(urlUsers, id);
+  return Get(urlUsers, id);
 };
 
 export const PostUsers = (body) => {
