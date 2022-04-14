@@ -9,7 +9,7 @@ import FormImage from '../../assets/img/logo-somos-mas.png';
 import { useLocation } from 'react-router-dom';
 import {
   GET_PRIVATE_API,
-  // Patch,
+  // PATCH_PRIVATE_API,
   // POST_PRIVATE_API,
 } from '../../Services/privateApiService';
 import { validationSchema, convertToBase64 } from './TestimonialsUtils';
@@ -71,7 +71,7 @@ const TestimonialsForm = () => {
           values.image = base64;
           // Función PUT
           // console.log(values);
-          // Patch(url, location.state.id, values);
+          // PATCH_PRIVATE_API(url, location.state.id, values);
           setSubmitting(false);
         } catch (error) {
           setSubmitting(false);
