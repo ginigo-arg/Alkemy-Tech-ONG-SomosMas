@@ -5,8 +5,8 @@ import {
   POST_PRIVATE_API,
 } from './privateApiService';
 
-export const getNews = (id = null) => {
-  const response = GET_PRIVATE_API(process.env.REACT_APP_API_NEWS, id);
+export const getNews = async (id = null) => {
+  const response = await GET_PRIVATE_API(process.env.REACT_APP_API_NEWS, id);
   return response;
 };
 
