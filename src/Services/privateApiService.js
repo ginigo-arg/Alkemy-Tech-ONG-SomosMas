@@ -1,42 +1,40 @@
 import axios from 'axios';
 
 const verifyTokenExist = () => {
+  // Creando el token para la petición
   localStorage.setItem('TOKEN', '12345alkemy');
+
+  // verificando el token
   const token = localStorage.getItem('TOKEN');
+
+  // creando el header en caso de que exista el token
   if (token) {
     return {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
-        Group: 163,
+        // Group: 163,
       },
     };
-  } else {
-    throw new Error('No token exist in LocalStorage');
   }
 };
 
 const config = verifyTokenExist();
 
 export const GET_PRIVATE_API = async (url, id = null) => {
+  let baseURL = `${url}`;
+
   if (id) {
-    console.log(url, id);
-    const data = await axios.get(`${url}/${id}`, config);
-
-    const res = data.data ?? new Error(data.message);
-
-    return res;
+    baseURL = `${url}/${id}`;
   }
 
-  if (!id) {
-    const data = await axios.get(url, config);
+  const { data } = await axios.get(baseURL, config);
 
-    const res = data.data.data ?? new Error(data.message);
+  // si la petición fue exitosa...
+  if (data.success) return data.data;
 
-    return res;
-  }
-
-  return new Error('Error en la petición');
+  // si la petición no fue exitosa...
+  throw new Error('No se pudieron obtener los datos');
 };
 
 export const PUT_PRIVATE_API = async (url, id, body, config) => {

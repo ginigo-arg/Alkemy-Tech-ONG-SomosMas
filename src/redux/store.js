@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import authReducer from './auth/authReducer';
 import novedadesReducer from './novedades/reducer';
 
-export const store = createStore(
+const store = createStore(
   combineReducers({
     novedades: novedadesReducer,
     auth: authReducer,
@@ -11,3 +11,5 @@ export const store = createStore(
   }),
   applyMiddleware(thunk),
 );
+
+export default store;

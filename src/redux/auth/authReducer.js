@@ -7,29 +7,29 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
-  case LOGIN_USER:
-    return {
-      auth: action.payload,
-    };
+    case LOGIN_USER:
+      return {
+        auth: action.payload,
+      };
 
-  case LOGOUT_USER:
-    return {
-      auth: initialState,
-    };
+    case LOGOUT_USER:
+      return {
+        auth: initialState,
+      };
 
-  case CREATE_USER:
-    return {
-      auth: action.payload,
-    };
+    case CREATE_USER:
+      return {
+        auth: action.payload,
+      };
 
-  case LOGIN_USER_FAILED:
-    return Swal.fire(action.payload);
+    case LOGIN_USER_FAILED:
+      return Swal.fire(action.payload);
 
-  case CREATE_USER_FAILED:
-    return Swal.fire(action.payload);
+    case CREATE_USER_FAILED:
+      return Swal.fire(action.payload);
 
-  default:
-    return state;
+    default:
+      return state;
   }
 };
 
