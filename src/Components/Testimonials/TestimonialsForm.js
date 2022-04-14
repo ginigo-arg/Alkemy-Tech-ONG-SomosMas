@@ -13,6 +13,7 @@ import {
   // POST_PRIVATE_API,
 } from '../../Services/privateApiService';
 import { validationSchema, convertToBase64 } from './TestimonialsUtils';
+import { alertService } from '../../Services/alertService';
 
 const url = process.env.REACT_APP_API_TESTIMONIALS;
 
@@ -23,9 +24,14 @@ const TestimonialsForm = () => {
 
   useEffect(async () => {
     if (location.state) {
-      setEdit(true);
-      const { data } = await GET_PRIVATE_API(url, location.state.id);
-      setTestimonials(data);
+      try {
+        setEdit(true);
+        const { data } = await GET_PRIVATE_API(url, location.state.id);
+        setTestimonials(data);
+      } catch (error) {
+        setEdit(false);
+        alertService('error', error);
+      }
     }
   }, []);
 
@@ -48,19 +54,29 @@ const TestimonialsForm = () => {
     validationSchema: validationSchema,
     onSubmit: async (values, { setSubmitting }) => {
       if (!edit) {
-        const base64 = await convertToBase64(values.image);
-        values.image = base64;
-        // Función POST
-        // console.log(values);
-        // POST_PRIVATE_API(url, values);
-        setSubmitting(false);
+        try {
+          const base64 = await convertToBase64(values.image);
+          values.image = base64;
+          // Función POST
+          // console.log(values);
+          // POST_PRIVATE_API(url, values);
+          setSubmitting(false);
+        } catch (error) {
+          setSubmitting(false);
+          alertService('error', error);
+        }
       } else {
-        const base64 = await convertToBase64(values.image);
-        values.image = base64;
-        // Función PUT
-        // console.log(values);
-        // Patch(url, location.state.id, values);
-        setSubmitting(false);
+        try {
+          const base64 = await convertToBase64(values.image);
+          values.image = base64;
+          // Función PUT
+          // console.log(values);
+          // Patch(url, location.state.id, values);
+          setSubmitting(false);
+        } catch (error) {
+          setSubmitting(false);
+          alertService('error', error);
+        }
       }
     },
   });
