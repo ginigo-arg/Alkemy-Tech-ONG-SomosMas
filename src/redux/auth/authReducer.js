@@ -1,5 +1,5 @@
 import { LOGIN_USER, LOGOUT_USER, CREATE_USER, LOGIN_USER_FAILED, CREATE_USER_FAILED } from './authTypes';
-import Swal from 'sweetalert2';
+import { alertService } from '../../Services/alertService';
 
 const initialState = {
   auth: false,
@@ -13,6 +13,7 @@ const authReducer = (state = initialState, action) => {
       };
 
     case LOGOUT_USER:
+      localStorage.clear();
       return {
         auth: initialState,
       };
@@ -23,10 +24,10 @@ const authReducer = (state = initialState, action) => {
       };
 
     case LOGIN_USER_FAILED:
-      return Swal.fire(action.payload);
+      return alertService('error', action.payload);
 
     case CREATE_USER_FAILED:
-      return Swal.fire(action.payload);
+      return alertService('error', action.payload);
 
     default:
       return state;
