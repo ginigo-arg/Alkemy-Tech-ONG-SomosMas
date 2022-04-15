@@ -15,23 +15,25 @@ const IndexContact = () => {
       <SectionTitles title={'Contacto'} backgroundImg={banner} />
       <Container className="mt-3">
         <Row>
-          <Col md={12} className="mb-3">
+          <Col md={12} className="mb-2">
             <h5>
               Estamos aquí para ti, utiliza cualquiera de nuestros medios de
               contacto.
             </h5>
+            <hr />
           </Col>
-
           <div id="contactOng" className="mb-2">
             <ContactInformation />
           </div>
-          <Col
-            md={12}
-            className="d-none d-sm-none d-md-block d-flex justify-content-center align-items-center"
-          >
-            <ContactMap />
-          </Col>
-          <h5 className="text-black mt-2">Escríbenos</h5>
+          <div className="d-none">
+            <Col
+              md={12}
+              className="d-none d-sm-none d-md-block d-flex justify-content-center align-items-center mb-2"
+            >
+              <ContactMap />
+            </Col>
+          </div>
+          <h5 className="text-black">Escríbenos</h5>
           <Col md={8}>
             <Row>
               <Col md={12}>
@@ -48,7 +50,7 @@ const IndexContact = () => {
             md={4}
             className="d-block d-sm-block d-md-none d-flex justify-content-center"
           >
-            <div id="socialMedia" className="mb-2">
+            <div id="socialMediaMovile" className="mb-2">
               <SocialMedia layoutVertical={false} showTitle={false} />
             </div>
           </Col>

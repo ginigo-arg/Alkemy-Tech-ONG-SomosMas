@@ -26,6 +26,7 @@ export const Post = async (url, body) => {
     });
     return response.data;
   } catch (err) {
-    console.log(err);
+    return err;
+    // console.log(err);
   }
 };

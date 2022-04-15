@@ -1,5 +1,5 @@
 import React from 'react';
-import './ContactMap.css';
+import './Contact.css';
 
 const ContactMap = ({ layoutVertical = false }) => {
   return (
