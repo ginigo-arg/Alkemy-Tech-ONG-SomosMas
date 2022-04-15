@@ -15,7 +15,7 @@ const OrganizationIndex = () => (
           <Card.Link href="#">Editar Datos de Organicación</Card.Link>
         </Card.Body>
       </Card>
-      <Card style={{ width: '20rem' }}>
+      <Card style={{ width: '20rem', height: 'fit-content' }}>
         <Card.Body>
           <Card.Title>Editar Sliders</Card.Title>
           <Card.Text>
