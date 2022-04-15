@@ -30,10 +30,12 @@ const Home = () => {
   return (
     <>
       <HomePrincipalContent data={info} />
-      <Container className="mb-5">
+      <Container className="d-flex fle  x-column justify-content-center align-items-center mt-5">
         <ProgressSpinner state={isLoading} />
         <Slider slides={sliders} />
-        <h3 className="fw-bold text-uppercase text-center fs-3 mb-3">Últimas Novedades</h3>
+        {
+          news.length > 0 && <h3 className="fw-bold text-uppercase text-center fs-3 mb-3">Últimas Novedades</h3>
+        }
 
         <Container className="d-flex flex-row gap-4 justify-content-center align-items-center mt-5">
           {
