@@ -1,52 +1,47 @@
 import '../CardListStyles.css';
-import { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
-import { getNews } from '../../Services/NewsService';
+import { Container, Card, Button } from 'react-bootstrap';
 import SectionTitles from '../SectionTitles/SectionTitles';
-import Card from '../Card/Card';
-import { useHistory } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import ProgressSpinner from '../Progress/ProgressSpinner';
+import { getNews } from '../../Services/NewsService';
+import { alertService } from '../../Services/alertService';
 
 const NewsList = () => {
-  const [news, setNews] = useState(false);
-  const history = useHistory();
+  const [isLoading, setIsLoading] = useState(true);
+  const [news, setNews] = useState([]);
 
-  useEffect(async () => {
-    const res = await getNews();
-    setNews(res);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getNews();
+      console.log(data);
+      setIsLoading(false);
+      setNews(data);
+    };
+    fetchData().catch((e) => alertService('error', e.message));
   }, []);
 
   return (
     <>
       <SectionTitles title="Novedades" />
-      {!news
-        ? <div className="d-flex justify-content-center my-5">
-          <ProgressSpinner />
-        </div>
-        : <Container>
-          <ul className="my-5 p-0 d-flex flex-wrap">
-            {news.length > 0
-              ? (
-                news.map((element) => {
-                  return (
-                    <div
-                      key={element.id}
-                      onClick={() => history.push(`/novedades/${element.id}`)}
-                    >
-                      <Card
-                        title={element.name}
-                        image={element.image}
-                      />
-                    </div>
-                  );
-                })
-              )
-              : (
-                <p className="w-100 my-5 text-center display-6">No hay novedades</p>
-              )}
-          </ul>
-        </Container>
-      }
+      <Container className="d-flex flex-row gap-4 justify-content-center align-items-center mt-5">
+        <ProgressSpinner state={isLoading} />
+        {
+          news.map((item, index) => (
+            <div key={index}>
+              <Card style={{ width: '20rem' }}>
+                <Card.Img variant="top" src={item.image} />
+                <Card.Body>
+                  <Card.Title>{item.name}</Card.Title>
+                  <Card.Text>
+                    <span dangerouslySetInnerHTML={{ __html: `${item.content}` }} />
+                  </Card.Text>
+                  <Button variant="primary">Go somewhere</Button>
+                </Card.Body>
+              </Card>
+            </div>
+          ))
+        }
+      </Container>
     </>
   );
 };
