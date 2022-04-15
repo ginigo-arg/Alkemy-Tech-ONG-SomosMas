@@ -18,6 +18,7 @@ const MESSAGE_PATCH = 'Lo sentimos, hubo un error al editar el contacto.';
 const MESSAGE_POST = 'Lo sentimos, hubo un error al agregar un nuevo contacto.';
 const MESSAGE_DELETE = 'Lo sentimos, hubo un error al eliminar el contacto.';
 
+// Back
 export const getContacts = async (id = null) => {
   try {
     return await GET_PRIVATE_API(urlContact, id);
@@ -60,15 +61,16 @@ export const deleteContacts = async (id) => {
 
 // Front
 export const SEND_EMAIL = async (DATA) => {
-  const response = await Post(
-    process.env.REACT_APP_API_CONTACTS,
-    // eslint-disable-next-line comma-dangle
-    DATA
-  );
-  return response;
+  const response = await Post(process.env.REACT_APP_API_CONTACTS, DATA);
+  // console.log(response);
+  if (response.data) {
+    return response;
+  } else {
+    alertService('error', 'Ha ocurrido un error al intentar enviar el correo');
+    return response.error;
+  }
 };
 
-// mirar de donde saco el email
 export const ORGANIZATION_CONTACT_DATA = async () => {
   const response = await Get(process.env.REACT_APP_API_ORGANIZATION);
   // console.log(JSON.stringify(response.data));
