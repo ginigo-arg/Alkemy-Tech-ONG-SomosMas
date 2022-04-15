@@ -52,7 +52,7 @@ const Sidebar = () => {
               Testimonios
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="#action5">
+            <Link to="/backoffice/organization">
               <GiOrganigram className='icon' fontSize="25px" color="black" />
               Organizacion
             </Link></div><hr></hr>
