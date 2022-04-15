@@ -15,7 +15,7 @@ const NewDetail = () => {
 
   useEffect(async () => {
     const res = await getNews(id);
-    setNewDetail(res.data);
+    setNewDetail(res);
   }, []);
 
   return (

@@ -2,11 +2,13 @@ import '../CardListStyles.css';
 import { Container, Card, Button } from 'react-bootstrap';
 import SectionTitles from '../SectionTitles/SectionTitles';
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import ProgressSpinner from '../Progress/ProgressSpinner';
 import { getNews } from '../../Services/NewsService';
 import { alertService } from '../../Services/alertService';
 
 const NewsList = () => {
+  const history = useHistory();
   const [isLoading, setIsLoading] = useState(true);
   const [news, setNews] = useState([]);
 
@@ -35,7 +37,10 @@ const NewsList = () => {
                   <Card.Text>
                     <span dangerouslySetInnerHTML={{ __html: `${item.content}` }} />
                   </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Button
+                    variant="primary"
+                    onClick={() => history.push(`/novedades/${item.id}`)}
+                  >Go somewhere</Button>
                 </Card.Body>
               </Card>
             </div>
