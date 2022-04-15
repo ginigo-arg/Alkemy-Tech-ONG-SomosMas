@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getActivities } from '../../Services/actividadesService';
 import '../CardListStyles.css';
+import ParserHtml from '../Parser/Parser';
 
 const ActivitiesList = () => {
-  const activitiesMock = [
-    { id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba' },
-    { id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba' },
-    { id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba' },
-  ];
+  const [actividades, setActividades] = useState([]);
+  useEffect(async () => {
+    const activities = await getActivities();
+    console.log('activities', activities);
+    setActividades(activities);
+  }, []);
 
   return (
     <div>
       <ul className="list-container">
-        {activitiesMock.length > 0
+        {actividades.length > 0
           ? (
-            activitiesMock.map((activity) => {
+            actividades.map((activity) => {
               return (
                 <li className="card-info" key={activity.id}>
                   <h3>{activity.name}</h3>
-                  <p>{activity.description}</p>
+                  <ParserHtml text={activity.description} />
                 </li>
               );
             })

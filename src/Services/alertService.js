@@ -18,6 +18,6 @@ export const alertService = async (type, message) => {
     text: message,
     icon: type,
     confirmButtonText: 'Cerrar',
-    timer: 2000,
+    timer: 5000,
   });
 };
