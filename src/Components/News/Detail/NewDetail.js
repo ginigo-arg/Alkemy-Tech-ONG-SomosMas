@@ -1,22 +1,48 @@
-import SectionTitles from '../../SectionTitles/SectionTitles';
+import { Suspense, useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
-
-// Imagen y texto para simular respuesta de api
-import Logo from '../../../assets/img/LOGO-SOMOSMAS.png';
+import { useParams } from 'react-router-dom';
+import { useScreen } from '../../../hooks/useScreen';
+import { getNews } from '../../../Services/NewsService';
+import SectionTitles from '../../SectionTitles/SectionTitles';
+import ParserHtml from '../../Parser/Parser';
+import Comments from './Comments';
+import ProgressSpinner from '../../Progress/ProgressSpinner';
 import LazyImg from '../../Lazyload/LazyImg';
-const content =
-  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.';
 
-const NewDetail = ({ title = 'Título de la novedad' }) => {
+const NewDetail = () => {
+  const { isScreen, fromRef } = useScreen();
+  const [newDetail, setNewDetail] = useState(false);
+  const { id } = useParams();
+
+  useEffect(async () => {
+    const res = await getNews(id);
+    setNewDetail(res);
+  }, []);
+
   return (
     <>
-      <SectionTitles title={title} />
-      <Container>
-        <LazyImg className="my-4" image={Logo} alt='image principa'/>
-        <p className="px-2" style={{ textAlign: 'justify' }}>
-          {content}
-        </p>
-      </Container>
+      {!newDetail
+        ? <div className="d-flex justify-content-center my-5">
+          <ProgressSpinner />
+        </div>
+        : <>
+          <SectionTitles title={newDetail.name} />
+          <Container className="d-flex justify-content-center flex-wrap">
+            <LazyImg image={newDetail.image} alt="Imagen de la novedad" />
+            <div className="mt-5 px-2 w-100" style={{ textAlign: 'justify' }}>
+              <ParserHtml text={newDetail.content} />
+            </div>
+            <hr />
+
+            {/* COMENTARIOS */}
+            <div ref={fromRef} className="w-100">
+              <Suspense>
+                { isScreen ? <Comments /> : null }
+              </Suspense>
+            </div>
+          </Container>
+        </>
+      }
     </>
   );
 };

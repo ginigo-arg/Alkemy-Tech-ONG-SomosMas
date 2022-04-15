@@ -9,7 +9,7 @@ import UsersForm from '../../Components/Users/UsersForm';
 import SchoolCampaign from '../../Campaigns/School/SchoolCampaign';
 import ToysCampaign from '../../Campaigns/Toys/ToysCampaign';
 
-import MembersForm from '../../Components/Members/MembersForm';
+import MembersForm from '../../Components/BackOffice/Members/MembersForm';
 import ProjectsForm from '../../Components/BackOffice/Projects/ProjectsForm';
 import ProjectsList from '../../Components/BackOffice/Projects/ProjectList';
 
