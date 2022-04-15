@@ -1,8 +1,10 @@
+import { alertService } from '../../Services/alertService';
 import {
   CREATE_USER,
   DELETE_USER,
   EDIT_USER,
   GET_USER,
+  FALIDED_USER,
 } from './types';
 
 const usersReducer = (state = { users: [] }, action) => {
@@ -34,6 +36,10 @@ const usersReducer = (state = { users: [] }, action) => {
 
     case GET_USER:
       return action.payload;
+
+    case FALIDED_USER: {
+      return alertService('error', action.payload);
+    }
 
     default:
       return state;
