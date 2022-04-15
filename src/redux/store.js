@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import novedadesReducer from './novedades/reducer';
-
+import { usReducer } from './Nosotros/reducers';
 export const store = createStore(
   combineReducers({
     novedades: novedadesReducer,
-    // ...other reducers
+    usAbout: usReducer,
   }),
   applyMiddleware(thunk),
 );
