@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { homeInfo, homeNews, homeSlides } from '../../Services/allHomeMethods';
 import HomePrincipalContent from './HomeInfo';
 import NewCard from '../News/NewsCard';
+import { alertService } from '../../Services/alertService';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +24,7 @@ const Home = () => {
       setIsLoading(false);
     };
 
-    getData().catch((error) => console.log(error));
+    getData().catch((error) => alertService('error', error));
   }, []);
 
   return (
