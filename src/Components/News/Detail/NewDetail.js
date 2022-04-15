@@ -1,11 +1,12 @@
 import { Suspense, useEffect, useState } from 'react';
-import { Container, Spinner } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useScreen } from '../../../hooks/useScreen';
 import { getNews } from '../../../Services/NewsService';
 import SectionTitles from '../../SectionTitles/SectionTitles';
 import ParserHtml from '../../Parser/Parser';
 import Comments from './Comments';
+import ProgressSpinner from '../../Progress/ProgressSpinner';
 
 const NewDetail = () => {
   const { isScreen, fromRef } = useScreen();
@@ -20,7 +21,9 @@ const NewDetail = () => {
   return (
     <>
       {!newDetail
-        ? <Spinner />
+        ? <div className="d-flex justify-content-center my-5">
+          <ProgressSpinner />
+        </div>
         : <>
           <SectionTitles title={newDetail.name} />
           <Container className="d-flex justify-content-center flex-wrap">

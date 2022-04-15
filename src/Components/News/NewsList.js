@@ -1,10 +1,11 @@
 import '../CardListStyles.css';
 import { useEffect, useState } from 'react';
-import { Container, Spinner } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { getNews } from '../../Services/NewsService';
 import SectionTitles from '../SectionTitles/SectionTitles';
 import Card from '../Card/Card';
 import { useHistory } from 'react-router-dom';
+import ProgressSpinner from '../Progress/ProgressSpinner';
 
 const NewsList = () => {
   const [news, setNews] = useState(false);
@@ -19,7 +20,9 @@ const NewsList = () => {
     <>
       <SectionTitles title="Novedades" />
       {!news
-        ? <Spinner />
+        ? <div className="d-flex justify-content-center my-5">
+          <ProgressSpinner />
+        </div>
         : <Container>
           <ul className="my-5 p-0 d-flex flex-wrap">
             {news.length > 0
