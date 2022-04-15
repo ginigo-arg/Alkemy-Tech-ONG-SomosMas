@@ -30,7 +30,7 @@ const Home = () => {
   return (
     <>
       <HomePrincipalContent data={info} />
-      <Container className="d-flex fle  x-column justify-content-center align-items-center mt-5">
+      <Container className="d-flex flex-column justify-content-center align-items-center mt-5">
         <ProgressSpinner state={isLoading} />
         <Slider slides={sliders} />
         {

@@ -7,6 +7,7 @@ import SectionTitles from '../../SectionTitles/SectionTitles';
 import ParserHtml from '../../Parser/Parser';
 import Comments from './Comments';
 import ProgressSpinner from '../../Progress/ProgressSpinner';
+import LazyImg from '../../Lazyload/LazyImg';
 
 const NewDetail = () => {
   const { isScreen, fromRef } = useScreen();
@@ -27,7 +28,7 @@ const NewDetail = () => {
         : <>
           <SectionTitles title={newDetail.name} />
           <Container className="d-flex justify-content-center flex-wrap">
-            <img className="mt-5 mb-4" src={newDetail.image} alt="Imagen de la novedad" />
+            <LazyImg image={newDetail.image} alt="Imagen de la novedad" />
             <div className="mt-5 px-2 w-100" style={{ textAlign: 'justify' }}>
               <ParserHtml text={newDetail.content} />
             </div>
