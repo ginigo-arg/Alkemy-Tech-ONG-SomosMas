@@ -1,12 +1,11 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable multiline-ternary */
 import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { SEND_EMAIL } from '../../Services/contactService';
-import {
-  BsFillTelephoneFill,
-  BsPersonCircle,
-} from 'react-icons/bs';
+import { alertService } from '../../Services/alertService';
+import { BsFillTelephoneFill, BsPersonCircle } from 'react-icons/bs';
 import { GiEnvelope } from 'react-icons/gi';
 import { AiOutlineMail } from 'react-icons/ai';
 import { BiMessageDetail } from 'react-icons/bi';
@@ -22,8 +21,12 @@ const ContactSchema = Yup.object({
   email: Yup.string()
     .email('Dirección de correo electrónico no válida')
     .required('Campo requerido'),
-  phone: Yup.string().required('Campo requerido')
-    .matches(/^[0-9]\d{7,11}$/, 'Debe ser un número y contener una longitud mínima de 8 caracteres y maximo 12 caracteres'),
+  phone: Yup.string()
+    .required('Campo requerido')
+    .matches(
+      /^[0-9]\d{7,11}$/,
+      'Debe ser un número y contener una longitud mínima de 8 caracteres y maximo 12 caracteres'
+    ),
   message: Yup.string().required('Campo requerido'),
 });
 
@@ -39,21 +42,25 @@ const ContactForm = () => {
     },
     validationSchema: ContactSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      sendData();
+      // alert(JSON.stringify(values, null, 2));
+      sendData(values);
       formik.resetForm();
     },
   });
 
   const simulateNetworkRequest = () => {
-    return new Promise((resolve) => setTimeout(resolve, 2000));
+    return new Promise((resolve) => setTimeout(resolve, 5000));
   };
 
-  const sendData = async () => {
+  const sendData = async (dataForm) => {
     setLoading(true);
-    const data = await SEND_EMAIL();
-    console.log(data);
-    if (data) setLoading(false);
+    simulateNetworkRequest();
+    const data = await SEND_EMAIL(dataForm);
+    // console.log('soy la respuesta del envio',data);
+    if (data) {
+      alertService('success', 'Se ha enviado el mensaje');
+    }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -71,7 +78,7 @@ const ContactForm = () => {
   // };
 
   return (
-    <Form onSubmit={formik.handleSubmit} >
+    <Form onSubmit={formik.handleSubmit}>
       <Row>
         <div id="msgContactSubmit" className="hidden"></div>
         <span>
@@ -104,7 +111,12 @@ const ContactForm = () => {
           ) : null}
         </Form.Group>
 
-        <Form.Group as={Col} md={8} controlId="formGridEmail" className="mt-2 mb-2">
+        <Form.Group
+          as={Col}
+          md={8}
+          controlId="formGridEmail"
+          className="mt-2 mb-2"
+        >
           <Form.Label className="visually-hidden">E-mail</Form.Label>
           <InputGroup>
             <InputGroup.Text id="basic-addon2" className="bg-primary">
@@ -130,7 +142,12 @@ const ContactForm = () => {
           ) : null}
         </Form.Group>
 
-        <Form.Group as={Col} md={4} controlId="formGridPhone" className="mt-2 mb-2">
+        <Form.Group
+          as={Col}
+          md={4}
+          controlId="formGridPhone"
+          className="mt-2 mb-2"
+        >
           <Form.Label className="visually-hidden">Teléfono</Form.Label>
           <InputGroup>
             <InputGroup.Text id="basic-addon3" className="bg-primary">
@@ -196,15 +213,13 @@ const ContactForm = () => {
             id="submit"
             className="text-white"
           >
-            {isLoading
-              ? (
-                'Sending...'
-              )
-              : (
-                <>
-                  <GiEnvelope className="text-white" /> Enviar
-                </>
-              )}
+            {isLoading ? (
+              'Sending...'
+            ) : (
+              <>
+                <GiEnvelope className="text-white" /> Enviar
+              </>
+            )}
           </Button>
         </Col>
       </Row>
