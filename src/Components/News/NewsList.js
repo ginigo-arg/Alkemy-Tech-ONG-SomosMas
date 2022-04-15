@@ -28,7 +28,7 @@ const NewsList = () => {
       <Container className="d-flex flex-row gap-4 justify-content-center align-items-center mt-5">
         <ProgressSpinner state={isLoading} />
         {
-          news && news.map((item, index) => (
+          news.length > 0 && news.map((item, index) => (
             <div key={index}>
               <NewCard newItem={item} />
             </div>
