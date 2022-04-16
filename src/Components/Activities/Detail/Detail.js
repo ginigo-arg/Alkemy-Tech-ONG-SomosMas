@@ -1,53 +1,74 @@
 import React, { useState, useEffect } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Alert } from 'react-bootstrap';
 import { GET_ACTIVITIES_PUBLIC } from '../../../Services/actividadesService';
 import { alertService } from '../../../Services/alertService';
+import { useParams } from 'react-router-dom';
 import ProgressSpinner from '../../Progress/ProgressSpinner';
+import LazyImg from '../../Lazyload/LazyImg';
 import SectionTitles from '../../SectionTitles/SectionTitles';
+import ParserHtml from '../../Parser/Parser';
 
 const Detail = (props) => {
-  const [activity, setActivity] = useState({});
+  // const [activityDetail, setActivityDetail] = useState(false);
+  const { id } = useParams();
+
+  const [activityDetail, setActivityDetail] = useState([]);
   const [ejecuteQuery, setEjecuteQuery] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const msnError = 'Ocurrio un problema al cargar la actividad.';
 
   const simulateNetworkRequest = (time = 10000) => {
     setLoading(true);
     return new Promise((resolve) => setTimeout(resolve, time) && setLoading(false));
   };
-
   // LISTADO ACTIVIDADES
   useEffect(() => {
-    const fetchActividades = async (id = null) => {
+    const fetchActividades = async () => {
       setLoading(true);
-      const response = await GET_ACTIVITIES_PUBLIC();
-      let msn = '';
+      const response = await GET_ACTIVITIES_PUBLIC(id);
       if (response.success) {
-        if (id) {
-          msn = `Actividad (${id})`;
-          setActivity(response.data);
-        } else {
-          msn = 'Lista de Actividades';
-        }
+        setActivityDetail(response.data);
       } else {
-        alertService('error', 'Ocurrio un problema al cargar la lista de actividades');
+        alertService('error', msnError);
       }
-      console.log(msn, response.data);
+      console.log('Lista de Actividades', response);
       setEjecuteQuery(false);
-      setLoading(false);
     };
     simulateNetworkRequest();
     if (ejecuteQuery) {
       fetchActividades();
-      console.log(...activity);
+      console.log('actividades stat', activityDetail);
     }
+    setLoading(false);
   }, [ejecuteQuery]);
+
   return (
     <>
-      <SectionTitles title={props.title} backgroundImg={props.backgroundImg} />
-      <Container>
-        { loading && <div className='d-flex justify-content-center align-items-center fw-5 h-100'>
-          <ProgressSpinner state={loading} dimention={10} />
-        </div>
+      <SectionTitles title={activityDetail.name ?? 'Detalle actividad'} />
+      <Container className='mt-3'>
+        {loading
+          ? <div className='d-flex justify-content-center my-5'>
+            <ProgressSpinner state={loading} dimention={10} />
+          </div>
+          : <>
+            {
+              activityDetail.id
+                ? <>
+                  <div>
+                    <LazyImg image={activityDetail.image} alt='Imagen de la novedad' />
+                  </div>
+                  <div className='mt-5 px-2 h-100 w-100' style={{ textAlign: 'justify' }}>
+                    <ParserHtml text={activityDetail.description} />
+                  </div></>
+                : <Alert key={'alert_actividad_' + id} className='h-100 w-100 fs-1 bg-light d-flex justify-content-center align-items-center' style={{ minHeight: '300px' }} variant='light'>
+                  <div>
+                    {msnError + ' '}
+                    <br /><br />
+                    <Alert.Link href='/actividades' className="link-primary">Regresar a actividades</Alert.Link>
+                  </div>
+                </Alert>
+            }
+          </>
         }
       </Container>
     </>
