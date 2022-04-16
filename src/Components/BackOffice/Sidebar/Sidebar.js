@@ -52,7 +52,7 @@ const Sidebar = () => {
               Testimonios
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="#action5">
+            <Link to="/backoffice/organization">
               <GiOrganigram className='icon' fontSize="25px" color="black" />
               Organizacion
             </Link></div><hr></hr>
@@ -62,7 +62,7 @@ const Sidebar = () => {
               Slides
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/create-user">
+            <Link to="/backoffice/users">
               <FaUserCircle className='icon' fontSize="25px" color="orange" />
               Usuarios
             </Link></div><hr></hr>

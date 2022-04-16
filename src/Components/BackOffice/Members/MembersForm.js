@@ -2,21 +2,19 @@ import { useEffect, useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { memberSchemaValidation } from './validation/memberSchema';
-import { SocialFormControl } from './validation/SocialFormControl';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import { createMember, editMember, getMember } from '../../../Services/MemberService';
 import Spinner from '../../Spinner/Spinner';
+import { convertToBase64 } from '../../../Services/base64Helper';
 
 const MembersForm = () => {
   const location = useLocation();
-  const [edit, setEdit] = useState(false);
   const [members, setMembers] = useState(false);
 
   useEffect(async () => {
     if (location.state) {
-      setEdit(true);
       const { data } = await getMember(location.state.id);
       setMembers(data);
     }
@@ -34,19 +32,19 @@ const MembersForm = () => {
                 initialValues={{
                   name: members.name || '',
                   description: members.description || '',
-                  photo: members.image || '',
-                  social: {
-                    facebook: members.facebookUrl || '',
-                    twitter: members.twitterUrl || '',
-                    instagram: members.instagramUrl || '',
-                  },
+                  image: members.image || '',
+                  facebookUrl: members.facebookUrl || '',
+                  linkedinUrl: members.linkedinUrl || '',
                 }}
-                onSubmit={(values, { setSubmitting }) => {
-                  if (!edit) {
-                    setSubmitting(false);
+                onSubmit={async (values, { setSubmitting }) => {
+                  setSubmitting(false);
+
+                  const base64 = await convertToBase64(values.image);
+                  values.image = base64;
+                  console.log(values);
+                  if (!location.state) {
                     createMember(values);
                   } else {
-                    setSubmitting(false);
                     editMember(values);
                   }
                 }}
@@ -94,39 +92,47 @@ const MembersForm = () => {
 
                     <Form.Group className='mb-4'>
                       <Form.Label>Redes Sociales:</Form.Label>
-                      <SocialFormControl
-                        values={values}
-                        handleChange={handleChange}
-                        socialNet='facebook'
-                        errors={errors}
+
+                      <Form.Control
+                        className="my-2"
+                        type="text"
+                        value={values.facebookUrl}
+                        placeholder='Facebook Url'
+                        name='facebookUrl'
+                        onChange={handleChange}
+                        isInvalid={errors.facebookUrl}
                       />
-                      <SocialFormControl
-                        values={values}
-                        handleChange={handleChange}
-                        socialNet='twitter'
-                        errors={errors}
+                      <Form.Control.Feedback type="invalid">
+                        {errors.facebookUrl}
+                      </Form.Control.Feedback>
+
+                      <Form.Control
+                        className="my-2"
+                        type="text"
+                        value={values.linkedinUrl}
+                        placeholder='Linkedin Url'
+                        name='linkedinUrl'
+                        onChange={handleChange}
+                        isInvalid={errors.linkedinUrl}
                       />
-                      <SocialFormControl
-                        values={values}
-                        handleChange={handleChange}
-                        socialNet='instagram'
-                        errors={errors}
-                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.linkedinUrl}
+                      </Form.Control.Feedback>
                     </Form.Group>
 
                     <Form.Group className='mb-4'>
                       <Form.Label>Foto:</Form.Label>
                       <Form.Control
-                        name="photo"
+                        name="image"
                         type="file"
-                        onChange={e => setFieldValue('photo', e.currentTarget.files[0])}
-                        isInvalid={!!errors.photo}
+                        onChange={e => setFieldValue('image', e.currentTarget.files[0])}
+                        isInvalid={!!errors.image}
                       />
-                      <Form.Control.Feedback type="invalid">{errors.photo}</Form.Control.Feedback>
+                      <Form.Control.Feedback type="invalid">{errors.image}</Form.Control.Feedback>
                     </Form.Group>
 
                     <Button type="submit" variant="primary" disabled={isSubmitting}>
-                      {!edit ? 'Agregar miembro' : 'Guardar cambios'}
+                      {!location.state ? 'Agregar miembro' : 'Guardar cambios'}
                     </Button>
 
                   </Form>

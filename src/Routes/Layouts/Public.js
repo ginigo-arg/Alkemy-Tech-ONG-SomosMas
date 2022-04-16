@@ -1,5 +1,5 @@
 import './Layout.css';
-import LandingFooter from '../../Components/Footer/LandingFooter';
+import PublicFooter from '../../Components/Footer/PublicFooter';
 import PublicHeader from '../../Components/Header/PublicHeader';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Actividades from '../../Components/Activities/Actividades';
@@ -9,7 +9,10 @@ import NewDetail from '../../Components/News/Detail/NewDetail';
 import NewsList from '../../Components/News/NewsList';
 import Home from '../../Components/Home';
 import Nosotros from '../../Components/About/Nosotros';
+import UsersList from '../../Components/Users/UsersList';
+import UsersForm from '../../Components/Users/UsersForm';
 import LoginForm from '../../Components/Auth/LoginForm';
+import RegisterForm from '../../Components/Auth/RegisterForm';
 import Error404 from '../../Components/Error404/Error404';
 
 const Layout = ({ match }) => {
@@ -27,15 +30,19 @@ const Layout = ({ match }) => {
             <Route exact path="/actividades/:id" component={Detail} />
             <Route exact path="/contacto" component={IndexContact} />
             <Route exact path="/nosotros" component={Nosotros} />
-            <Route exact path="/novedades/id" component={NewDetail} />
+            <Route exact path="/novedades/:id" component={NewDetail} />
             <Route exact path="/novedades" component={NewsList} />
+            <Route exact path="/usuarios" component={UsersList} />
+            <Route exact path="/usuarios/crear" component={UsersForm} />
+            <Route exact path="/usuarios/editar/:id" component={UsersForm} />
             <Route exact path="/login" component={LoginForm} />
+            <Route exact path="/register" component={RegisterForm} />
             <Route path="*" component={Error404} />
           </Switch>
         </Router>
       </div>
 
-      <LandingFooter />
+      <PublicFooter />
     </div>
   );
 };

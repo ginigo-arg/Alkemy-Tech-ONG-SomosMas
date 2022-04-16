@@ -10,15 +10,15 @@ import {
 import { alertService } from './alertService';
 
 const url = process.env.REACT_APP_API_ACTIVITIES;
-
 const TYPE = 'Error';
-const MESSAGE_GET = 'Lo sentimos, hubo un error al obtener la/las actividades.';
-const MESSAGE_PUT = 'Lo sentimos, hubo un error al editar la/las actividades.';
+
+const MESSAGE_GET = 'Lo sentimos, hubo un error al obtener las actividades.';
+const MESSAGE_PUT = 'Lo sentimos, hubo un error al editar la actividad.';
 const MESSAGE_PATCH = 'Lo sentimos, hubo un error al editar la actividad.';
-const MESSAGE_POST = 'Lo sentimos, hubo un error al agregar una nueva actividad.';
+const MESSAGE_POST = 'Lo sentimos, hubo un error al agregar una nuevo actividad.';
 const MESSAGE_DELETE = 'Lo sentimos, hubo un error al eliminar la actividad.';
 
-export const getActivities = async (id = null) => {
+export const getContacts = async (id = null) => {
   try {
     return await GET_PRIVATE_API(url, id);
   } catch (error) {
