@@ -1,6 +1,5 @@
 import { ACTION_FAILED, CREATE_NOVEDAD, DELETE_NOVEDAD, EDIT_NOVEDAD, GET_NOVEDAD } from './types';
-import { postNews, deleteNews } from '../../Services/NewsService';
-import { GET_PRIVATE_API } from '../../Services/privateApiService';
+import { postNews, deleteNews, getNews, patchNews } from '../../Services/NewsService';
 
 export const CREATE_NOVEDAD_FN = (content) => (dispatch) => {
   try {
@@ -34,7 +33,7 @@ export const DELETE_NOVEDAD_FN = (id) => async (dispatch) => {
 
 export const EDIT_NOVEDAD_FN = (id, content) => (dispatch) => {
   try {
-    const response = postNews(id, content);
+    const response = patchNews(id, content);
     dispatch({
       type: EDIT_NOVEDAD,
       payload: response,
@@ -49,7 +48,7 @@ export const EDIT_NOVEDAD_FN = (id, content) => (dispatch) => {
 
 export const GET_NOVEDAD_FN = (id = null) => (dispatch) => {
   try {
-    const response = GET_PRIVATE_API(`${process.env.REACT_APP_API_NEWS}`, id);
+    const response = getNews(`${process.env.REACT_APP_API_NEWS}`, id);
     console.log(response);
     dispatch({
       type: GET_NOVEDAD,

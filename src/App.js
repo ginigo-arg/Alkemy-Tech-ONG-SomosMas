@@ -33,6 +33,7 @@ function App () {
       damping: 35,
     });
   };
+
   return (
     <div className="App">
       <BrowserRouter>

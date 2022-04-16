@@ -13,10 +13,10 @@ export const orgSchemaValidation = Yup.object().shape({
   name: Yup
     .string()
     .required('El nombre es obligatorio'),
-  shortDescription: Yup
+  short_description: Yup
     .string()
     .required('La descripción breve es obligatoria'),
-  longDescription: Yup
+  long_description: Yup
     .string()
     .required('La descripción detallada es obligatoria'),
   logo: Yup
@@ -27,15 +27,16 @@ export const orgSchemaValidation = Yup.object().shape({
       'Formato de logo no válido',
       checkFileFormat,
     ),
-  social: Yup.object({
-    facebook: Yup.string()
-      .required('Facebook es obligatorio')
-      .url('La URL no es válida'),
-    twitter: Yup.string()
-      .required('Twitter es obligatorio')
-      .url('La URL no es válida'),
-    instagram: Yup.string()
-      .required('Instagram es obligatorio')
-      .url('La URL no es válida'),
-  }),
+  facebook_url: Yup.string()
+    .required('Facebook es obligatorio')
+    .url('La URL no es válida'),
+  twitter_url: Yup.string()
+    .required('Twitter es obligatorio')
+    .url('La URL no es válida'),
+  instagram_url: Yup.string()
+    .required('Instagram es obligatorio')
+    .url('La URL no es válida'),
+  linkedin_url: Yup.string()
+    .required('Linkedin es obligatorio')
+    .url('La URL no es válida'),
 });

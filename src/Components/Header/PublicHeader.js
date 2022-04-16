@@ -18,7 +18,6 @@ const PublicHeader = () => {
     id2 = '/inicio';
   }
   id2 = id2.replace('/', '');
-  console.log(id2);
 
   return (
     <>
