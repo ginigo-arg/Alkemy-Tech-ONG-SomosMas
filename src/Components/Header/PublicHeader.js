@@ -52,13 +52,13 @@ const PublicHeader = () => {
                 : 'No hay menu'}
 
               <NavDropdown title="Campañas" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#">Escuela</NavDropdown.Item>
-                <NavDropdown.Item href="#">Juguetes</NavDropdown.Item>
+                <NavDropdown.Item href="/campaing/schools">Escuela</NavDropdown.Item>
+                <NavDropdown.Item href="/campaing/toys">Juguetes</NavDropdown.Item>
               </NavDropdown>
 
               {Login === 'no'
                 ? (
-                  <Nav.Link href="#" className="login">
+                  <Nav.Link href="/login" className="login">
                     Login
                   </Nav.Link>
                 )
