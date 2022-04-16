@@ -5,12 +5,12 @@ import React, { Suspense } from 'react';
 // import { Counter } from './features/counter/Counter';
 
 import './App.css';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Spinner from './Components/Spinner/Spinner';
 import Error404 from './Components/Error404/Error404';
 import { spring, AnimatedSwitch } from 'react-router-transition';
 import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice';
-import LoginForm, { LogIn } from './Components/Auth/LoginForm';
+import LoginForm from './Components/Auth/LoginForm';
 import PrivateRoutes from './Components/Private/PrivateRoutes';
 
 // import PrivateRoutes from './Components/Private/PrivateRoutes';
@@ -46,7 +46,7 @@ function App () {
 
             <Route
               path="/login"
-              render={() => (!LogIn() ? <LoginForm /> : <Redirect to="/" />)}
+              component={LoginForm}
             />
             <PrivateRoutes path='/backoffice'>
               <LayoutBackoffice/>

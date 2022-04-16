@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Formik } from 'formik';
 import { Form, Container, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
@@ -5,14 +6,10 @@ import * as Yup from 'yup';
 
 const LoginForm = () => {
   const history = useHistory();
-  // const location = useLocation();
-  // const from = location.state.from.pathname || { from: { pathname: '/' } };
-
-  const LogIn = () => {
-    // cambiar luego por la respuesta de la api
-    localStorage.setItem('TOKEN', 123456);
-    history.push('/');
-  };
+  useEffect(() => {
+    const token = localStorage.getItem('TOKEN');
+    if (token) return history.push('/');
+  }, []);
 
   return (
     <Container className="card p-0">
@@ -30,10 +27,9 @@ const LoginForm = () => {
             ),
         })}
         onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+          setSubmitting(false);
+          localStorage.setItem('TOKEN', 123456);
+          history.push('/');
         }}
       >
         {({
@@ -82,7 +78,7 @@ const LoginForm = () => {
                 {errors.password || touched.password}
               </Form.Control.Feedback>
             </Form.Group>
-            <Button variant="primary" type="submit" disabled={isSubmitting} onClick={LogIn}>
+            <Button variant="primary" type="submit" disabled={isSubmitting} >
               Ingresar
             </Button>
           </Form>
