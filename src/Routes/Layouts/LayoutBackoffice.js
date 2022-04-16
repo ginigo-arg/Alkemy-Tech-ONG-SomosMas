@@ -9,7 +9,7 @@ import UsersForm from '../../Components/Users/UsersForm';
 import SchoolCampaign from '../../Campaigns/School/SchoolCampaign';
 import ToysCampaign from '../../Campaigns/Toys/ToysCampaign';
 
-import MembersForm from '../../Components/Members/MembersForm';
+import MembersForm from '../../Components/BackOffice/Members/MembersForm';
 import ProjectsForm from '../../Components/BackOffice/Projects/ProjectsForm';
 import ProjectsList from '../../Components/BackOffice/Projects/ProjectList';
 
@@ -21,6 +21,7 @@ import Categories from '../../Components/Categories/Categories';
 import TableSliders from '../../Components/BackOffice/Sliders/TableSliders';
 import OrganizationForm from '../../Components/BackOffice/Organization/OrganizationForm';
 import ActivitiesList from '../../Components/BackOffice/ActivitiesList/ActivitiesList';
+import OrganizationIndex from '../../Components/BackOffice/Organization/index';
 
 const LayoutBackoffice = () => {
   return (
@@ -133,6 +134,11 @@ const LayoutBackoffice = () => {
                 exact
                 path="/backoffice/members/create"
                 component={MembersForm}
+              />
+              <Route
+                exact
+                path="/backoffice/organization"
+                component={OrganizationIndex}
               />
               <Route
                 exact
