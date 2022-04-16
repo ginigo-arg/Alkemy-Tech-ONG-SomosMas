@@ -3,29 +3,31 @@ import { alertService } from '../../Services/alertService';
 
 const initialState = {
   auth: false,
+  token: null,
+  user: null,
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_USER:
+    case CREATE_USER:
+      localStorage.setItem('token', action.payload.data.token);
+      localStorage.setItem('user', action.payload.data.user);
       return {
-        auth: action.payload,
+        auth: true,
+        token: action.payload.data.token,
+        user: action.payload.data.user,
       };
 
     case LOGOUT_USER:
       localStorage.clear();
       return {
-        auth: initialState,
-      };
-
-    case CREATE_USER:
-      return {
-        auth: action.payload,
+        auth: false,
+        token: null,
+        user: null,
       };
 
     case LOGIN_USER_FAILED:
-      return alertService('error', action.payload);
-
     case CREATE_USER_FAILED:
       return alertService('error', action.payload);
 
