@@ -12,6 +12,8 @@ import Nosotros from '../../Components/About/Nosotros';
 import LoginForm from '../../Components/Auth/LoginForm';
 import RegisterForm from '../../Components/Auth/RegisterForm';
 import Error404 from '../../Components/Error404/Error404';
+import SchoolCampaign from '../../Campaigns/School/SchoolCampaign';
+import ToysCampaing from '../../Campaigns/Toys/ToysCampaign';
 
 const Layout = ({ match }) => {
   const PATH = match.path;
@@ -32,6 +34,9 @@ const Layout = ({ match }) => {
             <Route exact path="/novedades" component={NewsList} />
             <Route exact path="/login" component={LoginForm} />
             <Route exact path="/register" component={RegisterForm} />
+            <Route exact path="/campaing/schools" component={SchoolCampaign} />
+            <Route exact path="/campaing/toys" component={ToysCampaing} />
+
             <Route path="*" component={Error404} />
           </Switch>
         </Router>
