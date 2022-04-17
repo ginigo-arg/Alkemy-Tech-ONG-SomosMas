@@ -11,7 +11,7 @@ const CounterDown = () => {
   let interval = useRef();
 
   const startTimer = () => {
-    const countdownDate = new Date('April 4, 2022 18:00:00').getTime();
+    const countdownDate = new Date('April 25, 2022 18:00:00').getTime();
 
     interval = setInterval(() => {
       const now = new Date().getTime();

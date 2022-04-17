@@ -1,10 +1,11 @@
 import React from 'react';
+import LandingHeader from '../../Components/Header/LandingHeader';
 
 const Header = () => {
   return (
-    <div>
-
-    </div>
+    <header>
+      {LandingHeader}
+    </header>
   );
 };
 

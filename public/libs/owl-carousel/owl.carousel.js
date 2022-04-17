@@ -545,11 +545,11 @@
   Owl.prototype.width = function (dimension) {
     dimension = dimension || Owl.Width.Default;
     switch (dimension) {
-    case Owl.Width.Inner:
-    case Owl.Width.Outer:
-      return this._width;
-    default:
-      return this._width - this.settings.stagePadding * 2 + this.settings.margin;
+      case Owl.Width.Inner:
+      case Owl.Width.Outer:
+        return this._width;
+      default:
+        return this._width - this.settings.stagePadding * 2 + this.settings.margin;
     }
   };
 
@@ -1560,16 +1560,16 @@
   Owl.prototype.op = function (a, o, b) {
     const rtl = this.settings.rtl;
     switch (o) {
-    case '<':
-      return rtl ? a > b : a < b;
-    case '>':
-      return rtl ? a < b : a > b;
-    case '>=':
-      return rtl ? a <= b : a >= b;
-    case '<=':
-      return rtl ? a >= b : a <= b;
-    default:
-      break;
+      case '<':
+        return rtl ? a > b : a < b;
+      case '>':
+        return rtl ? a < b : a > b;
+      case '>=':
+        return rtl ? a <= b : a >= b;
+      case '<=':
+        return rtl ? a >= b : a <= b;
+      default:
+        break;
     }
   };
 

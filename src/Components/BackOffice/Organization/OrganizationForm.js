@@ -4,8 +4,8 @@ import { Formik } from 'formik';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { orgSchemaValidation } from './validation/orgSchemaValidation';
-import { SocialFormControl } from '../Members/validation/SocialFormControl';
 import Spinner from '../../Spinner/Spinner';
+import { SocialFormControl } from './validation/SocialFormControl';
 
 const OrganizationForm = () => {
   const [dataOrg, setDataOrg] = useState(false);
@@ -13,7 +13,17 @@ const OrganizationForm = () => {
   useEffect(async () => {
     // Petición GET de Organization
     // const { data } = await getDataOrg();
-    setDataOrg(/* data */);
+    // REEMPLAZAR LUEGO
+    setDataOrg({
+      name: '',
+      short_description: '',
+      long_description: '',
+      logo: '',
+      facebook_url: '',
+      linkedin_url: '',
+      instagram_url: '',
+      twitter_url: '',
+    });
   }, []);
 
   return (
@@ -26,14 +36,13 @@ const OrganizationForm = () => {
             <Formik
               initialValues={{
                 name: dataOrg.name || '',
-                shortDescription: dataOrg.shortDescription || '',
-                longDescription: dataOrg.longDescription || '',
-                logo: dataOrg.logo || null,
-                social: {
-                  facebook: dataOrg.facebook_url || '',
-                  twitter: dataOrg.twitter_url || '',
-                  instagram: dataOrg.instagram_url || '',
-                },
+                short_description: dataOrg.short_description || '',
+                long_description: dataOrg.long_description || '',
+                logo: dataOrg.logo || '',
+                facebook_url: dataOrg.facebook_url || '',
+                linkedin_url: dataOrg.linkedin_url || '',
+                instagram_url: dataOrg.instagram_url || '',
+                twitter_url: dataOrg.twitter_url || '',
               }}
               onSubmit={(values, { setSubmitting }) => {
                 console.log(values);
@@ -69,50 +78,34 @@ const OrganizationForm = () => {
                     <Form.Label>Descripción Breve:</Form.Label>
                     <Form.Control
                       type="text"
-                      name="shortDescription"
-                      value={values.shortDescription}
+                      name="short_description"
+                      value={values.short_description}
                       onChange={handleChange}
-                      isInvalid={!!errors.shortDescription}
+                      isInvalid={!!errors.short_description}
                     />
-                    <Form.Control.Feedback type="invalid">{errors.shortDescription}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">{errors.short_description}</Form.Control.Feedback>
                   </Form.Group>
 
                   <Form.Group className='mb-4'>
                     <Form.Label>Descripción Detallada:</Form.Label>
                     <CKEditor
                       editor={ ClassicEditor }
-                      name="longDescription"
-                      data={values.longDescription}
-                      onChange={(e, editor) => setFieldValue('longDescription', editor.getData())}
+                      name="long_description"
+                      data={values.long_description}
+                      onChange={(e, editor) => setFieldValue('long_description', editor.getData())}
                     />
-                    {errors.longDescription &&
+                    {errors.long_description &&
                     <small className="text-primary">
-                      {errors.longDescription}
+                      {errors.long_description}
                     </small>
                     }
                   </Form.Group>
 
-                  <Form.Group className='mb-4'>
-                    <Form.Label>Redes Sociales:</Form.Label>
-                    <SocialFormControl
-                      values={values}
-                      handleChange={handleChange}
-                      socialNet='facebook'
-                      errors={errors}
-                    />
-                    <SocialFormControl
-                      values={values}
-                      handleChange={handleChange}
-                      socialNet='twitter'
-                      errors={errors}
-                    />
-                    <SocialFormControl
-                      values={values}
-                      handleChange={handleChange}
-                      socialNet='instagram'
-                      errors={errors}
-                    />
-                  </Form.Group>
+                  <SocialFormControl
+                    values={values}
+                    errors={errors}
+                    handleChange={handleChange}
+                  />
 
                   <Form.Group className='mb-4'>
                     <Form.Label>Logo:</Form.Label>

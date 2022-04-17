@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const verifyTokenExist = () => {
   // Creando el token para la petición
-  localStorage.setItem('TOKEN', '12345alkemy');
+  // localStorage.setItem('TOKEN', '12345alkemy');
 
   // verificando el token
   const token = localStorage.getItem('TOKEN');

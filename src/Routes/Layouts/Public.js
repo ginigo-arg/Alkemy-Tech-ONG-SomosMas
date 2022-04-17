@@ -1,5 +1,5 @@
 import './Layout.css';
-import LandingFooter from '../../Components/Footer/LandingFooter';
+import PublicFooter from '../../Components/Footer/PublicFooter';
 import PublicHeader from '../../Components/Header/PublicHeader';
 import { Route, Switch } from 'react-router-dom';
 import Actividades from '../../Components/Activities/Actividades';
@@ -37,7 +37,7 @@ const Layout = ({ match }) => {
         </Switch>
       </div>
 
-      <LandingFooter />
+      <PublicFooter />
     </div>
   );
 };

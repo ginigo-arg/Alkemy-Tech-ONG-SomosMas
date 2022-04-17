@@ -31,18 +31,18 @@ const Sidebar = () => {
 
           <Nav className="justify-content-end flex-grow-1 pe-3 ">
             <div className='item'>
-            <Link to="/backoffice/create-news">
+            <Link to="/backoffice/news">
               <BiNews className='icon' fontSize="25px" color="grey" />
               Novedades
             </Link></div>
             <hr className=" d-inline-block"></hr>
             <div className='item'>
-            <Link to="/backoffice/create-activity">
+            <Link to="/backoffice/activities">
               <BsPencilFill className='icon' fontSize="25px" color="red" />
               Actividades
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/create-category">
+            <Link to="/backoffice/categories">
               <BsMenuButtonWideFill className='icon' fontSize="25px" color="green" />
             Categorias
             </Link></div><hr></hr>
@@ -57,7 +57,7 @@ const Sidebar = () => {
               Organizacion
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/create-slide">
+            <Link to="/backoffice/slides">
               <RiSlideshow3Line className='icon'fontSize="25px" color="black" />
               Slides
             </Link></div><hr></hr>
@@ -67,7 +67,7 @@ const Sidebar = () => {
               Usuarios
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/create-member">
+            <Link to="/backoffice/members">
               <HiUsers className='icon' fontSize="25px" color="violet" />
               Miembros
             </Link></div><hr></hr>

@@ -17,7 +17,7 @@ export const memberSchemaValidation = Yup.object().shape({
   description: Yup
     .string()
     .required('La descripción es obligatoria'),
-  photo: Yup
+  image: Yup
     .mixed()
     .required('La foto es obligatoria')
     .test(
@@ -25,15 +25,12 @@ export const memberSchemaValidation = Yup.object().shape({
       'Formato de imagen no válido',
       checkFileFormat,
     ),
-  social: Yup.object({
-    facebook: Yup.string()
-      .required('Facebook es obligatorio')
-      .url('La URL no es válida'),
-    twitter: Yup.string()
-      .required('Twitter es obligatorio')
-      .url('La URL no es válida'),
-    instagram: Yup.string()
-      .required('Instagram es obligatorio')
-      .url('La URL no es válida'),
-  }),
+  facebookUrl: Yup
+    .string()
+    .required('Facebook es obligatorio')
+    .url('La URL no es válida'),
+  linkedinUrl: Yup
+    .string()
+    .required('Linkedin es obligatorio')
+    .url('La URL no es válida'),
 });

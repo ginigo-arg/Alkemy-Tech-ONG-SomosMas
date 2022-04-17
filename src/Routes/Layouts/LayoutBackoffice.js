@@ -9,7 +9,7 @@ import UsersForm from '../../Components/Users/UsersForm';
 import SchoolCampaign from '../../Campaigns/School/SchoolCampaign';
 import ToysCampaign from '../../Campaigns/Toys/ToysCampaign';
 
-import MembersForm from '../../Components/Members/MembersForm';
+import MembersForm from '../../Components/BackOffice/Members/MembersForm';
 import ProjectsForm from '../../Components/BackOffice/Projects/ProjectsForm';
 import ProjectsList from '../../Components/BackOffice/Projects/ProjectList';
 
@@ -22,6 +22,7 @@ import TableSliders from '../../Components/BackOffice/Sliders/TableSliders';
 import OrganizationForm from '../../Components/BackOffice/Organization/OrganizationForm';
 import ActivitiesList from '../../Components/BackOffice/ActivitiesList/ActivitiesList';
 import OrganizationIndex from '../../Components/BackOffice/Organization/index';
+import NewsList from '../../Components/BackOffice/News/NewsList';
 
 const LayoutBackoffice = () => {
   return (
@@ -144,6 +145,21 @@ const LayoutBackoffice = () => {
                 exact
                 path="/backoffice/organization/edit"
                 component={OrganizationForm}
+              />
+              <Route
+                exact
+                path="/backoffice/news"
+                component={NewsList}
+              />
+              <Route
+                exact
+                path="/backoffice/news/create"
+                component={NewsForm}
+              />
+              <Route
+                exact
+                path="/backoffice/news/edit"
+                component={NewsForm}
               />
             </Switch>
           </Col>
