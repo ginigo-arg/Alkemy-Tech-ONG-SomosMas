@@ -37,7 +37,7 @@ const Home = () => {
           news.length > 0 && <h3 className="fw-bold text-uppercase text-center fs-3 mb-3">Últimas Novedades</h3>
         }
 
-        <Container className="d-flex flex-row gap-4 justify-content-center align-items-center mt-5">
+        <Container className="d-flex gap-4 justify-content-center align-items-stretch flex-wrap mt-5 mb-5">
           {
             news.map((item) => (
               <NewCard key={item.id} newItem={item} />
