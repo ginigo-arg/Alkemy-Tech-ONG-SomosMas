@@ -29,8 +29,12 @@ const NewsList = () => {
       <Container className="d-flex gap-4 justify-content-center align-items-stretch flex-wrap mt-5 mb-5">
         <ProgressSpinner state={isLoading} />
         {
-          news.length > 0 && news.map((item, index) => (
-            <NewCard newItem={item} key={index} />
+          news.length > 0 && news.map((item) => (
+            <NewCard key={item.id}
+              image={item.image}
+              title={item.name}
+              description={item.content}
+            />
           ))
         }
       </Container>

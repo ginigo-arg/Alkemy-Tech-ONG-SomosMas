@@ -9,8 +9,8 @@ import {
 const url = process.env.REACT_APP_API_ACTIVITIES;
 
 export const getActivities = (id = null) => {
-  const res = GET_PRIVATE_API(url, id);
-  return res;
+  const resp = GET_PRIVATE_API(url, id);
+  return resp;
 };
 
 export const putActivities = (id, data) => {
