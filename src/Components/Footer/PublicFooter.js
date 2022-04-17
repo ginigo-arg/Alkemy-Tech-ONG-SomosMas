@@ -1,6 +1,6 @@
 import { Nav, Navbar, Container } from 'react-bootstrap';
 import { FaFacebook, FaInstagram, FaTwitterSquare } from 'react-icons/fa';
-import Logo from '../../assets/img/logo.png';
+import Logo from '../../assets/img/somos-mas-public.png';
 
 const PublicFooter = () => {
   const navigation = [

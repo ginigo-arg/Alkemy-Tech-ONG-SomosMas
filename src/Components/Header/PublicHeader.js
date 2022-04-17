@@ -1,6 +1,6 @@
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom';
-import src from '../../assets/img/logo.png';
+import src from '../../assets/img/somos-mas-public.png';
 
 const sites = [
   {
