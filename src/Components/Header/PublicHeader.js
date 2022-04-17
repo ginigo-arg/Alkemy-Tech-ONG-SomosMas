@@ -55,7 +55,7 @@ export default function PublicHeader () {
                 <NavLink to="/campaign/toys" className="dropdown-item" >
                   Juguetes
                 </NavLink>
-                <NavLink to="/campaign/schools" className="dropdown-item">
+                <NavLink to="/campaign/school" className="dropdown-item">
                   Escuelas
                 </NavLink>
               </NavDropdown>
