@@ -8,11 +8,9 @@ import TestimonialForm from '../../Components/Testimonials/TestimonialsForm';
 import UsersForm from '../../Components/Users/UsersForm';
 import SchoolCampaign from '../../Campaigns/School/SchoolCampaign';
 import ToysCampaign from '../../Campaigns/Toys/ToysCampaign';
-
 import MembersForm from '../../Components/BackOffice/Members/MembersForm';
 import ProjectsForm from '../../Components/BackOffice/Projects/ProjectsForm';
 import ProjectsList from '../../Components/BackOffice/Projects/ProjectList';
-
 import About from '../../Components/About/Nosotros';
 import Sidebar from '../../Components/BackOffice/Sidebar/Sidebar';
 import Header from '../../Components/BackOffice/Header/Header';
@@ -23,7 +21,7 @@ import OrganizationForm from '../../Components/BackOffice/Organization/Organizat
 import ActivitiesList from '../../Components/BackOffice/ActivitiesList/ActivitiesList';
 import OrganizationIndex from '../../Components/BackOffice/Organization/index';
 import NewsList from '../../Components/BackOffice/News/NewsList';
-
+import UsersList from '../../Components/Users/UsersList';
 const LayoutBackoffice = () => {
   return (
     <>
@@ -77,7 +75,17 @@ const LayoutBackoffice = () => {
               />
               <Route
                 exact
-                path="/backoffice/create-user"
+                path="/backoffice/users"
+                component={UsersList}
+              />
+              <Route
+                exact
+                path="/backoffice/users/create"
+                component={UsersForm}
+              />
+              <Route
+                exact
+                path="/backoffice/users/edit/:id"
                 component={UsersForm}
               />
               <Route

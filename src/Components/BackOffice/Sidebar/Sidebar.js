@@ -62,7 +62,7 @@ const Sidebar = () => {
               Slides
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/create-user">
+            <Link to="/backoffice/users">
               <FaUserCircle className='icon' fontSize="25px" color="orange" />
               Usuarios
             </Link></div><hr></hr>
