@@ -28,7 +28,7 @@ const SignupSchema = Yup.object({
   ),
 });
 
-const RegisterForm = () => {
+const RegisterForm = ({ isLogin, setisLogin }) => {
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -64,8 +64,8 @@ const RegisterForm = () => {
                 value={formik.values.firstName}
                 className={
                   formik.errors.name
-                    ? 'rounded-pill border-danger'
-                    : 'rounded-pill border-success'
+                    ? 'border-danger'
+                    : 'border-success'
                 }
                 placeholder="Nombre"
               />
@@ -84,8 +84,8 @@ const RegisterForm = () => {
                 value={formik.values.lastName}
                 className={
                   formik.errors.lastName
-                    ? 'rounded-pill border-danger'
-                    : 'rounded-pill border-success'
+                    ? 'border-danger'
+                    : 'border-success'
                 }
                 placeholder="Apellidos"
               />
@@ -102,8 +102,8 @@ const RegisterForm = () => {
                 value={formik.values.email}
                 className={
                   formik.errors.email
-                    ? 'rounded-pill border-danger'
-                    : 'rounded-pill border-success'
+                    ? 'border-danger'
+                    : 'border-success'
                 }
                 placeholder="Email"
               />
@@ -112,7 +112,7 @@ const RegisterForm = () => {
               ) : null}
             </Form.Group>
 
-            <Form.Group as={Col} controlId="password">
+            <Form.Group as={Col} controlId="password" className='mb-3'>
               <InputGroup className="input-group-lg">
                 <Form.Control
                   type={showPass ? 'text' : 'password'}
@@ -121,8 +121,8 @@ const RegisterForm = () => {
                   value={formik.values.password}
                   className={
                     formik.errors.password
-                      ? 'rounded-end rounded-pill border-danger'
-                      : 'rounded-end rounded-pill border-success'
+                      ? ' border-danger'
+                      : ' border-success'
                   }
                   placeholder="Password"
                 />
@@ -131,8 +131,8 @@ const RegisterForm = () => {
                   id="button-addon1"
                   className={
                     formik.errors.password
-                      ? 'rounded-start rounded-pill border-danger'
-                      : 'rounded-start rounded-pill border-success'
+                      ? ' border-danger'
+                      : ' border-success'
                   }
                   onClick={() => {
                     setShowPass(!showPass);
@@ -149,7 +149,7 @@ const RegisterForm = () => {
                 <span className="text-danger">{formik.errors.password} </span>
               ) : null}
             </Form.Group>
-            <Form.Group as={Col} controlId="passwordConfirmation">
+            <Form.Group as={Col} controlId="passwordConfirmation" className='mb-3'>
               <InputGroup className="input-group-lg">
                 <Form.Control
                   type={showConfirmPass ? 'text' : 'password'}
@@ -158,8 +158,8 @@ const RegisterForm = () => {
                   value={formik.values.passwordConfirmation}
                   className={
                     formik.errors.passwordConfirmation
-                      ? 'rounded-end rounded-pill border-danger'
-                      : 'rounded-end rounded-pill border-success'
+                      ? ' border-danger'
+                      : ' border-success'
                   }
                   placeholder="Confirmar password"
                 />
@@ -168,8 +168,8 @@ const RegisterForm = () => {
                   id="button-addon2"
                   className={
                     formik.errors.passwordConfirmation
-                      ? 'rounded-start rounded-pill border-danger'
-                      : 'rounded-start rounded-pill border-success'
+                      ? ' border-danger'
+                      : ' border-success'
                   }
                   onClick={() => {
                     setShowConfirmPass(!showConfirmPass);
@@ -188,16 +188,19 @@ const RegisterForm = () => {
                 </span>
               ) : null}
             </Form.Group>
-
-            <Button
-              variant="primary"
-              type="submit"
-              className="btn-lg bg-gradient text-white me-5"
-            >
-              Regístrarme
-            </Button>
-            {'    '}
-
+            <Col className='d-flex justify-content-between'>
+              <button onClick={() => setisLogin(!isLogin)} className='text-primary mr-2 bg-white border-0'><strong>
+                Ya tengo cuenta
+              </strong>
+              </button>
+              <Button
+                variant="primary"
+                type="submit"
+                className="btn-lg bg-gradient text-white"
+              >
+                Regístrarme
+              </Button>
+            </Col>
           </Form>
         </Col>
       </Row>
