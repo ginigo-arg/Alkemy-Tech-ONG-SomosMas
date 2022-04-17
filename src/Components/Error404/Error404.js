@@ -21,7 +21,7 @@ const Error404 = () => {
             ¡Lo sentimos! La pagina que busca no existe.
           </p>
           <p className='text-center'>
-            <Button className='text-white' onClick={() => history.goBack()}>
+            <Button className='text-white' variant='warning' onClick={() => history.goBack()}>
               Volver Atrás
             </Button>
           </p>
