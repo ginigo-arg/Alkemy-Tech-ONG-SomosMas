@@ -1,22 +1,21 @@
 import { Formik } from 'formik';
 import { Form, Container, Button } from 'react-bootstrap';
-import { useHistory, useLocation } from 'react-router-dom';
+// import { useHistory, useLocation } from 'react-router-dom';
 import * as Yup from 'yup';
 
 const LoginForm = () => {
-  const history = useHistory();
-  const location = useLocation();
-  const from = location.state.from.pathname || { from: { pathname: '/' } };
+  // const history = useHistory();
+  // const location = useLocation();
+  // const from = location.state.from.pathname || { from: { pathname: '/' } };
 
-  const LogIn = () => {
-    // cambiar luego por la respuesta de la api
-    localStorage.setItem('TOKEN', 123456);
-    history.replace(from);
-  };
+  // const LogIn = () => {
+  //   // cambiar luego por la respuesta de la api
+  //   localStorage.setItem('TOKEN', 123456);
+  //   history.replace(from);
+  // };
 
   return (
-    <Container className="card p-0">
-      <h4 className="card-header mb-4 p-4 p-sm-3">Anywhere in your app!</h4>
+    <Container className="p-0">
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={Yup.object().shape({
@@ -82,7 +81,7 @@ const LoginForm = () => {
                 {errors.password || touched.password}
               </Form.Control.Feedback>
             </Form.Group>
-            <Button variant="primary" type="submit" disabled={isSubmitting} onClick={LogIn}>
+            <Button variant="primary" type="submit" disabled={isSubmitting} >
               Ingresar
             </Button>
           </Form>
