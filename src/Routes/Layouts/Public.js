@@ -27,7 +27,7 @@ const Layout = ({ match }) => {
           <Route exact path="/actividades/:id" component={Detail} />
           <Route exact path="/contacto" component={IndexContact} />
           <Route exact path="/nosotros" component={Nosotros} />
-          <Route exact path="/novedades/id" component={NewDetail} />
+          <Route exact path="/novedades/:id" component={NewDetail} />
           <Route exact path="/novedades" component={NewsList} />
           <Route exact path="/login" component={LoginForm} />
           <Route exact path="/register" component={RegisterForm} />
