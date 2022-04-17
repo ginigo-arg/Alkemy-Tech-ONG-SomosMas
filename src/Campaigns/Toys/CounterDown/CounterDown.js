@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import './counterdown.css';
 
-const CounterDown = ({ date }) => {
+const CounterDown = () => {
   const [timerDays, setTimerDays] = useState('00');
   const [timerHours, setTimerHours] = useState('00');
   const [timerMinutes, setTimerMinutes] = useState('00');
@@ -10,8 +10,8 @@ const CounterDown = ({ date }) => {
 
   let interval = useRef();
 
-  const startTimer = (date) => {
-    const countdownDate = new Date({ date }).getTime();
+  const startTimer = () => {
+    const countdownDate = new Date('April 25, 2022 18:00:00').getTime();
 
     interval = setInterval(() => {
       const now = new Date().getTime();

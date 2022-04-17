@@ -8,7 +8,6 @@ import Img10 from '../../../assets/img/Foto10.jpg';
 import Img5 from '../../../assets/img/Manos10.jpg';
 
 const Content = () => {
-  const fecha = 'April 25, 2022 18:00:00';
   return (
     <>
       <Container
@@ -73,7 +72,7 @@ const Content = () => {
         </Row>
 
         <Row className="d-none d-md-block w-75">
-          <CounterDown date={fecha}/>
+          <CounterDown/>
         </Row>
 
         <Row className="d-none d-md-flex mb-5">
