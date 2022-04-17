@@ -27,6 +27,7 @@ const ActivitiesList = () => {
               image={item.image}
               title={item.name}
               description={item.description}
+              id={item.id}
             />
           );
         })

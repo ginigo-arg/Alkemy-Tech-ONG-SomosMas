@@ -34,6 +34,7 @@ const NewsList = () => {
               image={item.image}
               title={item.name}
               description={item.content}
+              id={item.id}
             />
           ))
         }
