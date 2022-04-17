@@ -1,35 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import { getActivities } from '../../Services/actividadesService';
+// import { alertService } from '../../Services/alertService';
 import '../CardListStyles.css';
-import ParserHtml from '../Parser/Parser';
+import { Container } from 'react-bootstrap';
+import ProgressSpinner from '../Progress/ProgressSpinner';
+// import CardComponent from '../Card/Card';
+import NewCard from '../News/NewsCard';
 
 const ActivitiesList = () => {
   const [actividades, setActividades] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(async () => {
-    const activities = await getActivities();
-    console.log('activities', activities);
-    setActividades(activities);
-  }, []);
-
+    const { data } = await getActivities();
+    setActividades(data);
+    setIsLoading(false);
+  }, [setActividades]);
+  console.log('actividades=', actividades);
   return (
-    <div>
-      <ul className="list-container">
-        {actividades.length > 0
-          ? (
-            actividades.map((activity) => {
-              return (
-                <li className="card-info" key={activity.id}>
-                  <h3>{activity.name}</h3>
-                  <ParserHtml text={activity.description} />
-                </li>
-              );
-            })
-          )
-          : (
-            <p>No hay actividades</p>
-          )}
-      </ul>
-    </div>
+    <Container className="d-flex gap-4 justify-content-center align-items-stretch flex-wrap mt-5 mb-5">
+      <ProgressSpinner state={isLoading}/>
+      {actividades.length > 0
+        ? actividades.map((item) => {
+          return (
+
+            <NewCard key={item.id}
+              image={item.image}
+              title={item.name}
+              description={item.description}
+            />
+          );
+        })
+
+        : (
+          <p>No hay actividades</p>
+        )}
+
+    </Container>
   );
 };
 
