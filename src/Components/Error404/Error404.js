@@ -1,5 +1,4 @@
 import React from 'react';
-import './Error404.css';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import img1 from '../../assets/img/404.png';
