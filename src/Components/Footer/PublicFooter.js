@@ -1,6 +1,6 @@
 import { Nav, Navbar, Container } from 'react-bootstrap';
 import { FaFacebook, FaInstagram, FaTwitterSquare } from 'react-icons/fa';
-import Logo from '../../assets/img/LOGO-SOMOSMAS.png';
+import Logo from '../../assets/img/logo.png';
 
 const PublicFooter = () => {
   const navigation = [
@@ -12,7 +12,7 @@ const PublicFooter = () => {
   ];
 
   return (
-    <footer className="bg-light">
+    <footer className="bg-dark navbar-dark">
       <Container className="d-flex flex-wrap justify-content-center">
         <Navbar.Brand>
           <img src={Logo} width="100" className="mt-3" alt="Logo SOMOS MÁS" />
