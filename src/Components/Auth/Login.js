@@ -14,17 +14,17 @@ const Login = () => {
   return (
     <Container fluid>
       <Row>
-        <Col lg={5}className="vh-100 py-2 px-5 overflow-scroll column-form">
+        <Col lg={5}className="vh-100 py-2 px-1 px-md-5 overflow-scroll column-form">
           <img src={Logo} alt='somos-mas-login mb-2' width='150px'/>
-          <h1 className='text-center mt-3'><strong>¡Bienvenido a Somos Más!</strong></h1>
-          <p className='text-center'>Ingresa a nuestra plataforma</p>
+          <h1 className='text-center mt-3 px-5'><strong>¡Bienvenido a Somos Más!</strong></h1>
+          <p className='text-center'>Ingresa a nuestra plataforma 👨🏿‍🤝‍👨🏻</p>
           {
             isLogin
               ? <LoginForm isLogin={isLogin} setisLogin={setisLogin}/>
               : <RegisterForm isLogin={isLogin} setisLogin={setisLogin}/>
           }
         </Col>
-        <Col lg={7}className="vh-100 bg-warning px-0 overflow-hidden">
+        <Col lg={7} className="vh-100 bg-warning px-0 overflow-hidden d-none d-md-block">
           <img src={img1} alt='loginpage' width='100%'/>
         </Col>
       </Row>
