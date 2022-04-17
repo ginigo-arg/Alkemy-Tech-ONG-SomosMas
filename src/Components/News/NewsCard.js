@@ -1,21 +1,29 @@
 import { Card, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import ParserHtml from '../Parser/Parser';
+import './NewsCard.css';
+const NewCard = ({
+  image,
+  title,
+  description,
+  id,
 
-const NewCard = ({ newItem }) => {
+}) => {
   const history = useHistory();
 
   return (
-    <Card style={{ width: '20rem' }}>
-      <Card.Img variant="top" src={newItem.image} />
-      <Card.Body className="d-flex flex-column justify-content-between">
-        <Card.Title>{newItem.name}</Card.Title>
+    <Card style={{ width: '20rem' }} className='p-3 border-0 shadow card-App'>
+      <Card.Img variant="top" src={image} className="img-card"/>
+      <Card.Body className="d-flex flex-column justify-content-between px-0">
+        <Card.Title>{title}</Card.Title>
         <Card.Text>
-          <span dangerouslySetInnerHTML={{ __html: `${newItem.content}` }} />
+          <ParserHtml text={description}/>
         </Card.Text>
         <Button
+          className='text-white'
           variant="primary"
-          onClick={() => history.push(`/novedades/${newItem.id}`)}
-        >Go somewhere</Button>
+          onClick={() => history.push(`/novedades/${id}`)}
+        >Ver más</Button>
       </Card.Body>
     </Card>);
 };
