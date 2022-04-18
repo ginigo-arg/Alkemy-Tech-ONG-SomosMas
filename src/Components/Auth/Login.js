@@ -5,8 +5,10 @@ import Logo from '../../assets/img/LOGO-SOMOSMAS.png';
 import { useState } from 'react';
 import RegisterForm from './RegisterForm';
 import './login.css';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
+  const history = useHistory();
   const [isLogin, setisLogin] = useState(false);
   //   useEffect(() => {
   //     console.log('islogin:', isLogin);
@@ -23,11 +25,21 @@ const Login = () => {
               ? <LoginForm isLogin={isLogin} setisLogin={setisLogin}/>
               : <RegisterForm isLogin={isLogin} setisLogin={setisLogin}/>
           }
+          <hr />
+          <Row>
+            <Col className='text-center'>
+              <button onClick={() => history.push('/')} className='text-secondary mr-2 bg-white border-0'>
+                Ir al inicio
+
+              </button>
+            </Col>
+          </Row>
         </Col>
         <Col lg={7} className="vh-100 bg-warning px-0 overflow-hidden d-none d-md-block">
           <img src={img1} alt='loginpage' width='100%'/>
         </Col>
       </Row>
+
     </Container>
   );
 };
