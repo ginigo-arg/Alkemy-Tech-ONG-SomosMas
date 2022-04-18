@@ -17,13 +17,13 @@ const Slider = ({ slides }) => {
               <ParserHtml
                 className='text-start'
                 text={slide.description} />
-              <Row className='mt-2 w-25'>
-                <Col>
+              <Row className='mt-2'>
+                <Col lg={2} className='p-0 me-0'>
                   <Button varian='warning' className='text-white'>
                     Ayudar
                   </Button>
                 </Col>
-                <Col>
+                <Col lg={3} className='p-0 '>
                   <Button className='btn btn-warning text-white w-100'>
                     <IoPlayCircle className='icon' fontSize="25px" color="grey" />
                     Ver Video
