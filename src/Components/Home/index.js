@@ -2,23 +2,24 @@ import { Container } from 'react-bootstrap';
 import Slider from '../Slides/Slider';
 import ProgressSpinner from '../Progress/ProgressSpinner';
 import { useEffect, useState } from 'react';
-import { homeInfo, homeNews, homeSlides } from '../../Services/allHomeMethods';
-import HomePrincipalContent from './HomeInfo';
+import { homeNews, homeSlides } from '../../Services/allHomeMethods';
+// import HomePrincipalContent from './HomeInfo';
 import NewCard from '../News/NewsCard';
 import { alertService } from '../../Services/alertService';
+import SectionVideo from './SectionVideo/SectionVideo';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [info, setInfo] = useState([]);
+  // const [info, setInfo] = useState([]);
   const [sliders, setSliders] = useState([]);
   const [news, setNews] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
-      const infoData = await homeInfo();
+      // const infoData = await homeInfo();
       const slidersData = await homeSlides();
       const newsData = await homeNews();
-      setInfo(infoData);
+      // setInfo(infoData);
       setSliders(slidersData);
       setNews(newsData);
       setIsLoading(false);
@@ -29,10 +30,10 @@ const Home = () => {
 
   return (
     <>
-      <HomePrincipalContent data={info} />
-      <Container className="d-flex flex-column justify-content-center align-items-center mt-5">
+      <Slider slides={sliders} />
+      {/* <HomePrincipalContent data={info} /> */}
+      <Container fluid className="d-flex flex-column justify-content-center align-items-center mt-5 p-0">
         <ProgressSpinner state={isLoading} />
-        <Slider slides={sliders} />
         {
           news.length > 0 && <h3 className="fw-bold text-uppercase text-center fs-3 mb-3">Últimas Novedades</h3>
         }
@@ -47,6 +48,10 @@ const Home = () => {
               />
             ))
           }
+        </Container>
+        <Container fluid className='section-video bg-warning'>
+          <SectionVideo/>
+
         </Container>
       </Container>
     </>

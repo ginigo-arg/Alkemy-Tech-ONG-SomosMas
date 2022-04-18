@@ -1,0 +1,17 @@
+.video-player{
+    border-radius: 20px !important;
+}
+.content-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px !important;
+    max-width: 50px !important;
+    height: 50px !important;
+    max-height: 50px !important;
+}
+
+.img-circle{
+    width: 35px;   
+    object-fit: cover;
+}
