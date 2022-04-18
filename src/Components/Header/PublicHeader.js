@@ -1,6 +1,6 @@
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom';
-import src from '../../assets/img/somos-mas-public.png';
+import src from '../../assets/img/LOGO-SOMOSMAS.png';
 
 const sites = [
   {
@@ -28,12 +28,21 @@ const sites = [
     site: 'Contacto',
     url: '/contacto',
   },
+
 ];
 
 export default function PublicHeader () {
   return (
     <>
-      <Navbar bg="dark" variant="dark" collapseOnSelect sticky="top" expand="sm">
+      <Navbar className='bg-dark'>
+        <Container>
+          <Navbar.Toggle />
+          <Navbar.Collapse className="login d-flex flex-direction-row justify-content-end align-items-center">
+            <p className='text-white my-0 login'>Login</p>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <Navbar bg="light" variant="light" collapseOnSelect sticky="top" expand="sm" className='shadow'>
         <Container>
           <Navbar.Brand style={{ cursor: 'pointer' }}>
             <Link to="/">
@@ -47,18 +56,22 @@ export default function PublicHeader () {
           <Navbar.Collapse className="justify-content-end">
             <Nav>
               {sites.map((site) => (
-                <NavLink key={site.id} to={site.url} className="nav-link">
+                <NavLink key={site.id} to={site.url} className="nav-link me-3">
                   {site.site}
                 </NavLink>
               ))}
-              <NavDropdown title="Campañas" id="navbarScrollingDropdown">
+              <NavDropdown title="Campañas" id="navbarScrollingDropdown" className='me-3'>
                 <NavLink to="/campaign/toys" className="dropdown-item" >
                   Juguetes
                 </NavLink>
                 <NavLink to="/campaign/school" className="dropdown-item">
                   Escuelas
                 </NavLink>
+
               </NavDropdown>
+              <Button className='btn btn-primary text-white'>
+                Donar
+              </Button>
             </Nav>
           </Navbar.Collapse>
         </Container>
