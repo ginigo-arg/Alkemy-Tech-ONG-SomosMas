@@ -7,6 +7,7 @@ import { homeNews, homeSlides } from '../../Services/allHomeMethods';
 import NewCard from '../News/NewsCard';
 import { alertService } from '../../Services/alertService';
 import SectionVideo from './SectionVideo/SectionVideo';
+import TextMarquee from './Marquee/TextMarquee';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,6 +31,10 @@ const Home = () => {
 
   return (
     <>
+      <Container fluid className='bg-info'>
+
+        <TextMarquee/>
+      </Container>
       <Slider slides={sliders} />
       {/* <HomePrincipalContent data={info} /> */}
       <Container fluid className="d-flex flex-column justify-content-center align-items-center mt-5 p-0">
@@ -51,7 +56,6 @@ const Home = () => {
         </Container>
         <Container fluid className='section-video bg-warning'>
           <SectionVideo/>
-
         </Container>
       </Container>
     </>
