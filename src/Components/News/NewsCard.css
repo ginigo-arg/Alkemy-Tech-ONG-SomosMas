@@ -1,0 +1,19 @@
+.card-App{
+    border-radius: 15px !important;
+}
+
+.card-App img{
+    object-fit: cover !important;
+
+}
+
+.img-card{
+    border-radius: 15px 15px 0px 0px !important;
+    min-height: 100px !important;
+    max-height: 120px !important;
+    z-index: 9 !important
+}
+
+.text-description{
+    color: var(--bs-gray-600) !important;
+}

@@ -15,26 +15,30 @@ const NewsList = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getNews();
-      console.log(data);
-      // setIsLoading(false);
+      setIsLoading(false);
       setNews(data);
     };
-    fetchData().catch((e) => alertService('error', e.message));
-    setIsLoading(false);
+    fetchData().catch((e) => {
+      alertService('error', e.message);
+      setIsLoading(false);
+    });
   }, []);
 
   return (
     <>
       <SectionTitles title="Novedades" />
-      <Container>
-        {/* <ProgressSpinner state={isLoading} />
+      <Container className="d-flex gap-4 justify-content-center align-items-stretch flex-wrap mt-5 mb-5">
+        <ProgressSpinner state={isLoading} />
         {
-          news.length > 0 && news.map((item, index) => (
-            <div key={index}>
-              <NewCard newItem={item} />
-            </div>
+          news.length > 0 && news.map((item) => (
+            <NewCard key={item.id}
+              image={item.image}
+              title={item.name}
+              description={item.content}
+              id={item.id}
+            />
           ))
-        } */}
+        }
         {isLoading
           ? <div className='h-100 d-flex justify-content-center align-items-center fw-5'>
             <ProgressSpinner state={isLoading} dimention={10} />

@@ -1,75 +1,81 @@
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
-import React from 'react';
-import Logo from '../../assets/img/LOGO-SOMOSMAS.png';
-import './PublicHeader.css';
+import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
+import { NavLink, Link } from 'react-router-dom';
+import src from '../../assets/img/LOGO-SOMOSMAS.png';
 
-const PublicHeader = () => {
-  const navi = [
-    { to: '/', title: 'Inicio' },
-    { to: '/nosotros', title: 'Nosotros' },
-    { to: '/novedades', title: 'Novedades' },
-    { to: '/actividades', title: 'Actividades' },
-    { to: '/contacto', title: 'Contacto' },
-  ];
+const sites = [
+  {
+    id: 0,
+    site: 'Inicio',
+    url: '/',
+  },
+  {
+    id: 1,
+    site: 'Nosotros',
+    url: '/nosotros',
+  },
+  {
+    id: 2,
+    site: 'Novedades',
+    url: '/novedades',
+  },
+  {
+    id: 3,
+    site: 'Actividades',
+    url: '/actividades',
+  },
+  {
+    id: 4,
+    site: 'Contacto',
+    url: '/contacto',
+  },
 
-  let id2 = window.location.pathname;
-  const Login = 'no';
+];
 
-  if (id2 === '/') {
-    id2 = '/inicio';
-  }
-  id2 = id2.replace('/', '');
-
+export default function PublicHeader () {
   return (
     <>
-      <Navbar
-        collapseOnSelect
-        sticky="top"
-        expand="sm"
-        bg="light"
-        activeKey={id2}
-        className="shadow"
-      >
+      <Navbar className='bg-dark'>
         <Container>
-          <Navbar.Brand href="#home">
-            <img src={Logo} width="55%" alt="Logo"></img>
+          <Navbar.Toggle />
+          <Navbar.Collapse className="login d-flex flex-direction-row justify-content-end align-items-center">
+            <p className='text-white my-0 login'>Login</p>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <Navbar bg="light" variant="light" collapseOnSelect sticky="top" expand="sm" className='shadow'>
+        <Container>
+          <Navbar.Brand style={{ cursor: 'pointer' }}>
+            <Link to="/">
+              <img
+                className="w-50"
+                src={src}
+              />
+            </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            {' '}
-            <Nav className="ms-auto" activeKey={id2}>
-              {navi.length
-                ? navi.map((linke) => (
-                  <Nav.Link
-                    eventKey={linke.title.toLowerCase()}
-                    href={linke.to}
-                    key={linke.title.toLowerCase()}
-                  >
-                    {linke.title}
-                  </Nav.Link>
-                ))
-                : 'No hay menu'}
+          <Navbar.Collapse className="justify-content-end">
+            <Nav>
+              {sites.map((site) => (
+                <NavLink key={site.id} to={site.url} className="nav-link me-3">
+                  {site.site}
+                </NavLink>
+              ))}
+              <NavDropdown title="Campañas" id="navbarScrollingDropdown" className='me-3'>
+                <NavLink to="/campaign/toys" className="dropdown-item" >
+                  Juguetes
+                </NavLink>
+                <NavLink to="/campaign/school" className="dropdown-item">
+                  Escuelas
+                </NavLink>
 
-              <NavDropdown title="Campañas" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#">Escuela</NavDropdown.Item>
-                <NavDropdown.Item href="#">Juguetes</NavDropdown.Item>
               </NavDropdown>
-
-              {Login === 'no'
-                ? (
-                  <Nav.Link href="#" className="login">
-                    Login
-                  </Nav.Link>
-                )
-                : (
-                  'Perfil'
-                )}
+              <Button className='btn btn-primary text-white'>
+                Donar
+              </Button>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
     </>
   );
-};
-
-export default PublicHeader;
+}

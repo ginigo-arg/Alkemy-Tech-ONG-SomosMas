@@ -16,8 +16,8 @@ export const GET_ACTIVITIES_PUBLIC = async (id = null) => {
 
 // Back
 export const getActivities = (id = null) => {
-  const res = GET_PRIVATE_API(url, id);
-  return res;
+  const resp = GET_PRIVATE_API(url, id);
+  return resp;
 };
 
 export const putActivities = (id, data) => {

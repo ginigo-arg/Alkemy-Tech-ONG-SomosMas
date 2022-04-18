@@ -72,7 +72,7 @@ const Content = () => {
         </Row>
 
         <Row className="d-none d-md-block w-75">
-          <CounterDown />
+          <CounterDown/>
         </Row>
 
         <Row className="d-none d-md-flex mb-5">
