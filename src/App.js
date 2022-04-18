@@ -12,6 +12,7 @@ import { spring, AnimatedSwitch } from 'react-router-transition';
 import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice';
 import LoginForm from './Components/Auth/LoginForm';
 import PrivateRoutes from './Components/Private/PrivateRoutes';
+
 // import PrivateRoutes from './Components/Private/PrivateRoutes';
 
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
@@ -45,14 +46,9 @@ function App () {
             runOnMount={true} >
 
             <Route
-              path='/login'
+              path="/login"
               component={LoginForm}
             />
-            {/* Backoffice */}
-            {/* <Route path="/backoffice" component={
-              LayoutBackoffice
-            } /> */}
-
             <PrivateRoutes path='/backoffice'>
               <LayoutBackoffice/>
             </PrivateRoutes>
