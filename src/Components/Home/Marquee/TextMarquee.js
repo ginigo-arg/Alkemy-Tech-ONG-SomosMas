@@ -5,7 +5,7 @@ import './marquee.css';
 const TextMarquee = () => {
   return (
     <Row className='d-flex flex-direction-row align-items-center py-2'>
-      <Col lg={2} className='p-0 m-0 text-end'>
+      <Col lg={2} className='p-0 m-0 text-center text-lg-end'>
         <h6 className='text-white'>
           <strong>
             <AiFillDollarCircle className='icon' fontSize="25px" color="white"/>Donadores:

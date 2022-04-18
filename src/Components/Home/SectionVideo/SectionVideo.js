@@ -4,7 +4,7 @@ import './sectionvideo.css';
 import Logo from '../../../assets/img/logo.png';
 const SectionVideo = () => {
   return (
-    <Container fluid className='py-5' >
+    <Container className='py-5' >
       <Row>
         <Col lg={4} className='pt-5 mb-5'>
           <h2 className='mb-3 text-white'>

@@ -8,6 +8,7 @@ import NewCard from '../News/NewsCard';
 import { alertService } from '../../Services/alertService';
 import SectionVideo from './SectionVideo/SectionVideo';
 import TextMarquee from './Marquee/TextMarquee';
+import Partners from './Partners/Partners';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -56,6 +57,9 @@ const Home = () => {
         </Container>
         <Container fluid className='section-video bg-warning'>
           <SectionVideo/>
+        </Container>
+        <Container>
+          <Partners/>
         </Container>
       </Container>
     </>
