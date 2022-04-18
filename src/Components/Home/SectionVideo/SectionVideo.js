@@ -6,7 +6,7 @@ const SectionVideo = () => {
   return (
     <Container fluid className='py-5' >
       <Row>
-        <Col lg={4} className='pt-5'>
+        <Col lg={4} className='pt-5 mb-5'>
           <h2 className='mb-3 text-white'>
             <strong>
 
@@ -38,6 +38,10 @@ const SectionVideo = () => {
           <span className='video-player shadow rounded-3 overflow-hidden'>
             <ReactPlayer
               url='https://www.facebook.com/watch/?v=10153231379946729'
+              className="react-player"
+              width="100%"
+              height="100%"
+              controls={false}
             />
           </span>
         </Col>
