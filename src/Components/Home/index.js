@@ -9,6 +9,7 @@ import { alertService } from '../../Services/alertService';
 import SectionVideo from './SectionVideo/SectionVideo';
 import TextMarquee from './Marquee/TextMarquee';
 import Partners from './Partners/Partners';
+import Faq from './SectionFAQ/Faq';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -60,6 +61,9 @@ const Home = () => {
         </Container>
         <Container>
           <Partners/>
+        </Container>
+        <Container fluid className='bg-info faq'>
+          <Faq/>
         </Container>
       </Container>
     </>
