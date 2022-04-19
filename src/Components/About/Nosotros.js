@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
 import { Container, Spinner } from 'react-bootstrap';
-// import Title from '../SectionTitles/SectionTitles';
-import { getAllMembers } from '../../Services/MemberService';
 import { alertService } from '../../Services/alertService';
 import CardMembers from './cardTeam';
+import { useDispatch, useSelector } from 'react-redux';
+import { GET_MEMBERS_FUNCTION } from '../../redux/Miembros/action';
 
 export default function Nosotros () {
-  const [members, setMembers] = useState([]);
+  // const [members, setMembers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.miembros);
 
-  useEffect(async () => {
-    const { data } = await getAllMembers()
-      .catch(err => alertService('error', err))
-      .finally(setLoading(true));
-    setMembers(data);
-    console.log('members:', data);
-  }, [setMembers]);
+  useEffect(() => {
+    dispatch(GET_MEMBERS_FUNCTION()).catch(err => alertService('error', err));
+    console.log('state nosotros:', state);
+    if (state.length > 0) setLoading(true);
+  }, []);
 
   return (
     !loading
@@ -39,9 +39,9 @@ export default function Nosotros () {
             </strong>
           </h2>
           <Container className="d-flex gap-4 justify-content-center align-items-stretch flex-wrap mt-5 mb-5">
-            { members.length > 0
+            { state.length > 0
               ? (
-                members.map((item) => {
+                state.map((item) => {
                   return (
                     <CardMembers
                       key={item.id}

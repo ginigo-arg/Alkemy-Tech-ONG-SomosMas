@@ -1,0 +1,3 @@
+
+export const GET_MIEMBROS = 'GET_MIEMBROS';
+export const ACTION_FAILED = 'ACTION_FAILED';
