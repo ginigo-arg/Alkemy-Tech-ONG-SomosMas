@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Alert } from 'react-bootstrap';
-import { GET_ACTIVITIES_PUBLIC } from '../../../Services/actividadesService';
+import { getActivities } from '../../../Services/actividadesService';
 import { alertService } from '../../../Services/alertService';
 import { useParams } from 'react-router-dom';
 import ProgressSpinner from '../../Progress/ProgressSpinner';
@@ -25,7 +25,7 @@ const Detail = (props) => {
   useEffect(() => {
     const fetchActividades = async () => {
       setLoading(true);
-      const response = await GET_ACTIVITIES_PUBLIC(id);
+      const response = await getActivities(id);
       if (response.success) {
         setActivityDetail(response.data);
       } else {
