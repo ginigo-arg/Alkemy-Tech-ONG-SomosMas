@@ -41,11 +41,6 @@ function App () {
               path='/login'
               component={Login}
             />
-            {/* Backoffice */}
-            {/* <Route path="/backoffice" component={
-              LayoutBackoffice
-            } /> */}
-
             <PrivateRoutes path='/backoffice'>
               <LayoutBackoffice/>
             </PrivateRoutes>
