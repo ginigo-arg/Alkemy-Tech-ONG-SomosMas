@@ -8,6 +8,8 @@ import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice';
 import Login from './Components/Auth/Login';
 import PrivateRoutes from './Components/Private/PrivateRoutes';
 
+// import PrivateRoutes from './Components/Private/PrivateRoutes';
+
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
 const Home = React.lazy(() => import('./Routes/Layouts/Public.js'));
 
@@ -41,11 +43,6 @@ function App () {
               path='/login'
               component={Login}
             />
-            {/* Backoffice */}
-            {/* <Route path="/backoffice" component={
-              LayoutBackoffice
-            } /> */}
-
             <PrivateRoutes path='/backoffice'>
               <LayoutBackoffice/>
             </PrivateRoutes>

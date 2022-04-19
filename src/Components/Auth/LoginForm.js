@@ -1,18 +1,15 @@
+import { useEffect } from 'react';
 import { Formik } from 'formik';
-import { Form, Container, Button, Col } from 'react-bootstrap';
-// import { useHistory, useLocation } from 'react-router-dom';
+import { Form, Container, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 
-const LoginForm = ({ isLogin, setisLogin }) => {
-  // const history = useHistory();
-  // const location = useLocation();
-  // const from = location.state.from.pathname || { from: { pathname: '/' } };
-
-  // const LogIn = () => {
-  //   // cambiar luego por la respuesta de la api
-  //   localStorage.setItem('TOKEN', 123456);
-  //   history.replace(from);
-  // };
+const LoginForm = () => {
+  const history = useHistory();
+  useEffect(() => {
+    const token = localStorage.getItem('TOKEN');
+    if (token) return history.push('/');
+  }, []);
 
   return (
     <Container>
@@ -29,10 +26,9 @@ const LoginForm = ({ isLogin, setisLogin }) => {
             ),
         })}
         onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+          setSubmitting(false);
+          localStorage.setItem('TOKEN', 123456);
+          history.push('/');
         }}
       >
         {({
@@ -79,15 +75,9 @@ const LoginForm = ({ isLogin, setisLogin }) => {
                 {errors.password || touched.password}
               </Form.Control.Feedback>
             </Form.Group>
-            <Col className='d-flex justify-content-between'>
-              <button onClick={() => setisLogin(!isLogin)} className='text-primary mr-2 bg-white border-0'><strong>
-                No tengo cuenta
-              </strong>
-              </button>
-              <Button variant="primary" type="submit" disabled={isSubmitting} className='text-white' >
-                Ingresar
-              </Button>
-            </Col>
+            <Button variant="primary" type="submit" disabled={isSubmitting} >
+              Ingresar
+            </Button>
           </Form>
         )}
       </Formik>
