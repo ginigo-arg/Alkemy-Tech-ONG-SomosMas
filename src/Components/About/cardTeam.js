@@ -5,7 +5,7 @@ import './cardteam.css';
 const CardMembers = ({ id, name, description, image, facebookUrl, linkedingUrl }) => {
   console.log(facebookUrl);
   return (
-    <Card style={{ width: '20rem' }} className='p-3 card-App border-0'>
+    <Card style={{ width: '20rem' }} className='p-3 card-Team border-0'>
       <Card.Img variant="top" src={image} className="rounded-circle"/>
       <Card.Body className="d-flex flex-column justify-content-between px-0">
         <Card.Title>
