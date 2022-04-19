@@ -46,9 +46,9 @@ export const EDIT_NOVEDAD_FN = (id, content) => (dispatch) => {
   }
 };
 
-export const GET_NOVEDAD_FN = (id = null) => (dispatch) => {
+export const GET_NOVEDAD_FN = (id = null) => async (dispatch) => {
   try {
-    const response = getNews(`${process.env.REACT_APP_API_NEWS}`, id);
+    const response = await getNews(id);
     console.log(response);
     dispatch({
       type: GET_NOVEDAD,

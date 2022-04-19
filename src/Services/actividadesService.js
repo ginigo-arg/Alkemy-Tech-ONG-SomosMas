@@ -18,9 +18,12 @@ const MESSAGE_PATCH = 'Lo sentimos, hubo un error al editar la actividad.';
 const MESSAGE_POST = 'Lo sentimos, hubo un error al agregar una nuevo actividad.';
 const MESSAGE_DELETE = 'Lo sentimos, hubo un error al eliminar la actividad.';
 
-export const getActivities = (id = null) => {
-  const resp = GET_PRIVATE_API(url, id);
-  return resp;
+export const getActivities = async (id = null) => {
+  try {
+    return await GET_PRIVATE_API(url, id);
+  } catch (error) {
+    alertService(TYPE, MESSAGE_GET);
+  }
 };
 
 export const putActivities = async (id, data) => {

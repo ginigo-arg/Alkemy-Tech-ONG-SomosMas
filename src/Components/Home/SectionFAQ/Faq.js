@@ -1,5 +1,7 @@
 import { Container, Row, Col, Accordion, Button } from 'react-bootstrap';
 import { FaEnvelope, FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import './Faq.css';
 
 const Faq = () => {
   return (
@@ -10,7 +12,7 @@ const Faq = () => {
             ¿Aún tiene dudas?
           </h2>
           <p className='my-5 mt-0'>
-            Tomamos las inquietudas más frecuentes que nos suelen efectuar y las contestamos.
+            En esta sección contestamos las preguntas que más frecuentemente nos suelen hacer.
           </p>
           <p className='text-md-center text-lg-start'>
             En caso de tener alguna consulta adicional, no dude en contactarnos:
@@ -26,8 +28,8 @@ const Faq = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <FaEnvelope size={30} color="white" />
-                <p className="d-none d-lg-inline-block footer-socialmedia-text mx-lg-2">
+                <FaEnvelope size={20} color="black" />
+                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2">
                   info@somosmas.com.ar
                 </p>
               </a>
@@ -42,8 +44,8 @@ const Faq = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <FaFacebook size={30} color="white" />
-                <p className="d-none d-lg-inline-block footer-socialmedia-text mx-lg-2">
+                <FaFacebook size={20} color="black" />
+                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2">
                   Facebook
                 </p>
               </a>
@@ -58,8 +60,8 @@ const Faq = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <FaInstagram size={30} color="white" />
-                <p className="d-none d-lg-inline-block footer-socialmedia-text mx-lg-2">
+                <FaInstagram size={20} color="black" />
+                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2">
                   Instagram
                 </p>
               </a>
@@ -74,15 +76,15 @@ const Faq = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <FaTwitter size={30} color="white" />
-                <p className="d-none d-lg-inline-block footer-socialmedia-text mx-lg-2">
+                <FaTwitter size={20} color="black" />
+                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2">
                   Twitter
                 </p>
               </a>
             </Col>
           </Row>
         </Col>
-        <Col xs={12} md={8} lg={5} className='d-flex flex-lg-column justify-content-lg-center'>
+        <Col xs={12} md={8} lg={6} className='d-flex flex-lg-column justify-content-lg-center'>
           <Accordion defaultActiveKey={0}>
             <Accordion.Item eventKey={0}>
               <Accordion.Header>¿Por qué donar?</Accordion.Header>
@@ -99,15 +101,28 @@ const Faq = () => {
                   Gracias a vos, vamos a poder seguir mejorando la infancia de muchísimas chicas y chicos.
                 </Col>
                 <Col className='d-flex flex-row justify-content-center mt-3'>
-                  <Button>Donar</Button>
+                  <Button variant='primary' className='text-white'>
+                    {/* <Link to=''> */}
+                    Donar
+                    {/* </Link> */}
+                  </Button>
                 </Col>
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey={2}>
-              <Accordion.Header>¿Cómo puedo unirme a Somos Más?</Accordion.Header>
-              <Accordion.Body>
-                Estamos constantemente ampliando nuestro equipo para que más chicas y chicos puedan tener un mejor presente.
-                Si te querés sumar, sentite libre de contactarnos por redes sociales o correo electrónico.
+              <Accordion.Header>¿Cómo puedo ser parte de Somos Más?</Accordion.Header>
+              <Accordion.Body className='d-flex flex-column'>
+                <Col>
+                  Estamos constantemente ampliando nuestro equipo para que más chicas y chicos puedan tener un mejor presente.
+                  Si te querés sumar, sentite libre de contactarnos por redes sociales o correo electrónico.
+                </Col>
+                <Col className='d-flex flex-row justify-content-center mt-3'>
+                  <Button variant='info' className='text-white'>
+                    <Link to='/contacto'>
+                      Sumate
+                    </Link>
+                  </Button>
+                </Col>
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>

@@ -1,27 +1,35 @@
 import '../CardListStyles.css';
-import { Container, Row, Col, CardGroup } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import SectionTitles from '../SectionTitles/SectionTitles';
 import { useState, useEffect } from 'react';
 import ProgressSpinner from '../Progress/ProgressSpinner';
-import { getNews } from '../../Services/NewsService';
-import { alertService } from '../../Services/alertService';
-// import NewCard from './NewsCard';
-import CardComponent from '../Card/Card';
+// import { getNews } from '../../Services/NewsService';
+// import { alertService } from '../../Services/alertService';
+import NewCard from './NewsCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { GET_NOVEDAD_FN } from '../../redux/novedades/actions';
 
 const NewsList = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [news, setNews] = useState([]);
+  // const [news, setNews] = useState([]);
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.novedades);
+  console.log('state:', state);
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await getNews();
+  //     setIsLoading(false);
+  //     setNews(data);
+  //   };
+  //   fetchData().catch((e) => {
+  //     alertService('error', e.message);
+  //     setIsLoading(false);
+  //   });
+  // }, []);
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getNews();
-      setIsLoading(false);
-      setNews(data);
-    };
-    fetchData().catch((e) => {
-      alertService('error', e.message);
-      setIsLoading(false);
-    });
+    dispatch(GET_NOVEDAD_FN());
+    if (state.length > 0) setIsLoading(false);
   }, []);
 
   return (
@@ -30,7 +38,7 @@ const NewsList = () => {
       <Container className="d-flex gap-4 justify-content-center align-items-stretch flex-wrap mt-5 mb-5">
         <ProgressSpinner state={isLoading} />
         {
-          news.length > 0 && news.map((item) => (
+          state.length > 0 && state.map((item) => (
             <NewCard key={item.id}
               image={item.image}
               title={item.name}
@@ -39,26 +47,7 @@ const NewsList = () => {
             />
           ))
         }
-        {isLoading
-          ? <div className='h-100 d-flex justify-content-center align-items-center fw-5'>
-            <ProgressSpinner state={isLoading} dimention={10} />
-          </div>
-          : (
-            <Row className="g-2">
-              <CardGroup>
-                {
-                  news
-                    ? news.map((novedad, index) => (
-                      <Col md={4} key={index}>
-                        <CardComponent image={novedad.image} title={novedad.name} description={novedad.content} footerInformation={`<a href='./novedades/${novedad.id}'>Ver detalles</a>`} />
-                      </Col>
-                    ))
-                    : <p>No hay noticias para visualizar</p>
-                }
-              </CardGroup>
-            </Row>
-          )
-        }
+
       </Container>
     </>
   );
