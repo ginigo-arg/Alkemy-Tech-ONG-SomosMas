@@ -2,7 +2,6 @@ import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import React from 'react';
 import Logo from '../../assets/img/LOGO-SOMOSMAS.png';
 import './PublicHeader.css';
-
 const PublicHeader = () => {
   const navi = [
     { to: '/', title: 'Inicio' },
@@ -19,7 +18,6 @@ const PublicHeader = () => {
     id2 = '/inicio';
   }
   id2 = id2.replace('/', '');
-  console.log(id2);
 
   return (
     <>
@@ -58,7 +56,7 @@ const PublicHeader = () => {
 
               {Login === 'no'
                 ? (
-                  <Nav.Link href="#" className="login">
+                  <Nav.Link href="/login" className="login">
                     Login
                   </Nav.Link>
                 )

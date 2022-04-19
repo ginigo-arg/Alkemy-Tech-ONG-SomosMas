@@ -1,50 +1,51 @@
-import { Col, Container } from 'react-bootstrap';
-import Skeleton from '../Skeleton/Skeleton';
-import './Home.css';
+import { Container } from 'react-bootstrap';
 import Slider from '../Slides/Slider';
 import ProgressSpinner from '../Progress/ProgressSpinner';
+import { useEffect, useState } from 'react';
+import { homeInfo, homeNews, homeSlides } from '../../Services/allHomeMethods';
+import HomePrincipalContent from './HomeInfo';
+import NewCard from '../News/NewsCard';
+import { alertService } from '../../Services/alertService';
 
-const Home = ({ greeting }) => {
+const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [info, setInfo] = useState([]);
+  const [sliders, setSliders] = useState([]);
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const infoData = await homeInfo();
+      const slidersData = await homeSlides();
+      const newsData = await homeNews();
+      setInfo(infoData);
+      setSliders(slidersData);
+      setNews(newsData);
+      setIsLoading(false);
+    };
+
+    getData().catch((error) => alertService('error', error));
+  }, []);
+
   return (
-    <Container fluid className="mt-5">
-      <Container className="p-5">
-        {/* PLACEHOLDER WELCOME MESSAGE */}
-        <Col className="home-greeting-container d-flex flex-column justify-content-center">
-          <h1 className="home-greeting">{greeting}Bienvenido a Somos Mas</h1>
-        </Col>
+    <>
+      <HomePrincipalContent data={info} />
+      <Container className="d-flex flex-column justify-content-center align-items-center mt-5">
+        <ProgressSpinner state={isLoading} />
+        <Slider slides={sliders} />
+        {
+          news.length > 0 && <h3 className="fw-bold text-uppercase text-center fs-3 mb-3">Últimas Novedades</h3>
+        }
+
+        <Container className="d-flex flex-row gap-4 justify-content-center align-items-center mt-5">
+          {
+            news.map((item) => (
+              <NewCard key={item.id} newItem={item} />
+            ))
+          }
+        </Container>
       </Container>
-      {/* PLACEHOLDER SLIDER */}
-      <Slider></Slider>
-      <Col xs={12}>
-        <div className="placeholder-slider d-flex flex-column justify-content-center">
-          {/* COMPONENTE SLIDER */}
-          {/* <h3>Slider placeholder</h3> */}
-          <Slider />
-        </div>
-      </Col>
-      <Container className="mt-5">
-        <Col
-          xs={12}
-          className="placeholder-novedades d-flex flex-column justify-content-center align-items-center"
-        >
-          <h3>Novedades</h3>
-          {/* COMPONENTE NOVEDADES */}
-          {/* EJEMPLO DE PLACEHOLDER */}
-          <Skeleton />
-        </Col>
-      </Container>
-      <Container className="mt-5">
-        <Col
-          xs={12}
-          className="placeholder-novedades d-flex flex-column justify-content-center align-items-center"
-        >
-          <h3>Setup Progress</h3>
-          {/* COMPONENTE NOVEDADES */}
-          {/* EJEMPLO DE PLACEHOLDER */}
-          <ProgressSpinner />
-        </Col>
-      </Container>
-    </Container>
+    </>
   );
 };
 export default Home;

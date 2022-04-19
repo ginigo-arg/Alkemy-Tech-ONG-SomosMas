@@ -6,7 +6,8 @@
   "extends": ["plugin:react/recommended", "standard"],
   "parserOptions": {
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "js": true
     },
     "ecmaVersion": "latest",
     "sourceType": "module"
@@ -15,7 +16,7 @@
   "rules": {
     "comma-dangle": ["error", "always-multiline"],
     "semi": ["error", "always"],
-    "indent": ["error", 2],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
 
     // react config
     "react/jsx-uses-vars": "error",
@@ -26,3 +27,5 @@
     "react/react-in-jsx-scope": "off"
   }
 }
+
+

@@ -1,40 +1,30 @@
-import React from 'react';
+/* eslint-disable comma-dangle */
+/* eslint-disable multiline-ternary */
+import React, { useEffect, useState } from 'react';
+import { nanoid } from 'nanoid';
+import { ORGANIZATION_CONTACT_DATA } from '../../Services/contactService';
 import { Link } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Image from 'react-bootstrap/Image';
 // iconos redes sociales quemados
 import facebook from '../../assets/img/iconos/socialMedia/facebook.png';
-import whatsapp from '../../assets/img/iconos/socialMedia/whatsapp.png';
+import linkedin from '../../assets/img/iconos/socialMedia/linkedin.png';
 import twitter from '../../assets/img/iconos/socialMedia/twitter.png';
 import instagram from '../../assets/img/iconos/socialMedia/instagram.png';
 
 const SocialMedia = ({ layoutVertical = true, showTitle = false }) => {
-  const socialMedia = [
-    {
-      id: 1,
-      name: 'Facebook',
-      image: facebook,
-      url: 'https://www.facebook.com/Somos_Más',
-    },
-    {
-      id: 2,
-      name: 'Whatsapp',
-      image: whatsapp,
-      url: 'https://api.whatsapp.com/send/?phone=541160112988&text=Buen día, quisiera saber como hago para donar&app_absent=0',
-    },
-    {
-      id: 3,
-      name: 'Twitter',
-      image: twitter,
-      url: 'https://www.twiiter.com/SomosMás',
-    },
-    {
-      id: 4,
-      name: 'Instagram',
-      image: instagram,
-      url: 'https://www.instagram.com/SomosMás',
-    },
-  ];
+  const id = nanoid();
+
+  const [organization, setOrganization] = useState({});
+
+  const loadData = async () => {
+    const data = await ORGANIZATION_CONTACT_DATA();
+    setOrganization(data);
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
 
   return (
     <>
@@ -47,33 +37,54 @@ const SocialMedia = ({ layoutVertical = true, showTitle = false }) => {
         }
         variant={layoutVertical ? 'flush' : 'horizontal'}
       >
-        {socialMedia.map((red) => {
-          return (
-            <>
-              <Link
-                to={{ pathname: `${red.url}` }}
-                target="_blank"
-                className="text-decoration-none"
-              >
-                <ListGroup.Item as="li" action>
-                  <h6 className="pt-2">
-                    <Image
-                      src={red.image}
-                      alt={red.name}
-                      style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '50%',
-                        verticalAlign: 'middle',
-                      }}
-                    />{' '}
-                    {showTitle && red.name}
-                  </h6>
-                </ListGroup.Item>
-              </Link>
-            </>
-          );
-        })}
+        <Link
+          to={{ pathname: `${organization.facebook_url}` }}
+          target="_blank"
+          className="text-decoration-none"
+        >
+          <ListGroup.Item as="li" action key={id + '_facebook'}>
+            <h6 className="pt-2">
+              <Image src={facebook} alt="facebook" className="social-media" />{' '}
+              {layoutVertical && ' Facebook'}
+            </h6>
+          </ListGroup.Item>
+        </Link>
+        <Link
+          to={{ pathname: `${organization.linkedin_url}` }}
+          target="_blank"
+          className="text-decoration-none"
+        >
+          <ListGroup.Item as="li" action key={id + '_linkedin'}>
+            <h6 className="pt-2">
+              <Image src={linkedin} alt="linkedin" className="social-media" />{' '}
+              {layoutVertical && ' Linkedin'}
+            </h6>
+          </ListGroup.Item>
+        </Link>
+        <Link
+          to={{ pathname: `${organization.twitter_url}` }}
+          target="_blank"
+          className="text-decoration-none"
+        >
+          <ListGroup.Item as="li" action key={id + '_twitter'}>
+            <h6 className="pt-2">
+              <Image src={twitter} alt="twitter" className="social-media" />{' '}
+              {layoutVertical && ' Twitter'}
+            </h6>
+          </ListGroup.Item>
+        </Link>
+        <Link
+          to={{ pathname: `${organization.instagram_url}` }}
+          target="_blank"
+          className="text-decoration-none"
+        >
+          <ListGroup.Item as="li" action key={id + '_instagram'}>
+            <h6 className="pt-2">
+              <Image src={instagram} alt="instagram" className="social-media" />{' '}
+              {layoutVertical && ' Instagram'}
+            </h6>
+          </ListGroup.Item>
+        </Link>
       </ListGroup>
     </>
   );

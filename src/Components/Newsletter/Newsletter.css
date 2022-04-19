@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,300;1,300&family=Montserrat:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&display=swap');
+
+.newsletter-message {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+.newsletter-form {
+  width: 100%;
+}
+.newsletter-input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.newsletter-button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+@media (min-width: 768px) {
+  .newsletter-message {
+    font-size: 1.5rem;
+  }
+  .newsletter-form {
+    width: 75%;
+  }
+}
+@media (min-width: 992px) {
+  .newsletter-form {
+    width: 55%;
+  }
+}

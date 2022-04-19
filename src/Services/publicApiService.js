@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const baseURL = 'https://ongapi.alkemy.org/api/';
-
 // PARA CENTRALIZAR LOS PARAMETROS DE LOS HEADERS, ETC
 const config = {
   Group: 163,
@@ -13,21 +11,23 @@ export const Get = async (URL, id = null) => {
     const response = await axios(url);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log('Error GET public', error);
+    return error;
   }
 };
 
 // PETICION POST QUE RECIBE EL PARAMETRO DE LA URL Y EL BODY
 export const Post = async (url, body) => {
   try {
-    await axios({
+    const response = await axios({
       method: 'post',
-      baseURL: baseURL,
       url: url,
       config,
       data: body,
-    }).then((res) => console.log(res));
+    });
+    return response.data;
   } catch (err) {
-    console.log(err);
+    console.log('Error POST public', err);
+    return err;
   }
 };

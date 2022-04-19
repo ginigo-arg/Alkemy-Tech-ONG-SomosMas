@@ -1,0 +1,39 @@
+@media (max-width: 767.98px) {
+    .border-radius-25 {border-radius: 0px !important;}
+  }
+
+.bg-container{
+    background-Color: #F2F2F2;
+}
+
+#left {
+    background: rgba(219,87,82, 0.85) 
+}
+.border-radius-25{
+    border-radius: 25px;
+}
+.border-top-left-radius-25{
+    border-top-left-radius: 25px
+}
+
+.border-bottom-left-radius-25{
+    border-bottom-left-radius:25px
+}
+
+.border-top-right-radius-25{
+    border-top-right-radius: 25px
+}
+
+.border-bottom-right-radius-25{
+    border-bottom-right-radius: 25px
+}
+
+#contentCircle {
+    width: 360px; 
+    height: 360px;
+}
+
+#contentCircle img{
+    width: 350px; 
+    height: 350px;
+}
