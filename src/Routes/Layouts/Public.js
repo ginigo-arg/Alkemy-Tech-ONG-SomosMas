@@ -14,6 +14,8 @@ import UsersForm from '../../Components/Users/UsersForm';
 import LoginForm from '../../Components/Auth/LoginForm';
 import RegisterForm from '../../Components/Auth/RegisterForm';
 import Error404 from '../../Components/Error404/Error404';
+import School from '../../Campaigns/School/SchoolCampaign';
+import Toys from '../../Campaigns/Toys/ToysCampaign';
 
 const Layout = ({ match }) => {
   const PATH = match.path;
@@ -37,6 +39,8 @@ const Layout = ({ match }) => {
             <Route exact path="/usuarios/editar/:id" component={UsersForm} />
             <Route exact path="/login" component={LoginForm} />
             <Route exact path="/register" component={RegisterForm} />
+            <Route exact path="/campaigns/school" component={School} />
+            <Route exact path="/campaigns/toys" component={Toys} />
             <Route path="*" component={Error404} />
           </Switch>
         </Router>
