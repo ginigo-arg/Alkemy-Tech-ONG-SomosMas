@@ -39,7 +39,7 @@ const PublicFooter = () => {
         </Nav>
         <hr className="w-100 my-0 d-inline-block" />
         <p className="my-3 text-muted">
-          <small>2022 by Alkemy. All Rights Reserved.</small>
+          <small>By Reactors © Copyright 2022 | All Rights Reserved.</small>
         </p>
       </Container>
     </footer>
