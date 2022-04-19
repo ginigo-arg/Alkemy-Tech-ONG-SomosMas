@@ -1,0 +1,7 @@
+.partners{
+    background: var(--bs-gray-200) !important;
+}
+
+.text-partner{
+    color: var(--bs-gray-600)
+}

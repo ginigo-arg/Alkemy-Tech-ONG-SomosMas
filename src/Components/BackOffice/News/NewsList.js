@@ -6,13 +6,14 @@ import {
   Table,
   Row,
   Col,
+  Button,
 } from 'react-bootstrap';
 import { AiFillDelete, AiOutlineClear } from 'react-icons/ai';
 import { RiFileEditFill } from 'react-icons/ri';
 import { BsSearch } from 'react-icons/bs';
 import { BiPlusMedical } from 'react-icons/bi';
 import { FaThList } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 // ------------------------------------------- LISTADO NOTICIAS ---------------------------------------
 const newsBack = [
   {
@@ -45,7 +46,7 @@ const newsBack = [
 const NewsList = ({ news = newsBack }) => {
   const [busqueda, setBusqueda] = useState('');
   const [newsFilter, setNewsFilter] = useState(news);
-
+  const history = useHistory();
   useEffect(() => {
     setNewsFilter(
       news.filter((elemento) => {
@@ -55,6 +56,11 @@ const NewsList = ({ news = newsBack }) => {
       }),
     );
   }, [busqueda, news]);
+  const handleCreate = () => {
+    history.push({
+      pathname: '/backoffice/news/create',
+    });
+  };
 
   return (
     <>
@@ -76,13 +82,10 @@ const NewsList = ({ news = newsBack }) => {
               <span className="align-middle">Listado Noticias</span>
             </h3>
             {}
-            <Link
-              to="/backoffice/news/create"
-              className="btn btn-primary text-white rounded-pill d-none d-sm-block "
-              title="Agregar noticia"
-            >
+            <Button className='btn-info' onClick={handleCreate}>
               Agregar noticia
-            </Link>
+            </Button>
+
             <Link
               to="/backoffice/news/create"
               title="Agregar noticia"
@@ -141,7 +144,7 @@ const NewsList = ({ news = newsBack }) => {
                     </thead>
                     <tbody>
                       {newsFilter.map((element) => {
-                        return <RowsNew newData={[element]} />;
+                        return <RowsNew newData={[element]} key={element.id} />;
                       })}
                     </tbody>
                   </Table>
@@ -163,6 +166,14 @@ const NewsList = ({ news = newsBack }) => {
 };
 // ------------------------------------------- COMPONENTE ROW NEW LIST---------------------------------------
 const RowsNew = ({ newData }) => {
+  const history = useHistory();
+  const handleEdit = (id) => {
+    history.push({
+      pathname: '/backoffice/news/edit',
+      state: id,
+    });
+  };
+
   return (
     <tr key={'new_' + newData[0].id} className="align-middle">
       {newData.map((element) => {
@@ -212,13 +223,13 @@ const RowsNew = ({ newData }) => {
               </Link>
             </td>
             <td className="text-center" style={{ width: '70px' }}>
-              <Link
-                className="btn btn-info text-dark"
-                title="Editar"
-                to={'/backoffice/news/edit/' + element.id}
-              >
+
+              <Button className='btn-info' onClick={() => {
+                handleEdit(element.id);
+              }}>
                 <RiFileEditFill />
-              </Link>
+              </Button>
+
             </td>
           </>
         );

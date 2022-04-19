@@ -12,7 +12,7 @@ export const homeSlides = async (id = null) => {
     'https://ongapi.alkemy.org/api/slides',
     id,
   );
-  return data.slice(0, 3);
+  return data.slice(0, 5);
 };
 
 export const homeNews = async (id = null) => {
