@@ -8,20 +8,22 @@ const Faq = () => {
     <Container className='py-5'>
       <Row className='py-5 d-flex flex-row justify-content-md-center justify-content-lg-between'>
         <Col xs={12} lg={5}>
-          <h2>
-            ¿Aún tiene dudas?
+          <h2 className='text-white'>
+            <strong>
+              ¿Aún tiene dudas?
+            </strong>
           </h2>
-          <p className='my-5 mt-0'>
+          <p className='my-5 mt-0 text-white'>
             En esta sección contestamos las preguntas que más frecuentemente nos suelen hacer.
           </p>
-          <p className='text-md-center text-lg-start'>
+          <p className='text-md-center text-lg-start text-white'>
             En caso de tener alguna consulta adicional, no dude en contactarnos:
           </p>
           <Row md={6} className='flex-row my-3 m-lg-0 justify-content-md-center justify-content-lg-between'>
             <Col
               xs={3}
               lg={10}
-              className="d-flex flex-row justify-content-center justify-content-lg-start"
+              className="d-flex flex-row justify-content-center justify-content-lg-start text-white"
             >
               <a
                 href="mailto:info@somosmas.com.ar"
@@ -29,7 +31,7 @@ const Faq = () => {
                 rel="noreferrer"
               >
                 <FaEnvelope size={20} color="black" />
-                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2">
+                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2 text-white">
                   info@somosmas.com.ar
                 </p>
               </a>
@@ -45,7 +47,7 @@ const Faq = () => {
                 rel="noreferrer"
               >
                 <FaFacebook size={20} color="black" />
-                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2">
+                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2 text-white">
                   Facebook
                 </p>
               </a>
@@ -61,7 +63,7 @@ const Faq = () => {
                 rel="noreferrer"
               >
                 <FaInstagram size={20} color="black" />
-                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2">
+                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2 text-white">
                   Instagram
                 </p>
               </a>
@@ -77,7 +79,7 @@ const Faq = () => {
                 rel="noreferrer"
               >
                 <FaTwitter size={20} color="black" />
-                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2">
+                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2 text-white">
                   Twitter
                 </p>
               </a>

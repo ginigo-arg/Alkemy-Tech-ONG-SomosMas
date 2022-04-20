@@ -1,4 +1,4 @@
-import { Container } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 import Slider from '../Slides/Slider';
 import ProgressSpinner from '../Progress/ProgressSpinner';
 import { useEffect, useState } from 'react';
@@ -11,11 +11,14 @@ import TextMarquee from './Marquee/TextMarquee';
 import Partners from './Partners/Partners';
 import Faq from './SectionFAQ/Faq';
 
+import { useHistory } from 'react-router-dom';
+
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   // const [info, setInfo] = useState([]);
   const [sliders, setSliders] = useState([]);
   const [news, setNews] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     const getData = async () => {
@@ -55,6 +58,7 @@ const Home = () => {
               />
             )).slice(0, 3)
           }
+          <Button className='btn btn-primary text-center text-white' onClick={() => history.push('/novedades')}>Todas las Noticias...</Button>
         </Container>
         <Container fluid className='section-video bg-warning'>
           <SectionVideo/>

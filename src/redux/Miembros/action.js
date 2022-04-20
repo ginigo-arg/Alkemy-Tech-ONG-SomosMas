@@ -1,12 +1,12 @@
 import { getAllMembers } from '../../Services/MemberService';
 import { ACTION_FAILED, GET_MIEMBROS } from '../Miembros/types';
 
-export const GET_MEMBERS_FUNCTION = () => async (dispatch) => {
+export const GET_MEMBERS_FUNCTION = () => (dispatch) => {
   try {
-    const { data } = await getAllMembers();
+    const response = getAllMembers();
     dispatch({
       type: GET_MIEMBROS,
-      payload: data,
+      payload: response,
     });
   } catch (error) {
     dispatch({
