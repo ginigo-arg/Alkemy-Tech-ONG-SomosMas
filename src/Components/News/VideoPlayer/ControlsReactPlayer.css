@@ -1,0 +1,99 @@
+.controlls {
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	transition: all 0.2s ease-in-out;
+	z-index: 2;
+}
+.controls_play {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	flex: 1;
+}
+
+.controlls:hover .controlls__toolbar {
+	opacity: 100%;
+}
+.controlls__toolbar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 30px;
+	padding: 0 15px;
+	background: red;/*cambiar color*/
+	display: flex;
+	align-items: center;
+	column-gap: 8px;
+	opacity: 0;
+	transition: all 0.3s ease-in;
+	box-sizing: border-box;
+}
+.controlls__toolbar svg {
+	cursor: pointer;
+}
+.controlls__toolbar span {
+	display: flex;
+	align-items: center;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.controlls__toolbar input[type='range'] {
+	-webkit-appearance: none;
+	margin-right: 15px;
+	height: 4px;
+	background: rgba(255, 255, 255, 0.6);/*cambiar colores*/
+	transition: all 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+.controlls__toolbar--vol {
+	width: 20px;
+	overflow: hidden;
+	transition: all 0.3s ease-in-out;
+}
+.controlls__toolbar--vol input[type='range'] {
+	width: 60px;
+}
+.controlls__toolbar--vol:hover {
+	width: 83px;
+}
+/*----------------------por si tenes otros navegadores-----------------------*/
+/* Special styling for WebKit/Blink */
+.controlls__toolbar input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	border: 1px solid #000000;
+	height: 11px;
+	width: 10px;
+	border-radius: 50%;
+	background: #ffffff;
+	cursor: pointer;
+}
+
+/* All the same stuff for Firefox */
+.controlls__toolbar input[type='range']::-moz-range-thumb {
+	height: 11px;
+	width: 10px;
+	border: none;
+	border-radius: 50%;
+	background: #ffffff;
+	cursor: pointer;
+}
+
+.controlls__toolbar--progress {
+	flex: 1;
+	transition: all 0.4s ease-in-out;
+}
+.controlls__toolbar--progress input {
+	width: 100%;
+}

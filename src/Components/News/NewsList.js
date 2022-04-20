@@ -6,7 +6,7 @@ import ProgressSpinner from '../Progress/ProgressSpinner';
 import NewCard from './NewsCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_NOVEDAD_FN } from '../../redux/novedades/actions';
-
+import NewsVideo from './NewsVideo';
 const NewsList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
@@ -39,6 +39,9 @@ const NewsList = () => {
             }
           </>
         }
+        <section>
+          <NewsVideo />
+        </section>
       </Container>
     </>
   );

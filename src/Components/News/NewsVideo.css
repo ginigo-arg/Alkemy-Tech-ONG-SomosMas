@@ -1,0 +1,6 @@
+.news__video {
+	display: grid;
+	place-items: center;
+	row-gap: 25px;
+	width: 100%;
+}
