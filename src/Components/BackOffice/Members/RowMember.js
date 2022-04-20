@@ -2,11 +2,13 @@ import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { AiFillDelete } from 'react-icons/ai';
 import { RiFileEditFill } from 'react-icons/ri';
-import { deleteMember } from '../../../Services/MemberService';
 import { alertService } from '../../../Services/alertService';
+import { useDispatch } from 'react-redux';
+import { DELETE_MEMBER_FN } from '../../../redux/Miembros/action';
 
 const RowMember = ({ member }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleEdit = () => {
     history.push('/backoffice/members/edit', {
@@ -16,7 +18,7 @@ const RowMember = ({ member }) => {
 
   const handleDelete = async () => {
     const confirm = await alertService('confirm', 'Seguro deseas eliminar este miembro?');
-    if (confirm) deleteMember(member.id);
+    if (confirm) dispatch(DELETE_MEMBER_FN(member.id));
   };
 
   return (

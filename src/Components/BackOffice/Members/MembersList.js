@@ -1,26 +1,21 @@
-import { useEffect, useState } from 'react';
-import { Container, Table } from 'react-bootstrap';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getAllMembers } from '../../../Services/MemberService';
-import { alertService } from '../../../Services/alertService';
+import { Container, Table } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { GET_MEMBERS_FUNCTION } from '../../../redux/Miembros/action';
 import RowMember from './RowMember';
 import ProgressSpinner from '../../Progress/ProgressSpinner';
 
 const MembersList = () => {
-  const [members, setMembers] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
+  const stateMembers = useSelector(state => state.miembros);
+  const stateLoading = useSelector(state => state.global.loading);
 
-  useEffect(async () => {
-    const fetchData = async () => {
-      const { data } = await getAllMembers();
-      setIsLoading(false);
-      setMembers(data);
-    };
-    fetchData().catch((e) => {
-      alertService('error', e.message);
-      setIsLoading(false);
-    });
-  }, [members]);
+  useEffect(() => {
+    dispatch(GET_MEMBERS_FUNCTION());
+  }, []);
+
+  useEffect(() => {}, [stateMembers]);
 
   return (
     <Container className="my-4 p-0 border">
@@ -33,13 +28,13 @@ const MembersList = () => {
           Agregar miembro
         </Link>
       </div>
-      {/*  AGREGAR BUSCADOR AQUÍ */}
-      {isLoading
+
+      {stateLoading
         ? <div className="d-flex justify-content-center my-5">
-          <ProgressSpinner state={isLoading} />
+          <ProgressSpinner state={stateLoading} />
         </div>
         : <>
-          {members.length > 0
+          {stateMembers.length > 0
             ? <Container>
               <Table striped hover responsive>
                 <thead className="bg-secondary text-white rounded">
@@ -52,7 +47,7 @@ const MembersList = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {members.map((item) => (
+                  {stateMembers.map((item) => (
                     <RowMember key={item.id} member={item} />
                   ))}
                 </tbody>

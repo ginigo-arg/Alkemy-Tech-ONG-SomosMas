@@ -6,8 +6,8 @@ import {
   PUT_PRIVATE_API,
 } from './privateApiService';
 
-export const getAllMembers = async () => {
-  return await GET_PRIVATE_API(process.env.REACT_APP_API_MEMBERS);
+export const getAllMembers = () => {
+  return GET_PRIVATE_API(process.env.REACT_APP_API_MEMBERS);
 };
 
 export const getMember = id => {
