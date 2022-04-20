@@ -1,22 +1,61 @@
-.zoneContent {
-  display: block;
-  width: 100%;
-  max-height: 120px;
-  padding: 20px 15px;
+@media(max-width: 767px){
+  .zoneContent {
+    display: block;
+    width: 100%;
+    max-height: 120px; /* 120px; */
+    padding: 20px 15px;
+  }
+
+  .zoneTitle {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    background-color: rgba(255, 255, 255, 0.4);
+    /* border-radius: 15px; */
+    min-height: 80px; /* 80px; */
+  }
+
+}
+@media(min-width: 768px){
+  .zoneContent {
+    display: block;
+    width: 100%;
+    max-height: 260px; /* 120px; */
+    padding: 20px 15px;
+  }
+
+  .zoneTitle {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    background-color: rgba(255, 255, 255, 0.4);
+    /* border-radius: 15px; */
+    min-height: 220px; /* 80px; */
+  }
+
 }
 
-.zoneTitle {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  background-color: rgba(255, 255, 255, 0.4);
-  border-radius: 15px;
-  min-height: 80px;
+.bg-img-size {
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
 }
 
 .bg-no-media {
-  background: url(../../assets/img/banner/banner-no-media.png) center center
-    no-repeat;
-  /* background-size: cover;
-  position: relative; */
+  background: url(../../assets/img/banner/banner-no-media.png) center center no-repeat;
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  position: relative;
+}
+
+
+.border-image-bottom {
+  border-bottom: 10px solid transparent;
+  -moz-border-image: url(../../assets/img/banner/liston.png) 30 30 repeat; /* Old firefox */
+  -webkit-border-image: url(../../assets/img/banner/liston.png) 30 30 repeat; /* Safari */
+  -o-border-image: url(../../assets/img/banner/liston.png) 30 30 repeat; /* Opera */
+  border-image: url(../../assets/img/banner/liston.png) 30 30 repeat;
 }

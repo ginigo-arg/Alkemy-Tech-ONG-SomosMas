@@ -1,5 +1,6 @@
 // TIPOS DE ACCION DE USUARIOS
 export const LOGIN_USER = 'LOGIN_USER';
+export const LOGIN_AUTH = 'LOGIN_AUTH';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const CREATE_USER = 'CREATE_USER';
 

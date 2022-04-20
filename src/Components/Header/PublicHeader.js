@@ -38,7 +38,8 @@ export default function PublicHeader () {
         <Container>
           <Navbar.Toggle />
           <Navbar.Collapse className="login d-flex flex-direction-row justify-content-end align-items-center">
-            <p className='text-white my-0 login'>Login</p>
+            <p >Login</p>
+            <Link className='text-white my-0 login' to='/login'>Iniciar sesión | Registrarse</Link>Login
           </Navbar.Collapse>
         </Container>
       </Navbar>
