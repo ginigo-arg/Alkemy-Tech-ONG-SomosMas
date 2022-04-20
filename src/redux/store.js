@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import actividadesReducer from './actividades/reducer';
 import authReducer from './auth/authReducer';
 import novedadesReducer from './novedades/reducer';
+import { categoriesReducer } from './categories/reducer';
 
 const store = createStore(
   combineReducers({
     novedades: novedadesReducer,
     actividades: actividadesReducer,
+    categories: categoriesReducer,
     auth: authReducer,
     // ...other reducers
   }),
