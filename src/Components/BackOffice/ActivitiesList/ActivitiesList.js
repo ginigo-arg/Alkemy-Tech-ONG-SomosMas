@@ -1,39 +1,36 @@
+import './ActivitiesList.css';
+import { useEffect, useState } from 'react';
 import { Button, Container, Table } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
-import logo from '../../../assets/img/logo-somos-mas.png';
 import { RiFileEditFill } from 'react-icons/ri';
 import { AiFillDelete } from 'react-icons/ai';
-import './ActivitiesList.css';
-
-const activities = [
-  {
-    id: 1,
-    name: 'Actividad 1',
-    description: 'Descripcion de prueba2',
-    image: logo,
-  },
-  {
-    id: 2,
-    name: 'ACtividad 2',
-    description: 'Descripcion de prueba3',
-    image: logo,
-  },
-  {
-    id: 3,
-    name: 'Actividad 3',
-    description: 'Descripcion de prubea4',
-    image: logo,
-  },
-];
+import { getActivities } from '../../../Services/actividadesService';
+import ProgressSpinner from '../../Progress/ProgressSpinner';
+import { alertService } from '../../../Services/alertService';
 
 const ActivitiesList = () => {
   const history = useHistory();
+  const [activities, setActivities] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleEdit = (id) => {
-    history.push('/backoffice/create-activity', {
-      id,
+  const handleEdit = activity => {
+    history.push('/backoffice/activities/edit', {
+      id: activity.id,
     });
   };
+
+  useEffect(async () => {
+    const fetchData = async () => {
+      const { data } = await getActivities();
+      setIsLoading(false);
+      setActivities(data);
+    };
+    fetchData().catch((e) => {
+      alertService('error', e.message);
+      setIsLoading(false);
+    });
+  }, []);
+
   return (
     <Container>
       <div className="activities-title">
@@ -42,21 +39,24 @@ const ActivitiesList = () => {
           <Button className="btn-danger">Crear Actividad</Button>
         </Link>
       </div>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Descripcion</th>
-            <th>Imagen</th>
-            <th>Acción</th>
-          </tr>
-        </thead>
-        <tbody>
-          {activities &&
+      {isLoading
+        ? <div className="d-flex justify-content-center my-5">
+          <ProgressSpinner state={isLoading} />
+        </div>
+        : <>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Imagen</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              {activities &&
             activities.map((activity) => (
               <tr key={activity.id}>
-                <td>{activity.id}</td>
                 <td>{activity.name}</td>
                 <td>{activity.description}</td>
                 <td>
@@ -72,15 +72,17 @@ const ActivitiesList = () => {
                   </Button>
                   <Button
                     className="btn-info"
-                    onClick={() => handleEdit(activity.id)}
+                    onClick={() => handleEdit(activity)}
                   >
                     <RiFileEditFill />
                   </Button>
                 </td>
               </tr>
             ))}
-        </tbody>
-      </Table>
+            </tbody>
+          </Table>
+        </>
+      }
     </Container>
   );
 };

@@ -4,6 +4,9 @@ import actividadesReducer from './actividades/reducer';
 import authReducer from './auth/authReducer';
 import novedadesReducer from './novedades/reducer';
 import { categoriesReducer } from './categories/reducer';
+import membersReducer from './Miembros/reducer';
+import usReducer from './Nosotros/reducer';
+import globalReducer from './global/globalReducer';
 
 const store = createStore(
   combineReducers({
@@ -11,6 +14,9 @@ const store = createStore(
     actividades: actividadesReducer,
     categories: categoriesReducer,
     auth: authReducer,
+    miembros: membersReducer,
+    organizacion: usReducer,
+    global: globalReducer,
     // ...other reducers
   }),
   applyMiddleware(thunk),

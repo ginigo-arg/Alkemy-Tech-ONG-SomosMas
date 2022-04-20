@@ -1,51 +1,57 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { memberSchemaValidation } from './validation/memberSchema';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
-import { createMember, editMember, getMember } from '../../../Services/MemberService';
+import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+// import { createMember, editMember } from '../../../Services/MemberService';
 import Spinner from '../../Spinner/Spinner';
-// import { convertToBase64 } from './validation/';
+import { convertToBase64 } from '../../../Services/base64Helper';
+import { useDispatch, useSelector } from 'react-redux';
+import { CREATE_MEMBER_FN, EDIT_MEMBER_FN, GET_MEMBER_FN } from '../../../redux/Miembros/action';
 
 const MembersForm = () => {
   const location = useLocation();
-  const [members, setMembers] = useState(false);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const stateLoading = useSelector(state => state.global.loading);
+  const stateMembers = useSelector(state => state.miembros);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (location.state) {
-      const { data } = await getMember(location.state.id);
-      setMembers(data);
+      dispatch(GET_MEMBER_FN(location.state.id));
     }
   }, []);
 
   return (
     <>
       {
-        !members && location.state
+        stateLoading && location.state
           ? <Spinner />
           : (
             <Container>
               <h2>Form Members</h2>
               <Formik
                 initialValues={{
-                  name: members.name || '',
-                  description: members.description || '',
-                  image: members.image || '',
-                  facebookUrl: members.facebookUrl || '',
-                  linkedinUrl: members.linkedinUrl || '',
+                  name: stateMembers.name || '',
+                  description: stateMembers.description || '',
+                  image: stateMembers.image || '',
+                  facebookUrl: stateMembers.facebookUrl || '',
+                  linkedinUrl: stateMembers.linkedinUrl || '',
                 }}
                 onSubmit={async (values, { setSubmitting }) => {
                   setSubmitting(false);
 
-                  const base64 = 'await convertToBase64(values.image)';
+                  const base64 = await convertToBase64(values.image);
                   values.image = base64;
                   console.log(values);
                   if (!location.state) {
-                    createMember(values);
+                    dispatch(CREATE_MEMBER_FN(values));
+                    if (!stateLoading) history.push('/backoffice/members');
                   } else {
-                    editMember(values);
+                    dispatch(EDIT_MEMBER_FN(stateMembers.id, values));
+                    if (!stateLoading) history.push('/backoffice/members');
                   }
                 }}
                 validationSchema={memberSchemaValidation}

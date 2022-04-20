@@ -12,7 +12,6 @@ const NewCard = ({
 }) => {
   const history = useHistory();
   const { pathname } = useLocation();
-  console.log('location', pathname);
 
   return (
     <Card style={{ width: '20rem' }} className='p-3 border-0 shadow card-App'>

@@ -1,54 +1,128 @@
-import { Container, Row, Col, Accordion } from 'react-bootstrap';
+import { Container, Row, Col, Accordion, Button } from 'react-bootstrap';
+import { FaEnvelope, FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import './Faq.css';
+
 const Faq = () => {
   return (
     <Container className='py-5'>
-      <Row className='py-5'>
-        <Col>
+      <Row className='py-5 d-flex flex-row justify-content-md-center justify-content-lg-between'>
+        <Col xs={12} lg={5}>
           <h2>
-            <strong>
-              ¿Aun tiene dudas?
-            </strong>
+            ¿Aún tiene dudas?
           </h2>
-          <p>
-            Hemos seleccionado y respondido algunas de las principales preguntas que recibimos aquí en nuestras Preguntas Frecuentes.
+          <p className='my-5 mt-0'>
+            En esta sección contestamos las preguntas que más frecuentemente nos suelen hacer.
           </p>
-          <p className='mb-0 pb-0'>
-            Si tienes dudas:
+          <p className='text-md-center text-lg-start'>
+            En caso de tener alguna consulta adicional, no dude en contactarnos:
           </p>
-          <p>
-            <a>
-              <strong>
-                info@somosmas.com.ar
-              </strong>
-            </a>
-          </p>
+          <Row md={6} className='flex-row my-3 m-lg-0 justify-content-md-center justify-content-lg-between'>
+            <Col
+              xs={3}
+              lg={10}
+              className="d-flex flex-row justify-content-center justify-content-lg-start"
+            >
+              <a
+                href="mailto:info@somosmas.com.ar"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaEnvelope size={20} color="black" />
+                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2">
+                  info@somosmas.com.ar
+                </p>
+              </a>
+            </Col>
+            <Col
+              xs={3}
+              lg={10}
+              className="d-flex flex-row justify-content-center justify-content-lg-start"
+            >
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaFacebook size={20} color="black" />
+                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2">
+                  Facebook
+                </p>
+              </a>
+            </Col>
+            <Col
+              xs={3}
+              lg={10}
+              className="d-flex flex-row justify-content-center justify-content-lg-start"
+            >
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaInstagram size={20} color="black" />
+                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2">
+                  Instagram
+                </p>
+              </a>
+            </Col>
+            <Col
+              xs={3}
+              lg={10}
+              className="d-flex flex-row justify-content-center justify-content-lg-start"
+            >
+              <a
+                href="https://www.twitter.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaTwitter size={20} color="black" />
+                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2">
+                  Twitter
+                </p>
+              </a>
+            </Col>
+          </Row>
         </Col>
-        <Col lg={1}>
-        </Col>
-        <Col>
-          <Accordion defaultActiveKey="0">
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>Accordion Item #1</Accordion.Header>
+        <Col xs={12} md={8} lg={6} className='d-flex flex-lg-column justify-content-lg-center'>
+          <Accordion defaultActiveKey={0}>
+            <Accordion.Item eventKey={0}>
+              <Accordion.Header>¿Por qué donar?</Accordion.Header>
               <Accordion.Body>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                est laborum.
+                Una pequeña acción para vos, por más insignificante que sea, una gran ayuda para otro.
               </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>Accordion Item #2</Accordion.Header>
-              <Accordion.Body>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                est laborum.
+            <Accordion.Item eventKey={1}>
+              <Accordion.Header>¿Cómo puedo ayudar?</Accordion.Header>
+              <Accordion.Body className='d-flex flex-column'>
+                <Col>
+                  Ya sea desde juguetes, útiles escolares, o una pequeña suma de dinero, tu aporte es valiosísimo.
+                  ¡Involucrate!
+                  Gracias a vos, vamos a poder seguir mejorando la infancia de muchísimas chicas y chicos.
+                </Col>
+                <Col className='d-flex flex-row justify-content-center mt-3'>
+                  <Button variant='primary' className='text-white'>
+                    {/* <Link to=''> */}
+                    Donar
+                    {/* </Link> */}
+                  </Button>
+                </Col>
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey={2}>
+              <Accordion.Header>¿Cómo puedo ser parte de Somos Más?</Accordion.Header>
+              <Accordion.Body className='d-flex flex-column'>
+                <Col>
+                  Estamos constantemente ampliando nuestro equipo para que más chicas y chicos puedan tener un mejor presente.
+                  Si te querés sumar, sentite libre de contactarnos por redes sociales o correo electrónico.
+                </Col>
+                <Col className='d-flex flex-row justify-content-center mt-3'>
+                  <Button variant='info' className='text-white'>
+                    <Link to='/contacto'>
+                      Sumate
+                    </Link>
+                  </Button>
+                </Col>
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
