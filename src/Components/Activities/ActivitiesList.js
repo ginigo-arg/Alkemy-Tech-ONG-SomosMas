@@ -19,23 +19,23 @@ const ActivitiesList = () => {
 
   return (
     <Container className="d-flex gap-4 justify-content-center align-items-stretch flex-wrap mt-5 mb-5">
-      {isLoading
-        ? <ProgressSpinner state={isLoading}/>
-        : <>
-          {actividades.length > 0
-            ? actividades.map((item) => (
-              <NewCard key={item.id}
-                image={item.image}
-                title={item.name}
-                description={item.description}
-                id={item.id}
-              />
-            ))
-            : (
-              <p>No hay actividades</p>
-            )}
-        </>
-      }
+      <ProgressSpinner state={isLoading}/>
+      {actividades.length > 0
+        ? actividades.map((item) => {
+          return (
+            <NewCard key={item.id}
+              image={item.image}
+              title={item.name}
+              description={item.description}
+              id={item.id}
+            />
+          );
+        })
+
+        : (
+          <p>No hay actividades</p>
+        )}
+
     </Container>
   );
 };

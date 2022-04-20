@@ -1,19 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Poppins:wght@500;600&display=swap');
 body {
   margin: 0;
   /* font-family:'Concert One', cursive, -apple-system, BlinkMacSystemFont,'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
-    font-family: 'Concert One', cursive!important;
+    font-family: 'Poppins' !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+
 h1, h2, h3,{
-  font-family: 'Concert One', cursive !important;
+  font-family: 'Poppins', sans-serif !important;
   font-weight: 800 !important;
 }
 h4, h5, h6, a{
-  font-family: 'Concert One', cursive !important;
+  font-family: 'Poppins', sans-serif !important;
   font-weight: 500 !important;
 }
 

@@ -7,8 +7,11 @@ import { spring, AnimatedSwitch } from 'react-router-transition';
 import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice';
 import Login from './Components/Auth/Login';
 import PrivateRoutes from './Components/Private/PrivateRoutes';
+<<<<<<< HEAD
 
 // import PrivateRoutes from './Components/Private/PrivateRoutes';
+=======
+>>>>>>> 4ff861e756c42546011368bbcfd8b33c1ac7e17c
 
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
 const Home = React.lazy(() => import('./Routes/Layouts/Public.js'));
