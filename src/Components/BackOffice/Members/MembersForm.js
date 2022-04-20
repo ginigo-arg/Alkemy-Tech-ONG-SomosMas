@@ -7,7 +7,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import { createMember, editMember, getMember } from '../../../Services/MemberService';
 import Spinner from '../../Spinner/Spinner';
-// import { convertToBase64 } from './validation/';
+import { convertToBase64 } from '../../../Services/base64Helper';
 
 const MembersForm = () => {
   const location = useLocation();
@@ -39,7 +39,7 @@ const MembersForm = () => {
                 onSubmit={async (values, { setSubmitting }) => {
                   setSubmitting(false);
 
-                  const base64 = 'await convertToBase64(values.image)';
+                  const base64 = await convertToBase64(values.image);
                   values.image = base64;
                   console.log(values);
                   if (!location.state) {
