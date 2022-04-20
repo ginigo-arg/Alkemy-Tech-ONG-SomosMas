@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 // import { alertService } from '../../Services/alertService';
 import CardMembers from './cardTeam';
@@ -9,33 +9,33 @@ import Organization from './Organization';
 import ProgressSpinner from '../Progress/ProgressSpinner';
 
 export default function Nosotros () {
-  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const stateMiembros = useSelector(state => state.miembros);
-  const stateOrganizacion = useSelector(state => state.organizacion.data);
+  const stateOrganizacion = useSelector(state => state.organizacion);
+  const stateLoading = useSelector(state => state.global.loading);
 
   useEffect(() => {
     dispatch(GET_MEMBERS_FUNCTION());
     dispatch(GET_ABOUT_FUNCTION());
     console.log('organizacion', stateOrganizacion);
-    if (stateMiembros.length > 0 && stateOrganizacion > 0) setLoading(false);
   }, []);
 
   return (
-    <>
-      <ProgressSpinner state={loading} />
-      <Container fluid className='bg-info m-0'>
-        <Organization
-          id={stateOrganizacion.id}
-          name={stateOrganizacion.name}
-          shortDescription={stateOrganizacion.short_description}
+    stateLoading
+      ? <Spinner/>
+      : <>
+        <Container fluid className='bg-info m-0'>
+          <Organization
+            id={stateOrganizacion.data?.id}
+            name={stateOrganizacion.data?.name}
+            shortDescription={stateOrganizacion.data?.short_description}
 
         />
       </Container>
 
-      <Container className='d-flex justify-content-center py-5 my-2'>
-        <p className='w-75 text-center'>{stateOrganizacion.long_description}</p>
-      </Container>
+        <Container className='d-flex justify-content-center py-5 my-2'>
+          <p className='w-75 text-center'>{stateOrganizacion.data?.long_description}</p>
+        </Container>
 
       <h2 className='text-center text-info'>
         <strong>
