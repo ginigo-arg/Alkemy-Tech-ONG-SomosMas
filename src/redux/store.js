@@ -5,6 +5,7 @@ import authReducer from './auth/authReducer';
 import novedadesReducer from './novedades/reducer';
 import { categoriesReducer } from './categories/reducer';
 import membersReducer from './Miembros/reducer';
+import usReducer from './Nosotros/reducer';
 
 const store = createStore(
   combineReducers({
@@ -13,6 +14,7 @@ const store = createStore(
     categories: categoriesReducer,
     auth: authReducer,
     miembros: membersReducer,
+    organizacion: usReducer,
     // ...other reducers
   }),
   applyMiddleware(thunk),
