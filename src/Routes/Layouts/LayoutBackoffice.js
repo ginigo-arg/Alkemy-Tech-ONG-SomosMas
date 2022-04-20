@@ -43,6 +43,11 @@ const LayoutBackoffice = () => {
               />
               <Route
                 exact
+                path="/backoffice/activities/edit"
+                component={ActivitiesForm}
+              />
+              <Route
+                exact
                 path="/backoffice/activities"
                 component={ActivitiesList}
               />
