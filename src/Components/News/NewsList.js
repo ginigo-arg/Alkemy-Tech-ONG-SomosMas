@@ -13,8 +13,8 @@ const NewsList = () => {
   const state = useSelector(state => state.novedades);
   console.log('state:', state);
 
-  useEffect(async () => {
-    await dispatch(GET_NOVEDAD_FN());
+  useEffect(() => {
+    dispatch(GET_NOVEDAD_FN());
     if (state.length > 0) setIsLoading(false);
   }, []);
 
@@ -22,20 +22,23 @@ const NewsList = () => {
     <>
       <SectionTitles title="Novedades" />
       <Container className="d-flex gap-4 justify-content-center align-items-stretch flex-wrap mt-5 mb-5">
-        <Container className="d-flex gap-4 justify-content-center align-items-center">
-          <ProgressSpinner state={isLoading} />
-        </Container>
-        {
-          state.length > 0 && state.map((item) => (
-            <NewCard key={item.id}
-              image={item.image}
-              title={item.name}
-              description={item.content}
-              id={item.id}
-            />
-          ))
+        {!isLoading
+          ? <div className="d-flex justify-content-center my-5">
+            <ProgressSpinner state={isLoading} />
+          </div>
+          : <>
+            {
+              state.length > 0 && state.map((item) => (
+                <NewCard key={item.id}
+                  image={item.image}
+                  title={item.name}
+                  description={item.content}
+                  id={item.id}
+                />
+              ))
+            }
+          </>
         }
-
       </Container>
     </>
   );
