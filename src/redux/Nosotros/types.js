@@ -1,3 +1,4 @@
+export const GET_ABOUT = 'GET_ABOUT';
 export const USABOUTUS_UPDATE = 'USABOUTUS_UPDATE';
 export const USABOUTUS_ADD = 'USABOUTUS_ADD';
 export const USABOUTUS_ERROR = 'USABOUTUS_ERROR';

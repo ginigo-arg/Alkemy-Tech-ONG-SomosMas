@@ -1,33 +1,57 @@
+
+.carouselItem::before{
+ 
+    content: '';
+    background: linear-gradient(to bottom, rgb(206,89,55,0) 0%, rgb(38,3,3,0.5) 57%, rgb(18,7,7,0.6) 100%);
+    z-index: 3;
+    display: block;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    position: absolute;  
+    z-index: 1;
+  
+}
 .caption {
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0.01) 0%,
-    rgba(0, 0, 0, 0.178) 50%,
-    rgba(0, 0, 0, 0.178) 51%,
-    rgba(68, 68, 68, 0.27) 64%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  z-index: 2;
+  bottom: 100px !important;
 }
 
 .caption h2 {
-  color: var(--bs-primary);
+  color: var(--bs-white);
 }
 
 .caption p {
+  text-align: start;
   color: var(--bs-warning);
 }
+
 
 .carousel-indicators [data-bs-target]{
   background-color: var(--bs-info);
 }
 
+
 .slides-img {
     height: 500px;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 @media screen and (max-width: 769px) {
   .caption {
     display: none;
   }
+  .slides-img{
+    height: 250px;
+    object-fit: cover;
+  }
+  .row-buttons{
+    width: 500px !important;
+  }
 }
+
+.row-buttons{
+  width: 350px !important;
+}
+

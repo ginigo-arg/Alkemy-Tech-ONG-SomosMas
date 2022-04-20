@@ -22,59 +22,78 @@ const Sidebar = () => {
         id="offcanvasNavbar"
         aria-labelledby="offcanvasNavbarLabel"
         placement="start"
+        className='bg-dark'
       >
         <Offcanvas.Header closeButton className='offCanvasHeader'>
-          <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
-          <Button href="/"size="sm"className='btn btn-success'>Volver a Web publica</Button>
+
+          <Button href="/"size="sm"className='btn btn-warning'>Ir al inicio</Button>
         </Offcanvas.Header>
         <Offcanvas.Body>
 
           <Nav className="justify-content-end flex-grow-1 pe-3 ">
             <div className='item'>
-            <Link to="/backoffice/create-news">
+            <Link to="/backoffice/news" className='text-white'>
               <BiNews className='icon' fontSize="25px" color="grey" />
+
               Novedades
+
             </Link></div>
             <hr className=" d-inline-block"></hr>
             <div className='item'>
-            <Link to="/backoffice/create-activity">
-              <BsPencilFill className='icon' fontSize="25px" color="red" />
+            <Link to="/backoffice/activities" className='text-white'>
+              <BsPencilFill className='icon' fontSize="25px" color="grey" />
+
               Actividades
+
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/create-category">
-              <BsMenuButtonWideFill className='icon' fontSize="25px" color="green" />
+            <Link to="/backoffice/categories" className='text-white'>
+              <BsMenuButtonWideFill className='icon' fontSize="25px" color="grey" />
+
             Categorias
+
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/create-testimonials">
-              <MdOutlineSpeakerNotes className='icon' fontSize="25px" color="blue" />
+            <Link to="/backoffice/create-testimonials" className='text-white'>
+              <MdOutlineSpeakerNotes className='icon' fontSize="25px" color="grey" />
+
               Testimonios
+
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/organization">
-              <GiOrganigram className='icon' fontSize="25px" color="black" />
+            <Link to="/backoffice/organization" className='text-white'>
+              <GiOrganigram className='icon' fontSize="25px" color="grey" />
+
               Organizacion
+
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/create-slide">
-              <RiSlideshow3Line className='icon'fontSize="25px" color="black" />
+            <Link to="/backoffice/slides" className='text-white'>
+              <RiSlideshow3Line className='icon'fontSize="25px" color="grey" />
+
               Slides
+
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/users">
-              <FaUserCircle className='icon' fontSize="25px" color="orange" />
+            <Link to="/backoffice/users" className='text-white'>
+              <FaUserCircle className='icon' fontSize="25px" color="grey" />
+
               Usuarios
+
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/create-member">
-              <HiUsers className='icon' fontSize="25px" color="violet" />
+            <Link to="/backoffice/members" className='text-white'>
+              <HiUsers className='icon' fontSize="25px" color="grey" />
+
               Miembros
+
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/projects">
-              <AiOutlineOrderedList className='icon' fontSize="25px" color="violet" />
+            <Link to="/backoffice/projects" className='text-white'>
+              <AiOutlineOrderedList className='icon' fontSize="25px" color="grey" />
+
              Proyectos
+
             </Link></div>
           </Nav>
         </Offcanvas.Body>
