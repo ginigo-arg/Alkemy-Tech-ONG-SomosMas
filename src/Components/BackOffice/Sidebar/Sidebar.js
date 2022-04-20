@@ -3,7 +3,7 @@
 /* eslint-disable indent */
 
 import React from 'react';
-import { Navbar, Offcanvas, Nav, Button } from 'react-bootstrap';
+import { Navbar, Offcanvas, Nav } from 'react-bootstrap';
 import { BiNews } from 'react-icons/bi';
 import { BsPencilFill, BsMenuButtonWideFill } from 'react-icons/bs';
 import { MdOutlineSpeakerNotes } from 'react-icons/md';
@@ -26,7 +26,7 @@ const Sidebar = () => {
       >
         <Offcanvas.Header closeButton className='offCanvasHeader'>
 
-          <Button href="/"size="sm"className='btn btn-warning'>Ir al inicio</Button>
+          <Link to="/"size="sm"className='btn btn-warning'>Ir al inicio</Link>
         </Offcanvas.Header>
         <Offcanvas.Body>
 
