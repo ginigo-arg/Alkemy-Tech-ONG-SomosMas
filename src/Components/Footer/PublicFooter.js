@@ -1,4 +1,5 @@
 import { Nav, Navbar, Container } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 import { FaFacebook, FaInstagram, FaTwitterSquare } from 'react-icons/fa';
 import Logo from '../../assets/img/somos-mas-public.png';
 
@@ -20,9 +21,9 @@ const PublicFooter = () => {
         <Navbar className="w-100 d-none d-lg-flex justify-content-center">
           <Nav>
             {navigation.map((item) => (
-              <Nav.Link href={item.to} key={item.title}>
+              <NavLink key={item.title} to={item.to} className="nav-link">
                 {item.title}
-              </Nav.Link>
+              </NavLink>
             ))}
           </Nav>
         </Navbar>
