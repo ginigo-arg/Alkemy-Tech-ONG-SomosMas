@@ -2,6 +2,8 @@ import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { AiFillDelete } from 'react-icons/ai';
 import { RiFileEditFill } from 'react-icons/ri';
+import { deleteMember } from '../../../Services/MemberService';
+import { alertService } from '../../../Services/alertService';
 
 const RowMember = ({ member }) => {
   const history = useHistory();
@@ -10,6 +12,11 @@ const RowMember = ({ member }) => {
     history.push('/backoffice/members/edit', {
       id: member.id,
     });
+  };
+
+  const handleDelete = async () => {
+    const confirm = await alertService('confirm', 'Seguro deseas eliminar este miembro?');
+    if (confirm) deleteMember(member.id);
   };
 
   return (
@@ -37,7 +44,7 @@ const RowMember = ({ member }) => {
           )}
       </td>
       <td className="text-center" style={{ width: '70px' }}>
-        <Button className="btn btn-danger text-white" title="Eliminar">
+        <Button onClick={handleDelete} className="btn btn-danger text-white" title="Eliminar">
           <AiFillDelete />
         </Button>
       </td>

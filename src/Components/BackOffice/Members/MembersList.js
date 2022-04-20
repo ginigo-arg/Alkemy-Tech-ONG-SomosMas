@@ -20,7 +20,7 @@ const MembersList = () => {
       alertService('error', e.message);
       setIsLoading(false);
     });
-  }, []);
+  }, [members]);
 
   return (
     <Container className="my-4 p-0 border">

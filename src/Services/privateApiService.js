@@ -43,7 +43,7 @@ export const GET_PRIVATE_API = async (url, id = null) => {
   // throw new Error('No se pudieron obtener los datos');
 };
 
-export const PUT_PRIVATE_API = async (url, id, body, config) => {
+export const PUT_PRIVATE_API = async (url, id, body) => {
   try {
     const response = await axios.put(`${url}/${id}`, body, config);
     return response.data;

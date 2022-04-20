@@ -4,13 +4,14 @@ import { Formik } from 'formik';
 import { memberSchemaValidation } from './validation/memberSchema';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import { createMember, editMember, getMember } from '../../../Services/MemberService';
 import Spinner from '../../Spinner/Spinner';
 import { convertToBase64 } from '../../../Services/base64Helper';
 
 const MembersForm = () => {
   const location = useLocation();
+  const history = useHistory();
   const [members, setMembers] = useState(false);
 
   useEffect(async () => {
@@ -45,8 +46,10 @@ const MembersForm = () => {
                   if (!location.state) {
                     createMember(values);
                   } else {
-                    editMember(values);
+                    editMember(members.id, values);
                   }
+
+                  history.push('/backoffice/members');
                 }}
                 validationSchema={memberSchemaValidation}
                 validateOnChange={false}
