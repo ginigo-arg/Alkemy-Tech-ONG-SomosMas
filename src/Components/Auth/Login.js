@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { LOGIN_AUTH_ME_ACTION, LOGOUT_USER_ACTION } from '../../redux/auth/authActions';
+import { LOGIN_AUTH_ME_ACTION } from '../../redux/auth/authActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
 import { alertService } from '../../Services/alertService';
@@ -9,6 +9,7 @@ import img1 from '../../assets/img/login3.jpg';
 import Logo from '../../assets/img/LOGO-SOMOSMAS.png';
 import RegisterForm from './RegisterForm';
 import './login.css';
+import { CHECK_TOKEN, GET_TOKEN } from '../../Services/authService';
 
 const Login = () => {
   const history = useHistory();
@@ -17,21 +18,21 @@ const Login = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const Logout = async (token) => {
-    return await dispatch(LOGOUT_USER_ACTION());
-  };
+  // const Logout = async (token) => {
+  //   return await dispatch(LOGOUT_USER_ACTION());
+  // };
 
   const VerificationToken = async (token) => {
-    // const token = localStorage.getItem('TOKEN');
     return await dispatch(LOGIN_AUTH_ME_ACTION(token)).catch(err => alertService('error', err));
   };
 
   useEffect(() => {
-    if (localStorage.TOKEN !== undefined) {
-      VerificationToken(localStorage.getItem('TOKEN'));
-      if (!state.auth) {
-        Logout();
-      }
+    if (CHECK_TOKEN()) {
+      console.log('check token');
+      VerificationToken(GET_TOKEN());
+      // if (!state.auth) {
+      //   Logout();
+      // }
     } else {
       console.log('No existe TOKEN');
     }
