@@ -10,7 +10,7 @@ import Partners from './Partners/Partners';
 import Faq from './SectionFAQ/Faq';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { GET_SLIDE_FN } from '../../redux/slides/actions';
+import { GET_SLIDE_HOME_FN } from '../../redux/slides/actions';
 
 const Home = () => {
   const [news, setNews] = useState([]);
@@ -20,7 +20,7 @@ const Home = () => {
   const loading = useSelector(state => state.global.loading);
 
   useEffect(() => {
-    dispatch(GET_SLIDE_FN());
+    dispatch(GET_SLIDE_HOME_FN());
     console.log('loading:', loading);
     const getData = async () => {
       const newsData = await homeNews();
