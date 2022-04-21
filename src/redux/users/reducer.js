@@ -35,7 +35,10 @@ const usersReducer = (state = { users: [] }, action) => {
       };
 
     case GET_USER:
-      return action.payload;
+      return {
+        ...state,
+        users: action.payload,
+      };
 
     case FALIDED_USER: {
       return alertService('error', action.payload);

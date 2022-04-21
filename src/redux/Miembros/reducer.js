@@ -8,13 +8,22 @@ const initialState = {
 const membersReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_MEMBERS:
-      return action.payload;
+      return {
+        ...state,
+        miembros: action.payload,
+      };
 
     case CREATE_MEMBER:
-      return [...state, action.payload];
+      return {
+        ...state,
+        miembros: [...state.miembros, action.payload],
+      };
 
     case DELETE_MEMBER: {
-      return state.filter(miembro => miembro.id !== action.payload);
+      return {
+        ...state,
+        miembros: state.miembros.filter(miembro => miembro.id !== action.payload),
+      };
     }
 
     case ACTION_FAILED: {

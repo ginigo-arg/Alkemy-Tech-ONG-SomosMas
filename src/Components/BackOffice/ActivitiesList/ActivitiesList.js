@@ -1,17 +1,19 @@
 import './ActivitiesList.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Button, Container, Table } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { RiFileEditFill } from 'react-icons/ri';
 import { AiFillDelete } from 'react-icons/ai';
-import { getActivities } from '../../../Services/actividadesService';
 import ProgressSpinner from '../../Progress/ProgressSpinner';
+import { useDispatch, useSelector } from 'react-redux';
+import { DELETE_ACTIVIDAD_FUNCTION, GET_ACTIVIDAD_FUNCTION } from '../../../redux/actividades/actions';
 import { alertService } from '../../../Services/alertService';
 
 const ActivitiesList = () => {
   const history = useHistory();
-  const [activities, setActivities] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
+  const { actividades } = useSelector(state => state.actividades);
+  const stateLoading = useSelector(state => state.global.loading);
 
   const handleEdit = activity => {
     history.push('/backoffice/activities/edit', {
@@ -19,17 +21,16 @@ const ActivitiesList = () => {
     });
   };
 
+  const handleDelete = async id => {
+    const confirm = await alertService('confirm', 'Seguro deseas eliminar este miembro?');
+    if (confirm) dispatch(DELETE_ACTIVIDAD_FUNCTION(id));
+  };
+
   useEffect(async () => {
-    const fetchData = async () => {
-      const { data } = await getActivities();
-      setIsLoading(false);
-      setActivities(data);
-    };
-    fetchData().catch((e) => {
-      alertService('error', e.message);
-      setIsLoading(false);
-    });
+    dispatch(GET_ACTIVIDAD_FUNCTION());
   }, []);
+
+  useEffect(() => {}, [actividades]);
 
   return (
     <Container>
@@ -39,9 +40,9 @@ const ActivitiesList = () => {
           <Button className="btn-danger">Crear Actividad</Button>
         </Link>
       </div>
-      {isLoading
+      {stateLoading
         ? <div className="d-flex justify-content-center my-5">
-          <ProgressSpinner state={isLoading} />
+          <ProgressSpinner state={stateLoading} />
         </div>
         : <>
           <Table striped bordered hover>
@@ -54,8 +55,8 @@ const ActivitiesList = () => {
               </tr>
             </thead>
             <tbody>
-              {activities &&
-            activities.map((activity) => (
+              {actividades.length > 0 &&
+            actividades.map((activity) => (
               <tr key={activity.id}>
                 <td>{activity.name}</td>
                 <td>{activity.description}</td>
@@ -67,7 +68,10 @@ const ActivitiesList = () => {
                   />
                 </td>
                 <td className="d-flex justify-content-center align-items-center gap-1">
-                  <Button className="btn-danger">
+                  <Button
+                    className="btn-danger"
+                    onClick={() => handleDelete(activity.id)}
+                  >
                     <AiFillDelete />
                   </Button>
                   <Button
