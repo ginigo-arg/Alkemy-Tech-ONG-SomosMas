@@ -1,10 +1,5 @@
 import * as Yup from 'yup';
-
-const checkFileFormat = photo => {
-  if (['image/jpg', 'image/jpeg', 'image/png'].includes(photo.type)) {
-    return true;
-  } else return false;
-};
+import checkFileFormat from '../../Services/imageFormatHelper';
 
 export const SchemaValidation = Yup.object().shape({
   name: Yup
