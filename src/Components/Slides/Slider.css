@@ -3,7 +3,6 @@
  
     content: '';
     background: linear-gradient(to bottom, rgb(206,89,55,0) 0%, rgb(38,3,3,0.5) 57%, rgb(18,7,7,0.6) 100%);
-    z-index: 3;
     display: block;
     width: 100%;
     height: 100%;

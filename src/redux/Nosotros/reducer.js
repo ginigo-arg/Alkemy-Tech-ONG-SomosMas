@@ -7,15 +7,10 @@ const initialState = {
 
 const usReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_ABOUT:
+    case GET_ABOUT: {
       return action.payload;
+    }
 
-    // case types.USABOUTUS_UPDATE:
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     text: action.payload,
-    //   };
     case USABOUTUS_ERROR: {
       return Swal.fire(action.payload);
     }

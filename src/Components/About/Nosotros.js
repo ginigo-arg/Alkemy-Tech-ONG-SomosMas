@@ -17,7 +17,6 @@ export default function Nosotros () {
   useEffect(() => {
     dispatch(GET_MEMBERS_FUNCTION());
     dispatch(GET_ABOUT_FUNCTION());
-    console.log('organizacion', stateOrganizacion);
   }, []);
 
   return (

@@ -1,4 +1,5 @@
 import { DELETE_PRIVATE_API, GET_PRIVATE_API, PATCH_PRIVATE_API, POST_PRIVATE_API } from './privateApiService';
+import { alertService } from './alertService';
 
 export const getSlides = (id = null) => {
   const response = GET_PRIVATE_API(process.env.REACT_APP_API_SLIDES, id);
@@ -11,11 +12,24 @@ export const pathSlides = (id, data) => {
 };
 
 export const postSlide = (data) => {
-  const response = POST_PRIVATE_API(`${process.env.REACT_APP_API_SLIDES}`, data);
-  return response;
+  const response = POST_PRIVATE_API(process.env.REACT_APP_API_SLIDES, data);
+  console.log('respuesta post:', response);
+  if (response) {
+    alertService('success', 'Slide creado Correactamente!');
+    return response.data;
+  } else {
+    alertService('error', 'Ha ocurrido un error al crear el slide');
+    return response.error;
+  }
 };
 
 export const deleteSlide = (id) => {
-  const response = DELETE_PRIVATE_API(`${process.env.REACT_APP_API_SLIDES}/${id}`);
-  return response;
+  const response = DELETE_PRIVATE_API(process.env.REACT_APP_API_SLIDES, id);
+  if (response) {
+    alertService('success', 'Slide eliminado correctamente!');
+    return response;
+  } else {
+    alertService('error', 'Ha ocurrido un error al eliminar el slide');
+    return response.error;
+  }
 };
