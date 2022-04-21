@@ -1,7 +1,10 @@
 /* eslint-disable multiline-ternary */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { CREATE_USER_ACTION } from '../../redux/auth/authActions';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { alertService } from '../../Services/alertService';
 import { Button, Container, Col, Form, InputGroup, Row } from 'react-bootstrap';
 import { FaEye } from 'react-icons/fa';
 import { AiFillEyeInvisible } from 'react-icons/ai';
@@ -28,7 +31,7 @@ const SignupSchema = Yup.object({
   ),
 });
 
-const RegisterForm = ({ isLogin, setisLogin }) => {
+const RegisterForm = ({ showLogin, setShowLogin }) => {
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -39,13 +42,31 @@ const RegisterForm = ({ isLogin, setisLogin }) => {
     },
     validationSchema: SignupSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
+      createAccount(values);
       formik.resetForm();
     },
   });
 
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
+
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.auth);
+
+  const createAccount = async (content) => {
+    const response = dispatch(CREATE_USER_ACTION(content)).catch(err => alertService('error', err));
+    if (response) {
+      alertService('success', 'Cuenta creada', 1, true);
+    }
+  };
+
+  useEffect(() => {
+    // console.log('state:', state);
+    if (state.user && state.token && !state.auth) {
+      console.log('Estado:', state.user);
+    }
+  }, [createAccount, state]);
 
   return (
     <Container>
@@ -189,7 +210,7 @@ const RegisterForm = ({ isLogin, setisLogin }) => {
               ) : null}
             </Form.Group>
             <Col className='d-flex justify-content-between'>
-              <button onClick={() => setisLogin(!isLogin)} className='text-primary mr-2 bg-white border-0'><strong>
+              <button onClick={() => setShowLogin(!showLogin)} className='text-primary mr-2 bg-white border-0'><strong>
                 Ya tengo cuenta
               </strong>
               </button>
