@@ -1,0 +1,33 @@
+.userslist-buttons {
+  width: 8rem;
+}
+
+.userslist-title-container {
+  background-color: rgb(230, 223, 223);
+  height: 3rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.userslist-title {
+  font-size: 1.25rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.userslist-text {
+  font-size: 1.1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  .userslist-buttons {
+    width: 4rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .userslist-buttons {
+    width: 5rem;
+  }
+}

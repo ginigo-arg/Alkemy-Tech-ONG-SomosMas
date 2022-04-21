@@ -9,7 +9,7 @@ import { alertService } from './alertService';
 
 export const getNews = async (id = null) => {
   const response = await GET_PRIVATE_API(process.env.REACT_APP_API_NEWS, id);
-  return response.data;
+  return response;
 };
 
 export const patchNews = async (id, data) => {

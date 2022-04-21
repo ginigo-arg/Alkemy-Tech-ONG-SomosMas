@@ -26,15 +26,15 @@ export default function Nosotros () {
       : <>
         <Container fluid className='bg-info m-0'>
           <Organization
-            id={stateOrganizacion.data?.id}
-            name={stateOrganizacion.data?.name}
-            shortDescription={stateOrganizacion.data?.short_description}
+            id={stateOrganizacion?.id}
+            name={stateOrganizacion?.name}
+            shortDescription={stateOrganizacion?.short_description}
 
           />
         </Container>
 
         <Container className='d-flex justify-content-center py-5 my-2'>
-          <p className='w-75 text-center'>{stateOrganizacion.data?.long_description}</p>
+          <p className='w-75 text-center'>{stateOrganizacion?.long_description}</p>
         </Container>
 
         <h2 className='text-center text-info'>
