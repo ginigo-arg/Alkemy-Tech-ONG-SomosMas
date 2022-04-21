@@ -3,7 +3,6 @@ import Swal from 'sweetalert2';
 
 const initialState = {
   organization: [],
-  loading: false,
 };
 
 const usReducer = (state = initialState, action) => {
