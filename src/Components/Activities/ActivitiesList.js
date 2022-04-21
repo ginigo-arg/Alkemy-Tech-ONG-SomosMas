@@ -12,7 +12,7 @@ const ActivitiesList = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(async () => {
-    const { data } = await getActivities();
+    const data = await getActivities();
     setActividades(data);
     setIsLoading(false);
   }, [setActividades]);

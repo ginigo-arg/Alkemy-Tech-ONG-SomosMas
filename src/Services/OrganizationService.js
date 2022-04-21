@@ -12,7 +12,8 @@ const MESSAGE_GET = 'Lo sentimos, hubo un error al obtener los datos publicos de
 
 export const getOrganization = async () => {
   try {
-    return await GET_PRIVATE_API(url);
+    const response = await GET_PRIVATE_API(url);
+    return response;
   } catch (error) {
     alertService(TYPE, MESSAGE_GET);
   }

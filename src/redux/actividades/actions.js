@@ -6,7 +6,7 @@ import { LOADING_OFF, LOADING_ON } from '../global/globalAction';
 export const GET_ACTIVIDAD_FUNCTION = (id = null) => async (dispatch) => {
   dispatch(LOADING_ON());
   try {
-    const { data } = await getActivities(id);
+    const data = await getActivities(id);
     dispatch({
       type: GET_ACTIVIDAD,
       payload: data,

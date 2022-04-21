@@ -1,5 +1,5 @@
-import { CREATE_USER, DELETE_USER, EDIT_USER, GET_USER, FALIDED_USER } from './types';
-import { PostUsers, DeleteUsers, PutUsers, getUsers } from '../../Services/usersService';
+import { CREATE_USER, DELETE_USER, EDIT_USER, GET_USER, FAILED_USER } from './types';
+import { PostUsers, DeleteUsers, PutUsers, GetUsers } from '../../Services/usersService';
 
 export const CREATE_USER_FN = (content) => (dispatch) => {
   try {
@@ -10,7 +10,7 @@ export const CREATE_USER_FN = (content) => (dispatch) => {
     });
   } catch (error) {
     dispatch({
-      type: FALIDED_USER,
+      type: FAILED_USER,
       payload: error.message,
     });
   }
@@ -25,7 +25,7 @@ export const DELETE_USER_FN = (id) => (dispatch) => {
     });
   } catch (error) {
     dispatch({
-      type: FALIDED_USER,
+      type: FAILED_USER,
       payload: error.message,
     });
   }
@@ -40,22 +40,22 @@ export const EDIT_USER_FN = (id, content) => (dispatch) => {
     });
   } catch (error) {
     dispatch({
-      type: FALIDED_USER,
+      type: FAILED_USER,
       payload: error.message,
     });
   }
 };
 
-export const GET_USER_FN = (id = null) => (dispatch) => {
+export const GET_USER_FN = (id = null) => async (dispatch) => {
   try {
-    const response = getUsers(id);
+    const response = await GetUsers(id);
     dispatch({
       type: GET_USER,
       payload: response,
     });
   } catch (error) {
     dispatch({
-      type: FALIDED_USER,
+      type: FAILED_USER,
       payload: error.message,
     });
   }

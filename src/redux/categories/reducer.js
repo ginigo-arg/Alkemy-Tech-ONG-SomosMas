@@ -15,7 +15,10 @@ export const categoriesReducer = (state = initialState, action) => {
     }
 
     case TYPES.GET_CATEGORIE: {
-      return action.payload;
+      return {
+        ...state,
+        categories: action.payload,
+      };
     }
 
     case TYPES.GET_ALL_CATEGORIE: {
