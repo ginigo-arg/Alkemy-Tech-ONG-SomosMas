@@ -15,24 +15,13 @@ const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const state = useSelector(state => state.auth);
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
-
-  // const Logout = async (token) => {
-  //   return await dispatch(LOGOUT_USER_ACTION());
-  // };
-
-  const VerificationToken = async (token) => {
-    return await dispatch(LOGIN_AUTH_ME_ACTION(token)).catch(err => alertService('error', err));
-  };
 
   useEffect(() => {
     if (CHECK_TOKEN()) {
-      console.log('check token');
-      VerificationToken(GET_TOKEN());
-      // if (!state.auth) {
-      //   Logout();
-      // }
+      console.log('Check token');
+      dispatch(LOGIN_AUTH_ME_ACTION(GET_TOKEN())).catch(err => alertService('error', err));
     } else {
       console.log('No existe TOKEN');
     }

@@ -2,7 +2,7 @@ import { alertService } from './alertService';
 
 export const GET_FROM_LOCAL_STORAGE = (Key) => {
   if (Key) {
-    if (localStorage.Key !== undefined) {
+    if (localStorage[Key] !== undefined) {
       return localStorage.getItem(Key);
     } else {
       alertService('error', `No exite el elemento (${Key}) en el local storage.`);
@@ -25,7 +25,7 @@ export const CREATE_IN_LOCAL_STORAGE = (Key, value) => {
 
 export const REMOVE_FROM_LOCAL_STORAGE = (Key) => {
   if (Key) {
-    if (localStorage.Key !== undefined) {
+    if (localStorage[Key] !== undefined) {
       localStorage.removeItem(Key);
       return true;
     } else {
@@ -39,8 +39,8 @@ export const REMOVE_FROM_LOCAL_STORAGE = (Key) => {
 
 export const CHECK_IN_LOCAL_STORAGE = (Key) => {
   if (Key) {
-    console.log(localStorage.Key);
-    if (localStorage.Key !== undefined) {
+    // console.log(localStorage[Key]);
+    if (localStorage[Key] !== undefined) {
       return true;
     } else {
       return false;

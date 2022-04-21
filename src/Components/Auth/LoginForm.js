@@ -63,10 +63,6 @@ const LoginForm = ({ showLogin, setShowLogin }) => {
     }
   };
 
-  const checkAuth = async (token) => {
-    return await dispatch(LOGIN_AUTH_ME_ACTION(token)).catch(err => alertService('error', err));
-  };
-
   useEffect(() => {
     // console.log('state login:', state);
     if (state.auth) {
@@ -77,7 +73,10 @@ const LoginForm = ({ showLogin, setShowLogin }) => {
 
   useEffect(() => {
     if (CHECK_TOKEN()) {
-      checkAuth(GET_TOKEN());
+      if (CHECK_TOKEN()) {
+        console.log('Check token');
+        dispatch(LOGIN_AUTH_ME_ACTION(GET_TOKEN())).catch(err => alertService('error', err));
+      }
     } else {
       console.log('No logueado');
     }
