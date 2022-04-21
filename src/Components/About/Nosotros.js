@@ -10,7 +10,7 @@ import Spinner from '../Spinner/Spinner';
 
 export default function Nosotros () {
   const dispatch = useDispatch();
-  const stateMiembros = useSelector(state => state.miembros);
+  const { miembros } = useSelector(state => state.miembros);
   const stateOrganizacion = useSelector(state => state.organizacion);
   const stateLoading = useSelector(state => state.global.loading);
 
@@ -43,9 +43,9 @@ export default function Nosotros () {
           </strong>
         </h2>
         <Container className="d-flex gap-4 justify-content-center align-items-stretch flex-wrap mt-5 mb-5">
-          { stateMiembros.length > 0
+          { miembros.length > 0
             ? (
-              stateMiembros.map((item) => {
+              miembros.map((item) => {
                 return (
                   <CardMembers
                     key={item.id}
