@@ -37,11 +37,9 @@ const Home = () => {
   return (
     <>
       <Container fluid className='bg-info'>
-
         <TextMarquee/>
       </Container>
       <Slider slides={sliders} />
-      {/* <HomePrincipalContent data={info} /> */}
       <Container fluid className="d-flex flex-column justify-content-center align-items-center mt-5 p-0">
         <ProgressSpinner state={isLoading} />
         {
@@ -58,8 +56,10 @@ const Home = () => {
               />
             )).slice(0, 3)
           }
-          <Button className='btn btn-primary text-center text-white' onClick={() => history.push('/novedades')}>Todas las Noticias...</Button>
         </Container>
+
+        <Button className='btn btn-primary text-center text-white mb-5' onClick={() => history.push('/novedades')}>Todas las Noticias...</Button>
+
         <Container fluid className='section-video bg-warning'>
           <SectionVideo/>
         </Container>

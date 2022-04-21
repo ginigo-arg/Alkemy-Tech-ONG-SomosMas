@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GET_MEMBERS_FUNCTION } from '../../redux/Miembros/action';
 import { GET_ABOUT_FUNCTION } from '../../redux/Nosotros/actions';
 import Organization from './Organization';
-import ProgressSpinner from '../Progress/ProgressSpinner';
+import Spinner from '../Spinner/Spinner';
 
 export default function Nosotros () {
   const dispatch = useDispatch();
@@ -18,6 +18,7 @@ export default function Nosotros () {
     dispatch(GET_MEMBERS_FUNCTION());
     dispatch(GET_ABOUT_FUNCTION());
     console.log('organizacion', stateOrganizacion);
+    console.log('Members', stateMiembros);
   }, []);
 
   return (
@@ -30,21 +31,21 @@ export default function Nosotros () {
             name={stateOrganizacion.data?.name}
             shortDescription={stateOrganizacion.data?.short_description}
 
-        />
-      </Container>
+          />
+        </Container>
 
         <Container className='d-flex justify-content-center py-5 my-2'>
           <p className='w-75 text-center'>{stateOrganizacion.data?.long_description}</p>
         </Container>
 
-      <h2 className='text-center text-info'>
-        <strong>
-          Nuestro equipo
-        </strong>
-      </h2>
-      <Container className="d-flex gap-4 justify-content-center align-items-stretch flex-wrap mt-5 mb-5">
-        {
-          stateMiembros.length > 0 &&
+        <h2 className='text-center text-info'>
+          <strong>
+            Nuestro equipo
+          </strong>
+        </h2>
+        <Container className="d-flex gap-4 justify-content-center align-items-stretch flex-wrap mt-5 mb-5">
+          {
+            stateMiembros.length > 0 &&
             stateMiembros.map((item) => {
               return (
                 <CardMembers
@@ -57,8 +58,8 @@ export default function Nosotros () {
                 />
               );
             })
-        }
-      </Container>
-    </>
+          }
+        </Container>
+      </>
   );
 }

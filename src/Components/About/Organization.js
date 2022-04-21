@@ -14,7 +14,7 @@ const Organization = ({ id, name, shortDescription, longDescription }) => {
                 Nuestra Mision
               </strong>
             </h5>
-            <h2 clasName='text-white ps-5'>
+            <h2 className='text-white ps-5'>
               <strong className='ps-5 text-white'>
                 {name}
               </strong>

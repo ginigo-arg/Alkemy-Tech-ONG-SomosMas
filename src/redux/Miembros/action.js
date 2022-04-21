@@ -19,7 +19,8 @@ import { LOADING_ON, LOADING_OFF } from '../global/globalAction';
 export const GET_MEMBERS_FUNCTION = () => async (dispatch) => {
   dispatch(LOADING_ON());
   try {
-    const response = getAllMembers();
+    const { data } = await getAllMembers();
+
     dispatch({
       type: GET_MEMBERS,
       payload: data,
@@ -94,7 +95,7 @@ export const DELETE_MEMBER_FN = (id) => async (dispatch) => {
     dispatch({
       type: DELETE_MEMBER,
       payload: id,
-s    });
+    });
   } catch (error) {
     dispatch({
       type: ACTION_FAILED,
