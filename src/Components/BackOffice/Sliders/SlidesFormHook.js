@@ -44,7 +44,6 @@ const SlidesFormHook = () => {
 
               onSubmit={async (values, { setSubmitting }) => {
                 setSubmitting(false);
-
                 const base64 = await convertToBase64(values.image);
                 values.image = base64;
                 console.log(values);
