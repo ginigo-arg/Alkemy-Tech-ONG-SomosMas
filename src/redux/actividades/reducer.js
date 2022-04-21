@@ -1,5 +1,6 @@
 import { alertService } from '../../Services/alertService';
-import { GET_ACTIVIDAD, EDIT_ACTIVIDAD, CREATE_ACTIVIDAD, DELETE_ACTIVIDAD, FAILED_ACTIVIDAD } from './types';
+import { GET_ACTIVIDAD, CREATE_ACTIVIDAD, DELETE_ACTIVIDAD, FAILED_ACTIVIDAD } from './types';
+
 const initialState = {
   actividades: [],
 };
@@ -18,25 +19,12 @@ const actividadesReducer = (state = initialState, action) => {
         actividades: [...state.actividades, action.payload],
       };
 
-    case EDIT_ACTIVIDAD:
-      return {
-        ...state,
-        actividades: state.novedades.map((actividad) => {
-          if (actividad.id === action.payload.id) {
-            return action.payload;
-          }
-          return actividad;
-        },
-        ),
-      };
-
     case DELETE_ACTIVIDAD: {
-      const id = action.payload.id;
-      const filter = state.actividades.filter(actividad => actividad.id !== id);
       return {
         ...state,
-        actividades: filter,
-      }; }
+        actividades: state.actividades.filter(actividad => actividad.id !== action.payload),
+      };
+    }
 
     case FAILED_ACTIVIDAD: {
       const TYPE = 'error';
