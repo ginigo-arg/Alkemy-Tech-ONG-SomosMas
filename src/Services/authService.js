@@ -1,5 +1,30 @@
 import { Get, Post } from './publicApiService';
 import { alertService } from './alertService';
+import { CHECK_IN_LOCAL_STORAGE, CREATE_IN_LOCAL_STORAGE, GET_FROM_LOCAL_STORAGE, REMOVE_FROM_LOCAL_STORAGE } from './localStorageService';
+
+export const CHECK_TOKEN = () => {
+  return CHECK_IN_LOCAL_STORAGE('TOKEN');
+};
+
+export const GET_TOKEN = () => {
+  if (CHECK_TOKEN) {
+    return GET_FROM_LOCAL_STORAGE('TOKEN');
+  } else {
+    return '';
+  };
+};
+
+export const CREATE_TOKEN = (token) => {
+  if (token) {
+    CREATE_IN_LOCAL_STORAGE('TOKEN', token);
+  } else {
+    alertService('error', 'No se pudo crear el token, se requiere un valor.');
+  }
+};
+
+export const REMOVE_TOKEN = () => {
+  REMOVE_FROM_LOCAL_STORAGE('TOKEN');
+};
 
 export const REGISTER = async (data) => {
   const response = await Post(process.env.REACT_APP_API_AUTH_REGISTER, data);
@@ -34,11 +59,11 @@ export const LOGIN = async (data) => {
 
 export const AUTH = async (TOKEN) => {
   const response = await Get(process.env.REACT_APP_API_AUTH_ME, '', TOKEN);
-  // console.log('Respuesta AUTH', response);
-  if (response.data) {
+  // console.log('Respuesta AUTH', response.success);
+  if (response.success) {
     return response.data;
   } else {
-    if (response.data.success === false) {
+    if (response.success === false) {
       alertService('error', 'Token invalido');
     } else {
       alertService('error', 'Ha ocurrido un error al consultar el token');

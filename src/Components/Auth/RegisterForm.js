@@ -65,8 +65,6 @@ const RegisterForm = ({ showLogin, setShowLogin }) => {
     // console.log('state:', state);
     if (state.user && state.token && !state.auth) {
       console.log('Estado:', state.user);
-      // console.log('Cuenta creada');
-      // alertService('success', 'Se creo la cuenta', 1000, false);
     }
   }, [createAccount, state]);
 

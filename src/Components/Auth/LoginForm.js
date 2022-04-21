@@ -7,8 +7,9 @@ import * as Yup from 'yup';
 import { FaEye } from 'react-icons/fa';
 import { AiFillEyeInvisible } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
-import { LOGIN_USER_ACTION, LOGIN_AUTH_ME_ACTION, LOGOUT_USER_ACTION } from '../../redux/auth/authActions';
+import { LOGIN_USER_ACTION, LOGIN_AUTH_ME_ACTION } from '../../redux/auth/authActions';
 import { alertService } from '../../Services/alertService';
+import { CHECK_TOKEN, GET_TOKEN } from '../../Services/authService';
 
 const LoginSchema = Yup.object({
   email: Yup.string()
@@ -43,61 +44,38 @@ const LoginForm = ({ showLogin, setShowLogin }) => {
     },
     validationSchema: LoginSchema,
     onSubmit: (values) => {
-      // alert(JSON.stringify(values, null, 2));
-      LogIn(values);
+      logIn(values);
       formik.resetForm();
     },
   });
 
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const [loggedIn, setLoggedIn] = useState(false);
 
   const dispatch = useDispatch();
   const state = useSelector(state => state.auth);
 
-  const LogIn = async (content) => {
+  const logIn = async (content) => {
     const response = await dispatch(LOGIN_USER_ACTION(content)).catch(err => alertService('error', err));
     if (response) {
-      CreateToken(state.token);
-      alertService('success', 'Login exitoso', 1000, false);
+      alertService('success', 'Login exitoso', 1000, true);
       setLoading(true);
     }
-  };
-
-  const Logout = async (token) => {
-    return await dispatch(LOGOUT_USER_ACTION());
-  };
-
-  const VerificationToken = async (token) => {
-    return await dispatch(LOGIN_AUTH_ME_ACTION(token)).catch(err => alertService('error', err));
-  };
-
-  const CreateToken = (token) => {
-    if (token) {
-      localStorage.setItem('TOKEN', token);
-      // console.log('token asignado: ' + token);
-    }
-    //  else {
-    //   localStorage.removeItem('TOKEN');
-    // }
   };
 
   useEffect(() => {
     // console.log('state login:', state);
     if (state.auth) {
       setLoading(true);
-      // console.log('Token:', state.token);
-      CreateToken(state.token);
       console.log('Logueado');
     }
-  }, [LogIn, state]);
+  }, [logIn, state]);
 
   useEffect(() => {
-    if (localStorage.TOKEN !== undefined) {
-      VerificationToken(localStorage.getItem('TOKEN'));
-      if (!state.auth) {
-        Logout();
+    if (CHECK_TOKEN()) {
+      if (CHECK_TOKEN()) {
+        console.log('Check token');
+        dispatch(LOGIN_AUTH_ME_ACTION(GET_TOKEN())).catch(err => alertService('error', err));
       }
     } else {
       console.log('No logueado');

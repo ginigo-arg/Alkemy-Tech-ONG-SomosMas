@@ -1,4 +1,6 @@
 import { LOGIN_USER, LOGOUT_USER, CREATE_USER, LOGIN_USER_FAILED, CREATE_USER_FAILED, LOGIN_AUTH } from './authTypes';
+import { CLEAR_LOCAL_STORAGE } from '../../Services/localStorageService';
+import { CREATE_TOKEN, REMOVE_TOKEN } from '../../Services/authService';
 import { alertService } from '../../Services/alertService';
 
 const initialState = {
@@ -12,6 +14,9 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_USER:
     {
       // console.log('soy el reducer LOGIN', action.payload);
+      if (action.payload) {
+        CREATE_TOKEN(action.payload.token);
+      }
       return action.payload
         ? {
           ...state,
@@ -25,6 +30,11 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_AUTH:
     {
       // console.log('soy el reducer AUTH', action.payload);
+      if (action.payload) {
+        console.log('Validacion token');
+      } else {
+        REMOVE_TOKEN(action.payload.token);
+      }
       return action.payload
         ? {
           ...state,
@@ -36,7 +46,7 @@ const authReducer = (state = initialState, action) => {
     }
 
     case LOGOUT_USER: {
-      localStorage.clear();
+      CLEAR_LOCAL_STORAGE();
       return {
         // auth: initialState,
         state,
