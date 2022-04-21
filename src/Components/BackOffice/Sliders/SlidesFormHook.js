@@ -49,7 +49,7 @@ const SlidesFormHook = () => {
                 console.log(values);
                 if (!id) {
                   dispatch(CREATE_SLIDE_FN(values));
-                  if (!loading) history.push('/backoffice/members');
+                  if (!loading) history.push('/backoffice/slides');
                 } else {
                   console.log('edit');
                   if (!loading) history.push('/backoffice/slides');

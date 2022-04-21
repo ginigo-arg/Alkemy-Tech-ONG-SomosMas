@@ -24,11 +24,11 @@ export const GET_SLIDE_HOME_FN = () => async (dispatch) => {
 export const GET_SLIDE_BACKOFFICE_FN = () => async (dispatch) => {
   dispatch(LOADING_ON);
   try {
-    const response = await getSlides();
-    console.log('Response get back:', response);
+    const { data } = await getSlides();
+    console.log('Response get back:', data);
     dispatch({
       type: GET_SLIDE_BACKOFFICE,
-      payload: response,
+      payload: data,
     });
     dispatch(LOADING_OFF);
   } catch (error) {
@@ -40,16 +40,18 @@ export const GET_SLIDE_BACKOFFICE_FN = () => async (dispatch) => {
   }
 };
 
-export const CREATE_SLIDE_FN = (content) => async (dispatch) => {
+export const CREATE_SLIDE_FN = (content) => (dispatch) => {
   dispatch(LOADING_ON);
   try {
-    const response = await postSlide(content);
-    console.log('responsepost:', response);
+    console.log(LOADING_ON);
+    const response = postSlide(content);
+    if (response) console.log('responsepost:', response);
     dispatch({
       type: CREATE_SLIDE,
       payload: response,
     });
     dispatch(LOADING_OFF);
+    console.log(LOADING_ON);
   } catch (error) {
     dispatch({
       type: ACTION_FAILED,
@@ -60,10 +62,8 @@ export const CREATE_SLIDE_FN = (content) => async (dispatch) => {
 };
 
 export const DELETE_SLIDE_FN = (id) => async (dispatch) => {
-  dispatch(LOADING_ON);
   try {
-    const response = deleteSlide(id);
-    console.log('responseDelete:', response);
+    await deleteSlide(id);
     dispatch({
       type: DELETE_SLIDE,
       payload: id,
