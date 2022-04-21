@@ -12,16 +12,19 @@ import Col from 'react-bootstrap/Col';
 const IndexContact = () => {
   return (
     <>
-      <SectionTitles title={'Contacto'} backgroundImg={banner} />
+      <SectionTitles title={'Contacto'} description="<h5>
+              Estamos aquí para ti, utiliza cualquiera de nuestros medios de
+              contacto.
+            </h5>" backgroundImg={banner} />
       <Container className="mt-3">
         <Row>
-          <Col md={12} className="mb-2">
+          {/* <Col md={12} className="mb-2">
             <h5>
               Estamos aquí para ti, utiliza cualquiera de nuestros medios de
               contacto.
             </h5>
             <hr />
-          </Col>
+          </Col> */}
           <div id="contactOng" className="mb-2">
             <ContactInformation />
           </div>
