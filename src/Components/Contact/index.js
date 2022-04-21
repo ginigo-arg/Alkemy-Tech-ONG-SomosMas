@@ -18,24 +18,28 @@ const IndexContact = () => {
             </h5>" backgroundImg={banner} />
       <Container className="mt-3">
         <Row>
-          {/* <Col md={12} className="mb-2">
+          <Col md={12} className="mb-2">
             <h5>
               Estamos aquí para ti, utiliza cualquiera de nuestros medios de
               contacto.
             </h5>
             <hr />
-          </Col> */}
-          <div id="contactOng" className="mb-2">
+          </Col>
+          <Col
+            md={12}
+            className="d-none d-sm-none d-md-block d-flex justify-content-center align-items-center mb-2"
+          >
+            <ContactMap />
+          </Col>
+          <div id="contactOng" className="mb-22">
             <ContactInformation />
           </div>
-          <div className="d-none">
-            <Col
-              md={12}
-              className="d-none d-sm-none d-md-block d-flex justify-content-center align-items-center mb-2"
-            >
-              <ContactMap />
-            </Col>
-          </div>
+          {/* <Col
+            md={12}
+            className="d-none d-sm-none d-md-block d-flex justify-content-center align-items-center mb-2"
+          >
+            <ContactMap />
+          </Col> */}
           <h5 className="text-black">Escríbenos</h5>
           <Col md={8}>
             <Row>
