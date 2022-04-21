@@ -9,6 +9,7 @@ import {
 import {
   ACTION_FAILED,
   GET_MEMBERS,
+  GET_ONE_MEMBER,
   CREATE_MEMBER,
   EDIT_MEMBER,
   DELETE_MEMBER,
@@ -19,7 +20,7 @@ import { LOADING_ON, LOADING_OFF } from '../global/globalAction';
 export const GET_MEMBERS_FUNCTION = () => async (dispatch) => {
   dispatch(LOADING_ON());
   try {
-    const { data } = await getAllMembers();
+    const data = await getAllMembers();
 
     dispatch({
       type: GET_MEMBERS,
@@ -35,13 +36,13 @@ export const GET_MEMBERS_FUNCTION = () => async (dispatch) => {
   }
 };
 
-export const GET_MEMBER_FN = (id) => async (dispatch) => {
+export const GET_ONE_MEMBER_FN = (id) => async (dispatch) => {
   dispatch(LOADING_ON());
   try {
-    const { data } = await getMember(id);
+    const data = await getMember(id);
     dispatch({
-      type: GET_MEMBERS,
-      payload: data,
+      type: GET_ONE_MEMBER,
+      payload: id ? data : {},
     });
     dispatch(LOADING_OFF());
   } catch (error) {
@@ -53,10 +54,10 @@ export const GET_MEMBER_FN = (id) => async (dispatch) => {
   }
 };
 
-export const CREATE_MEMBER_FN = (content) => (dispatch) => {
+export const CREATE_MEMBER_FN = (content) => async (dispatch) => {
   dispatch(LOADING_ON());
   try {
-    const response = createMember(content);
+    const response = await createMember(content);
     dispatch({
       type: CREATE_MEMBER,
       payload: response,
@@ -71,13 +72,13 @@ export const CREATE_MEMBER_FN = (content) => (dispatch) => {
   }
 };
 
-export const EDIT_MEMBER_FN = (id, content) => (dispatch) => {
+export const EDIT_MEMBER_FN = (id, content) => async (dispatch) => {
   dispatch(LOADING_ON());
   try {
-    const response = editMember(id, content);
+    const data = await editMember(id, content);
     dispatch({
       type: EDIT_MEMBER,
-      payload: response,
+      payload: data,
     });
     dispatch(LOADING_OFF());
   } catch (error) {

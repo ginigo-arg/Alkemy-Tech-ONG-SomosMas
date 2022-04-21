@@ -16,7 +16,7 @@ const Home = () => {
   const [news, setNews] = useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
-  const slides = useSelector(state => state.slides);
+  const { slides } = useSelector(state => state.slides);
   const loading = useSelector(state => state.global.loading);
 
   useEffect(() => {

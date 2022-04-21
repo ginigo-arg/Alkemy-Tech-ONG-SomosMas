@@ -10,7 +10,6 @@ import globalReducer from './global/globalReducer';
 import usersReducer from './users/reducer';
 import slidesReducer from './slides/reducer';
 
-
 const store = createStore(
   combineReducers({
     novedades: novedadesReducer,
