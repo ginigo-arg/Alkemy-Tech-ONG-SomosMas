@@ -6,6 +6,7 @@ import {
   POST_PRIVATE_API,
   PUT_PRIVATE_API,
 } from './privateApiService';
+import { Get } from './publicApiService';
 
 import { alertService } from './alertService';
 
@@ -18,6 +19,13 @@ const MESSAGE_PATCH = 'Lo sentimos, hubo un error al editar la actividad.';
 const MESSAGE_POST = 'Lo sentimos, hubo un error al agregar una nuevo actividad.';
 const MESSAGE_DELETE = 'Lo sentimos, hubo un error al eliminar la actividad.';
 
+// Front
+export const GET_ACTIVITIES_PUBLIC = async (id = null) => {
+  const response = await Get(url, id);
+  return response;
+};
+
+// back
 export const getActivities = async (id = null) => {
   try {
     return await GET_PRIVATE_API(url, id);
