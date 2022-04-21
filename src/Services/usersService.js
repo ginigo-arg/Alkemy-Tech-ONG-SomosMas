@@ -3,12 +3,9 @@ import { DELETE_PRIVATE_API, PUT_PRIVATE_API, PATCH_PRIVATE_API } from './privat
 
 const urlUsers = process.env.REACT_APP_API_USERS;
 
-export const GetUsers = () => {
-  return Get(urlUsers);
-};
-
-export const GetUsersById = (id) => {
-  return Get(urlUsers, id);
+export const GetUsers = async (id = null) => {
+  const response = await Get(urlUsers, id);
+  return response;
 };
 
 export const PostUsers = (body) => {

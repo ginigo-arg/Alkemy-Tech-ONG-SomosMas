@@ -9,17 +9,7 @@ import { alertService } from './alertService';
 
 export const getNews = async (id = null) => {
   const response = await GET_PRIVATE_API(process.env.REACT_APP_API_NEWS, id);
-  let msn = 'las novedades';
-  if (id) {
-    msn = 'la novedad con identificador ' + id;
-  }
-  // console.log('Respuesta getNews', response);
-  if (response.success) {
-    return response.data;
-  } else {
-    alertService('error', `Ha ocurrido un error al consultar ${msn}`);
-    return response.error;
-  }
+  return response.data;
 };
 
 export const patchNews = async (id, data) => {

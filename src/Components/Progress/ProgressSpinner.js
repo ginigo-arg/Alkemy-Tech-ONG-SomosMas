@@ -1,9 +1,9 @@
 import { Spinner } from 'react-bootstrap';
 
-const ProgressSpinner = ({ state = true, variant = 'primary', animation = 'border', dimention = 5 }) => {
+const ProgressSpinner = ({ state = true }) => {
   if (state) {
     return (
-      <Spinner animation={animation} role={state} variant={variant} style={{ width: `${dimention}rem`, height: `${dimention}rem` }}>
+      <Spinner animation="border" role="status" variant="primary">
         <span className="visually-hidden">Loading...</span>
       </Spinner>
     );

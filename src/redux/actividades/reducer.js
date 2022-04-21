@@ -7,7 +7,10 @@ const initialState = {
 const actividadesReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ACTIVIDAD:
-      return action.payload;
+      return {
+        ...state,
+        actividades: action.payload,
+      };
 
     case CREATE_ACTIVIDAD:
       return {

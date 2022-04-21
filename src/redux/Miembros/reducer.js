@@ -8,7 +8,10 @@ const initialState = {
 const membersReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_MEMBERS:
-      return action.payload;
+      return {
+        ...state,
+        miembros: action.payload,
+      };
 
     case CREATE_MEMBER:
       return [...state, action.payload];

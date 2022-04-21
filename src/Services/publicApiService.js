@@ -5,21 +5,12 @@ const config = {
   Group: 163,
 };
 
-export const Get = async (URL, id = null, Authorization = '') => {
+export const Get = async (URL, id = null) => {
   const url = id ? `${URL}/${id}` : URL;
-  const config2 = Authorization
-    ? {
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: 'Bearer ' + Authorization,
-      },
-    }
-    : { headers: { 'Content-Type': 'application/json' } };
   try {
-    const response = await axios(url, config2);
-    return response.data;
+    const { data } = await axios(url);
+    return data.data;
   } catch (error) {
-    console.log('Error GET public', error);
     return error;
   }
 };

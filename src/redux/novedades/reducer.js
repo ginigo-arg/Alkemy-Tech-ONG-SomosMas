@@ -35,7 +35,10 @@ const novedadesReducer = (state = initialState, action) => {
       };
 
     case GET_NOVEDAD:
-      return action.payload;
+      return {
+        ...state,
+        novedades: action.payload,
+      };
 
     case ACTION_FAILED:
       return Swal.fire(action.payload);
