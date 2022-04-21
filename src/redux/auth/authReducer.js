@@ -12,7 +12,6 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_USER:
     case CREATE_USER:
       localStorage.setItem('token', action.payload.data.token);
-      localStorage.setItem('user', action.payload.data.user);
       return {
         auth: true,
         token: action.payload.data.token,

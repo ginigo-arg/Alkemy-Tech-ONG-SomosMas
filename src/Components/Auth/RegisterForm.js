@@ -1,13 +1,14 @@
 /* eslint-disable multiline-ternary */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Button, Container, Col, Form, InputGroup, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FaEye } from 'react-icons/fa';
 import { AiFillEyeInvisible } from 'react-icons/ai';
 import './registerForm.css';
 import './shapes.css';
+import store from '../../redux/store';
 
 const SignupSchema = Yup.object({
   name: Yup.string().required('Campo requerido'),
@@ -30,6 +31,11 @@ const SignupSchema = Yup.object({
 });
 
 const RegisterForm = () => {
+  const history = useHistory();
+  const { auth } = store.getState();
+  useEffect(() => {
+    if (auth.auth) return history.push('/');
+  }, []);
   const formik = useFormik({
     initialValues: {
       name: '',

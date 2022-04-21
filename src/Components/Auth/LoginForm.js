@@ -3,12 +3,13 @@ import { Formik } from 'formik';
 import { Form, Container, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
+import store from '../../redux/store';
 
 const LoginForm = () => {
   const history = useHistory();
+  const { auth } = store.getState();
   useEffect(() => {
-    const token = localStorage.getItem('TOKEN');
-    if (token) return history.push('/');
+    if (auth.auth) return history.push('/');
   }, []);
 
   return (
