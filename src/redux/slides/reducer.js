@@ -1,8 +1,9 @@
 import { alertService } from '../../Services/alertService';
-import { ACTION_FAILED, GET_SLIDE_HOME, GET_SLIDE_BACKOFFICE, CREATE_SLIDE, DELETE_SLIDE } from './types';
+import { ACTION_FAILED, GET_SLIDE_HOME, GET_SLIDE_BACKOFFICE, CREATE_SLIDE, DELETE_SLIDE, GET_SINGLE_SLIDE_BACKOFFICE } from './types';
 
 const initialState = {
   slides: [],
+  singleSlide: [],
 };
 const slidesReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -18,10 +19,16 @@ const slidesReducer = (state = initialState, action) => {
         slides: action.payload,
       };
 
-    case CREATE_SLIDE:
+    case GET_SINGLE_SLIDE_BACKOFFICE:
       return {
         ...state,
-        slides: [...state, action.payload],
+        singleSlide: action.payload,
+      };
+
+    case CREATE_SLIDE:
+      console.log('payload', action.payload);
+      return {
+        slides: [...state.slides, action.payload],
       };
 
     case DELETE_SLIDE: {

@@ -19,7 +19,7 @@ import { LOADING_ON, LOADING_OFF } from '../global/globalAction';
 export const GET_MEMBERS_FUNCTION = () => async (dispatch) => {
   dispatch(LOADING_ON());
   try {
-    const { data } = await getAllMembers();
+    const data = await getAllMembers();
 
     dispatch({
       type: GET_MEMBERS,

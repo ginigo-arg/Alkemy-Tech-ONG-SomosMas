@@ -24,7 +24,7 @@ export const GET_SLIDE_HOME_FN = () => async (dispatch) => {
 export const GET_SLIDE_BACKOFFICE_FN = () => async (dispatch) => {
   dispatch(LOADING_ON);
   try {
-    const { data } = await getSlides();
+    const data = await getSlides();
     console.log('Response get back:', data);
     dispatch({
       type: GET_SLIDE_BACKOFFICE,
@@ -39,12 +39,30 @@ export const GET_SLIDE_BACKOFFICE_FN = () => async (dispatch) => {
     dispatch(LOADING_OFF());
   }
 };
+export const GET_SINGLE_SLIDE_BACKOFFICE_FN = (id) => async (dispatch) => {
+  dispatch(LOADING_ON);
+  try {
+    const data = await getSlides(id);
+    console.log('Response get back:', data);
+    dispatch({
+      type: GET_SLIDE_BACKOFFICE,
+      payload: id ? data : null,
+    });
+    dispatch(LOADING_OFF);
+  } catch (error) {
+    dispatch({
+      type: ACTION_FAILED,
+      payload: error.message,
+    });
+    dispatch(LOADING_OFF());
+  }
+};
 
-export const CREATE_SLIDE_FN = (content) => (dispatch) => {
+export const CREATE_SLIDE_FN = (content) => async (dispatch) => {
   dispatch(LOADING_ON);
   try {
     console.log(LOADING_ON);
-    const response = postSlide(content);
+    const response = await postSlide(content);
     if (response) console.log('responsepost:', response);
     dispatch({
       type: CREATE_SLIDE,

@@ -11,8 +11,8 @@ export const pathSlides = (id, data) => {
   return response;
 };
 
-export const postSlide = (data) => {
-  const response = POST_PRIVATE_API(process.env.REACT_APP_API_SLIDES, data);
+export const postSlide = async (data) => {
+  const response = await POST_PRIVATE_API(process.env.REACT_APP_API_SLIDES, data);
   console.log('respuesta post:', response);
   if (response) {
     alertService('success', 'Slide creado Correactamente!');

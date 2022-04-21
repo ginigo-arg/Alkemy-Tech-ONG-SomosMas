@@ -1,44 +1,45 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Container, Button, Form } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { SchemaValidation } from './SchemaValidation';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useLocation, useHistory } from 'react-router-dom';
-import { getSlides } from '../../../Services/SlideServices';
 import Spinner from '../../Spinner/Spinner';
-import { GET_SLIDE_BACKOFFICE_FN, CREATE_SLIDE_FN } from '../../../redux/slides/actions';
+import { CREATE_SLIDE_FN, GET_SINGLE_SLIDE_BACKOFFICE_FN } from '../../../redux/slides/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { convertToBase64 } from '../../../Services/base64Helper';
 
 const SlidesFormHook = () => {
   const history = useHistory();
-  const [slide, setSlide] = useState(false);
   const { state: id } = useLocation();
   const dispatch = useDispatch();
   const loading = useSelector(state => state.global.loading);
+  const { slide } = useSelector(state => state.slides);
 
   useEffect(async () => {
     console.log('ID_LOCATION:', id);
     if (id) {
-      const { data } = await getSlides(id);
-      console.log('resp:', data);
-      setSlide(data);
-      dispatch(GET_SLIDE_BACKOFFICE_FN(id));
+      dispatch(GET_SINGLE_SLIDE_BACKOFFICE_FN(id));
+      console.log('slide', slide);
     }
-  }, [location]);
+    return dispatch(GET_SINGLE_SLIDE_BACKOFFICE_FN());
+  }, []);
 
+  useEffect(() => {
+    console.log('slide:', slide);
+  }, [slide]);
   return (
     <>
-      {!slide && id
+      { loading
         ? <Spinner/>
         : (
           <Container>
             <Formik
               initialValues={{
-                name: slide.name || '',
-                description: slide.description || '',
-                image: slide.image || '',
+                name: slide?.name || '',
+                description: slide?.description || '',
+                image: slide?.image || '',
               }}
 
               onSubmit={async (values, { setSubmitting }) => {
@@ -49,7 +50,9 @@ const SlidesFormHook = () => {
                 console.log(values);
                 if (!id) {
                   dispatch(CREATE_SLIDE_FN(values));
-                  if (!loading) history.push('/backoffice/slides');
+                  setTimeout(() => {
+                    if (!loading) history.push('/backoffice/slides');
+                  }, 3000);
                 } else {
                   console.log('edit');
                   if (!loading) history.push('/backoffice/slides');
@@ -110,7 +113,7 @@ const SlidesFormHook = () => {
                   </Form.Group>
 
                   <Button type="submit" variant="primary" disabled={isSubmitting} onClick={() => console.log('hola')}>
-                    {!location.state ? 'Agregar miembro' : 'Guardar cambios'}
+                    {!location.state ? 'Agregar Slide' : 'Guardar cambios'}
                   </Button>
 
                 </Form>

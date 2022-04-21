@@ -10,7 +10,7 @@ import { alertService } from '../../../Services/alertService';
 const TableSliders = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const slides = useSelector(state => state.slides.slides);
+  const { slides } = useSelector(state => state.slides);
 
   useEffect(() => {
     dispatch(GET_SLIDE_BACKOFFICE_FN());
@@ -54,11 +54,11 @@ const TableSliders = () => {
         <tbody>
           {slides?.length > 0 &&
             slides?.map((slide) => (
-              <tr key={slide.id}>
-                <td>{slide.id}</td>
-                <td>{slide.name}</td>
+              <tr key={slide?.id}>
+                <td>{slide?.id}</td>
+                <td>{slide?.name}</td>
                 <td>
-                  <img src={slide.image} alt={slide.name} className="w-25" />
+                  <img src={slide?.image} alt={slide?.name} className="w-25" />
                 </td>
                 <td className="d-flex justify-content-center align-items-center gap-1">
                   <Button className="btn-danger" onClick={() => handleDelete(slide.id)}>
