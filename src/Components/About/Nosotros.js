@@ -10,15 +10,13 @@ import Spinner from '../Spinner/Spinner';
 
 export default function Nosotros () {
   const dispatch = useDispatch();
-  const stateMiembros = useSelector(state => state.miembros);
+  const { miembros } = useSelector(state => state.miembros);
   const stateOrganizacion = useSelector(state => state.organizacion);
   const stateLoading = useSelector(state => state.global.loading);
 
   useEffect(() => {
     dispatch(GET_MEMBERS_FUNCTION());
     dispatch(GET_ABOUT_FUNCTION());
-    console.log('organizacion', stateOrganizacion);
-    console.log('Members', stateMiembros);
   }, []);
 
   return (
@@ -44,21 +42,25 @@ export default function Nosotros () {
           </strong>
         </h2>
         <Container className="d-flex gap-4 justify-content-center align-items-stretch flex-wrap mt-5 mb-5">
-          {
-            stateMiembros.length > 0 &&
-            stateMiembros.map((item) => {
-              return (
-                <CardMembers
-                  key={item.id}
-                  name={item.name}
-                  description={item.description}
-                  image={item.image}
-                  facebookUrl={item.facebookUrl}
-                  linkedingUrl= {item.linkedingUrl}
-                />
-              );
-            })
-          }
+          { miembros.length > 0
+            ? (
+              miembros.map((item) => {
+                return (
+                  <CardMembers
+                    key={item.id}
+                    name={item.name}
+                    description={item.description}
+                    image={item.image}
+                    facebookUrl={item.facebookUrl}
+                    linkedingUrl= {item.linkedingUrl}
+                  />
+                );
+              })
+            )
+            : (
+              <p className="w-100 my-5 text-center display-6">No hay Miembros</p>
+            ) }
+
         </Container>
       </>
   );

@@ -16,7 +16,7 @@ const MembersForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const stateLoading = useSelector(state => state.global.loading);
-  const stateMembers = useSelector(state => state.miembros);
+  const { miembros } = useSelector(state => state.miembros);
 
   useEffect(() => {
     if (location.state) {
@@ -34,11 +34,11 @@ const MembersForm = () => {
               <h2>Form Members</h2>
               <Formik
                 initialValues={{
-                  name: stateMembers.name || '',
-                  description: stateMembers.description || '',
-                  image: stateMembers.image || '',
-                  facebookUrl: stateMembers.facebookUrl || '',
-                  linkedinUrl: stateMembers.linkedinUrl || '',
+                  name: miembros.name || '',
+                  description: miembros.description || '',
+                  image: miembros.image || '',
+                  facebookUrl: miembros.facebookUrl || '',
+                  linkedinUrl: miembros.linkedinUrl || '',
                 }}
                 onSubmit={async (values, { setSubmitting }) => {
                   setSubmitting(false);
@@ -50,7 +50,7 @@ const MembersForm = () => {
                     dispatch(CREATE_MEMBER_FN(values));
                     if (!stateLoading) history.push('/backoffice/members');
                   } else {
-                    dispatch(EDIT_MEMBER_FN(stateMembers.id, values));
+                    dispatch(EDIT_MEMBER_FN(miembros.id, values));
                     if (!stateLoading) history.push('/backoffice/members');
                   }
                 }}
