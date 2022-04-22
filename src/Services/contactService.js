@@ -73,17 +73,17 @@ export const SEND_EMAIL = async (DATA) => {
 
 export const ORGANIZATION_CONTACT_DATA = async () => {
   const response = await Get(process.env.REACT_APP_API_ORGANIZATION);
-  // console.log(JSON.stringify(response.data));
+  // console.log('Soy organizacion data', JSON.stringify(response));
   let contactData = {};
   if (response) {
     contactData = {
-      address: response.data.address,
-      phone: response.data.phone,
-      cellphone: response.data.cellphone,
-      facebook_url: response.data.facebook_url,
-      linkedin_url: response.data.linkedin_url,
-      instagram_url: response.data.instagram_url,
-      twitter_url: response.data.twitter_url,
+      address: response.address,
+      phone: response.phone,
+      cellphone: response.cellphone,
+      facebook_url: response.facebook_url,
+      linkedin_url: response.linkedin_url,
+      instagram_url: response.instagram_url,
+      twitter_url: response.twitter_url,
       email: 'somosfundacionmas@gmail.com',
     };
   }
