@@ -4,7 +4,7 @@ import { deleteSlide, postSlide, getSlides, putSlide } from '../../Services/Slid
 import { homeSlides } from '../../Services/allHomeMethods';
 
 export const GET_SLIDE_HOME_FN = () => async (dispatch) => {
-  dispatch(LOADING_ON);
+  dispatch(LOADING_ON());
   try {
     const response = await homeSlides();
     console.log('Response:', response);
@@ -12,7 +12,7 @@ export const GET_SLIDE_HOME_FN = () => async (dispatch) => {
       type: GET_SLIDE_HOME,
       payload: response,
     });
-    dispatch(LOADING_OFF);
+    dispatch(LOADING_OFF());
   } catch (error) {
     dispatch({
       type: ACTION_FAILED,
@@ -22,7 +22,7 @@ export const GET_SLIDE_HOME_FN = () => async (dispatch) => {
   }
 };
 export const GET_SLIDE_BACKOFFICE_FN = () => async (dispatch) => {
-  dispatch(LOADING_ON);
+  dispatch(LOADING_ON());
   try {
     const data = await getSlides();
     console.log('Response get back:', data);
@@ -30,7 +30,7 @@ export const GET_SLIDE_BACKOFFICE_FN = () => async (dispatch) => {
       type: GET_SLIDE_BACKOFFICE,
       payload: data,
     });
-    dispatch(LOADING_OFF);
+    dispatch(LOADING_OFF());
   } catch (error) {
     dispatch({
       type: ACTION_FAILED,
@@ -40,14 +40,14 @@ export const GET_SLIDE_BACKOFFICE_FN = () => async (dispatch) => {
   }
 };
 export const GET_SINGLE_SLIDE_BACKOFFICE_FN = (id) => async (dispatch) => {
-  dispatch(LOADING_ON);
+  dispatch(LOADING_ON());
   try {
     const data = await getSlides(id);
     dispatch({
       type: GET_SINGLE_SLIDE_BACKOFFICE,
       payload: id ? data : [],
     });
-    dispatch(LOADING_OFF);
+    dispatch(LOADING_OFF());
   } catch (error) {
     dispatch({
       type: ACTION_FAILED,

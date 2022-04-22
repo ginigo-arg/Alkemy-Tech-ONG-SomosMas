@@ -28,9 +28,9 @@ const Sidebar = () => {
 
           <Link to="/"size="sm"className='btn btn-warning'>Ir al inicio</Link>
         </Offcanvas.Header>
-        <Offcanvas.Body>
+        <Offcanvas.Body className="scroll-not">
 
-          <Nav className="justify-content-end flex-grow-1 pe-3 ">
+          <Nav className="justify-content-end flex-grow-1 pe-3 bg-red">
             <div className='item'>
             <Link to="/backoffice/news" className='text-white'>
               <BiNews className='icon' fontSize="25px" color="grey" />
@@ -61,7 +61,7 @@ const Sidebar = () => {
 
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/organization" className='text-white'>
+            <Link to="/backoffice/organization/edit" className='text-white'>
               <GiOrganigram className='icon' fontSize="25px" color="grey" />
 
               Organizacion

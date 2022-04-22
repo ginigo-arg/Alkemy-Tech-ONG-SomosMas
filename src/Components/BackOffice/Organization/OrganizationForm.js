@@ -6,24 +6,16 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { orgSchemaValidation } from './validation/orgSchemaValidation';
 import Spinner from '../../Spinner/Spinner';
 import { SocialFormControl } from './validation/SocialFormControl';
+import { editOrganization, getOrganization } from '../../../Services/OrganizationService';
+import { useHistory } from 'react-router-dom';
 
 const OrganizationForm = () => {
   const [dataOrg, setDataOrg] = useState(false);
+  const history = useHistory();
 
   useEffect(async () => {
-    // Petición GET de Organization
-    // const { data } = await getDataOrg();
-    // REEMPLAZAR LUEGO
-    setDataOrg({
-      name: '',
-      short_description: '',
-      long_description: '',
-      logo: '',
-      facebook_url: '',
-      linkedin_url: '',
-      instagram_url: '',
-      twitter_url: '',
-    });
+    const data = await getOrganization();
+    setDataOrg(data);
   }, []);
 
   return (
@@ -38,14 +30,14 @@ const OrganizationForm = () => {
                 name: dataOrg.name || '',
                 short_description: dataOrg.short_description || '',
                 long_description: dataOrg.long_description || '',
-                logo: dataOrg.logo || '',
                 facebook_url: dataOrg.facebook_url || '',
                 linkedin_url: dataOrg.linkedin_url || '',
                 instagram_url: dataOrg.instagram_url || '',
                 twitter_url: dataOrg.twitter_url || '',
               }}
-              onSubmit={(values, { setSubmitting }) => {
-                console.log(values);
+              onSubmit={async (values, { setSubmitting }) => {
+                await editOrganization(values);
+                history.push('/backoffice');
                 setSubmitting(false);
               }}
               validationSchema={orgSchemaValidation}
@@ -106,17 +98,6 @@ const OrganizationForm = () => {
                     errors={errors}
                     handleChange={handleChange}
                   />
-
-                  <Form.Group className='mb-4'>
-                    <Form.Label>Logo:</Form.Label>
-                    <Form.Control
-                      name="logo"
-                      type="file"
-                      onChange={e => setFieldValue('logo', e.currentTarget.files[0])}
-                      isInvalid={!!errors.logo}
-                    />
-                    <Form.Control.Feedback type="invalid">{errors.logo}</Form.Control.Feedback>
-                  </Form.Group>
 
                   <Button type="submit" variant="primary" disabled={isSubmitting}>
                     Guardar cambios

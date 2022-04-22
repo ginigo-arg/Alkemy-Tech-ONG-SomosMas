@@ -33,7 +33,6 @@ const slidesReducer = (state = initialState, action) => {
       };
 
     case CREATE_SLIDE:
-      console.log('payload', action.payload);
       return {
         ...state,
         slides: [...state.slides, action.payload],

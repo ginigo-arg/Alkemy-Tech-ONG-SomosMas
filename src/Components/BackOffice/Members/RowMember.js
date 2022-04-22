@@ -27,11 +27,11 @@ const RowMember = ({ member }) => {
       <td className="text-center" style={{ width: '230px' }}>
         {member.image !== ''
           ? (
-            <div style={{ width: '200px', height: '100px', overflow: 'hidden' }}>
+            <div style={{ maxWidth: '150px', maxHeight: '150px', overflow: 'hidden' }}>
               <img
                 src={member.image}
                 alt={member.name}
-                className="img-thumbnail rounded"
+                className="w-100"
               />
             </div>
           )

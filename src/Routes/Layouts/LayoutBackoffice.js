@@ -12,7 +12,7 @@ const LayoutBackoffice = () => {
           <Header />
         </header>
       </Container>
-      <Container fluid className="container-fluid vh-100 border border-2">
+      <Container fluid className="container-fluid border border-2">
         <Row>
           <Sidebar />
           <Col>

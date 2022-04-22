@@ -40,3 +40,7 @@ flex-direction: row;
     width: 25%;
 }
 }
+
+.scroll-not::-webkit-scrollbar {
+    display: none;
+}
