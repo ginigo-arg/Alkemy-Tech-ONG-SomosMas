@@ -5,13 +5,11 @@
 import React from 'react';
 import { Navbar, Offcanvas, Nav } from 'react-bootstrap';
 import { BiNews } from 'react-icons/bi';
-import { BsPencilFill, BsMenuButtonWideFill } from 'react-icons/bs';
-import { MdOutlineSpeakerNotes } from 'react-icons/md';
+import { BsPencilFill } from 'react-icons/bs';
 import { GiOrganigram } from 'react-icons/gi';
 import { RiSlideshow3Line } from 'react-icons/ri';
 import { HiUsers } from 'react-icons/hi';
 import { FaUserCircle } from 'react-icons/fa';
-import { AiOutlineOrderedList } from 'react-icons/ai';
 
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
@@ -46,20 +44,7 @@ const Sidebar = () => {
               Actividades
 
             </Link></div><hr></hr>
-            <div className='item'>
-            <Link to="/backoffice/categories" className='text-white'>
-              <BsMenuButtonWideFill className='icon' fontSize="25px" color="grey" />
 
-            Categorias
-
-            </Link></div><hr></hr>
-            <div className='item'>
-            <Link to="/backoffice/create-testimonials" className='text-white'>
-              <MdOutlineSpeakerNotes className='icon' fontSize="25px" color="grey" />
-
-              Testimonios
-
-            </Link></div><hr></hr>
             <div className='item'>
             <Link to="/backoffice/organization/edit" className='text-white'>
               <GiOrganigram className='icon' fontSize="25px" color="grey" />
@@ -88,13 +73,6 @@ const Sidebar = () => {
               Miembros
 
             </Link></div><hr></hr>
-            <div className='item'>
-            <Link to="/backoffice/projects" className='text-white'>
-              <AiOutlineOrderedList className='icon' fontSize="25px" color="grey" />
-
-             Proyectos
-
-            </Link></div>
           </Nav>
         </Offcanvas.Body>
       </Navbar.Offcanvas>

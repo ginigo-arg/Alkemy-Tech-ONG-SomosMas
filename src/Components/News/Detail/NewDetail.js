@@ -33,6 +33,7 @@ const NewDetail = () => {
           </Card.Body>
           <Card.Body>
             <div ref={fromRef} className="w-100">
+              <p style={{ minHeight: '200px' }}>{newDetail.content}</p>
               <Suspense>
                 { isScreen ? <Comments /> : null }
               </Suspense>
