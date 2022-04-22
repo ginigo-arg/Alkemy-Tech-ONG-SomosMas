@@ -59,21 +59,20 @@ export const GET_SINGLE_SLIDE_BACKOFFICE_FN = (id) => async (dispatch) => {
 };
 
 export const CREATE_SLIDE_FN = (content) => async (dispatch) => {
-  dispatch(LOADING_ON());
   try {
-    const response = await postSlide(content);
+    dispatch(LOADING_ON());
+    const { data } = await postSlide(content);
+    if (data) console.log('responsepost:', data);
     dispatch({
       type: CREATE_SLIDE,
-      payload: response,
+      payload: data,
     });
-    dispatch(LOADING_OFF());
   } catch (error) {
     dispatch({
       type: ACTION_FAILED,
       payload: error.message,
     });
-    dispatch(LOADING_OFF());
-  }
+  } finally { dispatch(LOADING_OFF()); }
 };
 
 export const DELETE_SLIDE_FN = (id) => async (dispatch) => {
