@@ -34,7 +34,7 @@ const Slider = ({ slides }) => {
 
               </Carousel.Caption>
             </CarouselItem>
-          ))
+          )).reverse()
         )
         : (
           <Container className='d-flex align-items-center justify-content-center' style={{ height: ' 250px' }}>

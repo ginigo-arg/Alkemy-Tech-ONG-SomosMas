@@ -11,19 +11,15 @@ const TableSliders = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { slides } = useSelector(state => state.slides);
-  const { singleSlide } = useSelector(state => state.slides);
 
   useEffect(() => {
     dispatch(GET_SLIDE_BACKOFFICE_FN());
   }, []);
   useEffect(() => {
-  }, [slides]);
-  useEffect(() => {
-    console.log('singleSlide', singleSlide);
     dispatch(CLEAR_SINGLE_SLIDE_FN());
-    console.log('singleSlide', singleSlide);
   }, []);
-  use;
+  useEffect(() => {
+  }, []);
 
   const handleEdit = (id) => {
     history.push({
@@ -75,7 +71,7 @@ const TableSliders = () => {
                   </Button>
                 </td>
               </tr>
-            ))}
+            )).reverse()}
         </tbody>
       </Table>
     </div>
