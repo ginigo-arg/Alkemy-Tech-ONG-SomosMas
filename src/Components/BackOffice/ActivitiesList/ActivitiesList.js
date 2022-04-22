@@ -8,6 +8,7 @@ import ProgressSpinner from '../../Progress/ProgressSpinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { DELETE_ACTIVIDAD_FUNCTION, GET_ACTIVIDAD_FUNCTION } from '../../../redux/actividades/actions';
 import { alertService } from '../../../Services/alertService';
+import ParserHtml from '../../Parser/Parser';
 
 const ActivitiesList = () => {
   const history = useHistory();
@@ -59,13 +60,17 @@ const ActivitiesList = () => {
             actividades.map((activity) => (
               <tr key={activity.id}>
                 <td>{activity.name}</td>
-                <td>{activity.description}</td>
                 <td>
-                  <img
-                    src={activity.image}
-                    alt={activity.name}
-                    className="w-25"
-                  />
+                  <ParserHtml text={activity.description} />
+                </td>
+                <td>
+                  <div style={{ maxWidth: '200px', maxHeight: '150px', overflow: 'hidden' }}>
+                    <img
+                      src={activity.image}
+                      alt={activity.name}
+                      className="w-100"
+                    />
+                  </div>
                 </td>
                 <td className="d-flex justify-content-center align-items-center gap-1">
                   <Button
@@ -82,7 +87,7 @@ const ActivitiesList = () => {
                   </Button>
                 </td>
               </tr>
-            ))}
+            )).reverse()}
             </tbody>
           </Table>
         </>
