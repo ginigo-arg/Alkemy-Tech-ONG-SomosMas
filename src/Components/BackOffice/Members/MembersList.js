@@ -49,7 +49,7 @@ const MembersList = () => {
                 <tbody>
                   {memberState.miembros.map((item) => (
                     <RowMember key={item.id} member={item} />
-                  ))}
+                  )).reverse()}
                 </tbody>
               </Table>
             </Container>
