@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -6,36 +6,40 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { orgSchemaValidation } from './validation/orgSchemaValidation';
 import Spinner from '../../Spinner/Spinner';
 import { SocialFormControl } from './validation/SocialFormControl';
-import { POST_ABOUT_FUNCTION, GET_ABOUT_FUNCTION } from '../../../redux/Nosotros/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { editOrganization, getOrganization } from '../../../Services/OrganizationService';
+import { useHistory } from 'react-router-dom';
 
 const OrganizationForm = () => {
-  const organization = useSelector(state => state.organizacion);
-  const dispatch = useDispatch();
+  const [dataOrg, setDataOrg] = useState(false);
+  const history = useHistory();
 
-  useEffect(() => {
-    dispatch(GET_ABOUT_FUNCTION());
+  useEffect(async () => {
+    const data = await getOrganization();
+    setDataOrg(data);
   }, []);
 
   return (
     <>
-      {!organization
+      {!dataOrg
         ? <Spinner/>
         : (
           <Container>
             <h2>Form Organization</h2>
             <Formik
               initialValues={{
-                name: organization.name || '',
-                short_description: organization.short_description || '',
-                long_description: organization.long_description || '',
-                logo: organization.logo || '',
-                facebook_url: organization.facebook_url || '',
-                linkedin_url: organization.linkedin_url || '',
-                instagram_url: organization.instagram_url || '',
-                twitter_url: organization.twitter_url || '',
+                name: dataOrg.name || '',
+                short_description: dataOrg.short_description || '',
+                long_description: dataOrg.long_description || '',
+                facebook_url: dataOrg.facebook_url || '',
+                linkedin_url: dataOrg.linkedin_url || '',
+                instagram_url: dataOrg.instagram_url || '',
+                twitter_url: dataOrg.twitter_url || '',
               }}
-              onSubmit={(values) => POST_ABOUT_FUNCTION(values)}
+              onSubmit={async (values, { setSubmitting }) => {
+                await editOrganization(values);
+                history.push('/backoffice');
+                setSubmitting(false);
+              }}
               validationSchema={orgSchemaValidation}
               validateOnChange={false}
               validateOnBlur={false}
@@ -94,17 +98,6 @@ const OrganizationForm = () => {
                     errors={errors}
                     handleChange={handleChange}
                   />
-
-                  <Form.Group className='mb-4'>
-                    <Form.Label>Logo:</Form.Label>
-                    <Form.Control
-                      name="logo"
-                      type="file"
-                      onChange={e => setFieldValue('logo', e.currentTarget.files[0])}
-                      isInvalid={!!errors.logo}
-                    />
-                    <Form.Control.Feedback type="invalid">{errors.logo}</Form.Control.Feedback>
-                  </Form.Group>
 
                   <Button type="submit" variant="primary" disabled={isSubmitting}>
                     Guardar cambios
