@@ -11,10 +11,14 @@ export const Get = async (URL, id = null, Authorization = null) => {
     ? {
       headers: {
         'Content-Type': 'application/json',
-        authorization: 'Bearer ' + Authorization,
+        authorization: `Bearer ${Authorization.replace(/['"]+/g, '')}`,
       },
     }
     : { headers: { 'Content-Type': 'application/json' } };
+  if (Authorization) {
+    console.log('authorizaion', config2.headers);
+  }
+
   try {
     const { data } = await axios(url, config2);
     return data.data;
