@@ -1,8 +1,9 @@
 import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import src from '../../assets/img/LOGO-SOMOSMAS.png';
 import { LOGOUT_USER_ACTION } from '../../redux/auth/authActions';
+import { alertService } from '../../Services/alertService';
 import './PublicHeader.css';
 
 const sites = [
@@ -77,11 +78,9 @@ export default function PublicHeader () {
                   Escuelas
                 </NavLink>
               </NavDropdown>
-              {auth.auth && auth.user && auth.user.role === 1
-                ? <Button className='btn btn-primary text-white'>
-                  Donar
-                </Button>
-                : null}
+              <Button className='btn btn-primary text-white' onClick={() => auth.auth ? useLocation.push('/donar') : alertService('error', 'Debe iniciar sesión para poder donar.')}>
+                Donar
+              </Button>
             </Nav>
           </Navbar.Collapse>
         </Container>
