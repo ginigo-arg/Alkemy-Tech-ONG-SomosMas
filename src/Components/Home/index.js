@@ -50,6 +50,7 @@ const Home = () => {
                 image={item.image}
                 title={item.name}
                 description={item.content}
+                id={item.id}
               />
             )).slice(0, 3)
           }

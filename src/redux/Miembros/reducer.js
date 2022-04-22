@@ -21,7 +21,6 @@ const membersReducer = (state = initialState, action) => {
       };
 
     case CREATE_MEMBER:
-      console.log(action.payload);
       return {
         ...state,
         miembros: [...state.miembros, action.payload],

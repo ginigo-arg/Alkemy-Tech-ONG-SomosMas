@@ -8,7 +8,6 @@ const NewCard = ({
   title,
   description,
   id,
-
 }) => {
   const history = useHistory();
   const { pathname } = useLocation();
@@ -28,7 +27,7 @@ const NewCard = ({
         <Button
           className='text-white'
           variant="primary"
-          onClick={() => history.push(`${pathname}/${id}`)}
+          onClick={() => history.push(`${pathname === '/' ? '/novedades' : pathname}/${id}`)}
         >Ver más</Button>
       </Card.Body>
     </Card>);

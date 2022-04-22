@@ -1,6 +1,6 @@
-
 import {
   GET_PRIVATE_API,
+  PUT_PRIVATE_API,
 } from './privateApiService';
 
 import { alertService } from './alertService';
@@ -16,5 +16,17 @@ export const getOrganization = async () => {
     return response;
   } catch (error) {
     alertService(TYPE, MESSAGE_GET);
+  }
+};
+
+export const editOrganization = async data => {
+  const response = PUT_PRIVATE_API(process.env.REACT_APP_API_ORGANIZATION, 1, data);
+
+  if (response) {
+    alertService('success', 'Datos de organización han sido editados correctamente!');
+    return response;
+  } else {
+    alertService('error', 'Ha ocurrido un error al editar los datos de organización');
+    return response.error;
   }
 };

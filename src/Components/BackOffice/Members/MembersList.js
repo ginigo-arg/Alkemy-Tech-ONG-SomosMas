@@ -15,7 +15,7 @@ const MembersList = () => {
     dispatch(GET_MEMBERS_FUNCTION());
   }, []);
 
-  useEffect(() => {}, [memberState]);
+  useEffect(() => {}, [memberState.miembros]);
 
   return (
     <Container className="my-4 p-0 border">
