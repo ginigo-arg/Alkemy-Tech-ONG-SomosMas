@@ -5,7 +5,6 @@ import { alertService } from '../../../Services/alertService';
 import { useParams } from 'react-router-dom';
 import ProgressSpinner from '../../Progress/ProgressSpinner';
 import LazyImg from '../../Lazyload/LazyImg';
-import SectionTitles from '../../SectionTitles/SectionTitles';
 import ParserHtml from '../../Parser/Parser';
 
 const Detail = (props) => {
@@ -13,38 +12,26 @@ const Detail = (props) => {
   const { id } = useParams();
 
   const [activityDetail, setActivityDetail] = useState([]);
-  const [ejecuteQuery, setEjecuteQuery] = useState(true);
   const [loading, setLoading] = useState(true);
   const msnError = 'Ocurrio un problema al cargar la actividad.';
 
-  const simulateNetworkRequest = (time = 10000) => {
-    setLoading(true);
-    return new Promise((resolve) => setTimeout(resolve, time) && setLoading(false));
-  };
   // LISTADO ACTIVIDADES
   useEffect(() => {
     const fetchActividades = async () => {
       setLoading(true);
       const response = await getActivities(id);
-      if (response.success) {
-        setActivityDetail(response.data);
+      if (response) {
+        setActivityDetail(response);
+        setLoading(false);
       } else {
         alertService('error', msnError);
       }
-      console.log('Lista de Actividades', response);
-      setEjecuteQuery(false);
     };
-    simulateNetworkRequest();
-    if (ejecuteQuery) {
-      fetchActividades();
-      console.log('actividades stat', activityDetail);
-    }
-    setLoading(false);
-  }, [ejecuteQuery]);
+    fetchActividades();
+  }, []);
 
   return (
     <>
-      <SectionTitles title={activityDetail.name ?? 'Detalle actividad'} />
       <Container className='mt-3'>
         {loading
           ? <div className='d-flex justify-content-center my-5'>

@@ -25,6 +25,8 @@ const MembersForm = () => {
     return dispatch(GET_ONE_MEMBER_FN());
   }, []);
 
+  useEffect(() => {}, [memberSelected]);
+
   return (
     <>
       {stateLoading
@@ -50,7 +52,6 @@ const MembersForm = () => {
                   dispatch(CREATE_MEMBER_FN(values));
                   if (!stateLoading) history.push('/backoffice/members');
                 } else {
-                  console.log(memberSelected.id);
                   dispatch(EDIT_MEMBER_FN(memberSelected.id, values));
                   if (!stateLoading) history.push('/backoffice/members');
                 }
