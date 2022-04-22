@@ -1,20 +1,21 @@
 import './UsersList.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { GET_USER_FN, DELETE_USER_FN } from '../../redux/users/action';
+import { useEffect } from 'react';
 import { Col, Container, Row, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const UsersList = () => {
-  const mockUsers = [
-    { name: 'Monica', email: 'monica@gmail.com' },
-    { name: 'Fabian', email: 'fabian@gmail.com' },
-    { name: 'Pedro', email: 'pedro@gmail.com' },
-    { name: 'Camila', email: 'camila@gmail.com' },
-    { name: 'Joaquin', email: 'joaquin@gmail.com' },
-    { name: 'Sara', email: 'sara@gmail.com' },
-  ];
+  const dispatch = useDispatch();
+  const users = useSelector(state => state.users.users);
 
-  // FUNCIONES PARA EDITAR/ELIMINAR USUARIOS MEDIANTE EL BOTON CORRESPONDIENTE
-  const handleDelete = () => {};
-  const handleEdit = () => {};
+  const deleteUser = (id) => {
+    dispatch(DELETE_USER_FN(id));
+  };
+
+  useEffect(() => {
+    dispatch(GET_USER_FN());
+  }, []);
 
   return (
     <Container>
@@ -33,37 +34,35 @@ const UsersList = () => {
           Email
         </Col>
       </Row>
-      {mockUsers.map((n) => (
-        <>
-          <Row className="align-items-center py-2 border-bottom">
-            <Col xs={5} md={4} lg={5} className="userslist-text">
-              {n.name}
-            </Col>
-            <Col xs={7} md={5} lg={5} className="userslist-text">
-              {n.email}
-            </Col>
-            <Col xs={12} md={3} lg={2} className="d-flex flex-row justify-content-evenly justify-content-lg-between mt-3 mt-md-0">
-              <Button
-                className="userslist-buttons"
-                size="sm"
-                variant="success"
-                id={n.id}
-                onClick={handleEdit}
-              >
-                Editar
-              </Button>
-              <Button
-                className="userslist-buttons"
-                size="sm"
-                variant="danger"
-                id={n.id}
-                onClick={handleDelete}
-              >
-                Eliminar
-              </Button>
-            </Col>
-          </Row>
-        </>
+      {users.length > 0 && users.map((n) => (
+        <Row key={n.id} className="align-items-center py-2 border-bottom">
+          <Col xs={5} md={4} lg={5} className="userslist-text">
+            {n.name}
+          </Col>
+          <Col xs={7} md={5} lg={5} className="userslist-text">
+            {n.email}
+          </Col>
+          <Col xs={12} md={3} lg={2} className="d-flex flex-row justify-content-evenly justify-content-lg-between mt-3 mt-md-0">
+            <Button
+              className="userslist-buttons"
+              size="sm"
+              variant="success"
+              id={n.id}
+              onClick={(e) => e.preventDefault()}
+            >
+              Editar
+            </Button>
+            <Button
+              className="userslist-buttons"
+              size="sm"
+              variant="danger"
+              id={n.id}
+              onClick={() => deleteUser(n.id)}
+            >
+              Eliminar
+            </Button>
+          </Col>
+        </Row>
       ))}
     </Container>
   );

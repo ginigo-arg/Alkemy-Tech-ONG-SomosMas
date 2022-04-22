@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Alert, Form, Button, Container, Stack } from 'react-bootstrap';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -7,58 +7,52 @@ import { Formik } from 'formik';
 import './ActivitiesForm.css';
 import { Oval } from 'react-loader-spinner';
 import FormImage from '../../assets/img/logo-somos-mas.png';
-import { useLocation } from 'react-router-dom';
-import {
-  getActivities,
-  // postActivities,
-  // putActivities,
-} from '../../Services/actividadesService';
+import { useHistory, useLocation } from 'react-router-dom';
 import { validationSchema, convertToBase64 } from './ActivitiesUtils';
 import Spinner from '../Spinner/Spinner';
+import { useDispatch, useSelector } from 'react-redux';
+import { GET_ACTIVIDAD_FUNCTION, CREATE_ACTIVIDAD_FUNCTION, EDIT_ACTIVIDAD_FUNCTION } from '../../redux/actividades/actions';
 
 const ActivitiesForm = () => {
+  const history = useHistory();
   const location = useLocation();
-  const [activities, setActivities] = useState(false);
+  const dispatch = useDispatch();
+  const stateLoading = useSelector(state => state.global.loading);
+  const { actividades } = useSelector(state => state.actividades);
 
   useEffect(async () => {
     if (location.state) {
-      const { data } = await getActivities(location.state.id);
-      console.log(data);
-      setActivities(data);
+      dispatch(GET_ACTIVIDAD_FUNCTION(location.state.id));
     }
   }, []);
 
   return (
     <>
-      {!activities && location.state
+      {stateLoading && location.state
         ? <Spinner />
         : <div>
           <Formik
-            validateOnBlur={true}
-            validateOnChange={false}
             initialValues={{
-              name: activities.name || '',
-              description: activities.description || '',
-              image: activities.image || '',
+              name: actividades.name || '',
+              description: actividades.description || '',
+              image: actividades.image || '',
             }}
-            validationSchema={validationSchema}
             onSubmit={async (values, { setSubmitting }) => {
-              if (location.state) {
-                const base64 = await convertToBase64(values.image);
-                values.image = base64;
-                // Función POST
-                console.log(values);
-                // postActivities(values);
-                setSubmitting(false);
+              setSubmitting(false);
+              const base64 = await convertToBase64(values.image);
+              values.image = base64;
+
+              if (!location.state) {
+                dispatch(CREATE_ACTIVIDAD_FUNCTION(values));
+                if (!stateLoading) history.push('/backoffice/activities');
               } else {
-                const base64 = await convertToBase64(values.image);
-                values.image = base64;
-                // Función PUT
-                console.log(values);
-                // putActivities(values, location.state.id);
-                setSubmitting(false);
+                dispatch(EDIT_ACTIVIDAD_FUNCTION(location.state.id, values));
+                if (!stateLoading) history.push('/backoffice/activities');
               }
             }}
+            validateOnBlur={false}
+            validateOnChange={false}
+            validationSchema={validationSchema}
           >
             {({
               errors,

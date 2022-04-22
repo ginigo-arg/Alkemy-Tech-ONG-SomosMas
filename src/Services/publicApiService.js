@@ -16,10 +16,9 @@ export const Get = async (URL, id = null, Authorization = null) => {
     }
     : { headers: { 'Content-Type': 'application/json' } };
   try {
-    const response = await axios(url, config2);
-    return response.data;
+    const { data } = await axios(url, config2);
+    return data.data;
   } catch (error) {
-    console.log('Error GET public', error);
     return error;
   }
 };
@@ -35,7 +34,7 @@ export const Post = async (url, body) => {
     });
     return response.data;
   } catch (err) {
-    console.log('Error POST public', err);
+    // console.log('Error POST public', err);
     return err;
   }
 };

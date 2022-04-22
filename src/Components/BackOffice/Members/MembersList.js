@@ -8,14 +8,14 @@ import ProgressSpinner from '../../Progress/ProgressSpinner';
 
 const MembersList = () => {
   const dispatch = useDispatch();
-  const stateMembers = useSelector(state => state.miembros);
+  const memberState = useSelector(state => state.miembros);
   const stateLoading = useSelector(state => state.global.loading);
 
   useEffect(() => {
     dispatch(GET_MEMBERS_FUNCTION());
   }, []);
 
-  useEffect(() => {}, [stateMembers]);
+  useEffect(() => {}, [memberState.miembros]);
 
   return (
     <Container className="my-4 p-0 border">
@@ -34,7 +34,7 @@ const MembersList = () => {
           <ProgressSpinner state={stateLoading} />
         </div>
         : <>
-          {stateMembers.length > 0
+          {memberState.miembros.length > 0
             ? <Container>
               <Table striped hover responsive>
                 <thead className="bg-secondary text-white rounded">
@@ -47,7 +47,7 @@ const MembersList = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {stateMembers.map((item) => (
+                  {memberState.miembros.map((item) => (
                     <RowMember key={item.id} member={item} />
                   ))}
                 </tbody>

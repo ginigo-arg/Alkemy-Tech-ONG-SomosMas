@@ -9,13 +9,15 @@ const Faq = () => {
     <Container className='py-5'>
       <Row className='py-5 d-flex flex-row justify-content-md-center justify-content-lg-between'>
         <Col xs={12} lg={5}>
-          <h2>
-            ¿Aún tiene dudas?
+          <h2 className='text-white'>
+            <strong>
+              ¿Aún tiene dudas?
+            </strong>
           </h2>
-          <p className='my-5 mt-0'>
+          <p className='my-5 mt-0 text-white'>
             En esta sección contestamos las preguntas que más frecuentemente nos suelen hacer.
           </p>
-          <p className='text-md-center text-lg-start'>
+          <p className='text-md-center text-lg-start text-white'>
             En caso de tener alguna consulta adicional, no dude en contactarnos:
           </p>
           <ContactInformation minimalistVersion={true} showCallUs={false} showVisitUs={false} sizeIcon={30} />

@@ -7,6 +7,9 @@ import { categoriesReducer } from './categories/reducer';
 import membersReducer from './Miembros/reducer';
 import usReducer from './Nosotros/reducer';
 import globalReducer from './global/globalReducer';
+import usersReducer from './users/reducer';
+import slidesReducer from './slides/reducer';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const store = createStore(
   combineReducers({
@@ -17,9 +20,12 @@ const store = createStore(
     miembros: membersReducer,
     organizacion: usReducer,
     global: globalReducer,
+    users: usersReducer,
+    slides: slidesReducer,
     // ...other reducers
   }),
-  applyMiddleware(thunk),
+  composeWithDevTools(applyMiddleware(thunk))
+  ,
 );
 
 export default store;

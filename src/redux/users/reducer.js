@@ -4,7 +4,7 @@ import {
   DELETE_USER,
   EDIT_USER,
   GET_USER,
-  FALIDED_USER,
+  FAILED_USER,
 } from './types';
 
 const usersReducer = (state = { users: [] }, action) => {
@@ -35,9 +35,12 @@ const usersReducer = (state = { users: [] }, action) => {
       };
 
     case GET_USER:
-      return action.payload;
+      return {
+        ...state,
+        users: action.payload,
+      };
 
-    case FALIDED_USER: {
+    case FAILED_USER: {
       return alertService('error', action.payload);
     }
 

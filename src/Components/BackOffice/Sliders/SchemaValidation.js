@@ -1,8 +1,8 @@
 import * as yup from 'yup';
 
-const checkFileFormat = img => {
-  if (img) {
-    if (!['image/jpg', 'image/jpeg', 'image/png'].includes(img.type)) {
+const checkFileFormat = photo => {
+  if (photo) {
+    if (!['image/jpg', 'image/jpeg', 'image/png'].includes(photo.type)) {
       return false;
     }
   }
@@ -12,8 +12,7 @@ const checkFileFormat = img => {
 export const SchemaValidation = yup.object().shape({
   name: yup.string().required('el nombre el obligatorio').min(4, 'El nombre debe tener un minimo de 4 caracteres'),
   description: yup.string().required('La descripcion es obligatoria'),
-  id: yup.number().required('El ID es obligatorio').typeError('Solo se admiten numeros'),
-  img: yup.mixed().required('La imagen es obligatoria').test(
+  image: yup.mixed().required('La imagen es obligatoria').test(
     'fileFormat',
     'Formato de imagen no válido',
     checkFileFormat,

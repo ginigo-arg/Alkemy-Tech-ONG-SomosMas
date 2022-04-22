@@ -10,14 +10,13 @@ import Spinner from '../Spinner/Spinner';
 
 export default function Nosotros () {
   const dispatch = useDispatch();
-  const stateMiembros = useSelector(state => state.miembros);
+  const { miembros } = useSelector(state => state.miembros);
   const stateOrganizacion = useSelector(state => state.organizacion);
   const stateLoading = useSelector(state => state.global.loading);
 
   useEffect(() => {
     dispatch(GET_MEMBERS_FUNCTION());
     dispatch(GET_ABOUT_FUNCTION());
-    console.log('organizacion', stateOrganizacion);
   }, []);
 
   return (
@@ -26,15 +25,15 @@ export default function Nosotros () {
       : <>
         <Container fluid className='bg-info m-0'>
           <Organization
-            id={stateOrganizacion.data?.id}
-            name={stateOrganizacion.data?.name}
-            shortDescription={stateOrganizacion.data?.short_description}
+            id={stateOrganizacion?.id}
+            name={stateOrganizacion?.name}
+            shortDescription={stateOrganizacion?.short_description}
 
           />
         </Container>
 
         <Container className='d-flex justify-content-center py-5 my-2'>
-          <p className='w-75 text-center'>{stateOrganizacion.data?.long_description}</p>
+          <p className='w-75 text-center'>{stateOrganizacion?.long_description}</p>
         </Container>
 
         <h2 className='text-center text-info'>
@@ -43,9 +42,9 @@ export default function Nosotros () {
           </strong>
         </h2>
         <Container className="d-flex gap-4 justify-content-center align-items-stretch flex-wrap mt-5 mb-5">
-          { stateMiembros.length > 0
+          { miembros.length > 0
             ? (
-              stateMiembros.map((item) => {
+              miembros.map((item) => {
                 return (
                   <CardMembers
                     key={item.id}
