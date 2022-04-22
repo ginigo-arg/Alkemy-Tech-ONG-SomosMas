@@ -5,7 +5,7 @@ const config = {
   Group: 163,
 };
 
-export const Get = async (URL, id = null, Authorization = '') => {
+export const Get = async (URL, id = null, Authorization = null) => {
   const url = id ? `${URL}/${id}` : URL;
   const config2 = Authorization
     ? {
