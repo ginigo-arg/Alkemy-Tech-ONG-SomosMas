@@ -1,6 +1,7 @@
 import { Container, Row, Col, Accordion, Button } from 'react-bootstrap';
-import { FaEnvelope, FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import ContactInformation from '../../Contact/ContactInformation';
+import SocialMedia from '../../Contact/SocialMedia';
 import './Faq.css';
 
 const Faq = () => {
@@ -17,72 +18,8 @@ const Faq = () => {
           <p className='text-md-center text-lg-start'>
             En caso de tener alguna consulta adicional, no dude en contactarnos:
           </p>
-          <Row md={6} className='flex-row my-3 m-lg-0 justify-content-md-center justify-content-lg-between'>
-            <Col
-              xs={3}
-              lg={10}
-              className="d-flex flex-row justify-content-center justify-content-lg-start"
-            >
-              <a
-                href="mailto:info@somosmas.com.ar"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FaEnvelope size={20} color="black" />
-                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2">
-                  info@somosmas.com.ar
-                </p>
-              </a>
-            </Col>
-            <Col
-              xs={3}
-              lg={10}
-              className="d-flex flex-row justify-content-center justify-content-lg-start"
-            >
-              <a
-                href="https://www.facebook.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FaFacebook size={20} color="black" />
-                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2">
-                  Facebook
-                </p>
-              </a>
-            </Col>
-            <Col
-              xs={3}
-              lg={10}
-              className="d-flex flex-row justify-content-center justify-content-lg-start"
-            >
-              <a
-                href="https://www.instagram.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FaInstagram size={20} color="black" />
-                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2">
-                  Instagram
-                </p>
-              </a>
-            </Col>
-            <Col
-              xs={3}
-              lg={10}
-              className="d-flex flex-row justify-content-center justify-content-lg-start"
-            >
-              <a
-                href="https://www.twitter.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FaTwitter size={20} color="black" />
-                <p className="d-none d-lg-inline-block faq-socialmedia-text mx-lg-2">
-                  Twitter
-                </p>
-              </a>
-            </Col>
-          </Row>
+          <ContactInformation minimalistVersion={true} showCallUs={false} showVisitUs={false} sizeIcon={30} />
+          <SocialMedia sizeIcon={30} showLinkedin={false} clsBorder='border-0' p0={true} />
         </Col>
         <Col xs={12} md={8} lg={6} className='d-flex flex-lg-column justify-content-lg-center'>
           <Accordion defaultActiveKey={0}>
