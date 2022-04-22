@@ -1,5 +1,11 @@
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 1000px) { 
+  .flex-row{
+    display:block !important;
+  }
+}
 .h-map {
-  height: 380px;
+  height: 40vh;
 }
 
 .hv-100 {
@@ -38,9 +44,9 @@
 }
 
 .mini-card {
-  padding: 15px;
-  margin-bottom: 20px;
-  height: 110px;
+  padding: 12px;
+  margin-bottom: 10px;
+  /* height: 110px; */
 }
 
 .mini-card-icon {
@@ -63,6 +69,26 @@
 .social-media {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     vertical-align: middle
+}
+
+.icon-facebook{
+  background-color: #334c8c;
+  border: #334c8c;
+}
+
+.icon-linkedin{
+  background-color: #0b69c7;
+  border: #0b69c7;
+}
+
+.icon-twitter{
+  background-color: #00a6de;
+  border: #00a6de;
+}
+
+.icon-instagram{
+  background-color: #a908c7;
+  border: #a908c7;
 }
