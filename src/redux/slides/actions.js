@@ -1,6 +1,6 @@
-import { ACTION_FAILED, GET_SLIDE_HOME, CREATE_SLIDE, DELETE_SLIDE, GET_SLIDE_BACKOFFICE } from './types';
+import { ACTION_FAILED, GET_SLIDE_HOME, CREATE_SLIDE, DELETE_SLIDE, GET_SLIDE_BACKOFFICE, GET_SINGLE_SLIDE_BACKOFFICE, CLEAR_SINGLE_SLIDE, EDIT_SLIDE } from './types';
 import { LOADING_ON, LOADING_OFF } from '../global/globalAction';
-import { deleteSlide, postSlide, getSlides } from '../../Services/SlideServices';
+import { deleteSlide, postSlide, getSlides, putSlide } from '../../Services/SlideServices';
 import { homeSlides } from '../../Services/allHomeMethods';
 
 export const GET_SLIDE_HOME_FN = () => async (dispatch) => {
@@ -43,10 +43,9 @@ export const GET_SINGLE_SLIDE_BACKOFFICE_FN = (id) => async (dispatch) => {
   dispatch(LOADING_ON);
   try {
     const data = await getSlides(id);
-    console.log('Response get back:', data);
     dispatch({
-      type: GET_SLIDE_BACKOFFICE,
-      payload: id ? data : null,
+      type: GET_SINGLE_SLIDE_BACKOFFICE,
+      payload: id ? data : [],
     });
     dispatch(LOADING_OFF);
   } catch (error) {
@@ -56,6 +55,13 @@ export const GET_SINGLE_SLIDE_BACKOFFICE_FN = (id) => async (dispatch) => {
     });
     dispatch(LOADING_OFF());
   }
+};
+
+export const CLEAR_SINGLE_SLIDE_FN = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_SINGLE_SLIDE,
+    payload: [],
+  });
 };
 
 export const CREATE_SLIDE_FN = (content) => async (dispatch) => {
@@ -70,9 +76,28 @@ export const CREATE_SLIDE_FN = (content) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ACTION_FAILED,
-      payload: error.message,
+      payload: 'error catch create slide',
     });
   } finally { dispatch(LOADING_OFF()); }
+};
+
+export const EDIT_SLIDE_FN = (id, data) => async (dispatch) => {
+  try {
+    dispatch(LOADING_ON());
+    const response = await putSlide(id, data);
+    dispatch({
+      type: EDIT_SLIDE,
+      payload: response,
+    });
+    dispatch(LOADING_OFF());
+  } catch (error) {
+    dispatch({
+      type: ACTION_FAILED,
+      payload: error.message,
+    },
+    );
+    dispatch(LOADING_OFF());
+  }
 };
 
 export const DELETE_SLIDE_FN = (id) => async (dispatch) => {

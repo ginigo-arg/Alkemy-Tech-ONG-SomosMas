@@ -4,20 +4,26 @@ import { RiFileEditFill } from 'react-icons/ri';
 import { AiFillDelete } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { DELETE_SLIDE_FN, GET_SLIDE_BACKOFFICE_FN } from '../../../redux/slides/actions';
+import { DELETE_SLIDE_FN, GET_SLIDE_BACKOFFICE_FN, CLEAR_SINGLE_SLIDE_FN } from '../../../redux/slides/actions';
 import { alertService } from '../../../Services/alertService';
 
 const TableSliders = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { slides } = useSelector(state => state.slides);
+  const { singleSlide } = useSelector(state => state.slides);
 
   useEffect(() => {
     dispatch(GET_SLIDE_BACKOFFICE_FN());
   }, []);
   useEffect(() => {
-    console.log('slides back:', slides);
   }, [slides]);
+  useEffect(() => {
+    console.log('singleSlide', singleSlide);
+    dispatch(CLEAR_SINGLE_SLIDE_FN());
+    console.log('singleSlide', singleSlide);
+  }, []);
+  use;
 
   const handleEdit = (id) => {
     history.push({
