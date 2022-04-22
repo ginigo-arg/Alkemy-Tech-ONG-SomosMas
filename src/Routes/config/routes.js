@@ -15,7 +15,6 @@ import Categories from '../../Components/Categories/Categories';
 import TableSliders from '../../Components/BackOffice/Sliders/TableSliders';
 import OrganizationForm from '../../Components/BackOffice/Organization/OrganizationForm';
 import ActivitiesList from '../../Components/BackOffice/ActivitiesList/ActivitiesList';
-import OrganizationIndex from '../../Components/BackOffice/Organization/index';
 import NewsList from '../../Components/BackOffice/News/NewsList';
 import UsersList from '../../Components/Users/UsersList';
 
@@ -45,8 +44,7 @@ export const routes = [
   { path: '/backoffice/members', component: MembersList },
   { path: '/backoffice/members/edit', component: MembersForm },
   { path: '/backoffice/members/create', component: MembersForm },
-  { path: '/backoffice/organization', component: OrganizationIndex },
-  { path: '/backoffice/organization/edit', component: OrganizationForm },
+  { path: '/backoffice/organization', component: OrganizationForm },
   { path: '/backoffice/news', component: NewsList },
   { path: '/backoffice/news/create', component: NewsForm },
   { path: '/backoffice/news/edit', component: NewsForm },

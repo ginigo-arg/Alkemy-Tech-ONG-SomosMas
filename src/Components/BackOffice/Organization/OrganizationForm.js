@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -6,48 +6,36 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { orgSchemaValidation } from './validation/orgSchemaValidation';
 import Spinner from '../../Spinner/Spinner';
 import { SocialFormControl } from './validation/SocialFormControl';
+import { POST_ABOUT_FUNCTION, GET_ABOUT_FUNCTION } from '../../../redux/Nosotros/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const OrganizationForm = () => {
-  const [dataOrg, setDataOrg] = useState(false);
+  const organization = useSelector(state => state.organizacion);
+  const dispatch = useDispatch();
 
-  useEffect(async () => {
-    // Petición GET de Organization
-    // const { data } = await getDataOrg();
-    // REEMPLAZAR LUEGO
-    setDataOrg({
-      name: '',
-      short_description: '',
-      long_description: '',
-      logo: '',
-      facebook_url: '',
-      linkedin_url: '',
-      instagram_url: '',
-      twitter_url: '',
-    });
+  useEffect(() => {
+    dispatch(GET_ABOUT_FUNCTION());
   }, []);
 
   return (
     <>
-      {!dataOrg
+      {!organization
         ? <Spinner/>
         : (
           <Container>
             <h2>Form Organization</h2>
             <Formik
               initialValues={{
-                name: dataOrg.name || '',
-                short_description: dataOrg.short_description || '',
-                long_description: dataOrg.long_description || '',
-                logo: dataOrg.logo || '',
-                facebook_url: dataOrg.facebook_url || '',
-                linkedin_url: dataOrg.linkedin_url || '',
-                instagram_url: dataOrg.instagram_url || '',
-                twitter_url: dataOrg.twitter_url || '',
+                name: organization.name || '',
+                short_description: organization.short_description || '',
+                long_description: organization.long_description || '',
+                logo: organization.logo || '',
+                facebook_url: organization.facebook_url || '',
+                linkedin_url: organization.linkedin_url || '',
+                instagram_url: organization.instagram_url || '',
+                twitter_url: organization.twitter_url || '',
               }}
-              onSubmit={(values, { setSubmitting }) => {
-                console.log(values);
-                setSubmitting(false);
-              }}
+              onSubmit={(values) => POST_ABOUT_FUNCTION(values)}
               validationSchema={orgSchemaValidation}
               validateOnChange={false}
               validateOnBlur={false}
