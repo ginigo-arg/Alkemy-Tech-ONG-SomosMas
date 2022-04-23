@@ -34,19 +34,22 @@ const ActivitiesList = () => {
 
   return (
     <Container>
-      <div className="activities-title">
-        <h3>LISTADO ACTIVIDADES</h3>
-        <Link to="/backoffice/create-activity">
-          <Button className="btn-danger">Crear Actividad</Button>
+      <div className="px-3 my-3 border-5 border-bottom border-secondary">
+        <h2 className="text-secondary text-uppercase m-0">Listado actividades</h2>
+        <Link
+          to="/backoffice/create-activity"
+          className="my-3 btn btn-secondary text-white rounded-pill"
+        >
+          Agregar actividad
         </Link>
       </div>
       {stateLoading
         ? <div className="d-flex justify-content-center my-5">
           <ProgressSpinner state={stateLoading} />
         </div>
-        : <>
-          <Table striped bordered hover>
-            <thead>
+        : <div className='overflow-scroll'>
+          <Table striped bordered hover className='overflow-scroll'>
+            <thead className='bg-secondary'>
               <tr>
                 <th>Nombre</th>
                 <th>Descripcion</th>
@@ -61,11 +64,25 @@ const ActivitiesList = () => {
                 <td>{activity.name}</td>
                 <td>{activity.description}</td>
                 <td>
-                  <img
-                    src={activity.image}
-                    alt={activity.name}
-                    className="w-25"
-                  />
+                  {activity.image !== ''
+                    ? (
+                      <div style={{ maxWidth: '150px', maxHeight: '150px', overflow: 'hidden' }}>
+                        <img
+                          src={activity.image}
+                          alt={activity.name}
+                          className="w-100"
+                        />
+                      </div>
+                    )
+                    : (
+                      <svg className="img-thumbnail rounded" width="200px" height="100px">
+                        <title>{activity.name}</title>
+                        <rect width="100%" height="100%" fill="#514242"></rect>
+                        <text x="30%" y="50%" fill="#eceeef" dy=".5em">
+                          No media
+                        </text>
+                      </svg>
+                    )}
                 </td>
                 <td className="d-flex justify-content-center align-items-center gap-1">
                   <Button
@@ -85,7 +102,7 @@ const ActivitiesList = () => {
             ))}
             </tbody>
           </Table>
-        </>
+        </div>
       }
     </Container>
   );

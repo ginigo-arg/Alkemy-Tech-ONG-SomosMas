@@ -13,5 +13,5 @@ export const homeNews = async (id = null) => {
     process.env.REACT_APP_API_NEWS,
     id,
   );
-  return response;
+  return response.slice(-3);
 };
