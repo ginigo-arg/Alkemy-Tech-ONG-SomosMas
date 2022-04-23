@@ -1,6 +1,7 @@
 import { Nav, Navbar, Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { FaFacebook, FaInstagram, FaTwitterSquare } from 'react-icons/fa';
+// import { FaFacebook, FaInstagram, FaTwitterSquare } from 'react-icons/fa';
+import SocialMedia from '../../Components/Contact/SocialMedia';
 import Logo from '../../assets/img/somos-mas-public.png';
 
 const PublicFooter = () => {
@@ -27,7 +28,7 @@ const PublicFooter = () => {
             ))}
           </Nav>
         </Navbar>
-        <Nav className="w-100 py-2 justify-content-center">
+        {/* <Nav className="w-100 py-2 justify-content-center">
           <a href="/#" className="text-muted mx-3">
             <FaFacebook />
           </a>
@@ -37,9 +38,12 @@ const PublicFooter = () => {
           <a href="/#" className="text-muted mx-3">
             <FaTwitterSquare />
           </a>
-        </Nav>
-        <hr className="w-100 my-0 d-inline-block" />
-        <p className="my-3 text-muted">
+        </Nav> */}
+        <div className="w-100 text-center d-flex justify-content-center align-items-center">
+          <SocialMedia layoutVertical={false} showTitle={false} clsBorder='border-0' p0={true} sizeIcon={25} showLinkedin={false} />
+        </div>
+        <hr className="bg-primary w-100 my-0 d-inline-block" />
+        <p className="my-2 text-muted">
           <small>By Reactors © Copyright 2022 | All Rights Reserved.</small>
         </p>
       </Container>

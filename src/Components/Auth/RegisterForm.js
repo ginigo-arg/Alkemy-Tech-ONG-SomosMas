@@ -39,6 +39,7 @@ const RegisterForm = ({ showLogin, setShowLogin }) => {
       email: '',
       password: '',
       passwordConfirmation: '',
+      role_id: 2,
     },
     validationSchema: SignupSchema,
     onSubmit: (values) => {
