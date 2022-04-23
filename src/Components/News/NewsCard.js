@@ -21,9 +21,9 @@ const NewCard = ({
             {title}
           </h5>
         </Card.Title>
-        <Card.Text className='text-description'>
-          <ParserHtml text={description}/>
-        </Card.Text>
+        <div className='text-description mb-3'>
+          <ParserHtml text={description} />
+        </div>
         <Button
           className='text-white'
           variant="primary"

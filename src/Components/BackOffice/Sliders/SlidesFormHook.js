@@ -6,7 +6,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useLocation, useHistory } from 'react-router-dom';
 import Spinner from '../../Spinner/Spinner';
-import { CREATE_SLIDE_FN, GET_SINGLE_SLIDE_BACKOFFICE_FN } from '../../../redux/slides/actions';
+import { CREATE_SLIDE_FN, GET_SINGLE_SLIDE_BACKOFFICE_FN, CLEAR_SINGLE_SLIDE_FN, EDIT_SLIDE_FN } from '../../../redux/slides/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { convertToBase64 } from '../../../Services/base64Helper';
 
@@ -15,31 +15,32 @@ const SlidesFormHook = () => {
   const { state: id } = useLocation();
   const dispatch = useDispatch();
   const loading = useSelector(state => state.global.loading);
-  const { slide } = useSelector(state => state.slides);
+  const slide = useSelector(state => state.slides.singleSlide);
 
   useEffect(async () => {
     console.log('ID_LOCATION:', id);
     if (id) {
       dispatch(GET_SINGLE_SLIDE_BACKOFFICE_FN(id));
-      console.log('slide', slide);
     }
-    return dispatch(GET_SINGLE_SLIDE_BACKOFFICE_FN());
+    return dispatch(CLEAR_SINGLE_SLIDE_FN());
   }, []);
 
   useEffect(() => {
-    console.log('slide:', slide);
+    if (!id) return dispatch(CLEAR_SINGLE_SLIDE_FN());
+  }, []);
+  useEffect(() => {
   }, [slide]);
   return (
     <>
-      { loading
+      { !slide.id && id
         ? <Spinner/>
         : (
           <Container>
             <Formik
               initialValues={{
-                name: slide?.name || '',
-                description: slide?.description || '',
-                image: slide?.image || '',
+                name: slide.name || '',
+                description: slide.description || '',
+                image: slide.image || '',
               }}
 
               onSubmit={async (values, { setSubmitting }) => {
@@ -53,7 +54,7 @@ const SlidesFormHook = () => {
                     if (!loading) history.push('/backoffice/slides');
                   }, 3000);
                 } else {
-                  console.log('edit');
+                  dispatch(EDIT_SLIDE_FN(id, values));
                   if (!loading) history.push('/backoffice/slides');
                 }
               }}
@@ -111,8 +112,8 @@ const SlidesFormHook = () => {
                     <Form.Control.Feedback type="invalid">{errors.image}</Form.Control.Feedback>
                   </Form.Group>
 
-                  <Button type="submit" variant="primary" disabled={isSubmitting} onClick={() => console.log('hola')}>
-                    {!location.state ? 'Agregar Slide' : 'Guardar cambios'}
+                  <Button type="submit" variant="primary" disabled={isSubmitting} className='text-white'>
+                    {!id ? 'Agregar Slide' : 'Guardar cambios'}
                   </Button>
 
                 </Form>

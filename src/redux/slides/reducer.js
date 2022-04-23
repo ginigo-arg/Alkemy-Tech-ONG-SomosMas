@@ -1,5 +1,5 @@
 import { alertService } from '../../Services/alertService';
-import { ACTION_FAILED, GET_SLIDE_HOME, GET_SLIDE_BACKOFFICE, CREATE_SLIDE, DELETE_SLIDE, GET_SINGLE_SLIDE_BACKOFFICE } from './types';
+import { ACTION_FAILED, GET_SLIDE_HOME, GET_SLIDE_BACKOFFICE, CREATE_SLIDE, DELETE_SLIDE, GET_SINGLE_SLIDE_BACKOFFICE, CLEAR_SINGLE_SLIDE, EDIT_SLIDE } from './types';
 
 const initialState = {
   slides: [],
@@ -20,6 +20,13 @@ const slidesReducer = (state = initialState, action) => {
       };
 
     case GET_SINGLE_SLIDE_BACKOFFICE:
+      console.log('action.payload', action.payload);
+      return {
+        ...state,
+        singleSlide: action.payload,
+      };
+
+    case CLEAR_SINGLE_SLIDE:
       return {
         ...state,
         singleSlide: action.payload,
@@ -29,6 +36,17 @@ const slidesReducer = (state = initialState, action) => {
       return {
         ...state,
         slides: [...state.slides, action.payload],
+      };
+    case EDIT_SLIDE:
+      console.log('payloadEdit:', action.payload);
+      return {
+        ...state,
+        slides: state.slides.map((slide) => {
+          if (slide.id === action.payload.id) {
+            return action.payload;
+          }
+          return slide;
+        }),
       };
 
     case DELETE_SLIDE: {

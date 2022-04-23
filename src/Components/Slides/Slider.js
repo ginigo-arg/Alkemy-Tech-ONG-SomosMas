@@ -10,7 +10,7 @@ const Slider = ({ slides }) => {
       {slides.length > 0
         ? (
           slides.map((slide) => (
-            <CarouselItem interval={5000} key={slide.name} className='carouselItem carousel-fade'>
+            <CarouselItem interval={5000} key={slide.id} className='carouselItem carousel-fade'>
               <img src={slide.image} alt={slide.name} className="w-100 slides-img" />
               <Carousel.Caption className="caption carousel-fade">
 
@@ -34,7 +34,7 @@ const Slider = ({ slides }) => {
 
               </Carousel.Caption>
             </CarouselItem>
-          ))
+          )).reverse()
         )
         : (
           <Container className='d-flex align-items-center justify-content-center' style={{ height: ' 250px' }}>

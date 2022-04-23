@@ -8,8 +8,12 @@ import {
 import { alertService } from './alertService';
 
 export const getNews = async (id = null) => {
-  const response = await GET_PRIVATE_API(process.env.REACT_APP_API_NEWS, id);
-  return response;
+  try {
+    const response = await GET_PRIVATE_API(process.env.REACT_APP_API_NEWS, id);
+    return response;
+  } catch (error) {
+    alertService('error', 'Lo sentimos! Error al recuperar datos');
+  }
 };
 
 export const patchNews = async (id, data) => {
@@ -27,12 +31,10 @@ export const patchNews = async (id, data) => {
 };
 
 export const putNews = async (id, data) => {
-  const response = await PUT_PRIVATE_API(
-    `${process.env.REACT_APP_API_NEWS}/${id}`,
-    data,
-  );
-  // console.log('Respuesta putNews', response);
-  if (response.data) {
+  const response = await PUT_PRIVATE_API(process.env.REACT_APP_API_NEWS, id, data);
+
+  if (response) {
+    alertService('success', 'Novedad editada correctamente!');
     return response;
   } else {
     alertService('error', 'Ha ocurrido un error al intentar actualizar la novedad');
@@ -43,7 +45,8 @@ export const putNews = async (id, data) => {
 export const postNews = async (data) => {
   const response = await POST_PRIVATE_API(`${process.env.REACT_APP_API_NEWS}`, data);
   // console.log('Respuesta postNews', response);
-  if (response.data) {
+  if (response) {
+    alertService('success', 'Novedad creada correctamente!');
     return response;
   } else {
     alertService('error', 'Ha ocurrido un error crear la novedad');
@@ -51,12 +54,11 @@ export const postNews = async (data) => {
   }
 };
 
-export const deleteNews = async (id) => {
-  const response = await DELETE_PRIVATE_API(
-    `${process.env.REACT_APP_API_NEWS}/${id}`,
-  );
-  // console.log('Respuesta deleteNews', response);
-  if (response.data) {
+export const deleteNews = (id) => {
+  const response = DELETE_PRIVATE_API(process.env.REACT_APP_API_NEWS, id);
+
+  if (response) {
+    alertService('success', 'Novedad eliminada correctamente!');
     return response;
   } else {
     alertService('error', 'Ha ocurrido un error al intentar eliminar la novedad');

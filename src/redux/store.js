@@ -9,6 +9,7 @@ import usReducer from './Nosotros/reducer';
 import globalReducer from './global/globalReducer';
 import usersReducer from './users/reducer';
 import slidesReducer from './slides/reducer';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const store = createStore(
   combineReducers({
@@ -23,7 +24,8 @@ const store = createStore(
     slides: slidesReducer,
     // ...other reducers
   }),
-  applyMiddleware(thunk),
+  composeWithDevTools(applyMiddleware(thunk))
+  ,
 );
 
 export default store;

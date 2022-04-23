@@ -27,8 +27,9 @@ export const REMOVE_TOKEN = () => {
 };
 
 export const REGISTER = async (data) => {
-  const response = await Post(process.env.REACT_APP_API_AUTH_REGISTER, data);
-  // console.log('Respuesta REGISTER', response);
+  // const response = await Post(process.env.REACT_APP_API_AUTH_REGISTER, data);
+  const response = await Post(process.env.REACT_APP_API_USERS, data);
+  console.log('Respuesta REGISTER', response);
   if (response.data) {
     alertService('success', 'Cuenta creada');
     return response.data;
@@ -58,16 +59,11 @@ export const LOGIN = async (data) => {
 };
 
 export const AUTH = async (TOKEN) => {
-  const response = await Get(process.env.REACT_APP_API_AUTH_ME, '', TOKEN);
-  // console.log('Respuesta AUTH', response.success);
-  if (response.success) {
-    return response.data;
-  } else {
-    if (response.success === false) {
-      alertService('error', 'Token invalido');
-    } else {
-      alertService('error', 'Ha ocurrido un error al consultar el token');
-    }
-    return ''; // response.error;
+  // console.log('soy token', TOKEN);
+  const response = await Get(process.env.REACT_APP_API_AUTH_ME, null, TOKEN);
+  // console.log('Respuesta AUTH', response);
+  if (response) {
+    return response;
   }
+  return '';
 };

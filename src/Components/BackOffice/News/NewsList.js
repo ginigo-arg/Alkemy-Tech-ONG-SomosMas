@@ -1,66 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import {
-  Container,
-  FormControl,
-  InputGroup,
-  Table,
-  Row,
-  Col,
-  Button,
-} from 'react-bootstrap';
-import { AiFillDelete, AiOutlineClear } from 'react-icons/ai';
+import { useEffect } from 'react';
+import { Container, Table, Button } from 'react-bootstrap';
+import { AiFillDelete } from 'react-icons/ai';
 import { RiFileEditFill } from 'react-icons/ri';
-import { BsSearch } from 'react-icons/bs';
 import { BiPlusMedical } from 'react-icons/bi';
 import { FaThList } from 'react-icons/fa';
 import { Link, useHistory } from 'react-router-dom';
-// ------------------------------------------- LISTADO NOTICIAS ---------------------------------------
-const newsBack = [
-  {
-    id: 1,
-    name: 'Noticia 1',
-    image: 'https://ongapi.alkemy.org/storage/b1rCuOkKdh.jpeg',
-    createdAt: '20-03-2022',
-  },
-  {
-    id: 2,
-    name: 'Noticia 2',
-    image: '',
-    // image: 'https://ongapi.alkemy.org/storage/HsOrvE20tS.jpeg',
-    createdAt: '20-03-2022',
-  },
-  {
-    id: 3,
-    name: 'Noticia 3',
-    image: 'https://ongapi.alkemy.org/storage/ils3ohTyzV.jpeg',
-    createdAt: '22-03-2022',
-  },
-  {
-    id: 4,
-    name: 'Noticia 4',
-    image: 'https://ongapi.alkemy.org/storage/sa5pZxmKvy.jpeg',
-    createdAt: '25-03-2022',
-  },
-];
-// ------------------------------------------- COMPONENTE NEW LIST ---------------------------------------
-const NewsList = ({ news = newsBack }) => {
-  const [busqueda, setBusqueda] = useState('');
-  const [newsFilter, setNewsFilter] = useState(news);
+import { useDispatch, useSelector } from 'react-redux';
+import { DELETE_NOVEDAD_FN, GET_NOVEDAD_FN } from '../../../redux/novedades/actions';
+import ProgressSpinner from '../../Progress/ProgressSpinner';
+import { alertService } from '../../../Services/alertService';
+
+const NewsList = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const newsState = useSelector(state => state.novedades);
+  const stateLoading = useSelector(state => state.global.loading);
+
   useEffect(() => {
-    setNewsFilter(
-      news.filter((elemento) => {
-        return JSON.stringify(elemento)
-          .toLowerCase()
-          .includes(busqueda.toLowerCase());
-      }),
-    );
-  }, [busqueda, news]);
-  const handleCreate = () => {
-    history.push({
-      pathname: '/backoffice/news/create',
-    });
-  };
+    dispatch(GET_NOVEDAD_FN());
+  }, []);
+
+  useEffect(() => {}, [newsState.novedades]);
 
   return (
     <>
@@ -82,7 +42,7 @@ const NewsList = ({ news = newsBack }) => {
               <span className="align-middle">Listado Noticias</span>
             </h3>
             {}
-            <Button className='btn-info' onClick={handleCreate}>
+            <Button className='btn-info' onClick={() => history.push('/backoffice/news/edit')}>
               Agregar noticia
             </Button>
 
@@ -100,65 +60,46 @@ const NewsList = ({ news = newsBack }) => {
               </div>
             </Link>
           </div>
-          <div name="bodyModule" id="bodyModule" className="p-3">
-            <Row className="pb-3" hidden>
-              <Col md={7}>
-                {' '}
-                <InputGroup>
-                  <FormControl
-                    type="text"
-                    id="search"
-                    className="border-primary"
-                    placeholder="Buscar noticia"
-                    aria-label="Buscar noticia"
-                    aria-describedby="addon-search"
-                    value={busqueda}
-                    onChange={(e) => setBusqueda(e.target.value)}
-                  />
-                  <InputGroup.Text
-                    id="addon-search"
-                    className="align-middle bg-primary border-primary"
-                    onClick={(e) => setBusqueda('')}
+
+          {stateLoading
+            ? <div className="d-flex justify-content-center my-5">
+              <ProgressSpinner state={stateLoading} />
+            </div>
+            : <div name="bodyModule" id="bodyModule" className="p-3">
+              {newsState.novedades.length > 0
+                ? (
+                  <>
+                    <Table striped hover responsive>
+                      <thead className="bg-primary text-white rounded">
+                        <tr key={'news_0'}>
+                          <th hidden>#</th>
+                          <th>Nombre</th>
+                          <th className="text-center">Imagen</th>
+                          <th className="text-center">Creación</th>
+                          <th className="text-center" colSpan={2}>
+                            Acciones
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {newsState.novedades.map((element) => {
+                          return <RowsNew newData={[element]} key={element.id} />;
+                        })}
+                      </tbody>
+                    </Table>
+                  </>
+                )
+                : (
+                  <div
+                    className="alert-warning rounded d-flex justify-content-center align-items-center "
+                    style={{ height: '300px' }}
                   >
-                    <i className="text-white fw-bold">
-                      {busqueda === '' ? <BsSearch /> : <AiOutlineClear />}
-                    </i>
-                  </InputGroup.Text>
-                </InputGroup>
-              </Col>
-            </Row>
-            {newsFilter.length > 0
-              ? (
-                <>
-                  <Table striped hover responsive>
-                    <thead className="bg-primary text-white rounded">
-                      <tr key={'news_0'}>
-                        <th hidden>#</th>
-                        <th>Nombre</th>
-                        <th className="text-center">Imagen</th>
-                        <th className="text-center">Creación</th>
-                        <th className="text-center" colSpan={2}>
-                          Acciones
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {newsFilter.map((element) => {
-                        return <RowsNew newData={[element]} key={element.id} />;
-                      })}
-                    </tbody>
-                  </Table>
-                </>
-              )
-              : (
-                <div
-                  className="alert-warning rounded d-flex justify-content-center align-items-center "
-                  style={{ height: '300px' }}
-                >
-                  <h1>No hay noticias para mostrar</h1>
-                </div>
-              )}
-          </div>
+                    <h1>No hay noticias para mostrar</h1>
+                  </div>
+                )}
+            </div>
+          }
+
         </div>
       </Container>
     </>
@@ -167,11 +108,17 @@ const NewsList = ({ news = newsBack }) => {
 // ------------------------------------------- COMPONENTE ROW NEW LIST---------------------------------------
 const RowsNew = ({ newData }) => {
   const history = useHistory();
-  const handleEdit = (id) => {
-    history.push({
-      pathname: '/backoffice/news/edit',
-      state: id,
+  const dispatch = useDispatch();
+
+  const handleEdit = element => {
+    history.push('/backoffice/news/edit', {
+      id: element.id,
     });
+  };
+
+  const handleDelete = async id => {
+    const confirm = await alertService('confirm', 'Seguro deseas eliminar este miembro?');
+    if (confirm) dispatch(DELETE_NOVEDAD_FN(id));
   };
 
   return (
@@ -214,18 +161,17 @@ const RowsNew = ({ newData }) => {
               {element.createdAt}
             </td>
             <td className="text-center" style={{ width: '70px' }}>
-              <Link
+              <Button
                 className="btn btn-danger"
-                title="Eliminar"
-                to={'/backoffice/news/delete/' + element.id}
+                onClick={() => handleDelete(element.id)}
               >
                 <AiFillDelete />
-              </Link>
+              </Button>
             </td>
             <td className="text-center" style={{ width: '70px' }}>
 
               <Button className='btn-info' onClick={() => {
-                handleEdit(element.id);
+                handleEdit(element);
               }}>
                 <RiFileEditFill />
               </Button>

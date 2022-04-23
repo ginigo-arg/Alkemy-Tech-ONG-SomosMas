@@ -1,6 +1,8 @@
 import Swal from 'sweetalert2';
 
 export const alertService = async (type, message, timer = 5000, autoClose = true) => {
+  type = type.toLowerCase();
+
   if (type === 'confirm') {
     return Swal.fire({
       title: message,

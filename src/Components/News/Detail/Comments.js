@@ -9,13 +9,12 @@ const Comments = () => {
 
   useEffect(async () => {
     const data = await getComments();
-    console.log('data', data);
 
     setComments(data);
   }, []);
 
   return (
-    <div className='mt-3'>
+    <div className='mt-5'>
       <h3 className='news-comments-title'>Comentarios</h3>
       {!comments
         ? <SkeletonComment />
