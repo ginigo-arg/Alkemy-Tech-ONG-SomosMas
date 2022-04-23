@@ -27,7 +27,8 @@ export const REMOVE_TOKEN = () => {
 };
 
 export const REGISTER = async (data) => {
-  const response = await Post(process.env.REACT_APP_API_AUTH_REGISTER, data);
+  // const response = await Post(process.env.REACT_APP_API_AUTH_REGISTER, data);
+  const response = await Post(process.env.REACT_APP_API_USERS, data);
   console.log('Respuesta REGISTER', response);
   if (response.data) {
     alertService('success', 'Cuenta creada');
