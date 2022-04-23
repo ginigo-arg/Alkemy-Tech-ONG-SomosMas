@@ -17,8 +17,10 @@ import OrganizationForm from '../../Components/BackOffice/Organization/Organizat
 import ActivitiesList from '../../Components/BackOffice/ActivitiesList/ActivitiesList';
 import NewsList from '../../Components/BackOffice/News/NewsList';
 import UsersList from '../../Components/Users/UsersList';
+import BackofficeGrid from '../../Components/BackOffice/Grid';
 
 export const routes = [
+  { path: '/backoffice', component: BackofficeGrid },
   { path: '/backoffice/create-activity', component: ActivitiesForm },
   { path: '/backoffice/activities/edit', component: ActivitiesForm },
   { path: '/backoffice/activities', component: ActivitiesList },
