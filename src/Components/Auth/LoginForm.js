@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-// import { Redirect } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { Button, Container, Col, Form, InputGroup, Row } from 'react-bootstrap';
-// import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import { FaEye } from 'react-icons/fa';
 import { AiFillEyeInvisible } from 'react-icons/ai';
@@ -10,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LOGIN_USER_ACTION, LOGIN_AUTH_ME_ACTION } from '../../redux/auth/authActions';
 import { alertService } from '../../Services/alertService';
 import { CHECK_TOKEN, GET_TOKEN } from '../../Services/authService';
+import store from '../../redux/store';
 
 const LoginSchema = Yup.object({
   email: Yup.string()
@@ -24,10 +24,8 @@ const LoginSchema = Yup.object({
     ),
 });
 
-// Contraseña incorrecta. Vuelve a intentarlo o selecciona "¿Has olvidado tu contraseña?" para cambiarla.
-
 const LoginForm = ({ showLogin, setShowLogin }) => {
-  // const history = useHistory();
+  const history = useHistory();
   // const location = useLocation();
   // const from = location.state.from.pathname || { from: { pathname: '/' } };
 
@@ -54,6 +52,7 @@ const LoginForm = ({ showLogin, setShowLogin }) => {
 
   const dispatch = useDispatch();
   const state = useSelector(state => state.auth);
+  const { auth } = store.getState();
 
   const logIn = async (content) => {
     const response = await dispatch(LOGIN_USER_ACTION(content)).catch(err => alertService('error', err));
@@ -64,12 +63,15 @@ const LoginForm = ({ showLogin, setShowLogin }) => {
   };
 
   useEffect(() => {
-    // console.log('state login:', state);
     if (state.auth) {
       setLoading(true);
       console.log('Logueado');
     }
-  }, [logIn, state]);
+  }, [logIn, auth]);
+
+  useEffect(() => {
+    if (auth.auth) return history.push('/');
+  }, []);
 
   useEffect(() => {
     if (CHECK_TOKEN()) {
