@@ -21,16 +21,3 @@ thead {
   td {
     height: 120px;
   }
-  .activities-rows-container {
-    height: 10rem;
-  }
-  
-  .activities-image-container {
-    overflow: hidden;
-    height: 10rem;
-  }
-
-  .activities-image {
-    max-height: 10rem;
-    max-width: 10rem;
-  }

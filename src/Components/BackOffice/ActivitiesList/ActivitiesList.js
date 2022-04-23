@@ -65,11 +65,11 @@ const ActivitiesList = () => {
                 <td>
                   {activity.image !== ''
                     ? (
-                      <div style={{ width: '150px', height: '150px', overflow: 'hidden' }}>
+                      <div style={{ maxWidth: '150px', maxHeight: '150px', overflow: 'hidden' }}>
                         <img
                           src={activity.image}
                           alt={activity.name}
-                          className=""
+                          className="w-100"
                         />
                       </div>
                     )
