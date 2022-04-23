@@ -16,6 +16,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
+import ParserHtml from '../Parser/Parser';
+
 const ContactSchema = Yup.object({
   name: Yup.string().required('Campo requerido'),
   email: Yup.string()
@@ -30,7 +32,7 @@ const ContactSchema = Yup.object({
   message: Yup.string().required('Campo requerido'),
 });
 
-const ContactForm = () => {
+const ContactForm = ({ showTitle = true, titleForm = '<p> Los campos marcados con <span className="text-danger fw-bold">*</span> son requeridos </p>' }) => {
   const [isLoading, setLoading] = useState(false);
 
   const formik = useFormik({
@@ -81,11 +83,10 @@ const ContactForm = () => {
     <Form onSubmit={formik.handleSubmit}>
       <Row>
         <div id="msgContactSubmit" className="hidden"></div>
-        <span>
-          Los campos marcados con <span className="text-danger fw-bold">*</span>{' '}
-          son requeridos
-        </span>
-        <Form.Group controlId="formGridName" className="mt-2 mb-2">
+        {showTitle && (
+          <div><ParserHtml text={titleForm} /></div>)
+        }
+        <Form.Group controlId="formGridName" className="mt-22 mb-2">
           <Form.Label className="visually-hidden">Nombre</Form.Label>
           <InputGroup>
             <InputGroup.Text id="basic-addon1" className="bg-primary">
