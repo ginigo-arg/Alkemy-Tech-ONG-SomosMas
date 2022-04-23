@@ -1,26 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Container, Row, Col } from 'react-bootstrap';
-import imgContent from '../../assets/img/campaigns/school/content/contenido1.png';
-// import imgContent2 from '../../assets/img/campaigns/school/content/contenido2.png';
-import imgConstruction from '../../assets/img/campaigns/school/content/construction.png';
+import imgContent from '../../assets/img/campaigns/school/content/contenido3.png';
+// import imgConstruction from '../../assets/img/campaigns/school/content/construction.png';
 import './Content.css';
-import { MdDateRange, MdPlace } from 'react-icons/md';
-import { BiTime } from 'react-icons/bi';
 import CounterDown from './CounterDown';
+import { ORGANIZATION_CONTACT_DATA } from '../../Services/contactService';
+import CampaignInformation from './Information';
 
 const Content = () => {
-  const campaign = {
+  const [campaign, setCampaign] = useState({
     title: 'Vuelta al cole',
+    slogan: 'Eslogan campaña',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto  maxime earum molestiae ad ex distinctio repellendus perferendis vero voluptatibus qui reprehenderit nulla dolor repellat praesentium, ipsum quas ab facere consectetur.',
-    date: '2022-06-17',
-    time: '08:30',
-    place: 'Calle la buena OGN - Buenos Aires',
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto  maxime earum molestiae ad ex distinctio repellendus perferendis vero voluptatibus qui reprehenderit nulla dolor repellat praesentium, ipsum quas ab facere consectetur.',
+    dateStart: '2022-03-14',
+    dateEnd: '2022-04-26',
+    timeStart: '08:30',
+    timeEnd: '17:00',
+    address: 'Calle la buena OGN - Buenos Aires',
+  });
+
+  const loadData = async () => {
+    const data = await ORGANIZATION_CONTACT_DATA();
+    setCampaign({ ...campaign, address: data.address });
   };
 
-  // const dateNow = new Date();
-  // const dateCampaign = new Date(campaign.date + 'T' + campaign.time + ':00');
-  const counterTime = CounterDown(campaign.date + ' ' + campaign.time);
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const counterTime = CounterDown(campaign.dateEnd + ' ' + campaign.timeEnd);
 
   const days = counterTime.split(':')[0];
   const hours = counterTime.split(':')[1];
@@ -50,26 +59,13 @@ const Content = () => {
     <>
       <Container fluid className="bg-light bg-content pb-2 pt-2">
         {/* ------------------------------------------- Zona Movil --------------------------------------- */}
-        <Card>
-          <Card.Header className="d-block d-sm-none text-primary">
-            {campaign.title}
-          </Card.Header>
+        <Card className='d-block d-sm-none mb-3'>
           <Card.Img
             src={imgContent}
-            alt="Campaña escolar"
-            className="card-img-top img-fluidd d-none d-sm-block visually-hidden"
-            style={{ maxHeight: '350px' }}
-            hidden
-          />
-          <Card.Img
-            src={imgConstruction}
             alt="Campaña escolar"
             className="card-img-top img-fluid bg-transparent d-block d-sm-none"
           />
           <Card.Body>
-            <Card.Title className="d-none d-sm-block">
-              {campaign.title}
-            </Card.Title>
             <Card.Text>{campaign.description}</Card.Text>
             <a
               href="./"
@@ -78,23 +74,8 @@ const Content = () => {
               Donar
             </a>
           </Card.Body>
-          <Card.Footer className="text-muted">
-            <Row>
-              <Col md={2} xs={6}>
-                <MdDateRange className="text-primary fw-bold fs-4" />
-                <span className="fw-bold">{' ' + campaign.date}</span>
-              </Col>
-              <Col md={2} xs={6}>
-                <BiTime className="text-primary fw-bold fs-4" />
-                <span className="fw-bold">{' ' + campaign.time}</span>
-              </Col>
-              <Col md={8} xs={12}>
-                <MdPlace className="text-primary fw-bold fs-4" />
-                <span className="fw-bold">{' ' + campaign.place}</span>
-              </Col>
-            </Row>
-          </Card.Footer>
         </Card>
+        <CampaignInformation address = {campaign.address} date = {' DEL ' + campaign.dateStart + ' AL ' + campaign.dateEnd } time = {campaign.timeStart + ' - ' + campaign.timeEnd} />
         {/* ------------------------------------------- Zona Tablet --------------------------------------- */}
         <div className="d-none d-sm-block bg-primary bg-gradient">
           <h3 className="text-white text-center">Tiempo restante</h3>
@@ -132,6 +113,9 @@ const Content = () => {
               );
             })}
           </Row>
+          <div>
+            <h3 className='text-primary'>Como apoyar?</h3>
+          </div>
         </div>
       </Container>
     </>
