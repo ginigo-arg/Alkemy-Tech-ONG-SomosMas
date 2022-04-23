@@ -17,15 +17,15 @@ const SectionTitles = ({ title, description = '', backgroundImg = '', showHr = f
       >
         <Container fluid>
           <Container
-            className={flexColumn ? 'd-flex flex-column justify-content-center align-items-center zoneTitle' : 'd-flex justify-content-center align-items-center zoneTitle'}
+            className={`d-flex justify-content-center align-items-center zoneTitle ${flexColumn ? 'flex-column' : ''} `}
             style={{
               backgroundColor: 'rgba(255, 255, 255, 0.4)',
             }}
           >
             <div className={`p-0 w-100 text-center ${titleUppercase ? 'text-uppercase' : ''}`}>
-              <h1 className = {showHr ? classColorTitle + 'border-image-bottom' : classColorTitle}>{title}</h1>
+              <h1 className = {`${classColorTitle} ${showHr ? 'border-image-bottom' : ''}`}>{title}</h1>
             </div>
-            <div><ParserHtml text={description} /></div>
+            {description ? <ParserHtml text={description} /> : ''}
           </Container>
         </Container>
       </div>
