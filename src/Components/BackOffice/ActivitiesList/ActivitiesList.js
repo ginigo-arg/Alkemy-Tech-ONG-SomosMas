@@ -1,10 +1,6 @@
 import './ActivitiesList.css';
 import { useEffect } from 'react';
-import {
-  Button, Col, Container,
-  // Table,
-  Row,
-} from 'react-bootstrap';
+import { Button, Container, Table } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { RiFileEditFill } from 'react-icons/ri';
 import { AiFillDelete } from 'react-icons/ai';
@@ -52,115 +48,60 @@ const ActivitiesList = () => {
         ? <div className="d-flex justify-content-center my-5">
           <ProgressSpinner state={stateLoading} />
         </div>
-        // : <div className='overflow-scroll'>
-        //   <Table striped bordered hover className='overflow-scroll'>
-        //     <thead className='bg-secondary'>
-        //       <tr>
-        //         <th>Título</th>
-        //         <th>Imagen</th>
-        //         <th>Acción</th>
-        //       </tr>
-        //     </thead>
-        //     <tbody>
-        //       {actividades.length > 0 &&
-        //     actividades.map((activity) => (
-        //       <tr key={activity.id}>
-        //         <td>{activity.name}</td>
-        //         <td>
-        //           {activity.image !== ''
-        //             ? (
-        //               <div style={{ width: '150px', height: '150px', overflow: 'hidden' }}>
-        //                 <img
-        //                   src={activity.image}
-        //                   alt={activity.name}
-        //                   className=""
-        //                 />
-        //               </div>
-        //             )
-        //             : (
-        //               <svg className="img-thumbnail rounded" width="200px" height="100px">
-        //                 <title>{activity.name}</title>
-        //                 <rect width="100%" height="100%" fill="#514242"></rect>
-        //                 <text x="30%" y="50%" fill="#eceeef" dy=".5em">
-        //                   No media
-        //                 </text>
-        //               </svg>
-        //             )}
-        //         </td>
-        //         <td className="d-flex justify-content-center align-items-center gap-1">
-        //           <Button
-        //             className="btn-danger"
-        //             onClick={() => handleDelete(activity.id)}
-        //           >
-        //             <AiFillDelete />
-        //           </Button>
-        //           <Button
-        //             className="btn-info"
-        //             onClick={() => handleEdit(activity)}
-        //           >
-        //             <RiFileEditFill />
-        //           </Button>
-        //         </td>
-        //       </tr>
-        //     )).reverse()}
-        //     </tbody>
-        //   </Table>
-        : <Container>
-          <Row className='text-center px-2'>
-            <Col xs={3} className='pb-2 border-end'>
-              <h5>Título</h5>
-            </Col>
-            <Col xs={5} className='pb-2 border-end'>
-              <h5>Descripción</h5>
-            </Col>
-            <Col xs={2} className='pb-2 border-end'>
-              <h5>Imagen</h5>
-            </Col>
-            <Col xs={2} className='pb-2'>
-              <h5>Acciones</h5>
-            </Col>
-          </Row>
-          {actividades.length > 0 &&
-              actividades.map((activity) => (
-                <Row key={activity.id} className='px-2 border-top activities-row-container'>
-                  <Col className='border-end py-3' xs={3}><p>{activity.name}</p></Col>
-                  <Col className=' border-end py-3' xs={5} dangerouslySetInnerHTML={{ __html: activity.description }}></Col>
-                  <Col xs={2} className="activity-image-container d-flex flex-row justify-content-center border-end py-3">
-                    {activity.image !== ''
-                      ? (
+        : <div className='overflow-scroll'>
+          <Table striped bordered hover className='overflow-scroll'>
+            <thead className='bg-secondary'>
+              <tr>
+                <th>Título</th>
+                <th>Imagen</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              {actividades.length > 0 &&
+            actividades.map((activity) => (
+              <tr key={activity.id}>
+                <td>{activity.name}</td>
+                <td>
+                  {activity.image !== ''
+                    ? (
+                      <div style={{ width: '150px', height: '150px', overflow: 'hidden' }}>
                         <img
                           src={activity.image}
                           alt={activity.name}
-                          className='activities-image'
+                          className=""
                         />
-                      )
-                      : (
-                        <svg className="img-thumbnail rounded" width="10rem" height="10rem">
-                          <title>{activity.name}</title>
-                          <rect width="100%" height="100%" fill="#514242"></rect>
-                          <text x="30%" y="50%" fill="#eceeef" dy=".5em">
-                            No media
-                          </text>
-                        </svg>
-                      )}
-                  </Col>
-                  <Col xs={2} className='d-flex flex-row justify-content-evenly align-items-center'>
-                    <Button
-                      className="btn-danger"
-                      onClick={() => handleDelete(activity.id)}
-                    >
-                      <AiFillDelete />
-                    </Button>
-                    <Button
-                      className="btn-info"
-                      onClick={() => handleEdit(activity)}
-                    >
-                      <RiFileEditFill />
-                    </Button>
-                  </Col>
-                </Row>)).reverse()}
-        </Container>
-        // </div>
+                      </div>
+                    )
+                    : (
+                      <svg className="img-thumbnail rounded" width="200px" height="100px">
+                        <title>{activity.name}</title>
+                        <rect width="100%" height="100%" fill="#514242"></rect>
+                        <text x="30%" y="50%" fill="#eceeef" dy=".5em">
+                          No media
+                        </text>
+                      </svg>
+                    )}
+                </td>
+                <td className="d-flex justify-content-center align-items-center gap-1">
+                  <Button
+                    className="btn-danger"
+                    onClick={() => handleDelete(activity.id)}
+                  >
+                    <AiFillDelete />
+                  </Button>
+                  <Button
+                    className="btn-info"
+                    onClick={() => handleEdit(activity)}
+                  >
+                    <RiFileEditFill />
+                  </Button>
+                </td>
+              </tr>
+            )).reverse()}
+            </tbody>
+          </Table>
+        </div>
       }
     </Container>
   );
