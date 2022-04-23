@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LOGOUT_USER_ACTION } from '../../redux/auth/authActions';
 import './PublicHeader.css';
 import Logo from '../../assets/img/somos-mas-public.png';
-import { alertService } from '../../Services/alertService';
 
 const sites = [
   {
@@ -84,7 +83,7 @@ const PublicHeader = () => {
                   Escuelas
                 </NavLink>
               </NavDropdown>
-              <Button className='btn btn-primary text-white' onClick={() => auth.auth ? location.push('/donar') : alertService('error', 'Debe iniciar sesión para poder donar')}>
+              <Button className='btn btn-primary text-white' onClick={() => auth.auth ? location.push('/donar') : location.push('/login')}>
                 Donar
               </Button>
             </Nav>

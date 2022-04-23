@@ -3,7 +3,9 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const LOGIN_AUTH = 'LOGIN_AUTH';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const CREATE_USER = 'CREATE_USER';
+export const AUTH_ME = 'AUTH_ME_SUCCESS';
 
 // ERROR EN ACCIONES DE USUARIOS
 export const LOGIN_USER_FAILED = 'LOGIN_USER_FAILED';
 export const CREATE_USER_FAILED = 'CREATE_USER_FAILED';
+export const AUTH_ME_FAILED = 'AUTH_ME_FAILED';
