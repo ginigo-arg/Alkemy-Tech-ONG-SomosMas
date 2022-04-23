@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LOGIN_AUTH_ME_ACTION } from '../../redux/auth/authActions';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory, Redirect, Link } from 'react-router-dom';
 import { alertService } from '../../Services/alertService';
 import { Container, Row, Col } from 'react-bootstrap';
 import LoginForm from './LoginForm';
@@ -40,8 +40,10 @@ const Login = () => {
     return (
       <Container fluid>
         <Row>
-          <Col lg={5} className="vh-100 py-2 px-1 px-md-5 overflow-scroll column-form">
-            <img src={Logo} alt='somos-mas-login mb-2' width='150px'/>
+          <Col lg={5} className="py-2 px-1 px-md-5 overflow-scroll column-form d-flex flex-column justify-content-center align-items-center">
+            <Link to='/'>
+              <img src={Logo} alt='somos-mas-login mb-2' width='150px' />
+            </Link>
             <h1 className='text-center mt-3 px-5'><strong>¡Bienvenido a Somos Más!</strong></h1>
             <p className='text-center'>Ingresa a nuestra plataforma 👨🏿‍🤝‍👨🏻</p>
             {

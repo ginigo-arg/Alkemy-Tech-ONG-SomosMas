@@ -13,21 +13,20 @@ import './shapes.css';
 
 const SignupSchema = Yup.object({
   name: Yup.string().required('Campo requerido'),
-  lastName: Yup.string().required('Campo requerido'),
   email: Yup.string()
-    .email('Dirección de correo electrónico no válida')
+    .email('Dirección de correo electrónico inválida')
     .required('Campo requerido'),
   password: Yup.string()
     .required('Campo requerido')
     .matches(
       /^.*(?=.{6,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-zA-Z]){1}).*$/,
       // eslint-disable-next-line comma-dangle
-      'La contraseña debe tener una longitud mínima de 6 caraceteres, y contener al menos un número, una letra y un símbolo (por ejemplo: @#$%)'
+      'La contraseña debe tener una longitud mínima de 6 caracteres, y contener al menos un número, una letra y un símbolo (ejemplo: @#$%)'
     ),
   passwordConfirmation: Yup.string().oneOf(
     [Yup.ref('password'), null],
     // eslint-disable-next-line comma-dangle
-    'La contraseña no coincide'
+    'Las contraseñas no coinciden'
   ),
 });
 
@@ -35,7 +34,6 @@ const RegisterForm = ({ showLogin, setShowLogin }) => {
   const formik = useFormik({
     initialValues: {
       name: '',
-      lastName: '',
       email: '',
       password: '',
       passwordConfirmation: '',
@@ -58,7 +56,8 @@ const RegisterForm = ({ showLogin, setShowLogin }) => {
   const createAccount = async (content) => {
     const response = dispatch(CREATE_USER_ACTION(content)).catch(err => alertService('error', err));
     if (response) {
-      alertService('success', 'Cuenta creada', 1, true);
+      alertService('success', 'Cuenta creada correctamente', 1, true);
+      setShowLogin(!showLogin);
     }
   };
 
@@ -72,7 +71,7 @@ const RegisterForm = ({ showLogin, setShowLogin }) => {
   return (
     <Container>
       <Row>
-        <Col >
+        <Col>
           <Form onSubmit={formik.handleSubmit} className="m-3">
 
             <Form.Group
@@ -83,36 +82,16 @@ const RegisterForm = ({ showLogin, setShowLogin }) => {
               <Form.Control
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.firstName}
+                value={formik.values.name}
                 className={
                   formik.errors.name
                     ? 'border-danger'
                     : 'border-success'
                 }
-                placeholder="Nombre"
+                placeholder="Nombre y Apellido"
               />
               {formik.errors.name ? (
                 <span className="text-danger">{formik.errors.name} </span>
-              ) : null}
-            </Form.Group>
-            <Form.Group
-              as={Col}
-              controlId="lastName"
-              className="mb-3 input-group-lg"
-            >
-              <Form.Control
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.lastName}
-                className={
-                  formik.errors.lastName
-                    ? 'border-danger'
-                    : 'border-success'
-                }
-                placeholder="Apellidos"
-              />
-              {formik.errors.lastName ? (
-                <span className="text-danger">{formik.errors.lastName} </span>
               ) : null}
             </Form.Group>
 
