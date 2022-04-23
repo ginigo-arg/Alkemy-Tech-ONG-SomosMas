@@ -10,6 +10,7 @@ import { GiOrganigram } from 'react-icons/gi';
 import { RiSlideshow3Line } from 'react-icons/ri';
 import { HiUsers } from 'react-icons/hi';
 import { FaUserCircle } from 'react-icons/fa';
+import { MdSpaceDashboard } from 'react-icons/md';
 
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
@@ -34,6 +35,13 @@ const Sidebar = () => {
         <Offcanvas.Body className="scroll-not">
 
           <Nav className="justify-content-end flex-grow-1 pe-3 bg-red">
+          <div className='item'>
+            <Link to="/backoffice/" className='text-white' onClick={handleClick}>
+              <MdSpaceDashboard className='icon' fontSize='25px' color='grey' />
+
+                 Escritorio
+
+            </Link></div><hr/>
             <div className='item'>
             <Link to="/backoffice/news" className='text-white' onClick={handleClick}>
               <BiNews className='icon' fontSize="25px" color="grey" />

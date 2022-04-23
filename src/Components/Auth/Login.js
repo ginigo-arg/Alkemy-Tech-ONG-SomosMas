@@ -45,13 +45,15 @@ const Login = () => {
               <img src={Logo} alt='somos-mas-login mb-2' width='150px' />
             </Link>
             <h1 className='text-center mt-3 px-5'><strong>¡Bienvenido a Somos Más!</strong></h1>
-            <p className='text-center'>Ingresa a nuestra plataforma 👨🏿‍🤝‍👨🏻</p>
+            <p className='text-center'>Ingresa a nuestra plataforma <strong className='fs-4'>👨🏿‍🤝‍👨🏻</strong></p>
             {
               showLogin
                 ? <LoginForm showLogin={showLogin} setShowLogin={setShowLogin}/>
                 : <RegisterForm showLogin={showLogin} setShowLogin={setShowLogin}/>
             }
-            <hr />
+            <Row className='d-flex justify-content-center my-3 w-100'>
+              <hr className="bg-secondary w-75 my-0 d-inline-block" />
+            </Row>
             <Row>
               <Col className='text-center'>
                 <button onClick={() => history.push('/')} className='text-secondary mr-2 bg-white border-0'>

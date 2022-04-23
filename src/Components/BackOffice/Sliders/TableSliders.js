@@ -68,12 +68,12 @@ const TableSliders = () => {
                 <td>{slide?.id}</td>
                 <td>{slide?.name}</td>
                 <td className='me-auto ms-auto' style={{ width: '230px' }}>
-                  {slide.image !== ''
+                  {slide?.image !== ''
                     ? (
                       <div style={{ maxWidth: '150px', maxHeight: '150px', overflow: 'hidden' }}>
                         <img
-                          src={slide.image}
-                          alt={slide.name}
+                          src={slide?.image}
+                          alt={slide?.name}
                           className="w-100"
                         />
                       </div>

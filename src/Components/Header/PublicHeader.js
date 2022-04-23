@@ -3,7 +3,7 @@ import { NavLink, Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGOUT_USER_ACTION } from '../../redux/auth/authActions';
 import './PublicHeader.css';
-import Logo from '../../assets/img/somos-mas-public.png';
+import Logo from '../../assets/img/LOGO-SOMOSMAS.png';
 import { alertService } from '../../Services/alertService';
 
 const sites = [
@@ -39,26 +39,27 @@ const PublicHeader = () => {
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
   const history = useHistory();
+  const token = localStorage.getItem('TOKEN');
 
   return (
     <>
       <Navbar bg="dark" variant="dark" collapseOnSelect expand="md" className='shadow' >
-        {auth.auth === true
+        {auth.auth || token
           ? <Container className='d-flex flex-row justify-content-between'>
             {auth.user.role_id === 1
-              ? <Button className='header-button btn-outline-info' onClick={() => history.push('/backoffice')}>Backoffice</Button>
-              : <Button className='header-button btn-outline-info' disabled>Backoffice</Button>}
-            <Container className='d-flex flex-row justify-content-end'>
-              <p className='text-white my-0 mx-lg-4 d-none d-md-flex'>{`Bienvenido ${auth.user.name}`}</p>
-              <p className='text-white my-0 header-logout text-decoration-underline' onClick={() => dispatch(LOGOUT_USER_ACTION())}>Cerrar sesión</p>
+              ? <Button className='header-button btn-warning text-top-header' onClick={() => history.push('/backoffice')}>Escritorio</Button>
+              : <Button className='btn btn-warning fs-6' disabled>Escritorio</Button>}
+            <Container className='d-flex flex-row justify-content-end '>
+              <p className='text-white my-0 mx-lg-4 d-none d-md-flex  text-top-header'>{`Bienvenido ${auth.user.name}`}</p>
+              <p className='text-white my-0 header-logout text-decoration-underline  text-top-header' onClick={() => dispatch(LOGOUT_USER_ACTION())}>Cerrar sesión</p>
             </Container>
           </Container>
           : <Container className='d-flex flex-row justify-content-end'>
-            <Link className='text-white my-0 header-text' to='/login'>Iniciar sesión | Registrarse</Link>
+            <Link className='text-white my-0 header-text fs-6 text-top-header' to='/login'>Iniciar sesión | Registrarse</Link>
           </Container>}
       </Navbar>
 
-      <Navbar bg="dark" variant="dark" collapseOnSelect sticky="top" expand="sm" className='shadow'>
+      <Navbar bg="light" variant="light" collapseOnSelect sticky="top" expand="sm" className='shadow'>
         <Container>
           <Navbar.Brand style={{ cursor: 'pointer' }}>
             <Link to="/">

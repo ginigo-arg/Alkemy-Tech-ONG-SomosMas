@@ -55,7 +55,9 @@ const SlidesFormHook = () => {
                   }, 3000);
                 } else {
                   dispatch(EDIT_SLIDE_FN(id, values));
-                  if (!loading) history.push('/backoffice/slides');
+                  setTimeout(() => {
+                    if (!loading) history.push('/backoffice/slides');
+                  }, 3000);
                 }
               }}
               validationSchema={SchemaValidation}

@@ -8,7 +8,7 @@ import ProgressSpinner from '../../Progress/ProgressSpinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { DELETE_ACTIVIDAD_FUNCTION, GET_ACTIVIDAD_FUNCTION } from '../../../redux/actividades/actions';
 import { alertService } from '../../../Services/alertService';
-// import ParserHtml from '../../Parser/Parser';
+import ParserHtml from '../../Parser/Parser';
 
 const ActivitiesList = () => {
   const history = useHistory();
@@ -63,6 +63,7 @@ const ActivitiesList = () => {
             actividades.map((activity) => (
               <tr key={activity.id}>
                 <td>{activity.name}</td>
+                <td><ParserHtml text={activity.description} /> </td>
                 <td>
                   {activity.image !== ''
                     ? (
