@@ -7,7 +7,6 @@ export const GET_SLIDE_HOME_FN = () => async (dispatch) => {
   dispatch(LOADING_ON());
   try {
     const response = await homeSlides();
-    console.log('Response:', response);
     dispatch({
       type: GET_SLIDE_HOME,
       payload: response,

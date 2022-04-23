@@ -21,11 +21,9 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(GET_SLIDE_HOME_FN());
-    console.log('loading:', loading);
     const getData = async () => {
       const newsData = await homeNews();
       setNews(newsData);
-      console.log('slidesGET:', slides);
     };
     getData().catch((error) => alertService('error', error));
   }, []);
