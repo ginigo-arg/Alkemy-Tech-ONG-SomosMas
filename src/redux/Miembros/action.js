@@ -21,7 +21,6 @@ export const GET_MEMBERS_FUNCTION = () => async (dispatch) => {
   dispatch(LOADING_ON());
   try {
     const data = await getAllMembers();
-
     dispatch({
       type: GET_MEMBERS,
       payload: data,

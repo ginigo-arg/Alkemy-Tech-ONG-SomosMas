@@ -19,17 +19,3 @@ export const GET_ABOUT_FUNCTION = () => async (dispatch) => {
     dispatch(LOADING_OFF());
   }
 };
-
-// const addText = () => ({
-//   type: types.USABOUTUS_ADD,
-// });
-
-// const addTextOk = (text) => ({
-//   type: types.USABOUTUS_UPDATE,
-//   payload: text,
-// });
-
-// const addTextError = (error) => ({
-//   type: types.USABOUTUS_ERROR,
-//   payload: error,
-// });

@@ -51,7 +51,7 @@ const Sidebar = () => {
             </Link></div><hr></hr>
 
             <div className='item'>
-            <Link to="/backoffice/organization/edit" className='text-white' onClick={handleClick}>
+            <Link to="/backoffice/organization" className='text-white' onClick={handleClick}>
               <GiOrganigram className='icon' fontSize="25px" color="grey" />
 
               Organizacion
