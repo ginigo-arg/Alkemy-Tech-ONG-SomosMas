@@ -35,24 +35,24 @@ const MembersList = () => {
         </div>
         : <>
           {memberState.miembros.length > 0
-            ? <Container>
-              <Table striped hover responsive>
-                <thead className="bg-secondary text-white rounded">
-                  <tr>
-                    <th className="px-3">Nombre</th>
-                    <th className="text-center">Foto</th>
-                    <th className="text-center" colSpan={2}>
-                      Acciones
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {memberState.miembros.map((item) => (
-                    <RowMember key={item.id} member={item} />
-                  )).reverse()}
-                </tbody>
-              </Table>
-            </Container>
+            ? <Table striped hover responsive>
+              <thead className="bg-secondary text-white rounded">
+                <tr>
+                  <th className="">ID</th>
+                  <th className="">Nombre</th>
+                  <th className="text-center">Foto</th>
+                  <th className="text-center" colSpan={2}>
+                    Acciones
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {memberState.miembros.map((item) => (
+                  <RowMember key={item.id} member={item} />
+                )).reverse()}
+              </tbody>
+            </Table>
+
             : <div className="alert-warning rounded d-flex justify-content-center align-items-center" style={{ height: '300px' }}>
               <h3>No hay miembros para mostrar</h3>
             </div>

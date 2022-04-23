@@ -15,7 +15,7 @@ const authReducer = (state = initialState, action) => {
     {
       // console.log('soy el reducer LOGIN', action.payload);
       if (action.payload) {
-        CREATE_TOKEN(action.payload.token);
+        CREATE_TOKEN(JSON.stringify(action.payload.token));
       }
       return action.payload
         ? {
@@ -30,11 +30,10 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_AUTH:
     {
       // console.log('soy el reducer AUTH', action.payload);
-      if (action.payload) {
-        console.log('Validacion token');
-      } else {
+      if (!action.payload) {
         REMOVE_TOKEN(action.payload.token);
       }
+
       return action.payload
         ? {
           ...state,

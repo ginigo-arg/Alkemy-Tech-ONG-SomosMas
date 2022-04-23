@@ -24,7 +24,7 @@ const OrganizationForm = () => {
         ? <Spinner/>
         : (
           <Container>
-            <h2>Form Organization</h2>
+            <h2 className='mt-3'>Form Organization</h2>
             <Formik
               initialValues={{
                 name: dataOrg.name || '',

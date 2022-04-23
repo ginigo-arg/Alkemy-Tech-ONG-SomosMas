@@ -32,8 +32,8 @@ const MembersForm = () => {
       {stateLoading
         ? <Spinner />
         : (
-          <Container>
-            <h2>Form Members</h2>
+          <Container classname='py-3 px-0 px-lg-1'>
+            <h2 className='mt-5'>Form Members</h2>
             <Formik
               initialValues={{
                 name: memberSelected?.name || '',

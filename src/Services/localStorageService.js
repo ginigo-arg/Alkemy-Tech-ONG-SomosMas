@@ -28,8 +28,6 @@ export const REMOVE_FROM_LOCAL_STORAGE = (Key) => {
     if (localStorage[Key] !== undefined) {
       localStorage.removeItem(Key);
       return true;
-    } else {
-      alertService('error', `No se pudo eliminar el elemento (${Key}) del local storage, porque no existe la key.`);
     }
   } else {
     alertService('error', 'No se pudo eliminar el elemento del local storage, se requiere la key.');
