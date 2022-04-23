@@ -6,6 +6,7 @@ import './Content.css';
 import CounterDown from './CounterDown';
 import { ORGANIZATION_CONTACT_DATA } from '../../Services/contactService';
 import CampaignInformation from './Information';
+import ContactForm from '../../Components/Contact/ContactForm';
 
 const Content = () => {
   const [campaign, setCampaign] = useState({
@@ -57,66 +58,93 @@ const Content = () => {
 
   return (
     <>
-      <Container fluid className="bg-light bg-content pb-2 pt-2">
+      <Container fluid className='bg-light bg-content pb-22 pt-2'>
         {/* ------------------------------------------- Zona Movil --------------------------------------- */}
-        <Card className='d-block d-sm-none mb-3'>
+        <Card className='d-block d-sm-none'>
           <Card.Img
             src={imgContent}
             alt="Campaña escolar"
-            className="card-img-top img-fluid bg-transparent d-block d-sm-none"
+            className='card-img-top img-fluid bg-transparent d-block d-sm-none'
           />
           <Card.Body>
             <Card.Text>{campaign.description}</Card.Text>
-            <a
-              href="./"
-              className="btn btn-primary text-white rounded-pill disabled"
-            >
-              Donar
-            </a>
           </Card.Body>
         </Card>
-        <CampaignInformation address = {campaign.address} date = {' DEL ' + campaign.dateStart + ' AL ' + campaign.dateEnd } time = {campaign.timeStart + ' - ' + campaign.timeEnd} />
+        <div className='bg-white sa p-2'>
+          <Row>
+            <Col sm={12} md={6} className='main-text mt-2'>
+              <h2 className='text-primary'>¿Como apoyar?</h2>
+              <p className='lh-lg justify'>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos,
+                nulla inventore. Obcaecati aut doloribus libero explicabo
+                voluptatem expedita ullam placeat iusto nemo veniam minus enim
+                mollitia, sint error eaque voluptate.
+              </p>
+              <h2 className='text-primary'>Más información</h2>
+              <p className='lh-lg justify'>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos,
+                nulla inventore. Obcaecati aut doloribus libero explicabo
+                voluptatem expedita ullam placeat iusto nemo veniam minus enim
+                mollitia, sint error eaque voluptate.
+              </p>
+            </Col>
+            <Col sm={12} md={6} className='main-text mt-2'>
+              <CampaignInformation layoutVertical={true} address = {campaign.address} date = {' DEL ' + campaign.dateStart + ' AL ' + campaign.dateEnd } time = {campaign.timeStart + ' - ' + campaign.timeEnd} />
+            </Col>
+          </Row>
+        </div>
+        <div className='d-block d-sm-block d-md-none'>
+          <h3 className='text-primary'>Contactanos para mayor información</h3>
+          <ContactForm showTitle={false} />
+        </div>
         {/* ------------------------------------------- Zona Tablet --------------------------------------- */}
-        <div className="d-none d-sm-block bg-primary bg-gradient">
-          <h3 className="text-white text-center">Tiempo restante</h3>
-          <div className="d-flex justify-content-center align-items-center pt-3">
-            <div className="countdown-container me-3">
-              <div className="number">{days}</div>
-              <div className="concept">Días</div>
+        <div className='d-none d-sm-block bg-info bg-info'>
+          <h3 className='text-white text-center'>Tiempo restante</h3>
+          <div className='d-flex justify-content-center align-items-center pt-3'>
+            <div className='countdown-container me-3'>
+              <div className='number'>{days}</div>
+              <div className='concept'>Días</div>
             </div>
-            <div className="countdown-container me-3">
-              <div className="number">{hours}</div>
-              <div className="concept">Horas</div>
+            <div className='countdown-container me-3'>
+              <div className='number'>{hours}</div>
+              <div className='concept'>Horas</div>
             </div>
-            <div className="countdown-container me-3">
-              <div className="number">{minutes}</div>
-              <div className="concept">Minutos</div>
+            <div className='countdown-container me-3'>
+              <div className='number'>{minutes}</div>
+              <div className='concept'>Minutos</div>
             </div>
-            <div className="countdown-container me-3">
-              <div className="number">{seconds}</div>
-              <div className="concept">Segundos</div>
+            <div className='countdown-container me-3'>
+              <div className='number'>{seconds}</div>
+              <div className='concept'>Segundos</div>
             </div>
           </div>
         </div>
         {/* ------------------------------------------- Zona PC --------------------------------------- */}
-        <div className="d-none d-md-block ">
+        <div className='d-none d-md-block bg-white'>
           <Row>
-            {images.map((element, index) => {
-              return (
-                <Col md={3} key={'image_' + index} className="pb-2">
-                  <img
-                    src={element.image}
-                    className="img-thumbnail mb-2"
-                    alt="Image"
-                  />
-                </Col>
-              );
-            })}
+            <Col md={6}>
+              <h4 className='text-black mt-2 p-0'>Efecto de tu ayuda</h4>
+              <Row>
+                {images.map((element, index) => {
+                  return (
+                    <Col md={6} key={'image_' + index} className='pb-2'>
+                      <img
+                        src={element.image}
+                        className='img-thumbnail mb-2'
+                        alt='Image'
+                      />
+                    </Col>
+                  );
+                })}
+              </Row>
+            </Col>
+            <Col>
+              <h4 className='text-black mt-2 p-0'>Contactanos para mayor información</h4>
+              <ContactForm showTitle={false} />
+            </Col>
           </Row>
-          <div>
-            <h3 className='text-primary'>Como apoyar?</h3>
-          </div>
         </div>
+
       </Container>
     </>
   );

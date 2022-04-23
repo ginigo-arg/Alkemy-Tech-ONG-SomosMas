@@ -7,10 +7,12 @@ import Footer from './Footer';
 
 const SchoolCampaign = () => {
   return (
-    <Container fluid className="bg-light">
+    <Container fluid className="bg-light p-0">
       <Header />
       <Slider />
-      <Content />
+      <Container>
+        <Content />
+      </Container>
       <Footer />
     </Container>
   );

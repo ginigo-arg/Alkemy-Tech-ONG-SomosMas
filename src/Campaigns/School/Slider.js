@@ -39,7 +39,7 @@ const Slider = () => {
 
   return (
     <>
-      <Carousel variant='dark' indicators = {false} prevIcon = {false} nextIcon = {false} className="d-none d-sm-block" >
+      <Carousel indicators = {false} prevIcon = {false} nextIcon = {false} className="d-none d-sm-block" >
         { sliderCarousel && sliderCarousel.map((slide, index) => {
           return (
             slide.show &&
