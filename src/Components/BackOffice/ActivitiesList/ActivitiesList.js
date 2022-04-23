@@ -23,7 +23,7 @@ const ActivitiesList = () => {
   };
 
   const handleDelete = async id => {
-    const confirm = await alertService('confirm', 'Seguro deseas eliminar este miembro?');
+    const confirm = await alertService('confirm', 'Seguro deseas eliminar esta actividad?');
     if (confirm) dispatch(DELETE_ACTIVIDAD_FUNCTION(id));
   };
 
@@ -52,8 +52,7 @@ const ActivitiesList = () => {
           <Table striped bordered hover className='overflow-scroll'>
             <thead className='bg-secondary'>
               <tr>
-                <th>Nombre</th>
-                <th>Descripcion</th>
+                <th>Título</th>
                 <th>Imagen</th>
                 <th>Acción</th>
               </tr>
