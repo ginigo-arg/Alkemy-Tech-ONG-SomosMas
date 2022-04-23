@@ -23,6 +23,7 @@ const RowMember = ({ member }) => {
 
   return (
     <tr className="align-middle">
+      <td className="">{member.id}</td>
       <td className="px-3">{member.name}</td>
       <td className="text-center" style={{ width: '230px' }}>
         {member.image !== ''

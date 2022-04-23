@@ -29,7 +29,7 @@ const NewsList = () => {
               title={item.name}
               description={item.content}
               id={item.id}
-            />))
+            />)).reverse()
         }
       </Container>
     </>
