@@ -29,7 +29,7 @@ const Login = () => {
 
   useEffect(() => {
     if (state.user && state.token && state.auth) {
-      console.log('se encontro un token valido');
+      // console.log('se encontro un token valido');
       setLoggedIn(true);
     }
   }, [loggedIn, state]);
