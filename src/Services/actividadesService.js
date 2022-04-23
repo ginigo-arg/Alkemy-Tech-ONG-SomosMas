@@ -65,9 +65,13 @@ export const postActivities = async (data) => {
 };
 
 export const deleteActivities = async (id) => {
-  try {
-    return await DELETE_PRIVATE_API(url, id);
-  } catch (error) {
+  const response = await DELETE_PRIVATE_API(url, id);
+
+  if (response) {
+    alertService('success', 'Actividad eliminada correctamente!');
+    return response;
+  } else {
     alertService(TYPE, MESSAGE_DELETE);
+    return response.error;
   }
 };

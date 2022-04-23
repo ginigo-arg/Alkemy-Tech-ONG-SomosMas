@@ -58,7 +58,7 @@ const UsersList = () => {
                   ? (
                     <div style={{ maxWidth: '150px', maxHeight: '150px', overflow: 'hidden' }}>
                       <img
-                        src={user.image}
+                        src={user?.image}
                         alt={user.name}
                         className="w-100"
                       />
