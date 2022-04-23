@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 // import { FaFacebook, FaInstagram, FaTwitterSquare } from 'react-icons/fa';
 import SocialMedia from '../../Components/Contact/SocialMedia';
 import Logo from '../../assets/img/somos-mas-public.png';
+import Newsletter from '../Newsletter/Newsletter';
 
 const PublicFooter = () => {
   const navigation = [
@@ -16,9 +17,12 @@ const PublicFooter = () => {
   return (
     <footer className="bg-dark navbar-dark">
       <Container className="d-flex flex-wrap justify-content-center">
-        <Navbar.Brand>
-          <img src={Logo} width="100" className="mt-3" alt="Logo SOMOS MÁS" />
-        </Navbar.Brand>
+        <Container className="d-flex flex-column flex-wrap align-items-center">
+          <Newsletter />
+          <Navbar.Brand>
+            <img src={Logo} width="100" className="mt-3" alt="Logo SOMOS MÁS" />
+          </Navbar.Brand>
+        </Container>
         <Navbar className="w-100 d-none d-lg-flex justify-content-center">
           <Nav>
             {navigation.map((item) => (

@@ -5,7 +5,7 @@ export const GET_FROM_LOCAL_STORAGE = (Key) => {
     if (localStorage[Key] !== undefined) {
       return localStorage.getItem(Key);
     } else {
-      alertService('error', `No exite el elemento (${Key}) en el local storage.`);
+      alertService('error', `No existe el elemento (${Key}) en el local storage.`);
     }
   } else {
     alertService('error', 'No se pudo obtener el elemento del local storage, se requiere la key.');

@@ -1,9 +1,10 @@
 import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
-import { NavLink, Link } from 'react-router-dom';
-import src from '../../assets/img/LOGO-SOMOSMAS.png';
-import ContactInformation from '../../Components/Contact/ContactInformation';
-import SocialMedia from '../../Components/Contact/SocialMedia';
-import ParserHtml from '../Parser/Parser';
+import { NavLink, Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { LOGOUT_USER_ACTION } from '../../redux/auth/authActions';
+import './PublicHeader.css';
+import Logo from '../../assets/img/somos-mas-public.png';
+import { alertService } from '../../Services/alertService';
 
 const sites = [
   {
@@ -35,36 +36,35 @@ const sites = [
 ];
 
 const PublicHeader = () => {
+  const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth);
+  const history = useHistory();
+
   return (
     <>
-      <Navbar bg="dark" variant="dark">
-        <Container>
-          <div className='d-flex justify-content-center align-items-center text-white text-center' key={'point1'}>
-            <Pointer sizePoint={40} description='O' />
-            <Pointer sizePoint={40} bgColor='bg-warning' description='N' />
-            <Pointer sizePoint={40} bgColor='bg-info' description='G' />
-          </div>
-          <Navbar.Toggle />
-          <Navbar.Collapse className="login d-flex flex-direction-row justify-content-start align-items-center">
-            <p >Login</p>
-            <Link className='text-white my-0 login fs-5' to='/login'>Iniciar sesión | Registrarse</Link>
-          </Navbar.Collapse>
-          <div className='d-none d-sm-none d-md-block d-flex justify-content-center align-items-center text-white text-center mt-2' key={'point1'}>
-            <ContactInformation showVisitUs={false} showSendUsMail={false}minimalistVersion={true} bgClassIcon='bg-primary'
-              textColorBody='text-white fs-5' />
-          </div>
-          <div className="d-none d-sm-none d-md-block">
-            <SocialMedia layoutVertical={false} showTitle={false} clsBorder='border-0' p0={true} />
-          </div>
-        </Container>
+      <Navbar bg="dark" variant="dark" collapseOnSelect expand="md" className='shadow' >
+        {auth.auth === true
+          ? <Container className='d-flex flex-row justify-content-between'>
+            {auth.user.role_id === 1
+              ? <Button className='header-button btn-outline-info' onClick={() => history.push('/backoffice')}>Backoffice</Button>
+              : <Button className='header-button btn-outline-info' disabled>Backoffice</Button>}
+            <Container className='d-flex flex-row justify-content-end'>
+              <p className='text-white my-0 mx-lg-4 d-none d-md-flex'>{`Bienvenido ${auth.user.name}`}</p>
+              <p className='text-white my-0 header-logout text-decoration-underline' onClick={() => dispatch(LOGOUT_USER_ACTION())}>Cerrar sesión</p>
+            </Container>
+          </Container>
+          : <Container className='d-flex flex-row justify-content-end'>
+            <Link className='text-white my-0 header-text' to='/login'>Iniciar sesión | Registrarse</Link>
+          </Container>}
       </Navbar>
-      <Navbar bg="light" variant="light" collapseOnSelect sticky="top" expand="sm" className='shadow'>
+
+      <Navbar bg="dark" variant="dark" collapseOnSelect sticky="top" expand="sm" className='shadow'>
         <Container>
           <Navbar.Brand style={{ cursor: 'pointer' }}>
             <Link to="/">
               <img
                 className="w-50"
-                src={src}
+                src={Logo}
               />
             </Link>
           </Navbar.Brand>
@@ -83,31 +83,14 @@ const PublicHeader = () => {
                 <NavLink to="/campaign/school" className="dropdown-item">
                   Escuelas
                 </NavLink>
-
               </NavDropdown>
-              <Button className='btn btn-primary text-white'>
+              <Button className='btn btn-primary text-white' onClick={() => auth.auth ? location.push('/donar') : alertService('error', 'Debe iniciar sesión para poder donar')}>
                 Donar
               </Button>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </>
-  );
-};
-
-const Pointer = ({ bgColor = 'bg-primary', sizePoint = 40, description = '' }) => {
-  const stylePointer = {
-    height: sizePoint + 'px',
-    width: sizePoint + 'px',
-  };
-  return (
-    <>
-      <div className="d-flex justify-content-center align-items-center">
-        <div className={`${bgColor} rounded-pill m-1 pt-2 text-center align-middle`} style = {stylePointer}>
-          <ParserHtml text={description} />
-        </div>
-      </div>
     </>
   );
 };

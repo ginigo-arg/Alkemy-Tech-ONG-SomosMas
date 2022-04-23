@@ -1,7 +1,7 @@
-.active {
+/* .active {
   color: #db5752 !important;
   font-weight: bold;
-}
+} */
 
 .login {
   background-color: #69cbff;
@@ -14,4 +14,16 @@
 
 .login{
   font-size: 12px !important; 
+}
+
+.header-logout{
+  cursor: pointer;
+}
+
+.header-button {
+  background-color: transparent;
+}
+
+.header-button:disabled{
+  border-color: #9ac9fb;
 }
