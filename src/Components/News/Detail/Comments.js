@@ -9,7 +9,6 @@ const Comments = () => {
 
   useEffect(async () => {
     const data = await getComments();
-    console.log('data', data);
 
     setComments(data);
   }, []);

@@ -68,14 +68,17 @@ const OrganizationForm = () => {
 
                   <Form.Group className='mb-4'>
                     <Form.Label>Descripción Breve:</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="short_description"
-                      value={values.short_description}
-                      onChange={handleChange}
-                      isInvalid={!!errors.short_description}
+                    <CKEditor
+                      editor={ ClassicEditor }
+                      name="long_description"
+                      data={values.short_description}
+                      onChange={(e, editor) => setFieldValue('short_description', editor.getData())}
                     />
-                    <Form.Control.Feedback type="invalid">{errors.short_description}</Form.Control.Feedback>
+                    {errors.short_description &&
+                    <small className="text-primary">
+                      {errors.short_description}
+                    </small>
+                    }
                   </Form.Group>
 
                   <Form.Group className='mb-4'>
