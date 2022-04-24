@@ -7,33 +7,40 @@ import { GET_MEMBERS_FUNCTION } from '../../redux/Miembros/action';
 import { GET_ABOUT_FUNCTION } from '../../redux/Nosotros/actions';
 import Organization from './Organization';
 import Spinner from '../Spinner/Spinner';
+import Slider from '../Slides/Slider';
+import { GET_SLIDE_HOME_FN } from '../../redux/slides/actions';
 
 export default function Nosotros () {
   const dispatch = useDispatch();
   const { miembros } = useSelector(state => state.miembros);
   const stateOrganizacion = useSelector(state => state.organizacion);
   const stateLoading = useSelector(state => state.global.loading);
+  const { slides } = useSelector(state => state.slides);
 
   useEffect(() => {
+    dispatch(GET_SLIDE_HOME_FN());
     dispatch(GET_MEMBERS_FUNCTION());
     dispatch(GET_ABOUT_FUNCTION());
+  }, []);
+  useEffect(() => {
+
   }, []);
 
   return (
     stateLoading
       ? <Spinner/>
       : <>
-        <Container fluid className='bg-info m-0'>
+        <Slider slides={slides || []} start={3} end={2}/>
+        <Container className='d-flex justify-content-center py-5 my-2'>
+          <p className='w-75 text-center'>{stateOrganizacion?.long_description}</p>
+        </Container>
+        <Container fluid className='bg-info m-0 mt-0'>
           <Organization
             id={stateOrganizacion?.id}
             name={stateOrganizacion?.name}
             shortDescription={stateOrganizacion?.short_description}
 
           />
-        </Container>
-
-        <Container className='d-flex justify-content-center py-5 my-2'>
-          <p className='w-75 text-center'>{stateOrganizacion?.long_description}</p>
         </Container>
 
         <h2 className='text-center text-info'>

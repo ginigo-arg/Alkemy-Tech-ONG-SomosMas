@@ -4,9 +4,10 @@ import ParserHtml from '../Parser/Parser';
 import './Slider.css';
 import { IoPlayCircle } from 'react-icons/io5';
 import ProgressSpinner from '../Progress/ProgressSpinner';
-const Slider = ({ slides, start, end }) => {
+const Slider = ({ slider, start, end }) => {
+  const slides = slider.splice(start, end);
   return (
-    <Carousel className = "carrusel">
+    <Carousel className = "mb-5 carrusel">
       {slides.length > 0
         ? (
           slides.map((slide) => (
@@ -34,7 +35,7 @@ const Slider = ({ slides, start, end }) => {
 
               </Carousel.Caption>
             </CarouselItem>
-          )).reverse().splice(start, end)
+          )).reverse()
         )
         : (
           <Container className='d-flex align-items-center justify-content-center' style={{ height: ' 250px' }}>

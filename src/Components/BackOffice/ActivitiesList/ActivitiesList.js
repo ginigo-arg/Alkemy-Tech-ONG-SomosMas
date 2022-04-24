@@ -53,6 +53,7 @@ const ActivitiesList = () => {
             <thead className='bg-secondary'>
               <tr>
                 <th>Título</th>
+                <th>Descripcion</th>
                 <th>Imagen</th>
                 <th>Acción</th>
               </tr>

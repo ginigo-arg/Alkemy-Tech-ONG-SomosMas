@@ -5,7 +5,7 @@ export const homeSlides = async (id = null) => {
     process.env.REACT_APP_API_SLIDES,
     id,
   );
-  return response.slice(-5);
+  return response;
 };
 
 export const homeNews = async (id = null) => {

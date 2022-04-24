@@ -35,7 +35,7 @@ const Home = () => {
       <Container fluid className='bg-info'>
         <TextMarquee/>
       </Container>
-      <Slider slides={slides || []} />
+      <Slider slides={slides || []} start={0} end={3}/>
       <Container fluid className="d-flex flex-column justify-content-center align-items-center mt-5 p-0">
         {
           news.length > 0 && <h3 className="fw-bold text-uppercase text-center fs-3 mb-3">Últimas Novedades</h3>

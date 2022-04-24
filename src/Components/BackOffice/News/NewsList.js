@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { Container, Table, Button } from 'react-bootstrap';
 import { AiFillDelete } from 'react-icons/ai';
 import { RiFileEditFill } from 'react-icons/ri';
-import { BiPlusMedical } from 'react-icons/bi';
-import { FaThList } from 'react-icons/fa';
+// import { BiPlusMedical } from 'react-icons/bi';
+// import { FaThList } from 'react-icons/fa';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { DELETE_NOVEDAD_FN, GET_NOVEDAD_FN } from '../../../redux/novedades/actions';
@@ -11,7 +11,7 @@ import ProgressSpinner from '../../Progress/ProgressSpinner';
 import { alertService } from '../../../Services/alertService';
 
 const NewsList = () => {
-  const history = useHistory();
+  // const history = useHistory();
   const dispatch = useDispatch();
   const newsState = useSelector(state => state.novedades);
   const stateLoading = useSelector(state => state.global.loading);
@@ -23,86 +23,48 @@ const NewsList = () => {
   useEffect(() => {}, [newsState.novedades]);
 
   return (
-    <>
-      <Container>
-        <div
-          name="containerModule"
-          id="containerModule"
-          className="border rounded mb-4"
+    <Container className="my-4 p-0 border">
+      <div className="px-3 my-3 border-5 border-bottom border-secondary">
+        <h2 className="text-secondary text-uppercase m-0">Listado de Novedades</h2>
+        <Link
+          to="/backoffice/members/create"
+          className="my-3 btn btn-secondary text-white rounded-pill"
         >
-          <div
-            name="headerModule"
-            id="headerModule"
-            className="d-flex justify-content-between align-items-center bg-lightt shadow border-5 border-bottom border-primary p-3"
-          >
-            <h3 className="text-uppercase text-primary align-middle">
-              <span className="align-top">
-                <FaThList />
-              </span>{' '}
-              <span className="align-middle">Listado Noticias</span>
-            </h3>
-            {}
-            <Button className='btn-info' onClick={() => history.push('/backoffice/news/edit')}>
-              Agregar noticia
-            </Button>
+          Agregar novedad
+        </Link>
+      </div>
 
-            <Link
-              to="/backoffice/news/create"
-              title="Agregar noticia"
-              className="d-block d-sm-none "
-            >
-              <div
-                className="text-center btn btn-primary rounded-circle"
-                style={{ width: '40px', height: '40px' }}
-              >
-                <BiPlusMedical className="text-white fw-bold" />
-                {/* <span className="fw-1 text-white fw-bold">+</span> */}
-              </div>
-            </Link>
-          </div>
+      {stateLoading
+        ? <div className="d-flex justify-content-center my-5">
+          <ProgressSpinner state={stateLoading} />
+        </div>
+        : <>
+          {newsState.novedades.length > 0
+            ? <Table striped hover responsive>
+              <thead className="bg-secondary text-white rounded">
+                <tr>
 
-          {stateLoading
-            ? <div className="d-flex justify-content-center my-5">
-              <ProgressSpinner state={stateLoading} />
-            </div>
-            : <div name="bodyModule" id="bodyModule" className="p-3">
-              {newsState.novedades.length > 0
-                ? (
-                  <>
-                    <Table striped hover responsive>
-                      <thead className="bg-primary text-white rounded">
-                        <tr key={'news_0'}>
-                          <th hidden>#</th>
-                          <th>Nombre</th>
-                          <th className="text-center">Imagen</th>
-                          <th className="text-center">Creación</th>
-                          <th className="text-center" colSpan={2}>
-                            Acciones
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {newsState.novedades.map((element) => {
-                          return <RowsNew newData={[element]} key={element.id} />;
-                        })}
-                      </tbody>
-                    </Table>
-                  </>
-                )
-                : (
-                  <div
-                    className="alert-warning rounded d-flex justify-content-center align-items-center "
-                    style={{ height: '300px' }}
-                  >
-                    <h1>No hay noticias para mostrar</h1>
-                  </div>
-                )}
+                  <th className="text-center">Titulo</th>
+                  <th className="text-center">Imagen</th>
+                  <th className="text-center" colSpan={3}>
+                    Acciones
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {newsState.novedades.map((item) => {
+                  return <RowsNew key={item.id} newData={[item]} />;
+                }).reverse()}
+              </tbody>
+            </Table>
+
+            : <div className="alert-warning rounded d-flex justify-content-center align-items-center" style={{ height: '300px' }}>
+              <h3>No hay novedades para mostrar</h3>
             </div>
           }
-
-        </div>
-      </Container>
-    </>
+        </>
+      }
+    </Container>
   );
 };
 // ------------------------------------------- COMPONENTE ROW NEW LIST---------------------------------------

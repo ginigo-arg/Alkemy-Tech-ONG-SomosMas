@@ -19,9 +19,10 @@ const Organization = ({ id, name, shortDescription, longDescription }) => {
                 {name}
               </strong>
             </h2>
-            <p className='text-white ps-5'>
+            <div className='text-white ps-5'>
               <ParserHtml text={shortDescription} />
-            </p>
+            </div>
+
           </Col>
           <Col className='img-column ps-0 d-flex align-items-end'>
             <Card className="bg-dark text-white d-flex align-items-end">

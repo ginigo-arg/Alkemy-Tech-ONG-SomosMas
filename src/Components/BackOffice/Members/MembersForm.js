@@ -50,10 +50,14 @@ const MembersForm = () => {
 
                 if (!location.state) {
                   dispatch(CREATE_MEMBER_FN(values));
-                  if (!stateLoading) history.push('/backoffice/members');
+                  setTimeout(() => {
+                    if (!stateLoading) history.push('/backoffice/members');
+                  }, 3000);
                 } else {
                   dispatch(EDIT_MEMBER_FN(memberSelected.id, values));
-                  if (!stateLoading) history.push('/backoffice/members');
+                  setTimeout(() => {
+                    if (!stateLoading) history.push('/backoffice/members');
+                  }, 3000);
                 }
               }}
               validationSchema={memberSchemaValidation}
