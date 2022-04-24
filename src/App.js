@@ -7,6 +7,7 @@ import { spring, AnimatedSwitch } from 'react-router-transition';
 import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice';
 import Login from './Components/Auth/Login';
 import PrivateRoutes from './Components/Private/PrivateRoutes';
+import BackToTop from './Components/BackToTop/BackToTop';
 
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
 const Home = React.lazy(() => import('./Routes/Layouts/Public.js'));
@@ -52,6 +53,7 @@ function App () {
           </AnimatedSwitch>
         </Suspense>
       </BrowserRouter>
+      <BackToTop />
     </div>
   );
 }

@@ -41,6 +41,7 @@ const RegisterForm = ({ showLogin, setShowLogin }) => {
     },
     validationSchema: SignupSchema,
     onSubmit: (values) => {
+      delete values.passwordConfirmation;
       // alert(JSON.stringify(values, null, 2));
       createAccount(values);
       formik.resetForm();
