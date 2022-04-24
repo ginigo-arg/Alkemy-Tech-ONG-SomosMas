@@ -10,6 +10,7 @@ import { FaEye } from 'react-icons/fa';
 import { AiFillEyeInvisible } from 'react-icons/ai';
 import './registerForm.css';
 import './shapes.css';
+import store from '../../redux/store';
 
 const SignupSchema = Yup.object({
   name: Yup.string().required('Campo requerido'),

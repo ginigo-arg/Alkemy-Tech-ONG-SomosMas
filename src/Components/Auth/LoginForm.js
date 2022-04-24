@@ -26,14 +26,6 @@ const LoginSchema = Yup.object({
 
 const LoginForm = ({ showLogin, setShowLogin }) => {
   const history = useHistory();
-  // const location = useLocation();
-  // const from = location.state.from.pathname || { from: { pathname: '/' } };
-
-  // const LogIn = () => {
-  //   // cambiar luego por la respuesta de la api
-  //   localStorage.setItem('TOKEN', 123456);
-  //   history.replace(from);
-  // };
 
   const formik = useFormik({
     initialValues: {

@@ -32,17 +32,6 @@ const PublicFooter = () => {
             ))}
           </Nav>
         </Navbar>
-        {/* <Nav className="w-100 py-2 justify-content-center">
-          <a href="/#" className="text-muted mx-3">
-            <FaFacebook />
-          </a>
-          <a href="/#" className="text-muted mx-3">
-            <FaInstagram />
-          </a>
-          <a href="/#" className="text-muted mx-3">
-            <FaTwitterSquare />
-          </a>
-        </Nav> */}
         <div className="w-100 text-center d-flex justify-content-center align-items-center">
           <SocialMedia layoutVertical={false} showTitle={false} clsBorder='border-0' p0={true} sizeIcon={25} showLinkedin={false} />
         </div>

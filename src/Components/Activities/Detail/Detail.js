@@ -8,8 +8,15 @@ import LazyImg from '../../Lazyload/LazyImg';
 import { useScreen } from '../../../hooks/useScreen';
 import Comments from '../../News/Detail/Comments';
 import ParserHtml from '../../Parser/Parser';
+import { useDispatch } from 'react-redux';
+import { LOGIN_AUTH_ME_ACTION } from '../../../redux/auth/authActions';
 
 const Detail = (props) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(LOGIN_AUTH_ME_ACTION());
+  }, []);
+
   const { id } = useParams();
   const { isScreen, fromRef } = useScreen();
 

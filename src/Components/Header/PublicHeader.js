@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LOGOUT_USER_ACTION } from '../../redux/auth/authActions';
 import './PublicHeader.css';
 import Logo from '../../assets/img/LOGO-SOMOSMAS.png';
-// import { alertService } from '../../Services/alertService';
 
 const sites = [
   {
@@ -95,5 +94,4 @@ const PublicHeader = () => {
     </>
   );
 };
-
 export default PublicHeader;

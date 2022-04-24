@@ -10,7 +10,6 @@ import NewsList from '../../Components/News/NewsList';
 import Home from '../../Components/Home';
 import Nosotros from '../../Components/About/Nosotros';
 import LoginForm from '../../Components/Auth/LoginForm';
-// import RegisterForm from '../../Components/Auth/RegisterForm';
 import Error404 from '../../Components/Error404/Error404';
 import ToysCampaign from '../../Campaigns/Toys/ToysCampaign';
 import SchoolCampaign from '../../Campaigns/School/SchoolCampaign';
@@ -30,7 +29,6 @@ const Layout = ({ match }) => {
           <Route exact path="/novedades/:id" component={NewDetail} />
           <Route exact path="/novedades" component={NewsList} />
           <Route exact path="/login" component={LoginForm} />
-          {/* <Route exact path="/register" component={RegisterForm} /> */}
           <Route exact path="/campaign/toys" component={ToysCampaign} />
           <Route exact path="/campaign/school" component={SchoolCampaign} />
           <Route path="*" component={Error404} />
