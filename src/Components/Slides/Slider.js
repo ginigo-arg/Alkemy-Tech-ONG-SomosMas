@@ -4,7 +4,12 @@ import ParserHtml from '../Parser/Parser';
 import './Slider.css';
 import { IoPlayCircle } from 'react-icons/io5';
 import ProgressSpinner from '../Progress/ProgressSpinner';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 const Slider = ({ slides, start, end }) => {
+  const history = useHistory();
+  const auth = useSelector(state => state.auth);
   return (
     <Carousel className = "carrusel">
       {slides.length > 0
@@ -20,7 +25,7 @@ const Slider = ({ slides, start, end }) => {
                   text={slide.description} />
                 <Row className='mt-2'>
                   <Col lg={2} className='p-0 me-0'>
-                    <Button varian='warning' className='text-white'>
+                    <Button varian='warning' className='text-white' onClick={() => auth.auth ? history.push('/donar') : history.push('/login')}>
                       Ayudar
                     </Button>
                   </Col>

@@ -8,6 +8,8 @@ import LayoutBackoffice from './Routes/Layouts/LayoutBackoffice';
 import Login from './Components/Auth/Login';
 import PrivateRoutes from './Components/Private/PrivateRoutes';
 import BackToTop from './Components/BackToTop/BackToTop';
+import Donation from './Components/Donations/Donation';
+import Thanks from './Components/Donations/Thanks';
 
 // IMPORTAR NUEVOS COMPONENTES DE WEB PUBLICA CON ESTE FORMATO::
 const Home = React.lazy(() => import('./Routes/Layouts/Public.js'));
@@ -45,6 +47,13 @@ function App () {
             <PrivateRoutes path='/backoffice'>
               <LayoutBackoffice/>
             </PrivateRoutes>
+            <PrivateRoutes path='/donar'>
+              <Donation/>
+            </PrivateRoutes>
+            <PrivateRoutes path='/gracias'>
+              <Thanks/>
+            </PrivateRoutes>
+
             {/* Web pública */}
             <Route path="/" component={Home} />
 

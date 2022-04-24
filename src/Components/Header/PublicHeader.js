@@ -84,7 +84,7 @@ const PublicHeader = () => {
                   Escuelas
                 </NavLink>
               </NavDropdown>
-              <Button className='btn btn-primary text-white' onClick={() => auth.auth ? location.push('/donar') : location.push('/login')}>
+              <Button className='btn btn-primary text-white' onClick={() => auth.auth ? history.push('/donar') : history.push('/login')}>
                 Donar
               </Button>
             </Nav>
