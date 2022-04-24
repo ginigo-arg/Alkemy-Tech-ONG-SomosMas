@@ -8,6 +8,8 @@ import LazyImg from '../../Lazyload/LazyImg';
 import { Card, Container } from 'react-bootstrap';
 import './NewDetail.css';
 import ParserHtml from '../../Parser/Parser';
+import { useDispatch } from 'react-redux';
+import { LOGIN_AUTH_ME_ACTION } from '../../../redux/auth/authActions';
 
 const NewDetail = () => {
   const { isScreen, fromRef } = useScreen();
@@ -17,6 +19,11 @@ const NewDetail = () => {
   useEffect(async () => {
     const res = await getNews(id);
     setNewDetail(res);
+  }, []);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(LOGIN_AUTH_ME_ACTION());
   }, []);
 
   return (
@@ -34,7 +41,7 @@ const NewDetail = () => {
           </Card.Body>
           <Card.Body>
             <div ref={fromRef} className="w-100">
-              <p style={{ minHeight: '200px' }}><ParserHtml text={newDetail.content} /></p>
+              <div style={{ minHeight: '200px' }}><ParserHtml text={newDetail.content} /></div>
               <Suspense>
                 { isScreen ? <Comments /> : null }
               </Suspense>

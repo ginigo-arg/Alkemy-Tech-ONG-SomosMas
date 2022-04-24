@@ -27,7 +27,7 @@ const NewsList = () => {
       <div className="px-3 my-3 border-5 border-bottom border-secondary">
         <h2 className="text-secondary text-uppercase m-0">Listado de Novedades</h2>
         <Link
-          to="/backoffice/members/create"
+          to="/backoffice/news/create"
           className="my-3 btn btn-secondary text-white rounded-pill"
         >
           Agregar novedad
@@ -79,7 +79,7 @@ const RowsNew = ({ newData }) => {
   };
 
   const handleDelete = async id => {
-    const confirm = await alertService('confirm', 'Seguro deseas eliminar este miembro?');
+    const confirm = await alertService('confirm', 'Seguro deseas eliminar esta novedad?');
     if (confirm) dispatch(DELETE_NOVEDAD_FN(id));
   };
 

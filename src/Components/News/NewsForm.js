@@ -59,7 +59,9 @@ const NewsForm = () => {
 
                 if (!location.state) {
                   dispatch(CREATE_NOVEDAD_FN(values));
-                  if (!stateLoading) history.push('/backoffice/news');
+                  setTimeout(() => {
+                    if (!stateLoading) history.push('/backoffice/news');
+                  }, 2000);
                 } else {
                   dispatch(EDIT_NOVEDAD_FN(location.state.id, values));
                   if (!stateLoading) history.push('/backoffice/news');
