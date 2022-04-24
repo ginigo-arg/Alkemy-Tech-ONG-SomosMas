@@ -14,10 +14,8 @@ const SlidesFormHook = () => {
   const { state: id } = useLocation();
 
   useEffect(async () => {
-    console.log('ID_LOCATION:', id);
     if (id) {
       const { data } = await getCategory(id);
-      console.log('data', data);
       setCategory(data);
     }
   }, [location]);
@@ -38,15 +36,7 @@ const SlidesFormHook = () => {
             validationSchema={SchemaValidation}
 
             onSubmit={(values, { resetForm }) => {
-              if (id) {
-                console.log('peticion path');
-                // pathCategory(id, values);
-              } else {
-                console.log('peticion post');
-                // postCategory(values);
-              }
               setTimeout(() => {
-                console.log('values', values);
                 alert(JSON.stringify(values, null, 2));
               }, 400);
               resetForm();
@@ -89,10 +79,8 @@ const SlidesFormHook = () => {
                       config
                       onChange={(e, editor) => setFieldValue('description', editor.getData())}
                       onBlur={ (event, editor) => {
-                        console.log('Blur.', editor);
                       } }
                       onFocus={ (event, editor) => {
-                        console.log('Focus.', editor);
                       } }
                     />
                   </div>

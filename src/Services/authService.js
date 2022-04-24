@@ -28,8 +28,6 @@ export const REMOVE_TOKEN = () => {
 
 export const REGISTER = async (data) => {
   const response = await Post(process.env.REACT_APP_API_AUTH_REGISTER, data);
-  // const response = await Post(process.env.REACT_APP_API_USERS, data);
-  console.log('Respuesta REGISTER', response);
   if (response.data) {
     alertService('success', 'Cuenta creada');
     return response.data;
@@ -45,7 +43,6 @@ export const REGISTER = async (data) => {
 
 export const LOGIN = async (data) => {
   const response = await Post(process.env.REACT_APP_API_AUTH_LOGIN, data);
-  // console.log('Respuesta LOGIN', response);
   if (response.data) {
     return response.data;
   } else {
@@ -59,9 +56,7 @@ export const LOGIN = async (data) => {
 };
 
 export const AUTH = async (TOKEN) => {
-  // console.log('soy token', TOKEN);
   const response = await Get(process.env.REACT_APP_API_AUTH_ME, null, TOKEN);
-  // console.log('Respuesta AUTH', response);
   if (response) {
     return response;
   }

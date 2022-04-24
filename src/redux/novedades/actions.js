@@ -1,6 +1,7 @@
 import { ACTION_FAILED, CREATE_NOVEDAD, DELETE_NOVEDAD, EDIT_NOVEDAD, GET_NOVEDAD, GET_ONE_NOVEDAD } from './types';
 import { postNews, deleteNews, getNews, putNews } from '../../Services/NewsService';
 import { LOADING_OFF, LOADING_ON } from '../global/globalAction';
+import { LOGIN_AUTH_ME_ACTION } from '../auth/authActions';
 
 export const CREATE_NOVEDAD_FN = (content) => (dispatch) => {
   dispatch(LOADING_ON());
@@ -55,6 +56,7 @@ export const EDIT_NOVEDAD_FN = (id, content) => async (dispatch) => {
 
 export const GET_NOVEDAD_FN = () => async (dispatch) => {
   dispatch(LOADING_ON());
+  dispatch(LOGIN_AUTH_ME_ACTION());
   try {
     const response = await getNews();
     dispatch({

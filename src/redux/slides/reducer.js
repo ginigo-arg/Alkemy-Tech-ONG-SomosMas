@@ -20,7 +20,6 @@ const slidesReducer = (state = initialState, action) => {
       };
 
     case GET_SINGLE_SLIDE_BACKOFFICE:
-      console.log('action.payload', action.payload);
       return {
         ...state,
         singleSlide: action.payload,
@@ -38,7 +37,6 @@ const slidesReducer = (state = initialState, action) => {
         slides: [...state.slides, action.payload],
       };
     case EDIT_SLIDE:
-      console.log('payloadEdit:', action.payload);
       return {
         ...state,
         slides: state.slides.map((slide) => {

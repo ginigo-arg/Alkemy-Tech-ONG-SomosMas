@@ -2,9 +2,11 @@ import { ACTION_FAILED, GET_SLIDE_HOME, CREATE_SLIDE, DELETE_SLIDE, GET_SLIDE_BA
 import { LOADING_ON, LOADING_OFF } from '../global/globalAction';
 import { deleteSlide, postSlide, getSlides, putSlide } from '../../Services/SlideServices';
 import { homeSlides } from '../../Services/allHomeMethods';
+import { LOGIN_AUTH_ME_ACTION } from '../auth/authActions';
 
 export const GET_SLIDE_HOME_FN = () => async (dispatch) => {
   dispatch(LOADING_ON());
+  dispatch(LOGIN_AUTH_ME_ACTION());
   try {
     const response = await homeSlides();
     dispatch({
@@ -24,7 +26,6 @@ export const GET_SLIDE_BACKOFFICE_FN = () => async (dispatch) => {
   dispatch(LOADING_ON());
   try {
     const data = await getSlides();
-    console.log('Response get back:', data);
     dispatch({
       type: GET_SLIDE_BACKOFFICE,
       payload: data,
@@ -67,7 +68,6 @@ export const CREATE_SLIDE_FN = (content) => async (dispatch) => {
   try {
     dispatch(LOADING_ON());
     const { data } = await postSlide(content);
-    if (data) console.log('responsepost:', data);
     dispatch({
       type: CREATE_SLIDE,
       payload: data,

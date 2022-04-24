@@ -62,7 +62,6 @@ export const deleteContacts = async (id) => {
 // Front
 export const SEND_EMAIL = async (DATA) => {
   const response = await Post(process.env.REACT_APP_API_CONTACTS, DATA);
-  // console.log(response);
   if (response.data) {
     return response;
   } else {
@@ -73,7 +72,6 @@ export const SEND_EMAIL = async (DATA) => {
 
 export const ORGANIZATION_CONTACT_DATA = async () => {
   const response = await Get(process.env.REACT_APP_API_ORGANIZATION);
-  // console.log('Soy organizacion data', JSON.stringify(response));
   let contactData = {};
   if (response) {
     contactData = {
@@ -87,6 +85,5 @@ export const ORGANIZATION_CONTACT_DATA = async () => {
       email: 'somosfundacionmas@gmail.com',
     };
   }
-  // console.log(JSON.stringify(contactData));
   return contactData;
 };

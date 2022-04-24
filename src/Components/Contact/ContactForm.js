@@ -58,7 +58,6 @@ const ContactForm = ({ showTitle = true, titleForm = '<p> Los campos marcados co
     setLoading(true);
     simulateNetworkRequest();
     const data = await SEND_EMAIL(dataForm);
-    // console.log('soy la respuesta del envio',data);
     if (data) {
       alertService('success', 'Se ha enviado el mensaje');
     }
@@ -72,12 +71,6 @@ const ContactForm = ({ showTitle = true, titleForm = '<p> Los campos marcados co
       });
     }
   }, [isLoading]);
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-  //   console.log('Se envio el formulario ', datosFormValues);
-  // };
 
   return (
     <Form onSubmit={formik.handleSubmit}>

@@ -63,10 +63,7 @@ const RegisterForm = ({ showLogin, setShowLogin }) => {
   };
 
   useEffect(() => {
-    // console.log('state:', state);
-    if (state.user && state.token && !state.auth) {
-      console.log('Estado:', state.user);
-    }
+
   }, [createAccount, state]);
 
   return (

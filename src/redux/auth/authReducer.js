@@ -13,7 +13,6 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_USER:
     {
-      // console.log('soy el reducer LOGIN', action.payload);
       if (action.payload) {
         CREATE_TOKEN(JSON.stringify(action.payload.token));
       }
@@ -29,7 +28,6 @@ const authReducer = (state = initialState, action) => {
 
     case LOGIN_AUTH:
     {
-      // console.log('soy el reducer AUTH', action.payload);
       if (!action.payload) {
         REMOVE_TOKEN(action.payload.token);
       }
@@ -53,7 +51,6 @@ const authReducer = (state = initialState, action) => {
     }
 
     case CREATE_USER: {
-      // console.log('soy el reducer CREATE', action.payload);
       return action.payload
         ? {
           ...state,

@@ -36,13 +36,10 @@ const ProjectsForm = () => {
           if (!edit) {
             // Función POST
             POST_PRIVATE_API('http://ongapi.alkemy.org/api/projects', JSON.stringify(values));
-            console.log('Creando nuevo miembro');
           } else {
             PUT_PRIVATE_API('http://ongapi.alkemy.org/api/projects', JSON.stringify(values));
-            console.log('Editando miembro');
           }
           setTimeout(() => {
-            console.log(values);
             setSubmitting(false);
           }, 400);
         }}

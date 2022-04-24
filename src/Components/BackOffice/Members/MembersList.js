@@ -48,8 +48,8 @@ const MembersList = () => {
                 </tr>
               </thead>
               <tbody>
-                {memberState.miembros.map((item) => (
-                  <RowMember key={item.id} member={item} />
+                {memberState.miembros.map((item, index) => (
+                  <RowMember key={index} member={item} />
                 )).reverse()}
               </tbody>
             </Table>

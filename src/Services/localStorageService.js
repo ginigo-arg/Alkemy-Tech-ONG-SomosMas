@@ -37,7 +37,6 @@ export const REMOVE_FROM_LOCAL_STORAGE = (Key) => {
 
 export const CHECK_IN_LOCAL_STORAGE = (Key) => {
   if (Key) {
-    // console.log(localStorage[Key]);
     if (localStorage[Key] !== undefined) {
       return true;
     } else {

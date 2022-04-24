@@ -46,7 +46,7 @@ const PublicHeader = () => {
       <Navbar bg="dark" variant="dark" collapseOnSelect expand="md" className='shadow' >
         {auth.auth || token
           ? <Container className='d-flex flex-row justify-content-between'>
-            {auth.user.role_id === 1
+            {auth.user
               ? <Button className='header-button btn-warning text-top-header' onClick={() => history.push('/backoffice')}>Escritorio</Button>
               : <Button className='btn btn-warning fs-6' disabled>Escritorio</Button>}
             <Container className='d-flex flex-row justify-content-end '>

@@ -57,9 +57,6 @@ const TestimonialsForm = () => {
         try {
           const base64 = await convertToBase64(values.image);
           values.image = base64;
-          // Función POST
-          // console.log(values);
-          // POST_PRIVATE_API(url, values);
           setSubmitting(false);
         } catch (error) {
           setSubmitting(false);
@@ -69,9 +66,6 @@ const TestimonialsForm = () => {
         try {
           const base64 = await convertToBase64(values.image);
           values.image = base64;
-          // Función PUT
-          // console.log(values);
-          // PATCH_PRIVATE_API(url, location.state.id, values);
           setSubmitting(false);
         } catch (error) {
           setSubmitting(false);

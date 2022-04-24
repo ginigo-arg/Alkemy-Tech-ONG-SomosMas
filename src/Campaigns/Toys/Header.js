@@ -4,8 +4,9 @@ import LandingHeader from '../../Components/Header/LandingHeader';
 const Header = () => {
   return (
     <header>
-      {LandingHeader}
+      <LandingHeader />
     </header>
+
   );
 };
 

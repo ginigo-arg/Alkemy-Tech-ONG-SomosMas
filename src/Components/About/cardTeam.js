@@ -14,9 +14,9 @@ const CardMembers = ({ name, description, image, facebookUrl, linkedingUrl }) =>
             </strong>
           </h5>
         </Card.Title>
-        <Card.Text className='text-description text-center'>
+        <div className='text-description text-center'>
           <ParserHtml text={description}/>
-        </Card.Text>
+        </div>
         <Row>
           <Col></Col>
           <Col className='text-center text-info'>

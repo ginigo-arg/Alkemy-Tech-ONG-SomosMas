@@ -18,7 +18,6 @@ const SlidesFormHook = () => {
   const slide = useSelector(state => state.slides.singleSlide);
 
   useEffect(async () => {
-    console.log('ID_LOCATION:', id);
     if (id) {
       dispatch(GET_SINGLE_SLIDE_BACKOFFICE_FN(id));
     }
@@ -47,7 +46,6 @@ const SlidesFormHook = () => {
                 setSubmitting(false);
                 const base64 = await convertToBase64(values.image);
                 values.image = base64;
-                console.log(values);
                 if (!id) {
                   dispatch(CREATE_SLIDE_FN(values));
                   setTimeout(() => {

@@ -2,9 +2,11 @@ import { CREATE_ACTIVIDAD, DELETE_ACTIVIDAD, EDIT_ACTIVIDAD, GET_ACTIVIDAD } fro
 import { deleteActivities, getActivities, postActivities, putActivities } from '../../Services/actividadesService';
 import { ACTION_FAILED } from '../novedades/types';
 import { LOADING_OFF, LOADING_ON } from '../global/globalAction';
+import { LOGIN_AUTH_ME_ACTION } from '../auth/authActions';
 
 export const GET_ACTIVIDAD_FUNCTION = (id = null) => async (dispatch) => {
   dispatch(LOADING_ON());
+  dispatch(LOGIN_AUTH_ME_ACTION());
   try {
     const data = await getActivities(id);
     dispatch({

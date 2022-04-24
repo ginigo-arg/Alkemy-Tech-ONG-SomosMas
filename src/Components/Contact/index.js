@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SectionTitles from '../SectionTitles/SectionTitles';
 import ContactForm from './ContactForm';
 import ContactInformation from './ContactInformation';
@@ -9,8 +9,16 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Liston from './Liston';
+import { useDispatch } from 'react-redux';
+import { LOGIN_AUTH_ME_ACTION } from '../../redux/auth/authActions';
 
 const IndexContact = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(LOGIN_AUTH_ME_ACTION());
+  }, []);
+
   return (
     <>
       {/* Zona Section Title */}

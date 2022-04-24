@@ -65,7 +65,6 @@ const LoginForm = ({ showLogin, setShowLogin }) => {
   useEffect(() => {
     if (state.auth) {
       setLoading(true);
-      console.log('Logueado');
     }
   }, [logIn, auth]);
 
@@ -76,11 +75,8 @@ const LoginForm = ({ showLogin, setShowLogin }) => {
   useEffect(() => {
     if (CHECK_TOKEN()) {
       if (CHECK_TOKEN()) {
-        console.log('Check token');
         dispatch(LOGIN_AUTH_ME_ACTION(GET_TOKEN())).catch(err => alertService('error', err));
       }
-    } else {
-      console.log('No logueado');
     }
   }, []);
 

@@ -21,7 +21,6 @@ export const patchNews = async (id, data) => {
     `${process.env.REACT_APP_API_NEWS}/${id}`,
     data,
   );
-  // console.log('Respuesta patchNews', response);
   if (response.data) {
     return response;
   } else {
@@ -44,7 +43,6 @@ export const putNews = async (id, data) => {
 
 export const postNews = async (data) => {
   const response = await POST_PRIVATE_API(`${process.env.REACT_APP_API_NEWS}`, data);
-  // console.log('Respuesta postNews', response);
   if (response) {
     alertService('success', 'Novedad creada correctamente!');
     return response;

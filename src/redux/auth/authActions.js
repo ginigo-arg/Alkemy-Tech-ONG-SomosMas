@@ -16,13 +16,14 @@ export const LOGIN_USER_ACTION = (content) => async (dispatch) => {
   }
 };
 
-export const LOGIN_AUTH_ME_ACTION = (content) => async (dispatch) => {
+export const LOGIN_AUTH_ME_ACTION = () => async (dispatch) => {
+  const token = localStorage.getItem('TOKEN');
   try {
-    const resp = await AUTH(content);
+    const resp = await AUTH(token);
     dispatch({
       type: LOGIN_AUTH,
       payload: resp,
-      token: content,
+      token: token,
     });
   } catch (error) {
     dispatch({

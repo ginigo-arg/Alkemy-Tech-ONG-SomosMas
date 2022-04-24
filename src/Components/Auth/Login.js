@@ -20,16 +20,12 @@ const Login = () => {
 
   useEffect(() => {
     if (CHECK_TOKEN()) {
-      console.log('Check token');
       dispatch(LOGIN_AUTH_ME_ACTION(GET_TOKEN())).catch(err => alertService('error', err));
-    } else {
-      console.log('No existe TOKEN');
     }
   }, []);
 
   useEffect(() => {
     if (state.user && state.token && state.auth) {
-      // console.log('se encontro un token valido');
       setLoggedIn(true);
     }
   }, [loggedIn, state]);
