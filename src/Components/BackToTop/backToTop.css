@@ -1,0 +1,8 @@
+
+.scroll-to-top {
+    position: fixed !important;
+    right:5px;
+    bottom:5px;
+    animation: fadeIn 700ms ease-in-out 1s both;
+    cursor: pointer;
+  }
