@@ -1,8 +1,16 @@
 import Title from '../SectionTitles/SectionTitles';
 import ActivitiesList from './ActivitiesList';
 import 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { LOGIN_AUTH_ME_ACTION } from '../../redux/auth/authActions';
+import { useEffect } from 'react';
 
 const Actividades = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(LOGIN_AUTH_ME_ACTION());
+  }, []);
   return (
     <>
       <Title

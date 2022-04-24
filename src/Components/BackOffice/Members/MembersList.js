@@ -1,49 +1,64 @@
-import { Container, Table } from 'react-bootstrap';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Container, Table } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { GET_MEMBERS_FUNCTION } from '../../../redux/Miembros/action';
 import RowMember from './RowMember';
+import ProgressSpinner from '../../Progress/ProgressSpinner';
 
-// Array para similar respuesta de Api
-const MockMembers = [
-  { id: 581, name: 'Luciano', photo: '' },
-  { id: 2, name: 'Mariano', photo: '' },
-  { id: 3, name: 'Nicolás', photo: '' },
-];
+const MembersList = () => {
+  const dispatch = useDispatch();
+  const memberState = useSelector(state => state.miembros);
+  const stateLoading = useSelector(state => state.global.loading);
 
-const MembersList = ({ members = MockMembers }) => {
+  useEffect(() => {
+    dispatch(GET_MEMBERS_FUNCTION());
+  }, []);
+
+  useEffect(() => {}, [memberState.miembros]);
+  useEffect(() => {}, []);
+
   return (
-    <Container className="p-0 border">
-      <div className="px-3 my-3 border-5 border-bottom border-primary">
-        <h2 className="text-primary text-uppercase m-0">Listado de miembros</h2>
+    <Container className="my-4 p-0 border">
+      <div className="px-3 my-3 border-5 border-bottom border-secondary">
+        <h2 className="text-secondary text-uppercase m-0">Listado de miembros</h2>
         <Link
           to="/backoffice/members/create"
-          className="my-3 btn btn-primary text-white rounded-pill"
+          className="my-3 btn btn-secondary text-white rounded-pill"
         >
           Agregar miembro
         </Link>
       </div>
-      {/*  AGREGAR BUSCADOR AQUÍ */}
-      {members.length > 0
-        ? <Container>
-          <Table striped hover responsive>
-            <thead className="bg-primary text-white rounded">
-              <tr>
-                <th className="px-3">Nombre</th>
-                <th className="text-center">Foto</th>
-                <th className="text-center" colSpan={2}>
-                  Acciones
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {members.map((item) => (
-                <RowMember key={item.id} member={item} />
-              ))}
-            </tbody>
-          </Table>
-        </Container>
-        : <div className="alert-warning rounded d-flex justify-content-center align-items-center" style={{ height: '300px' }}>
-          <h3>No hay miembros para mostrar</h3>
+
+      {stateLoading
+        ? <div className="d-flex justify-content-center my-5">
+          <ProgressSpinner state={stateLoading} />
         </div>
+        : <>
+          {memberState.miembros.length > 0
+            ? <Table striped hover responsive>
+              <thead className="bg-secondary text-white rounded">
+                <tr>
+                  <th className="">ID</th>
+                  <th className="">Nombre</th>
+                  <th className="text-center">Foto</th>
+                  <th className="text-center" colSpan={2}>
+                    Acciones
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {memberState.miembros.map((item, index) => (
+                  <RowMember key={index} member={item} />
+                )).reverse()}
+              </tbody>
+            </Table>
+
+            : <div className="alert-warning rounded d-flex justify-content-center align-items-center" style={{ height: '300px' }}>
+              <h3>No hay miembros para mostrar</h3>
+            </div>
+          }
+        </>
       }
     </Container>
   );

@@ -1,37 +1,78 @@
-import { LOGIN_USER, LOGOUT_USER, CREATE_USER, LOGIN_USER_FAILED, CREATE_USER_FAILED } from './authTypes';
+import { LOGIN_USER, LOGOUT_USER, CREATE_USER, LOGIN_USER_FAILED, CREATE_USER_FAILED, LOGIN_AUTH } from './authTypes';
+import { CLEAR_LOCAL_STORAGE } from '../../Services/localStorageService';
+import { CREATE_TOKEN, REMOVE_TOKEN } from '../../Services/authService';
 import { alertService } from '../../Services/alertService';
 
 const initialState = {
   auth: false,
-  token: null,
-  user: null,
+  token: '',
+  user: '',
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_USER:
-    case CREATE_USER:
-      localStorage.setItem('token', action.payload.data.token);
-      return {
-        auth: true,
-        token: action.payload.data.token,
-        user: action.payload.data.user,
-      };
+    {
+      if (action.payload) {
+        CREATE_TOKEN(JSON.stringify(action.payload.token));
+      }
+      return action.payload
+        ? {
+          ...state,
+          auth: true,
+          token: action.payload.token,
+          user: action.payload.user,
+        }
+        : { state };
+    }
 
-    case LOGOUT_USER:
-      localStorage.clear();
-      return {
-        auth: false,
-        token: null,
-        user: null,
-      };
+    case LOGIN_AUTH:
+    {
+      if (!action.payload) {
+        REMOVE_TOKEN(action.payload.token);
+      }
 
-    case LOGIN_USER_FAILED:
-    case CREATE_USER_FAILED:
+      return action.payload
+        ? {
+          ...state,
+          auth: true,
+          token: action.token,
+          user: action.payload.user,
+        }
+        : { state };
+    }
+
+    case LOGOUT_USER: {
+      CLEAR_LOCAL_STORAGE();
+      return {
+        // auth: initialState,
+        state,
+      };
+    }
+
+    case CREATE_USER: {
+      return action.payload
+        ? {
+          ...state,
+          auth: false,
+          token: action.payload.token,
+          user: action.payload.user,
+        }
+        : { state };
+    }
+
+    case LOGIN_USER_FAILED: {
       return alertService('error', action.payload);
+    }
 
-    default:
+    case CREATE_USER_FAILED:
+    {
+      return alertService('error', action.payload);
+    }
+
+    default: {
       return state;
+    }
   }
 };
 

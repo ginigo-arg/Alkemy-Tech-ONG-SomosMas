@@ -6,24 +6,16 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { orgSchemaValidation } from './validation/orgSchemaValidation';
 import Spinner from '../../Spinner/Spinner';
 import { SocialFormControl } from './validation/SocialFormControl';
+import { editOrganization, getOrganization } from '../../../Services/OrganizationService';
+import { useHistory } from 'react-router-dom';
 
 const OrganizationForm = () => {
   const [dataOrg, setDataOrg] = useState(false);
+  const history = useHistory();
 
   useEffect(async () => {
-    // Petición GET de Organization
-    // const { data } = await getDataOrg();
-    // REEMPLAZAR LUEGO
-    setDataOrg({
-      name: '',
-      short_description: '',
-      long_description: '',
-      logo: '',
-      facebook_url: '',
-      linkedin_url: '',
-      instagram_url: '',
-      twitter_url: '',
-    });
+    const data = await getOrganization();
+    setDataOrg(data);
   }, []);
 
   return (
@@ -32,20 +24,20 @@ const OrganizationForm = () => {
         ? <Spinner/>
         : (
           <Container>
-            <h2>Form Organization</h2>
+            <h2 className='mt-3'>Form Organization</h2>
             <Formik
               initialValues={{
                 name: dataOrg.name || '',
                 short_description: dataOrg.short_description || '',
                 long_description: dataOrg.long_description || '',
-                logo: dataOrg.logo || '',
                 facebook_url: dataOrg.facebook_url || '',
                 linkedin_url: dataOrg.linkedin_url || '',
                 instagram_url: dataOrg.instagram_url || '',
                 twitter_url: dataOrg.twitter_url || '',
               }}
-              onSubmit={(values, { setSubmitting }) => {
-                console.log(values);
+              onSubmit={async (values, { setSubmitting }) => {
+                await editOrganization(values);
+                history.push('/backoffice');
                 setSubmitting(false);
               }}
               validationSchema={orgSchemaValidation}
@@ -76,14 +68,17 @@ const OrganizationForm = () => {
 
                   <Form.Group className='mb-4'>
                     <Form.Label>Descripción Breve:</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="short_description"
-                      value={values.short_description}
-                      onChange={handleChange}
-                      isInvalid={!!errors.short_description}
+                    <CKEditor
+                      editor={ ClassicEditor }
+                      name="long_description"
+                      data={values.short_description}
+                      onChange={(e, editor) => setFieldValue('short_description', editor.getData())}
                     />
-                    <Form.Control.Feedback type="invalid">{errors.short_description}</Form.Control.Feedback>
+                    {errors.short_description &&
+                    <small className="text-primary">
+                      {errors.short_description}
+                    </small>
+                    }
                   </Form.Group>
 
                   <Form.Group className='mb-4'>
@@ -106,17 +101,6 @@ const OrganizationForm = () => {
                     errors={errors}
                     handleChange={handleChange}
                   />
-
-                  <Form.Group className='mb-4'>
-                    <Form.Label>Logo:</Form.Label>
-                    <Form.Control
-                      name="logo"
-                      type="file"
-                      onChange={e => setFieldValue('logo', e.currentTarget.files[0])}
-                      isInvalid={!!errors.logo}
-                    />
-                    <Form.Control.Feedback type="invalid">{errors.logo}</Form.Control.Feedback>
-                  </Form.Group>
 
                   <Button type="submit" variant="primary" disabled={isSubmitting}>
                     Guardar cambios

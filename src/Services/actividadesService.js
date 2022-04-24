@@ -14,9 +14,7 @@ const url = process.env.REACT_APP_API_ACTIVITIES;
 const TYPE = 'Error';
 
 const MESSAGE_GET = 'Lo sentimos, hubo un error al obtener las actividades.';
-const MESSAGE_PUT = 'Lo sentimos, hubo un error al editar la actividad.';
 const MESSAGE_PATCH = 'Lo sentimos, hubo un error al editar la actividad.';
-const MESSAGE_POST = 'Lo sentimos, hubo un error al agregar una nuevo actividad.';
 const MESSAGE_DELETE = 'Lo sentimos, hubo un error al eliminar la actividad.';
 
 // Front
@@ -35,10 +33,14 @@ export const getActivities = async (id = null) => {
 };
 
 export const putActivities = async (id, data) => {
-  try {
-    return await PUT_PRIVATE_API(url, id, data);
-  } catch (error) {
-    alertService(TYPE, MESSAGE_PUT);
+  const response = await PUT_PRIVATE_API(url, id, data);
+
+  if (response) {
+    alertService('success', 'Actividad editada correctamente!');
+    return response;
+  } else {
+    alertService('error', 'Ha ocurrido un error al editar actividad');
+    return response.error;
   }
 };
 
@@ -51,17 +53,25 @@ export const patchActivities = async (id, data) => {
 };
 
 export const postActivities = async (data) => {
-  try {
-    return await POST_PRIVATE_API(url, data);
-  } catch (error) {
-    alertService(TYPE, MESSAGE_POST);
+  const response = await POST_PRIVATE_API(url, data);
+
+  if (response) {
+    alertService('success', 'Actividad creada correctamente!');
+    return response;
+  } else {
+    alertService('error', 'Ha ocurrido un error al crear actividad');
+    return response.error;
   }
 };
 
 export const deleteActivities = async (id) => {
-  try {
-    return await DELETE_PRIVATE_API(url, id);
-  } catch (error) {
+  const response = await DELETE_PRIVATE_API(url, id);
+
+  if (response) {
+    alertService('success', 'Actividad eliminada correctamente!');
+    return response;
+  } else {
     alertService(TYPE, MESSAGE_DELETE);
+    return response.error;
   }
 };

@@ -1,13 +1,13 @@
 import { Suspense, useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useScreen } from '../../../hooks/useScreen';
 import { getNews } from '../../../Services/NewsService';
-import SectionTitles from '../../SectionTitles/SectionTitles';
-import ParserHtml from '../../Parser/Parser';
 import Comments from './Comments';
 import ProgressSpinner from '../../Progress/ProgressSpinner';
 import LazyImg from '../../Lazyload/LazyImg';
+import { Card, Container } from 'react-bootstrap';
+import './NewDetail.css';
+import ParserHtml from '../../Parser/Parser';
 
 const NewDetail = () => {
   const { isScreen, fromRef } = useScreen();
@@ -20,30 +20,28 @@ const NewDetail = () => {
   }, []);
 
   return (
-    <>
-      {!newDetail
-        ? <div className="d-flex justify-content-center my-5">
-          <ProgressSpinner />
-        </div>
-        : <>
-          <SectionTitles title={newDetail.name} />
-          <Container className="d-flex justify-content-center flex-wrap">
+    !newDetail
+      ? <div className="d-flex justify-content-center my-5">
+        <ProgressSpinner />
+      </div>
+      : <Container className="d-flex justify-content-center flex-wrap my-5">
+        <Card className='news-container p-lg-5 d-flex flex-column align-items-center'>
+          <div className='news-image-container'>
             <LazyImg image={newDetail.image} alt="Imagen de la novedad" />
-            <div className="mt-5 px-2 w-100" style={{ textAlign: 'justify' }}>
-              <ParserHtml text={newDetail.content} />
-            </div>
-            <hr />
-
-            {/* COMENTARIOS */}
+          </div>
+          <Card.Body>
+            <Card.Title className='news-title'>{`${newDetail.name}`}</Card.Title>
+          </Card.Body>
+          <Card.Body>
             <div ref={fromRef} className="w-100">
+              <p style={{ minHeight: '200px' }}><ParserHtml text={newDetail.content} /></p>
               <Suspense>
                 { isScreen ? <Comments /> : null }
               </Suspense>
             </div>
-          </Container>
-        </>
-      }
-    </>
+          </Card.Body>
+        </Card>
+      </Container>
   );
 };
 

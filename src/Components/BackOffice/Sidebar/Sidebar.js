@@ -3,79 +3,89 @@
 /* eslint-disable indent */
 
 import React from 'react';
-import { Navbar, Offcanvas, Nav, Button } from 'react-bootstrap';
+import { Navbar, Offcanvas, Nav } from 'react-bootstrap';
 import { BiNews } from 'react-icons/bi';
-import { BsPencilFill, BsMenuButtonWideFill } from 'react-icons/bs';
-import { MdOutlineSpeakerNotes } from 'react-icons/md';
+import { BsPencilFill } from 'react-icons/bs';
 import { GiOrganigram } from 'react-icons/gi';
 import { RiSlideshow3Line } from 'react-icons/ri';
 import { HiUsers } from 'react-icons/hi';
 import { FaUserCircle } from 'react-icons/fa';
-import { AiOutlineOrderedList } from 'react-icons/ai';
+import { MdSpaceDashboard } from 'react-icons/md';
 
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
 const Sidebar = () => {
+  const handleClick = () => {
+    const closeBtn = document.getElementById('close-btn').getElementsByTagName('button')[0];
+    closeBtn.click();
+  };
+
   return (
     <div>
       <Navbar.Offcanvas
         id="offcanvasNavbar"
         aria-labelledby="offcanvasNavbarLabel"
         placement="start"
+        className='bg-dark'
       >
-        <Offcanvas.Header closeButton className='offCanvasHeader'>
-          <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
-          <Button href="/"size="sm"className='btn btn-success'>Volver a Web publica</Button>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
+        <Offcanvas.Header closeButton className='offCanvasHeader' id='close-btn'>
 
-          <Nav className="justify-content-end flex-grow-1 pe-3 ">
+          <Link to="/"size="sm"className='btn btn-warning  onClick={handleClick}'>Ir al inicio</Link>
+        </Offcanvas.Header>
+        <Offcanvas.Body className="scroll-not">
+
+          <Nav className="justify-content-end flex-grow-1 pe-3 bg-red">
+          <div className='item'>
+            <Link to="/backoffice/" className='text-white' onClick={handleClick}>
+              <MdSpaceDashboard className='icon' fontSize='25px' color='grey' />
+
+                 Escritorio
+
+            </Link></div><hr/>
             <div className='item'>
-            <Link to="/backoffice/create-news">
+            <Link to="/backoffice/news" className='text-white' onClick={handleClick}>
               <BiNews className='icon' fontSize="25px" color="grey" />
+
               Novedades
+
             </Link></div>
             <hr className=" d-inline-block"></hr>
             <div className='item'>
-            <Link to="/backoffice/create-activity">
-              <BsPencilFill className='icon' fontSize="25px" color="red" />
+            <Link to="/backoffice/activities" className='text-white' onClick={handleClick}>
+              <BsPencilFill className='icon' fontSize="25px" color="grey" />
+
               Actividades
+
             </Link></div><hr></hr>
+
             <div className='item'>
-            <Link to="/backoffice/create-category">
-              <BsMenuButtonWideFill className='icon' fontSize="25px" color="green" />
-            Categorias
-            </Link></div><hr></hr>
-            <div className='item'>
-            <Link to="/backoffice/create-testimonials">
-              <MdOutlineSpeakerNotes className='icon' fontSize="25px" color="blue" />
-              Testimonios
-            </Link></div><hr></hr>
-            <div className='item'>
-            <Link to="/backoffice/organization">
-              <GiOrganigram className='icon' fontSize="25px" color="black" />
+            <Link to="/backoffice/organization" className='text-white' onClick={handleClick}>
+              <GiOrganigram className='icon' fontSize="25px" color="grey" />
+
               Organizacion
+
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/create-slide">
-              <RiSlideshow3Line className='icon'fontSize="25px" color="black" />
+            <Link to="/backoffice/slides" className='text-white' onClick={handleClick}>
+              <RiSlideshow3Line className='icon'fontSize="25px" color="grey" />
+
               Slides
+
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/users">
-              <FaUserCircle className='icon' fontSize="25px" color="orange" />
+            <Link to="/backoffice/users" className='text-white' onClick={handleClick}>
+              <FaUserCircle className='icon' fontSize="25px" color="grey" />
+
               Usuarios
+
             </Link></div><hr></hr>
             <div className='item'>
-            <Link to="/backoffice/create-member">
-              <HiUsers className='icon' fontSize="25px" color="violet" />
+            <Link to="/backoffice/members" className='text-white' onClick={handleClick}>
+              <HiUsers className='icon' fontSize="25px" color="grey" />
+
               Miembros
+
             </Link></div><hr></hr>
-            <div className='item'>
-            <Link to="/backoffice/projects">
-              <AiOutlineOrderedList className='icon' fontSize="25px" color="violet" />
-             Proyectos
-            </Link></div>
           </Nav>
         </Offcanvas.Body>
       </Navbar.Offcanvas>

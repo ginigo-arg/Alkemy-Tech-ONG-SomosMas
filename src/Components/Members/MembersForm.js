@@ -17,7 +17,6 @@ const MembersForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(initialValues);
   };
 
   return (

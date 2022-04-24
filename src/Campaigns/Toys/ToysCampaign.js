@@ -1,13 +1,18 @@
-import React from 'react';
-import Header from './Header';
+import React, { useEffect } from 'react';
 import Slider from './Slider';
 import Content from './Content/Content';
 import Footer from './Footer';
+import { useDispatch } from 'react-redux';
+import { LOGIN_AUTH_ME_ACTION } from '../../redux/auth/authActions';
 
 const ToysCampaign = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(LOGIN_AUTH_ME_ACTION());
+  }, []);
   return (
     <>
-      <Header />
       <Slider />
       <Content />
       <Footer />

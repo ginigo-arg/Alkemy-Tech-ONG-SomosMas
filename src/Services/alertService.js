@@ -1,6 +1,8 @@
 import Swal from 'sweetalert2';
 
-export const alertService = async (type, message) => {
+export const alertService = async (type, message, timer = 5000, autoClose = true) => {
+  type = type.toLowerCase();
+
   if (type === 'confirm') {
     return Swal.fire({
       title: message,
@@ -14,10 +16,17 @@ export const alertService = async (type, message) => {
     });
   }
 
-  return Swal.fire({
-    text: message,
-    icon: type,
-    confirmButtonText: 'Cerrar',
-    timer: 5000,
-  });
+  return Swal.fire(autoClose
+    ? {
+      text: message,
+      icon: type,
+      confirmButtonText: 'Cerrar',
+      timer: timer,
+    }
+    : {
+      text: message,
+      icon: type,
+      confirmButtonText: 'Cerrar',
+    },
+  );
 };

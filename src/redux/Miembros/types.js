@@ -1,0 +1,6 @@
+export const GET_MEMBERS = 'GET_MEMBERS';
+export const GET_ONE_MEMBER = 'GET_ONE_MEMBER';
+export const CREATE_MEMBER = 'CREATE_MEMBER';
+export const EDIT_MEMBER = 'EDIT_MEMBER';
+export const DELETE_MEMBER = 'DELETE_MEMBER';
+export const ACTION_FAILED = 'ACTION_FAILED';

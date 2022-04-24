@@ -1,9 +1,7 @@
-import { Redirect } from 'react-router-dom';
-import { Route } from 'react-router-dom/cjs/react-router-dom.min';
+import { Redirect, Route } from 'react-router-dom';
 
 const PrivateRoutes = ({ children, ...path }) => {
   const TOKEN = localStorage.getItem('TOKEN');
-  console.log('path:', path);
 
   return (
     <Route

@@ -1,90 +1,160 @@
-import { useEffect } from 'react';
-import { Formik } from 'formik';
-import { Form, Container, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { useFormik } from 'formik';
+import { Button, Container, Col, Form, InputGroup, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
+import { FaEye } from 'react-icons/fa';
+import { AiFillEyeInvisible } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux';
+import { LOGIN_USER_ACTION, LOGIN_AUTH_ME_ACTION } from '../../redux/auth/authActions';
+import { alertService } from '../../Services/alertService';
+import { CHECK_TOKEN, GET_TOKEN } from '../../Services/authService';
 import store from '../../redux/store';
 
-const LoginForm = () => {
+const LoginSchema = Yup.object({
+  email: Yup.string()
+    .email('La dirección de correo electrónico que ha indicado no es válida.')
+    .required('Escribe la dirección de correo electrónico asociada a tu cuenta.'),
+  password: Yup.string()
+    .required('Escribe la contraseña de tu cuenta.')
+    .matches(
+      /^.*(?=.{6,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-zA-Z]){1}).*$/,
+      // eslint-disable-next-line comma-dangle
+      'La contraseña que ha indicado no cumple con los criterios de aceptación.'
+    ),
+});
+
+const LoginForm = ({ showLogin, setShowLogin }) => {
   const history = useHistory();
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: LoginSchema,
+    onSubmit: (values) => {
+      logIn(values);
+      formik.resetForm();
+    },
+  });
+
+  const [showPass, setShowPass] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.auth);
   const { auth } = store.getState();
+
+  const logIn = async (content) => {
+    const response = await dispatch(LOGIN_USER_ACTION(content)).catch(err => alertService('error', err));
+    if (response) {
+      alertService('success', 'Login exitoso', 1000, true);
+      setLoading(true);
+    }
+  };
+
+  useEffect(() => {
+    if (state.auth) {
+      setLoading(true);
+    }
+  }, [logIn, auth]);
+
   useEffect(() => {
     if (auth.auth) return history.push('/');
   }, []);
 
+  useEffect(() => {
+    if (CHECK_TOKEN()) {
+      if (CHECK_TOKEN()) {
+        dispatch(LOGIN_AUTH_ME_ACTION(GET_TOKEN())).catch(err => alertService('error', err));
+      }
+    }
+  }, []);
+
   return (
-    <Container className="card p-0">
-      <h4 className="card-header mb-4 p-4 p-sm-3">Anywhere in your app!</h4>
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        validationSchema={Yup.object().shape({
-          email: Yup.string().email('Email inválido').required('Required'),
-          password: Yup.string()
-            .required('Favor ingresa tu contraseña')
-            .min(6, 'La contraseña debería tener mínimo 6 caracteres.')
-            .matches(
-              /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/g,
-              'La contraseña debe tener números y caracteres especiales.',
-            ),
-        })}
-        onSubmit={(values, { setSubmitting }) => {
-          setSubmitting(false);
-          localStorage.setItem('TOKEN', 123456);
-          history.push('/');
-        }}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-          /* and other goodies */
-        }) => (
-          <Form
-            className="rounded p-4 p-sm-3"
-            noValidate
-            onSubmit={handleSubmit}
-          >
-            <Form.Group controlId="validationFormik01" className="mb-4">
-              <Form.Label>Email:</Form.Label>
+    <Container>
+      <Row>
+        <Col >
+          <Form onSubmit={formik.handleSubmit} className="m-3">
+            <Form.Group controlId="email" className="mb-3 input-group-lg">
               <Form.Control
                 type="email"
-                placeholder="Escribe tu email"
-                name="email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                isInvalid={!!errors.email}
-                isValid={values.email && !errors.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
+                className={
+                  formik.errors.email
+                    ? 'border-danger'
+                    : 'border-success'
+                }
+                placeholder="Email"
               />
-              <Form.Control.Feedback type="invalid">
-                {errors.email}
-              </Form.Control.Feedback>
+              {formik.errors.email
+                ? (
+                  <span className="text-danger">{formik.errors.email} </span>
+                )
+                : null}
             </Form.Group>
 
-            <Form.Group controlId="validationFormik01" className="mb-4">
-              <Form.Label>Password:</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Escribe tu contraseña"
-                name="password"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                isInvalid={!!errors.password}
-                isValid={values.password && !errors.password}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.password || touched.password}
-              </Form.Control.Feedback>
+            <Form.Group as={Col} controlId="password" className='mb-3'>
+              <InputGroup className="input-group-lg">
+                <Form.Control
+                  type={showPass ? 'text' : 'password'}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password}
+                  className={
+                    formik.errors.password
+                      ? ' border-danger'
+                      : ' border-success'
+                  }
+                  placeholder="Password"
+                />
+                <Button
+                  variant="outline-secondary"
+                  id="button-addon1"
+                  className={
+                    formik.errors.password
+                      ? ' border-danger'
+                      : ' border-success'
+                  }
+                  onClick={() => {
+                    setShowPass(!showPass);
+                  }}
+                >
+                  {showPass
+                    ? (
+                      <AiFillEyeInvisible className="fs-3" />
+                    )
+                    : (
+                      <FaEye className="fs-3" />
+                    )}
+                </Button>
+              </InputGroup>
+              {formik.errors.password
+                ? (
+                  <span className="text-danger">{formik.errors.password} </span>
+                )
+                : null}
             </Form.Group>
-            <Button variant="primary" type="submit" disabled={isSubmitting} >
-              Ingresar
-            </Button>
+            <Col className='d-flex justify-content-between'>
+              <button onClick={() => setShowLogin(!showLogin)} className='text-primary mr-2 bg-white border-0'><strong>
+                No tengo cuenta
+              </strong>
+              </button>
+              <Button
+                variant="primary"
+                type="submit"
+                className="btn-lg bg-gradient text-white"
+                disabled={loading}
+              >
+                Ingresar
+              </Button>
+            </Col>
           </Form>
-        )}
-      </Formik>
+        </Col>
+      </Row>
     </Container>
   );
 };

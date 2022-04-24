@@ -1,35 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,300;1,300&family=Montserrat:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&display=swap');
-
-.userslist-buttons {
-  width: 8rem;
+.container-list::-webkit-scrollbar{
+    display: none !important;
 }
-
-.userslist-title-container {
-  background-color: rgb(230, 223, 223);
-  height: 3rem;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-}
-
-.userslist-title {
-  font-size: 1.25rem;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.userslist-text {
-  font-size: 1.1rem;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
-}
-
-@media (min-width: 768px) {
-  .userslist-buttons {
-    width: 4rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .userslist-buttons {
-    width: 5rem;
-  }
+.container-table::-webkit-scrollbar{
+    display: none !important;
 }

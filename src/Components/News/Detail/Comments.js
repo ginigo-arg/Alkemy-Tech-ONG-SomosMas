@@ -2,18 +2,20 @@ import { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { getComments } from '../../../Services/commentService';
 import SkeletonComment from './SkeletonComment';
+import './NewDetail.css';
 
 const Comments = () => {
   const [comments, setComments] = useState(false);
 
   useEffect(async () => {
     const data = await getComments();
+
     setComments(data);
   }, []);
 
   return (
-    <div style={{ marginTop: '200px' }}>
-      <h3>Comentarios</h3>
+    <div className='mt-5'>
+      <h3 className='news-comments-title'>Comentarios</h3>
       {!comments
         ? <SkeletonComment />
         : comments.length > 0
@@ -21,7 +23,7 @@ const Comments = () => {
             comments.map(comment => (
               <Container
                 key={comment.id}
-                className="d-flex align-items-center border-bottom my-5"
+                className="d-flex flex-row align-items-center border-top py-3"
               >
                 <div
                   className="d-flex align-items-center border"

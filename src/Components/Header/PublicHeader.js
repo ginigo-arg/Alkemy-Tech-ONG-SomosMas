@@ -1,9 +1,9 @@
 import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
+import { NavLink, Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, Link } from 'react-router-dom';
-import src from '../../assets/img/LOGO-SOMOSMAS.png';
 import { LOGOUT_USER_ACTION } from '../../redux/auth/authActions';
 import './PublicHeader.css';
+import Logo from '../../assets/img/LOGO-SOMOSMAS.png';
 
 const sites = [
   {
@@ -34,30 +34,37 @@ const sites = [
 
 ];
 
-export default function PublicHeader () {
+const PublicHeader = () => {
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
+  const history = useHistory();
+  const token = localStorage.getItem('TOKEN');
 
   return (
     <>
-      <Navbar className='bg-dark'>
-        <Container>
-          <Navbar.Toggle />
-          <Navbar.Collapse className="d-flex flex-direction-row justify-content-end align-items-center">
-            {auth.auth === true
-              ? <> <p className='text-white my-0 mx-4'>{`Bienvenido ${auth.user}`}</p>
-                <p className='text-white my-0 header-logout' onClick={() => dispatch(LOGOUT_USER_ACTION())}>Cerrar sesión</p> </>
-              : <Link className='text-white my-0' to='/login'>Iniciar sesión | Registrarse</Link>}
-          </Navbar.Collapse>
-        </Container>
+      <Navbar bg="dark" variant="dark" collapseOnSelect expand="md" className='shadow' >
+        {auth.auth || token
+          ? <Container className='d-flex flex-row justify-content-between'>
+            {auth.user
+              ? <Button className='header-button btn-warning text-top-header' onClick={() => history.push('/backoffice')}>Escritorio</Button>
+              : <Button className='btn btn-warning fs-6' disabled>Escritorio</Button>}
+            <Container className='d-flex flex-row justify-content-end '>
+              <p className='text-white my-0 mx-lg-4 d-none d-md-flex  text-top-header'>{`Bienvenido ${auth.user.name}`}</p>
+              <p className='text-white my-0 header-logout text-decoration-underline  text-top-header' onClick={() => dispatch(LOGOUT_USER_ACTION())}>Cerrar sesión</p>
+            </Container>
+          </Container>
+          : <Container className='d-flex flex-row justify-content-end'>
+            <Link className='text-white my-0 header-text fs-6 text-top-header' to='/login'>Iniciar sesión | Registrarse</Link>
+          </Container>}
       </Navbar>
+
       <Navbar bg="light" variant="light" collapseOnSelect sticky="top" expand="sm" className='shadow'>
         <Container>
           <Navbar.Brand style={{ cursor: 'pointer' }}>
             <Link to="/">
               <img
                 className="w-50"
-                src={src}
+                src={Logo}
               />
             </Link>
           </Navbar.Brand>
@@ -77,15 +84,14 @@ export default function PublicHeader () {
                   Escuelas
                 </NavLink>
               </NavDropdown>
-              {auth.auth && auth.user && auth.user.role === 1
-                ? <Button className='btn btn-primary text-white'>
-                  Donar
-                </Button>
-                : null}
+              <Button className='btn btn-primary text-white' onClick={() => auth.auth ? location.push('/donar') : location.push('/login')}>
+                Donar
+              </Button>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
     </>
   );
-}
+};
+export default PublicHeader;

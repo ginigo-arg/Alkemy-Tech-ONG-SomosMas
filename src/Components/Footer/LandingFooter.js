@@ -110,7 +110,7 @@ const LandingFooter = () => {
       </Container>
       <Container className="p-3">
         <h5 className="footer-text text-center">
-          2022 by Alkemy. All Rights Reserved.
+          By Reactors © 2022 copyright | All Rights Reserved.
         </h5>
       </Container>
     </Container>

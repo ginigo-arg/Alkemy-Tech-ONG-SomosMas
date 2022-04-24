@@ -3,7 +3,7 @@ import { SchemaValidation } from './UserSchema';
 import { Container, InputGroup, Button, Col, Spinner } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { GetUsersById, PostUsers, PutUsers } from '../../Services/usersService';
+import { GetUsers, PostUsers, PutUsers } from '../../Services/usersService';
 import ProgressSpinner from '../Progress/ProgressSpinner';
 import './UsersForm.css';
 import { convertToBase64 } from '../../Services/base64Helper';
@@ -15,7 +15,7 @@ const UsersForm = () => {
 
   useEffect(async () => {
     if (id) {
-      const { data } = await GetUsersById(id);
+      const { data } = await GetUsers(id);
       setUser(data.data);
     }
   }, [id]);

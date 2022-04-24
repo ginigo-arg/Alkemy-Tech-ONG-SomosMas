@@ -24,7 +24,7 @@ const Newsletter = () => {
     auth.auth
       ? <Formik
         initialValues={{
-          email: '',
+          newsletterEmail: '',
         }}
         onSubmit={handleSubmit}
       >
@@ -32,8 +32,8 @@ const Newsletter = () => {
           <p className='newsletter-message'>Suscríbete al Newsletter.</p>
           <Container fluid className='d-flex flex-row'>
             <Field
-              id="email"
-              name="email"
+              id="newsletterEmail"
+              name="newsletterEmail"
               placeholder="Ingresa tu Email"
               type="email"
               className='form-control newsletter-input'/>

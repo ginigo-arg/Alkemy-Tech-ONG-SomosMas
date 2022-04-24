@@ -1,9 +1,10 @@
-import { ACTION_FAILED, CREATE_NOVEDAD, DELETE_NOVEDAD, EDIT_NOVEDAD, GET_NOVEDAD } from './types';
+import { ACTION_FAILED, CREATE_NOVEDAD, DELETE_NOVEDAD, EDIT_NOVEDAD, GET_NOVEDAD, GET_ONE_NOVEDAD } from './types';
 
 import Swal from 'sweetalert2';
 
 const initialState = {
   novedades: [],
+  novedadSelected: null,
 };
 
 const novedadesReducer = (state = initialState, action) => {
@@ -15,11 +16,9 @@ const novedadesReducer = (state = initialState, action) => {
       };
 
     case DELETE_NOVEDAD: {
-      const { id } = action.payload;
-      const filtered = state.novedades.filter(novedad => novedad.id !== id);
       return {
         ...state,
-        novedades: filtered,
+        novedades: state.novedades.filter(novedad => novedad.id !== action.payload),
       };
     }
 
@@ -35,7 +34,16 @@ const novedadesReducer = (state = initialState, action) => {
       };
 
     case GET_NOVEDAD:
-      return action.payload;
+      return {
+        ...state,
+        novedades: action.payload,
+      };
+
+    case GET_ONE_NOVEDAD:
+      return {
+        ...state,
+        novedadSelected: action.payload,
+      };
 
     case ACTION_FAILED:
       return Swal.fire(action.payload);

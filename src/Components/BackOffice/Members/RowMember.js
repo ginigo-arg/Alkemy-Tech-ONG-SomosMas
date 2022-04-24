@@ -2,9 +2,13 @@ import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { AiFillDelete } from 'react-icons/ai';
 import { RiFileEditFill } from 'react-icons/ri';
+import { alertService } from '../../../Services/alertService';
+import { useDispatch } from 'react-redux';
+import { DELETE_MEMBER_FN } from '../../../redux/Miembros/action';
 
 const RowMember = ({ member }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleEdit = () => {
     history.push('/backoffice/members/edit', {
@@ -12,18 +16,25 @@ const RowMember = ({ member }) => {
     });
   };
 
+  const handleDelete = async () => {
+    const confirm = await alertService('confirm', 'Seguro deseas eliminar este miembro?');
+    if (confirm) dispatch(DELETE_MEMBER_FN(member.id));
+  };
+
   return (
     <tr className="align-middle">
+      <td className="">{member.id}</td>
       <td className="px-3">{member.name}</td>
       <td className="text-center" style={{ width: '230px' }}>
-        {member.photo !== ''
+        {member.image !== ''
           ? (
-            <img
-              src={member.photo}
-              alt={member.name}
-              className="img-thumbnail rounded"
-              style={{ width: '200px', height: '100px' }}
-            />
+            <div style={{ maxWidth: '150px', maxHeight: '150px', overflow: 'hidden' }}>
+              <img
+                src={member.image}
+                alt={member.name}
+                className="w-100"
+              />
+            </div>
           )
           : (
             <svg className="img-thumbnail rounded" width="200px" height="100px">
@@ -36,7 +47,7 @@ const RowMember = ({ member }) => {
           )}
       </td>
       <td className="text-center" style={{ width: '70px' }}>
-        <Button className="btn btn-danger text-white" title="Eliminar">
+        <Button onClick={handleDelete} className="btn btn-danger text-white" title="Eliminar">
           <AiFillDelete />
         </Button>
       </td>
