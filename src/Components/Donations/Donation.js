@@ -60,8 +60,8 @@ const Donation = () => {
         </Form.Group>
       </Row>
       <Row className='w-50 px-3'>
-        <Button className='my-2' variant='primary' onClick={() => enviarDonacion(donar)}>Donar</Button>
-        <Button className='my-2' variant='info' onClick={() => history.push('/')}>Volver al inicio</Button>
+        <Button className='my-2 text-white' variant='primary' onClick={() => enviarDonacion(donar)}>Donar</Button>
+        <Button className='my-2 text-white' variant='info' onClick={() => history.push('/')}>Volver al inicio</Button>
       </Row>
     </Container>
   );

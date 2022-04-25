@@ -20,9 +20,7 @@ const NewsList = () => {
     <>
       <SectionTitles title="Novedades" />
       <Container className="d-flex gap-4 justify-content-center align-items-stretch flex-wrap mt-5 mb-5">
-        <div className="d-flex justify-content-center my-5">
-          <ProgressSpinner state={stateLoading} />
-        </div>
+        <ProgressSpinner state={stateLoading} />
         {
           Array.isArray(state) && state.length > 0
             ? state.map((item) => (
