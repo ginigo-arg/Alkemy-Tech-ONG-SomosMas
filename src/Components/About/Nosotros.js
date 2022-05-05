@@ -9,6 +9,7 @@ import Organization from './Organization';
 import Spinner from '../Spinner/Spinner';
 import Slider from '../Slides/Slider';
 import { GET_SLIDE_HOME_FN } from '../../redux/slides/actions';
+import ParserHtml from '../Parser/Parser';
 
 export default function Nosotros () {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ export default function Nosotros () {
       : <>
         <Slider slides={slides || []} start={3} end={2}/>
         <Container className='d-flex justify-content-center py-5 my-2'>
-          <p className='w-75 text-center'>{stateOrganizacion?.long_description}</p>
+          <div className='w-75 text-center'><ParserHtml className='w-75 text-center' text={stateOrganizacion?.long_description} /></div>
         </Container>
         <Container fluid className='bg-info m-0 mt-0'>
           <Organization

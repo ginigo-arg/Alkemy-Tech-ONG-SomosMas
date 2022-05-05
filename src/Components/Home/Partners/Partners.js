@@ -20,12 +20,12 @@ const Partners = () => {
         </Col>
         <Col>
           <p className='text-partner'>
-            Sabemos que todos los proyectos generan costos para existir y los nuestros no son diferentes. Con eso en mente, estamos buscando grandes empresas que hayan abrazado nuestra causa y nos hayan ayudado en este viaje. Estamos muy agradecidos con las empresas a continuación y con todos los demás que deseen ser parte de nuestra historia. ¿Quieres apoyar también? ¡Haga clic aquí!s
+            Sabemos que todos los proyectos generan costos para existir y los nuestros no son diferentes. Con eso en mente, estamos buscando grandes empresas que hayan abrazado nuestra causa y nos hayan ayudado en este viaje. Estamos muy agradecidos con las empresas a continuación y con todos los demás que deseen ser parte de nuestra historia. ¿Quieres apoyar también?
           </p>
         </Col>
       </Row>
       <Row className='d-flex justify-content-between align-items-center px-5 bg-gray-600 w-100 partners mb-5'>
-        <ul className='d-flex flex-direction-row justify-content-center align-items-center overflow-hidden w-100'>
+        <ul className='d-flex flex-wrap flex-direction-row justify-content-center align-items-center overflow-hidden w-100'>
           <li className='px-5 py-5 border-start border-end overflow-hidden'>
             <img src={Partner1} alt="partner1"/>
           </li>
