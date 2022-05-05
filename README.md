@@ -28,8 +28,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## ScreenShots 
 
 <p align="center">
-  <img src="src/assets/screenshoots/cap1.png" width="30%"/>
   <img src="src/assets/screenshoots/cap2.png" width="30%"/>
+  <img src="src/assets/screenshoots/cap1.png" width="30%"/>
   <img src="src/assets/screenshoots/cap3.png" width="30%"/>
   <img src="src/assets/screenshoots/cap4.png" width="30%"/>
   <img src="src/assets/screenshoots/cap5.png" width="30%"/>
