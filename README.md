@@ -2,67 +2,61 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-## Available Scripts
+# Grupo Reactors | ONG SOMOS MAS - Alkemy 
 
-In the project directory, you can run:
+## Caracteristicas de la App
+ La aplicación se basó en una web para una ONG (Somos más), donde se podra visualizar información de la organización, acciones,
+   actividades, miembros y demas... Ademas cuenta con un panel de administración donde los usuarios podran, crear, editar y eliminar
+   ciertas secciones del front, como ser actividades, slides, textos, miembros, etc.
 
-### `yarn start`
+## Caracteristicas de la App
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [x] Single Page Aplication (SPA).
+- [x] Gestion del estado Redux
+- [x] Panel de administracio para usuarios
+- [x] Rutas protegidas
+- [x] Persistencia del usuario
+- [x] Recepcion de donaciones (Mercado Pago)
+- [x] Videos
+- [x] Contenido interactivo
+- [x] Framework css Bootstrap
+- [x] Tecnologia ReactJS
+- [x] Personas que trabajaron en esta aplicación: (8)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ScreenShots 
 
-### `yarn build`
+<p align="center">
+  <img src="src/assets/screenshoots/cap1.png" width="30%"/>
+  <img src="src/assets/screenshoots/cap2.png" width="30%"/>
+  <img src="src/assets/screenshoots/cap3.png" width="30%"/>
+  <img src="src/assets/screenshoots/cap4.png" width="30%"/>
+  <img src="src/assets/screenshoots/cap5.png" width="30%"/>
+  <img src="src/assets/screenshoots/cap6.png" width="30%"/>
+  <img src="src/assets/screenshoots/cap7.png" width="30%"/>
+    
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+</p>
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## How to use
 
-## Documentation to use the Setup Progress Bar
-The component uses state props to hide or show itself. It has a default state to display though. e.g.:
-
+To clone and run this application, you'll need [Git](https://git-scm.com/downloads) and [Node](https://nodejs.org/es/). From your command line:
 ```
-// To show it:
-<ProgressSpinner state={true} />
-# or
-<ProgressSpinner />
+# Clone this repository
+$ git clone https://github.com/ginigo-arg/Alkemy-Tech-ONG-SomosMas.git
+# Go into the repository
+$ cd repo-clonado
 
-// To hide it:
-<ProgressSpinner state={false} />
-```
-Skeleton component added when Card component is retrieving data from APIs.
+# Install dependencies
+$ npm install
 
-## ALERTS SERVICE
-
-File in: ./src/Services/alertService.js.<br />
-
-Version: SweetAlert2 [https://sweetalert2.github.io/].<br />
-
-Types-alerts: success, error, info and confirm.<br />
-
-Use alert: Receive two parameters: type and message. (MANDATORY!)<br />
-
-EXAMPLE:
-
-```
-    const delete = async () => {
-      const confirmAction = await alertService('confirm', 'Are you sure to delete?');
-      if (confirmAction) {
-        alertService('success', 'Removed successfully');
-      } else {
-        alertService('error', 'Cancelled');
-      }
-    };
+# Run the app
+$ npm start
 ```
 
+## Acceso
+- User: gabi@gabi.com
+- Pass: gabriel123!
+ o podes crearte un nuevo usuario
