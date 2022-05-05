@@ -27,7 +27,7 @@ const Donation = () => {
         },
       ],
       back_urls: {
-        success: "http://localhost:3000/gracias",
+        success: "https://alkemy-tech-ong-somos-mas.vercel.app/gracias",
       },
       payment_methods: {
         excluded_payment_methods: [

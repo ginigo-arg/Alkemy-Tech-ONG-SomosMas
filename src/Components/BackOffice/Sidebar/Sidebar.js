@@ -28,11 +28,11 @@ const Sidebar = () => {
         placement="start"
         className='bg-dark'
       >
-        <Offcanvas.Header closeButton className='offCanvasHeader' id='close-btn'>
+        <Offcanvas.Header closeButton className='offCanvasHeader bg-dark' id='close-btn'>
 
           <Link to="/"size="sm"className='btn btn-warning  onClick={handleClick}'>Ir al inicio</Link>
         </Offcanvas.Header>
-        <Offcanvas.Body className="scroll-not">
+        <Offcanvas.Body className="scroll-not bg-dark">
 
           <Nav className="justify-content-end flex-grow-1 pe-3 bg-red">
           <div className='item'>
